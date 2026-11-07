@@ -15,7 +15,6 @@ export interface HonoredSeasonEntry {
   division?: string;
   note?: string;
   teamLink?: string | null;
-  source?: 'api' | 'manual';
 }
 
 export interface HonoredMilestone {
@@ -211,8 +210,7 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
         team: s.team || 'UIC',
         division: s.division || undefined,
         note: s.note || s.achievement || undefined,
-        teamLink: s.teamLink || null,
-        source: 'manual' as const
+        teamLink: s.teamLink || null
       }))
     : [];
 

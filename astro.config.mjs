@@ -1,9 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
-// @ts-check
-import { defineConfig } from 'astro/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,6 +16,7 @@ function basePathPrefixer(basePath) {
         if (!basePath || basePath === '/') return;
         const outDir = fileURLToPath(dir);
         const cleanBase = basePath.replace(/\/+$/, '');
+        const baseName = cleanBase.slice(1);
 
         function walk(currentDir) {
           const entries = fs.readdirSync(currentDir, { withFileTypes: true });
@@ -31,15 +28,15 @@ function basePathPrefixer(basePath) {
               let text = fs.readFileSync(fullPath, 'utf8');
               let updated = text;
 
-              // 1. HTML attributes: href, src, action, poster (ignoring //, http:, https:, data:)
-              updated = updated.replace(/(href|src|action|poster)=["']\/([^\/][^"']*)["']/g, (m, attr, rest) => {
-                if (rest.startsWith(cleanBase.slice(1) + '/')) return m;
+              // 1. HTML attributes: href, src, action, poster (handling "/" and "/..." while ignoring "//")
+              updated = updated.replace(/(href|src|action|poster)=["']\/(?!\/)([^"']*)["']/g, (m, attr, rest) => {
+                if (rest === baseName || rest.startsWith(baseName + '/')) return m;
                 return `${attr}="${cleanBase}/${rest}"`;
               });
 
               // 2. CSS url(/...)
-              updated = updated.replace(/url\(\s*["']?\/([^\/][^"')]+)["']?\s*\)/g, (m, rest) => {
-                if (rest.startsWith(cleanBase.slice(1) + '/')) return m;
+              updated = updated.replace(/url\(\s*["']?\/(?!\/)([^"')]+)["']?\s*\)/g, (m, rest) => {
+                if (rest === baseName || rest.startsWith(baseName + '/')) return m;
                 return `url("${cleanBase}/${rest}")`;
               });
 

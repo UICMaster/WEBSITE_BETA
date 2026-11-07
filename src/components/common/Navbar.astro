@@ -479,7 +479,7 @@
   });
 
   // Path-based or Section-based Active Spy
-  if (window.location.pathname.startsWith('/honored')) {
+  if (window.location.pathname.includes('/honored')) {
     const honoredLink = document.querySelector<HTMLAnchorElement>('[data-nav-path="/honored"]');
     if (honoredLink) setActiveNav(honoredLink);
   } else {

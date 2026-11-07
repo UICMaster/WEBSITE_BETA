@@ -1240,6 +1240,24 @@ const firstVideo = player.videos[0] || null;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+    max-height: 410px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .roadmap-list::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .roadmap-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .roadmap-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
   }
 
   .roadmap-item {
@@ -1307,12 +1325,6 @@ const firstVideo = player.videos[0] || null;
     color: var(--text-muted);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .rm-badge.is-api {
-    color: #34d399;
-    background: rgba(16, 185, 129, 0.12);
-    border-color: rgba(16, 185, 129, 0.35);
   }
 
   .rm-team-row {
