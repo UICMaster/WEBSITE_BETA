@@ -1,4 +1,4 @@
-// @ts-check
+// https://astro.build/config
 import { defineConfig } from 'astro/config';
 import fs from 'node:fs';
 import path from 'node:path';
