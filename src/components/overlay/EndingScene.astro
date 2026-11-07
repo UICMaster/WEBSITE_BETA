@@ -1,0 +1,443 @@
+---
+// src/components/overlay/EndingScene.astro
+---
+
+<!-- SCENE 4: END (TEAM SUMMARY, UPCOMING SCHEDULE & COMMUNITY CHANNELS) -->
+<section id="stage-ending" class="broadcast-stage" aria-label="4. End">
+  <div class="ending-stage-wrap">
+
+    <!-- 1. TOP OUTRO HERO HEADER -->
+    <header class="ending-header">
+      <div class="ending-badge text-mono">
+        <span>STREAM END</span>
+      </div>
+      <h1 class="ending-hero-title">DANKE FÜRS ZUSCHAUEN</h1>
+      <p class="ending-sub text-mono" id="ending-team-sub">ULTRA INSTINCT CREW &bull; PRIME LEAGUE</p>
+    </header>
+
+    <!-- 2. MAIN 2-COLUMN BROADCAST OUTRO GRID -->
+    <div class="ending-main-grid">
+
+      <!-- Left Panel: Active Team Bilanz & Spielplan -->
+      <div class="ending-team-panel">
+        <div class="et-header">
+          <div class="et-team-id">
+            <img id="ending-uic-logo" src="/assets/logo/logo.png" alt="UIC" class="et-crest" width="52" height="52" />
+            <div class="et-meta">
+              <div class="et-name" id="ending-uic-name">UIC PRIME</div>
+              <div class="et-div text-mono" id="ending-uic-div">PRIME LEAGUE</div>
+            </div>
+          </div>
+
+          <div class="et-stats">
+            <div class="et-stat-box">
+              <span class="et-stat-lbl text-mono">SAISONBILANZ</span>
+              <span class="et-stat-val text-mono" id="ending-record-val">0S – 0N</span>
+            </div>
+            <div class="et-stat-box">
+              <span class="et-stat-lbl text-mono">FORM</span>
+              <div class="form-badges-row" id="ending-form-pills"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="et-schedule-head text-mono">
+          <span>AKTUELLE BEGEGNUNGEN &amp; NÄCHSTE TERMINE</span>
+          <span id="ending-season-label"></span>
+        </div>
+
+        <div class="et-schedule-list" id="ending-schedule-list">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Right Panel: 2x2 Official Channels Grid -->
+      <div class="ending-channels-grid">
+
+        <div class="ending-channel-card">
+          <span class="ec-tag text-mono">ERGEBNISSE &amp; KADER</span>
+          <div class="ec-title">VEREINS-WEBSEITE</div>
+          <p class="ec-desc">Alle Teams, Live-Tabellen, Spielerprofile und Termine im Überblick.</p>
+          <span class="ec-url text-mono">ultrainstinctcrew.com</span>
+        </div>
+
+        <div class="ending-channel-card">
+          <span class="ec-tag text-mono">COMMUNITY &amp; WATCHPARTY</span>
+          <div class="ec-title">DISCORD SERVER</div>
+          <p class="ec-desc">Tritt unserem öffentlichen Vereins-Discord für Spieltage und Events bei.</p>
+          <span class="ec-url text-mono">discord.gg/ultrainstinctcrew</span>
+        </div>
+
+        <div class="ending-channel-card">
+          <span class="ec-tag text-mono">TRIKOTS &amp; TEAMWEAR</span>
+          <div class="ec-title">SPIZED SHOP</div>
+          <p class="ec-desc">Offizielle Trikots, Hoodies und Accessoires der Ultra Instinct Crew.</p>
+          <span class="ec-url text-mono">teams.spized.com/ultrainstinctcrew</span>
+        </div>
+
+        <div class="ending-channel-card">
+          <span class="ec-tag text-mono">ANKÜNDIGUNGEN</span>
+          <div class="ec-title">TWITTER / X</div>
+          <p class="ec-desc">Aktuelle Spieltags-Updates, Ergebnisse und Vereinsnews.</p>
+          <span class="ec-url text-mono">x.com/uic_gaming</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 3. BOTTOM BRAND ROW -->
+    <footer class="ending-brand-row">
+      <div class="brand-divider-line left"></div>
+      <div class="stage-brand-pill">
+        <img src="/assets/logo/logo.png" alt="UIC" class="stage-uic-crest" width="22" height="22" />
+        <span class="stage-brand-text text-mono">ULTRA INSTINCT CREW</span>
+      </div>
+      <div class="brand-divider-line right"></div>
+    </footer>
+
+  </div>
+</section>
+
+<style is:global>
+  /* --- SCENE 4: END --- */
+  #stage-ending {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    padding: 92px 88px 48px;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.ticker-off #stage-ending {
+    padding-top: 52px;
+  }
+
+  body.scene-ending #stage-ending {
+    display: flex !important;
+  }
+
+  .ending-stage-wrap {
+    width: 1700px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28px;
+  }
+
+  /* 1. TOP OUTRO HERO HEADER */
+  .ending-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .ending-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.45);
+    padding: 6px 18px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #00E5FF;
+  }
+
+  .ending-hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.25rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 0 36px rgba(0, 229, 255, 0.25);
+  }
+
+  .ending-sub {
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.16em;
+    margin: 0;
+  }
+
+  /* 2. MAIN 2-COLUMN BROADCAST OUTRO GRID */
+  .ending-main-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    flex: 1;
+    max-height: 550px;
+  }
+
+  /* Left Panel: Active Team & Schedule */
+  .ending-team-panel {
+    background: rgba(10, 15, 26, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 28px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .et-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 16px;
+  }
+
+  .et-team-id {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .et-crest {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.35));
+  }
+
+  .et-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .et-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+  }
+
+  .et-div {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.12em;
+  }
+
+  .et-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .et-stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 8px 14px;
+    background: rgba(6, 10, 18, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+
+  .et-stat-lbl {
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+
+  .et-stat-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .et-schedule-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+
+  .et-schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .et-sched-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 150px 96px;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: rgba(6, 10, 18, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+
+  .et-sched-row.is-next {
+    border-color: rgba(0, 229, 255, 0.5);
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.14) 0%, rgba(6, 10, 18, 0.78) 100%);
+  }
+
+  .et-sch-day {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.08em;
+  }
+
+  .et-sch-opp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .et-sch-logo {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+  }
+
+  .et-sch-name {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .et-sch-time {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
+  .et-sch-res {
+    text-align: right;
+    font-size: 0.8125rem;
+    font-weight: 800;
+  }
+
+  /* Right Panel: 2x2 Channels Grid */
+  .ending-channels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .ending-channel-card {
+    background: rgba(10, 15, 26, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 28px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .ec-tag {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #00E5FF;
+  }
+
+  .ec-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+  }
+
+  .ec-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .ec-url {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(6, 10, 18, 0.8);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    align-self: flex-start;
+  }
+
+  /* 3. BOTTOM BRAND ROW */
+  .ending-brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 620px;
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     CLASSIC ORGA MODE (?team=none) IN ENDING SCENE
+     -------------------------------------------------------------------------- */
+  body.team-none #stage-ending .ending-team-panel {
+    display: none !important;
+  }
+
+  body.team-none #stage-ending .ending-main-grid {
+    grid-template-columns: 1fr;
+    max-height: 280px;
+    align-items: center;
+  }
+
+  body.team-none #stage-ending .ending-channels-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+</style>

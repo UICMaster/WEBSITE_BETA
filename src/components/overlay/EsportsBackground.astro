@@ -1,0 +1,306 @@
+---
+// src/components/overlay/EsportsBackground.astro
+---
+
+<!-- ======================================================================
+     1. ANIMATED ESPORTS BACKGROUND (DIAGONAL 45-DEGREE GEOMETRY)
+     ====================================================================== -->
+<div id="esports-bg">
+  <div class="ambient-glow tl"></div>
+  <div class="ambient-glow br"></div>
+  <div class="bg-tech-grid"></div>
+
+  <!-- Subtle -45deg Kinetic Typography Ribbons ("ULTRA INSTINCT CREW") -->
+  <div id="kinetic-ribbons">
+    <div class="diagonal-marquee-lane lane-1">
+      <div class="diagonal-marquee-track">
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+      </div>
+    </div>
+    <div class="diagonal-marquee-lane lane-2">
+      <div class="diagonal-marquee-track">
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+        <span>ULTRA INSTINCT CREW</span><span class="solid-accent">UIC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crisp Vector Geometric Shapes with Stepped/Notched Edges (-45 deg) -->
+  <svg class="bg-svg-layer" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad-ribbon-tl" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3FE8FF" />
+        <stop offset="52%" stop-color="#4B80F5" />
+        <stop offset="100%" stop-color="#7C4DFF" />
+      </linearGradient>
+
+      <linearGradient id="grad-ribbon-br" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#38E4FF" />
+        <stop offset="48%" stop-color="#4A7BF7" />
+        <stop offset="100%" stop-color="#9438FF" />
+      </linearGradient>
+
+      <linearGradient id="grad-cyan-solid" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#60F0FF" />
+        <stop offset="100%" stop-color="#2BB6E8" />
+      </linearGradient>
+
+      <linearGradient id="grad-purple-strip" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3B82F6" stop-opacity="0" />
+        <stop offset="35%" stop-color="#6366F1" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#A855F7" stop-opacity="1" />
+      </linearGradient>
+
+      <linearGradient id="grad-cyan-strip" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#38E4FF" stop-opacity="1" />
+        <stop offset="70%" stop-color="#5B73F8" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#7C4DFF" stop-opacity="0" />
+      </linearGradient>
+
+      <linearGradient id="grad-dark-band" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#121A29" stop-opacity="0.6" />
+        <stop offset="50%" stop-color="#0B101B" stop-opacity="0.35" />
+        <stop offset="100%" stop-color="#121A29" stop-opacity="0.6" />
+      </linearGradient>
+    </defs>
+
+    <!-- Dark Diagonal Background Architectural Bands (-45 deg) -->
+    <g class="diag-float-slow">
+      <polygon points="-250,620 620,-250 760,-250 -250,760" fill="url(#grad-dark-band)" />
+      <polygon points="-100,1180 1180,-100 1350,-100 70,1180" fill="url(#grad-dark-band)" />
+      <polygon points="320,1180 1600,-100 1710,-100 430,1180" fill="url(#grad-dark-band)" opacity="0.5" />
+      <polygon points="680,1180 1960,-100 2120,-100 840,1180" fill="url(#grad-dark-band)" />
+      <polygon points="1160,1180 2180,160 2320,160 1300,1180" fill="url(#grad-dark-band)" />
+    </g>
+
+    <!-- Top-Left Geometric Cyber Cluster -->
+    <g class="diag-float-slow">
+      <polygon points="-60,-60 220,-60 -60,220" fill="url(#grad-cyan-solid)" />
+    </g>
+
+    <g class="diag-float-med">
+      <polygon points="
+        -120,760 
+        185,455 
+        205,455 
+        345,315 
+        345,295 
+        470,170 
+        495,170 
+        720,-55 
+        900,-55 
+        485,360 
+        460,360 
+        320,500 
+        320,522 
+        110,732 
+        90,732 
+        -120,942
+      " fill="url(#grad-ribbon-tl)" />
+    </g>
+
+    <g class="diag-float-fast">
+      <polygon points="285,125 465,-55 492,-55 312,125" fill="#9A42FF" />
+      <polygon points="285,125 312,125 298,139 285,139" fill="#6366F1" />
+      <polygon points="185,805 465,525 495,525 200,820 185,820" fill="url(#grad-cyan-strip)" />
+      <polygon points="410,1100 560,950 588,950 438,1100" fill="url(#grad-purple-strip)" />
+    </g>
+
+    <!-- Bottom-Right Geometric Cyber Cluster -->
+    <g class="diag-float-slow">
+      <polygon points="1980,860 1980,1140 1700,1140" fill="url(#grad-cyan-solid)" />
+    </g>
+
+    <g class="diag-float-med">
+      <polygon points="
+        1040,1140 
+        1510,670 
+        1535,670 
+        1680,525 
+        1680,500 
+        1845,335 
+        1845,310 
+        2040,115 
+        2040,320 
+        1915,445 
+        1890,445 
+        1725,610 
+        1725,635 
+        1600,760 
+        1570,760 
+        1250,1080 
+        1250,1105 
+        1215,1140
+      " fill="url(#grad-ribbon-br)" />
+    </g>
+
+    <g class="diag-float-fast">
+      <polygon points="1260,310 1465,105 1492,105 1287,310" fill="url(#grad-purple-strip)" />
+      <polygon points="1445,550 1740,255 1740,290 1475,550" fill="url(#grad-ribbon-tl)" />
+      <polygon points="1810,765 2010,565 2028,583 1828,783" fill="#9D4EDD" />
+    </g>
+  </svg>
+
+  <!-- Dynamic Canvas for 45-deg Glowing Laser Streaks & Cyber Particles -->
+  <canvas id="streak-canvas"></canvas>
+</div>
+
+<style is:global>
+  #esports-bg {
+    position: fixed;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    z-index: 0;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 45% 52%, #0C1220 0%, #070A10 62%, #05070B 100%);
+    pointer-events: none;
+  }
+
+  .ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.22;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .ambient-glow.tl {
+    width: 48vw; height: 48vw;
+    top: -20vw; left: -18vw;
+    background: linear-gradient(135deg, #00E5FF, #4D7CFE);
+    animation: pulseGlow 9s ease-in-out infinite alternate;
+  }
+  .ambient-glow.br {
+    width: 50vw; height: 50vw;
+    bottom: -22vw; right: -18vw;
+    background: linear-gradient(135deg, #4D7CFE, #8A2BE2);
+    animation: pulseGlow 11s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes pulseGlow {
+    0% { opacity: 0.14; transform: scale(0.94); }
+    100% { opacity: 0.26; transform: scale(1.06); }
+  }
+
+  .bg-tech-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at 45% 52%, transparent 35%, black 95%);
+    -webkit-mask-image: radial-gradient(circle at 45% 52%, transparent 35%, black 95%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #kinetic-ribbons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    transition: opacity 0.4s ease;
+  }
+
+  .diagonal-marquee-lane {
+    position: absolute;
+    width: 260vw;
+    display: flex;
+    align-items: center;
+    transform: rotate(-45deg);
+    transform-origin: center center;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .diagonal-marquee-lane.lane-1 {
+    top: 15%;
+    left: -95%;
+    opacity: 0.04;
+  }
+  .diagonal-marquee-lane.lane-2 {
+    top: 82%;
+    left: -65%;
+    opacity: 0.04;
+  }
+
+  .diagonal-marquee-track {
+    display: flex;
+    width: max-content;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(0, 229, 255, 0.75);
+    animation: scrollDiagText 60s linear infinite;
+  }
+  .diagonal-marquee-lane.lane-2 .diagonal-marquee-track {
+    -webkit-text-stroke: 1.5px rgba(138, 43, 226, 0.85);
+    animation-direction: reverse;
+    animation-duration: 70s;
+  }
+  .diagonal-marquee-track span {
+    padding: 0 40px;
+  }
+  .diagonal-marquee-track .solid-accent {
+    color: rgba(255, 255, 255, 0.28);
+    -webkit-text-stroke: 0;
+  }
+
+  @keyframes scrollDiagText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .bg-svg-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  .diag-float-slow {
+    animation: slideDiagSlow 10s ease-in-out infinite alternate;
+  }
+  .diag-float-med {
+    animation: slideDiagMed 6.5s ease-in-out infinite alternate;
+  }
+  .diag-float-fast {
+    animation: slideDiagFast 4.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes slideDiagSlow {
+    0% { transform: translate(-16px, 16px); }
+    100% { transform: translate(16px, -16px); }
+  }
+  @keyframes slideDiagMed {
+    0% { transform: translate(24px, -24px); }
+    100% { transform: translate(-24px, 24px); }
+  }
+  @keyframes slideDiagFast {
+    0% { transform: translate(-34px, 34px); }
+    100% { transform: translate(34px, -34px); }
+  }
+
+  #streak-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
+</style>
+

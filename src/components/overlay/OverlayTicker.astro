@@ -1,0 +1,217 @@
+---
+// src/components/overlay/OverlayTicker.astro
+---
+
+<!-- ======================================================================
+     2. TOP DOCKED PRIME LEAGUE MATCH TICKER (UNIFIED OBSIDIAN GLASS DESIGN)
+     ====================================================================== -->
+<header id="overlay-ticker" role="region" aria-label="Prime League Spieltage Ticker">
+  <div class="ticker-brand-pill">
+    <img src="/assets/logo/logo.png" alt="UIC" class="ticker-crest" width="22" height="22" />
+    <span class="ticker-brand-label">PRIME LEAGUE</span>
+  </div>
+
+  <div class="ticker-viewport">
+    <div class="ticker-track" id="ticker-track">
+      <div class="match-item">
+        <span class="m-time-badge">SPIELPLAN</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  #overlay-ticker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 54px;
+    background: rgba(10, 15, 26, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65), inset 0 -1px 0 rgba(0, 229, 255, 0.18);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    transform: translateZ(0);
+  }
+
+  body.ticker-off #overlay-ticker,
+  body.scene-starting #overlay-ticker {
+    display: none !important;
+  }
+
+  .ticker-brand-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    padding: 0 26px;
+    background: linear-gradient(90deg, rgba(6, 10, 18, 0.96) 0%, rgba(12, 18, 32, 0.92) 100%);
+    border-right: 1px solid rgba(0, 229, 255, 0.28);
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+  }
+
+  .ticker-brand-pill::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: #00E5FF;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+  }
+
+  .ticker-crest {
+    width: 22px;
+    height: 22px;
+    max-width: 22px;
+    max-height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+  }
+
+  .ticker-brand-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #ffffff;
+  }
+
+  .ticker-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    mask-image: linear-gradient(90deg, transparent 0%, black 32px, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 32px, black calc(100% - 32px), transparent 100%);
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .match-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    height: 38px;
+    background: rgba(6, 10, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-right: 16px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .m-time-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .m-time-badge.heute {
+    background: rgba(0, 229, 255, 0.15);
+    color: #00E5FF;
+    border-color: rgba(0, 229, 255, 0.5);
+    font-weight: 800;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+  }
+
+  .m-time-badge.morgen {
+    background: rgba(138, 43, 226, 0.18);
+    color: #d8b4fe;
+    border-color: rgba(168, 85, 247, 0.45);
+    font-weight: 800;
+  }
+
+  .match-status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .match-status-badge.is-confirmed {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.38);
+  }
+
+  .match-status-badge.is-unconfirmed {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+  }
+
+  .match-status-badge.is-result {
+    color: #ffffff;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+  }
+
+  .m-team {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .m-logo {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .m-name {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .m-vs {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 900;
+    color: #00E5FF;
+    padding: 0 2px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+</style>

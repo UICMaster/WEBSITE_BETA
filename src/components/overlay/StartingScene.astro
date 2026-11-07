@@ -1,0 +1,1307 @@
+---
+// src/components/overlay/StartingScene.astro
+---
+
+<!-- SCENE 1: START (FRAMELESS CYBER BROADCAST ROTATOR) -->
+  <main id="stage-starting" class="broadcast-stage" role="main">
+
+    <!-- FLOATING FIXED PROMINENT HERO TITLE WITH DYNAMIC SUBTITLE -->
+    <div class="stage-title-wrap">
+      <h1 class="stage-hero-title">STARTING SOON</h1>
+      <span class="stage-hero-sub text-mono" id="start-stage-subtitle">BEGEGNUNG &amp; MATCHUP</span>
+    </div>
+
+    <!-- STATIC PERSISTENT TOP-RIGHT COUNTDOWN TIMER -->
+    <div class="stage-top-timer text-mono">
+      <span class="timer-lead">START IN</span>
+      <strong class="sync-cd-time header-cd-digits" id="header-cd-clock">05:00</strong>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 1: TIME AND MATCHUP CLASH (PURE FADE HERO)
+         ==================================================================== -->
+    <section class="full-broadcast-slide is-active" id="view-matchup" role="tabpanel" aria-label="Starting Soon Countdown & Matchup">
+      <div class="matchup-hero-stage">
+        
+        <!-- Hero Countdown Clock -->
+        <div class="hero-countdown-block">
+          <div class="hero-countdown-clock text-mono" id="starting-countdown-bar">
+            <span class="cd-num" id="start-cd-min">05</span>
+            <span class="cd-colon">:</span>
+            <span class="cd-num" id="start-cd-sec">00</span>
+          </div>
+          <div class="hero-countdown-sub text-mono" id="hud-meta-day"></div>
+        </div>
+
+        <!-- Full-Stage Team Clash Arena -->
+        <div class="hero-clash-arena">
+
+          <!-- Home Team (UIC) -->
+          <div class="hero-team home">
+            <div class="hero-crest-halo">
+              <img id="start-uic-logo" src="/assets/logo/logo.png" alt="UIC Crest" class="hero-team-crest" width="180" height="180" />
+            </div>
+            <div class="hero-team-meta">
+              <h2 class="hero-team-name" id="start-uic-name"></h2>
+              <span class="hero-team-div text-mono" id="start-uic-sub"></span>
+            </div>
+          </div>
+
+          <!-- Center Clash Spine -->
+          <div class="hero-clash-spine">
+            <div class="spine-line"></div>
+            <div class="spine-center-badge">
+              <span class="spine-format text-mono" id="start-clash-format">BO3</span>
+              <div class="spine-vs text-mono">VS</div>
+              <span class="spine-time text-mono" id="start-match-time"></span>
+            </div>
+            <div class="spine-line"></div>
+          </div>
+
+          <!-- Away Team (Opponent) -->
+          <div class="hero-team away">
+            <div class="hero-crest-halo">
+              <img id="start-enemy-logo" src="/assets/logo/logo.png" alt="Gegner Crest" class="hero-team-crest" width="180" height="180" />
+            </div>
+            <div class="hero-team-meta">
+              <h2 class="hero-team-name" id="start-enemy-name"></h2>
+              <span class="hero-team-div text-mono" id="start-enemy-sub"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- UIC Form (real, aus den Prime-League-Ergebnissen; per JS gerendert) -->
+        <div class="matchup-form-pills" id="start-form-badges"></div>
+
+        <!-- Classic Orga View (Active when ?team=none) -->
+        <div class="start-classic-orga">
+          <div class="sco-brand-card">
+            <img src="/assets/logo/logo.png" alt="Ultra Instinct Crew" class="sco-crest" width="110" height="110" />
+            <div class="sco-text">
+              <div class="sco-title">ULTRA INSTINCT CREW</div>
+              <div class="sco-sub text-mono">LEAGUE OF LEGENDS ESPORT &amp; COMMUNITY</div>
+            </div>
+          </div>
+
+          <div class="sco-pills-row text-mono">
+            <div class="sco-pill"><span class="sco-lbl">WEB</span><strong>ultrainstinctcrew.com</strong></div>
+            <div class="sco-pill"><span class="sco-lbl">DISCORD</span><strong>discord.gg/ultrainstinctcrew</strong></div>
+            <div class="sco-pill"><span class="sco-lbl">SHOP</span><strong>teams.spized.com/ultrainstinctcrew</strong></div>
+            <div class="sco-pill"><span class="sco-lbl">X</span><strong>@uic_gaming</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 2: SPIELPLAN & ERGEBNISSE (echte Matches aus prime_stats.json)
+         ==================================================================== -->
+    <section class="full-broadcast-slide" id="view-table" role="tabpanel" aria-label="Spielplan und Ergebnisse">
+      <div class="slide-stage-body">
+        <div class="cyber-table-container">
+          <div class="cyber-table-header">
+            <span class="col-th th-rank text-mono">TAG</span>
+            <span class="col-th th-team">GEGNER</span>
+            <span class="col-th th-stat text-mono">TERMIN</span>
+            <span class="col-th th-stat text-mono">ERGEBNIS</span>
+          </div>
+          <table class="cyber-table">
+            <tbody id="start-standings-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 3: PLAYERS AND STATS (5 STARTER CARDS - UNSERE TEAMS STIL)
+         ==================================================================== -->
+    <section class="full-broadcast-slide" id="view-roster" role="tabpanel" aria-label="Aufstellung 5 Starter">
+      <div class="slide-stage-body">
+        <div class="cyber-roster-stage" id="start-starters-dock">
+          <!-- 5 Cards rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 4: OVERALL TEAM STATS (TEAM TELEMETRIE)
+         ==================================================================== -->
+    <section class="full-broadcast-slide" id="view-stats" role="tabpanel" aria-label="Team-Statistiken">
+      <div class="slide-stage-body">
+        <div class="cyber-stats-grid" id="start-stats-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         STATIC BOTTOM CLUSTER: UIC BRAND + SEASON META + LAYER DOCK
+         ==================================================================== -->
+    <div class="stage-bottom-cluster">
+      
+      <!-- UIC Brand Row with Divider Line -->
+      <div class="stage-brand-row">
+        <div class="brand-divider-line left"></div>
+        <div class="stage-brand-pill">
+          <img src="/assets/logo/logo.png" alt="UIC" class="stage-uic-crest" width="22" height="22" />
+          <span class="stage-brand-text text-mono">ULTRA INSTINCT CREW</span>
+        </div>
+        <div class="brand-divider-line right"></div>
+      </div>
+
+      <!-- Prime League Season & Division Meta -->
+      <div class="stage-season-meta text-mono">
+        <span class="cyber-badge" id="start-badge-pill">PRIME LEAGUE</span>
+        <span class="season-dot">&bull;</span>
+        <span class="season-pill" id="start-split-title"></span>
+        <span class="season-dot">&bull;</span>
+        <span class="cyber-badge-accent" id="start-group-tag"></span>
+      </div>
+
+      <!-- Slide Indicator Bar (Passive Broadcast Status) -->
+      <div class="full-stage-dock" aria-label="Starting Soon Ansichten">
+        <div class="stage-dock-pills">
+          <div class="stage-dock-btn is-active" id="tab-btn-matchup" data-view="matchup">
+            <span class="pill-num text-mono">01</span><span>MATCHUP</span>
+          </div>
+          <div class="stage-dock-btn" id="tab-btn-table" data-view="table">
+            <span class="pill-num text-mono">02</span><span>SPIELPLAN</span>
+          </div>
+          <div class="stage-dock-btn" id="tab-btn-roster" data-view="roster">
+            <span class="pill-num text-mono">03</span><span>KADER</span>
+          </div>
+          <div class="stage-dock-btn" id="tab-btn-stats" data-view="roster-stats">
+            <span class="pill-num text-mono">04</span><span>STATS</span>
+          </div>
+        </div>
+
+        <div class="stage-dock-progress-wrap" id="auto-rotate-pill">
+          <div class="stage-dock-progress-bar" id="rotate-timer-bar"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+<style is:global>
+/* --- SCENE 1: STARTING SOON (FRAMELESS CYBER BROADCAST ROTATOR) --- */
+  body.scene-starting #stage-starting {
+    display: block !important;
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* PROMINENT FLOATING TOP-LEFT TITLE WITH DYNAMIC SUBTITLE */
+  .stage-title-wrap {
+    position: absolute;
+    top: 44px;
+    left: 88px;
+    z-index: 30;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    animation: titleFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes titleFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .stage-hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5.25rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    line-height: 0.95;
+    margin: 0;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 0 36px rgba(255, 255, 255, 0.35);
+  }
+
+  /* SUBTITLE STYLED AS A LARGE PROMINENT BROADCAST BADGE */
+  .stage-hero-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 1.0625rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #00E5FF;
+    background: rgba(10, 15, 26, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(0, 229, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 18px rgba(0, 229, 255, 0.25);
+    padding: 8px 22px;
+    border-radius: 8px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    transform: translateZ(0);
+  }
+
+  .stage-hero-sub.sub-switching {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  /* STATIC PERSISTENT TOP-RIGHT COUNTDOWN TIMER (MATTE OBSIDIAN GLASS) */
+  .stage-top-timer {
+    position: absolute;
+    top: 44px;
+    right: 88px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(10, 15, 26, 0.86);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    padding: 10px 24px;
+    border-radius: 8px;
+    pointer-events: none;
+    transform: translateZ(0);
+  }
+
+  .timer-lead {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+  }
+
+  .header-cd-digits {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 14px rgba(0, 229, 255, 0.6);
+  }
+
+  /* FULL SCREEN SLIDE: PURE FADE */
+  .full-broadcast-slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    padding: 132px 88px 172px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.38s ease-in-out;
+    box-sizing: border-box;
+    z-index: 5;
+    will-change: opacity;
+  }
+
+  .full-broadcast-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slide-stage-body {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* --------------------------------------------------------------------------
+     SLIDE 1: MATCHUP & HERO COUNTDOWN
+     -------------------------------------------------------------------------- */
+  .matchup-hero-stage {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .hero-countdown-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-countdown-clock {
+    font-family: "Orbitron", sans-serif;
+    font-size: 7.25rem;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: 6px;
+    color: #ffffff;
+    text-shadow: 0 0 45px rgba(0, 229, 255, 0.4), 0 4px 16px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero-countdown-clock .cd-num {
+    min-width: 170px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .hero-countdown-clock .cd-colon {
+    color: #00E5FF;
+    text-shadow: 0 0 24px rgba(0, 229, 255, 0.8);
+    margin-top: -12px;
+  }
+
+  .hero-countdown-sub {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Full Stage Team Clash Arena - MATTE FROSTED OBSIDIAN GLASS */
+  .hero-clash-arena {
+    width: 100%;
+    max-width: 1560px;
+    display: grid;
+    grid-template-columns: 1fr 260px 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .hero-team {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 24px 38px;
+    background: rgba(10, 15, 26, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    transition: border-color 0.25s ease;
+  }
+
+  .hero-team.away {
+    flex-direction: row-reverse;
+    text-align: right;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-crest-halo {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hero-team-crest {
+    max-width: 170px;
+    max-height: 170px;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 24px rgba(0, 229, 255, 0.25));
+  }
+
+  .hero-team.away .hero-team-crest {
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 24px rgba(138, 43, 226, 0.3));
+  }
+
+  .hero-team-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .hero-team-name {
+    font-family: var(--font-display);
+    font-size: 2.375rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.05;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .hero-team-div {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #00E5FF;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-team.away .hero-team-div {
+    color: #a78bfa;
+  }
+
+  /* Center Clash Spine */
+  .hero-clash-spine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .spine-line {
+    width: 1px;
+    height: 160px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 229, 255, 0.4) 50%, transparent 100%);
+  }
+
+  .spine-center-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .spine-format {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #00E5FF;
+    background: rgba(0, 229, 255, 0.14);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    padding: 3px 14px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.1em;
+  }
+
+  .spine-vs {
+    font-family: "Orbitron", sans-serif;
+    font-size: 3.75rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #00E5FF 0%, #ffffff 50%, #8A2BE2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin: 6px 0;
+  }
+
+  .spine-time {
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+  }
+
+  /* Form Badges Row */
+  .matchup-form-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .form-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 800;
+  }
+
+  .form-badge.win {
+    background: rgba(16, 185, 129, 0.22);
+    border: 1px solid rgba(16, 185, 129, 0.6);
+    color: #10b981;
+  }
+
+  .form-badge.loss {
+    background: rgba(239, 68, 68, 0.22);
+    border: 1px solid rgba(239, 68, 68, 0.6);
+    color: #ef4444;
+  }
+
+  .form-badge.draw {
+    background: rgba(245, 158, 11, 0.22);
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    color: #f59e0b;
+  }
+
+  .form-lbl {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    margin-right: 6px;
+  }
+
+  .form-rec {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    margin-left: 10px;
+  }
+
+  /* --------------------------------------------------------------------------
+     SLIDE 2: SPIELPLAN & ERGEBNISSE (MATTE OBSIDIAN GLASS TABLE)
+     -------------------------------------------------------------------------- */
+  .cyber-table-container {
+    width: 100%;
+    max-width: 1540px;
+    margin: 0 auto;
+    background: rgba(10, 15, 26, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+  }
+
+  .cyber-table-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 180px 140px;
+    padding: 14px 28px;
+    background: rgba(8, 12, 22, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .col-th {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .th-rank { text-align: center; }
+  .th-team { text-align: left; }
+  .th-stat { text-align: center; }
+
+  .cyber-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .standings-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 180px 140px;
+    align-items: center;
+    padding: 13px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    transition: background 0.15s ease;
+  }
+
+  .standings-row:last-child {
+    border-bottom: none;
+  }
+
+  .standings-row.is-next {
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.2) 0%, rgba(77, 124, 254, 0.1) 60%, transparent 100%);
+    border-left: 4px solid #00E5FF;
+    font-weight: 800;
+  }
+
+  .res-chip {
+    display: inline-block;
+    min-width: 64px;
+    padding: 3px 12px;
+    border-radius: var(--radius-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .res-chip.win {
+    background: rgba(16, 185, 129, 0.22);
+    border: 1px solid rgba(16, 185, 129, 0.6);
+    color: #10b981;
+  }
+
+  .res-chip.loss {
+    background: rgba(239, 68, 68, 0.22);
+    border: 1px solid rgba(239, 68, 68, 0.6);
+    color: #ef4444;
+  }
+
+  .res-chip.draw {
+    background: rgba(245, 158, 11, 0.22);
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    color: #f59e0b;
+  }
+
+  .res-pending {
+    color: var(--text-muted);
+  }
+
+  .td-rank {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #00E5FF;
+    text-align: center;
+  }
+
+  .td-team {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .td-team-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .td-team-name {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .td-stat {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  /* --------------------------------------------------------------------------
+     SLIDE 3: AUFSTELLUNG // 5 STARTERS (MATTE OBSIDIAN GLASS CARDS)
+     -------------------------------------------------------------------------- */
+  .cyber-roster-stage {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1680px;
+    margin: 0 auto;
+    height: 560px;
+    box-sizing: border-box;
+  }
+
+  .player-card {
+    background: linear-gradient(180deg, rgba(13, 18, 30, 0.94) 0%, rgba(9, 13, 22, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+    position: relative;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .player-card:hover {
+    transform: translateY(-4px);
+    border-color: #00E5FF;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.7), 0 0 22px rgba(0, 229, 255, 0.3);
+  }
+
+  .p-stage {
+    position: relative;
+    height: 280px;
+    background: rgba(6, 9, 15, 0.7);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .p-stage-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* UNIFORM SINGLE-COLOR ROLE BADGE */
+  .p-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    padding: 4px 9px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.08em;
+    background: rgba(7, 12, 20, 0.88);
+    color: #00E5FF;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+  }
+
+  .lane-role-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+  }
+
+  .p-status-badges {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .p-captain-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 800;
+    background: #ffffff;
+    color: #000000;
+    padding: 3px 7px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+  }
+
+  .p-sub-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 3px 7px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+  }
+
+  .p-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .p-shade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 12, 22, 0.95) 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .p-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    flex: 1;
+    z-index: 4;
+    box-sizing: border-box;
+  }
+
+  .p-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .p-riot-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .p-name-block {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .p-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.1;
+  }
+
+  .p-lvl {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .p-rank-chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background: rgba(14, 20, 32, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xs);
+    font-size: 0.75rem;
+  }
+
+  .p-rank-label {
+    color: var(--text-muted);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .p-rank-val {
+    color: #00E5FF;
+    font-weight: 800;
+  }
+
+  .p-record-chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6875rem;
+    padding: 0 2px;
+  }
+
+  .rec-wr {
+    color: #ffffff;
+    font-weight: 800;
+  }
+
+  .rec-games {
+    color: var(--text-muted);
+  }
+
+  .telemetry-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: rgba(14, 20, 32, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xs);
+    padding: 6px 2px;
+    text-align: center;
+  }
+
+  .tel-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .tel-lbl {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .tel-val {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  /* --------------------------------------------------------------------------
+     SLIDE 4: TEAM-STATISTIKEN (MATTE OBSIDIAN GLASS CARDS)
+     -------------------------------------------------------------------------- */
+  .cyber-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    width: 100%;
+    max-width: 1540px;
+    margin: 0 auto;
+  }
+
+  .metric-card {
+    background: rgba(10, 15, 26, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    transition: border-color 0.25s ease;
+  }
+
+  .metric-card:hover {
+    border-color: #00E5FF;
+  }
+
+  .metric-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .metric-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.1em;
+  }
+
+  .metric-values {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin: 14px 0;
+  }
+
+  .metric-uic-val {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+  }
+
+  .metric-bar-wrap {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .metric-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00E5FF, #4D7CFE);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+  }
+
+  /* --------------------------------------------------------------------------
+     BOTTOM CLUSTER: UIC BRAND DIVIDER + SEASON META + SPACED MATTE DOCK
+     -------------------------------------------------------------------------- */
+  .stage-bottom-cluster {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 40;
+    pointer-events: none;
+  }
+
+  /* UIC Brand Row above Season Meta */
+  .stage-brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 620px;
+    pointer-events: auto;
+  }
+
+  .brand-divider-line {
+    flex: 1;
+    height: 1px;
+  }
+
+  .brand-divider-line.left {
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.4) 100%);
+  }
+
+  .brand-divider-line.right {
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.4) 0%, transparent 100%);
+  }
+
+  .stage-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(10, 15, 26, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    padding: 4px 14px 4px 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .stage-uic-crest {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
+  }
+
+  .stage-brand-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  .stage-season-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    pointer-events: auto;
+  }
+
+  .cyber-badge {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #00E5FF;
+    background: rgba(0, 229, 255, 0.14);
+    border: 1px solid rgba(0, 229, 255, 0.45);
+    padding: 5px 16px;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+  }
+
+  .season-pill {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.4), 0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .cyber-badge-accent {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    background: rgba(77, 124, 254, 0.22);
+    border: 1px solid rgba(77, 124, 254, 0.5);
+    padding: 5px 16px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 0 16px rgba(77, 124, 254, 0.25);
+  }
+
+  .season-dot {
+    color: rgba(0, 229, 255, 0.6);
+    font-size: 1.35rem;
+  }
+
+  .full-stage-dock {
+    position: relative;
+    transform: none;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    background: rgba(10, 15, 26, 0.86);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .stage-dock-pills {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stage-dock-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: #cbd5e1;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+  }
+
+  .stage-dock-btn .pill-num {
+    color: #00E5FF;
+    font-weight: 800;
+  }
+
+  .stage-dock-btn.is-active {
+    background: linear-gradient(135deg, #00E5FF, #4D7CFE);
+    color: #050811;
+    font-weight: 800;
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.6);
+  }
+
+  .stage-dock-btn.is-active .pill-num {
+    color: #050811;
+  }
+
+  .stage-dock-progress-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    pointer-events: none;
+  }
+
+  .stage-dock-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: #00E5FF;
+    box-shadow: 0 0 8px #00E5FF;
+    transition: width 0.1s linear;
+  }
+
+  /* --------------------------------------------------------------------------
+     CLASSIC ORGA MODE (?team=none) IN STARTING SCENE
+     -------------------------------------------------------------------------- */
+  .start-classic-orga {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1280px;
+    margin-top: 8px;
+  }
+
+  body.team-none #stage-starting .hero-clash-arena,
+  body.team-none #stage-starting #start-form-badges,
+  body.team-none #stage-starting #hud-meta-day,
+  body.team-none #stage-starting .stage-season-meta,
+  body.team-none #stage-starting .full-stage-dock {
+    display: none !important;
+  }
+
+  body.team-none #stage-starting .start-classic-orga {
+    display: flex;
+  }
+
+  .sco-brand-card {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 32px 48px;
+    background: rgba(10, 15, 26, 0.86);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .sco-crest {
+    width: 108px;
+    height: 108px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.4));
+  }
+
+  .sco-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sco-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+  }
+
+  .sco-sub {
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.18em;
+  }
+
+  .sco-pills-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sco-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(10, 15, 26, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    font-size: 0.8125rem;
+  }
+
+  .sco-lbl {
+    color: #00E5FF;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .sco-pill strong {
+    color: #ffffff;
+    font-weight: 700;
+  }
+</style>

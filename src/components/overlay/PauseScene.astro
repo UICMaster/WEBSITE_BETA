@@ -1,0 +1,719 @@
+---
+// src/components/overlay/PauseScene.astro
+---
+
+<!-- SCENE 3: BREAK (CASTER BREAK WITH 1280x720 16:9 HIGHLIGHT CLIP WINDOW LEFT & LIVE TEAM SIDEBAR RIGHT) -->
+<section id="stage-pause" class="broadcast-stage" aria-label="3. Break">
+  <div class="pause-layout-box">
+
+    <!-- 1. TOP BREAK HEADER & COUNTDOWN -->
+    <header class="pause-header-strip">
+      <div class="pause-label-group">
+        <span class="pause-badge text-mono">3. BREAK</span>
+        <div class="pause-title-stack">
+          <h1 class="pause-title">KURZE PAUSE &bull; SPIEL-HIGHLIGHTS</h1>
+          <div class="pause-sub-row text-mono">
+            <span class="pause-team-tag" id="pause-team-info">ULTRA INSTINCT CREW</span>
+            <span class="pause-sub-dot">&bull;</span>
+            <span class="pause-sub" id="pause-division-info">PRIME LEAGUE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pause-timer-pill text-mono">
+        <span class="timer-lead">WEITER IN</span>
+        <strong class="sync-cd-time pause-cd-digits" id="pause-cd-timer">03:00</strong>
+      </div>
+    </header>
+
+    <!-- 2. MAIN STAGE: 1280x720 (16:9) HIGHLIGHT WINDOW (LEFT) & TEAM SIDEBAR (RIGHT) -->
+    <div class="pause-main-grid">
+
+      <!-- Left: 1280x720 (Exact 16:9) Highlight Video Cutout Window -->
+      <div class="pause-highlight-frame" id="break-highlight-box">
+        <div class="pause-highlight-hole"></div>
+        <div class="cam-lower-third pause-highlight-label">
+          <span class="cam-lt-accent"></span>
+          <span class="cam-lt-tag text-mono">BREAK</span>
+          <span class="cam-lt-sep"></span>
+          <span class="cam-lt-name">MATCH HIGHLIGHTS</span>
+        </div>
+      </div>
+
+      <!-- Right: Live Team Sidebar (Shown in Team Mode) -->
+      <aside class="pause-sidebar pause-team-sidebar">
+
+        <!-- Card 1: Current Matchup & Form -->
+        <div class="pause-side-card">
+          <div class="ps-card-head">
+            <span class="ps-card-tag text-mono">AKTUELLE BEGEGNUNG</span>
+            <span class="ps-card-meta text-mono" id="pause-matchday-badge">PRIME LEAGUE</span>
+          </div>
+
+          <div class="ps-matchup-box">
+            <div class="ps-team">
+              <img id="pause-uic-logo" src="/assets/logo/logo.png" alt="UIC" class="ps-crest" width="44" height="44" />
+              <span class="ps-t-name" id="pause-uic-name">UIC</span>
+            </div>
+
+            <div class="ps-vs-col text-mono">
+              <span class="ps-vs-pill">VS</span>
+              <span class="ps-match-time" id="pause-match-time"></span>
+            </div>
+
+            <div class="ps-team ps-away">
+              <span class="ps-t-name" id="pause-enemy-name">Gegner</span>
+              <img id="pause-enemy-logo" src="/assets/logo/logo.png" alt="Gegner" class="ps-crest" width="44" height="44" />
+            </div>
+          </div>
+
+          <div class="ps-record-strip text-mono">
+            <div class="ps-rec-left">
+              <span class="ps-rec-lbl">SAISONBILANZ</span>
+              <strong class="ps-rec-val" id="pause-record-val">0S &ndash; 0N</strong>
+            </div>
+            <div class="form-badges-row" id="pause-form-pills"></div>
+          </div>
+        </div>
+
+        <!-- Card 2: 5 Starters -->
+        <div class="pause-side-card">
+          <div class="ps-card-head">
+            <span class="ps-card-tag text-mono">AUFSTELLUNG</span>
+            <span class="ps-card-meta text-mono">5 STARTER</span>
+          </div>
+          <div class="ps-starters-list" id="pause-starters-list"></div>
+        </div>
+
+        <!-- Card 3: Season Schedule -->
+        <div class="pause-side-card ps-card-grow">
+          <div class="ps-card-head">
+            <span class="ps-card-tag text-mono">SPIELPLAN</span>
+            <span class="ps-card-meta text-mono" id="pause-season-label">PRIME LEAGUE</span>
+          </div>
+          <div class="ps-schedule-list" id="pause-schedule-list"></div>
+        </div>
+
+      </aside>
+
+      <!-- Right Fallback: Classic Organization Sidebar (Shown when ?team=none) -->
+      <aside class="pause-sidebar pause-classic-sidebar">
+        <div class="pause-side-card ps-classic-hero">
+          <img src="/assets/logo/logo.png" alt="UIC" class="ps-classic-crest" width="68" height="68" />
+          <div class="ps-classic-title">ULTRA INSTINCT CREW</div>
+          <div class="ps-classic-sub text-mono">KURZE CASTER-PAUSE &bull; GLEICH GEHT ES WEITER</div>
+        </div>
+
+        <div class="pause-side-card ps-card-grow">
+          <div class="ps-card-head">
+            <span class="ps-card-tag text-mono">VEREINSKANÄLE &amp; PARTNER</span>
+            <span class="ps-card-meta text-mono">OFFIZIELL</span>
+          </div>
+          <div class="ps-classic-links text-mono">
+            <div class="ps-cl-row">
+              <span class="ps-cl-tag">WEBSEITE</span>
+              <strong class="ps-cl-val">ultrainstinctcrew.com</strong>
+            </div>
+            <div class="ps-cl-row">
+              <span class="ps-cl-tag">DISCORD</span>
+              <strong class="ps-cl-val">discord.gg/ultrainstinctcrew</strong>
+            </div>
+            <div class="ps-cl-row">
+              <span class="ps-cl-tag">SHOP</span>
+              <strong class="ps-cl-val">teams.spized.com/ultrainstinctcrew</strong>
+            </div>
+            <div class="ps-cl-row">
+              <span class="ps-cl-tag">PARTNER</span>
+              <img src="/assets/logo/riftops-horizontal-dark.svg" alt="RiftOPS" class="ps-cl-partner" width="110" height="25" />
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- 3. BOTTOM BRAND & PARTNER FOOTER -->
+    <footer class="pause-footer-strip text-mono">
+      <div class="pf-brand">
+        <img src="/assets/logo/logo.png" alt="UIC" width="20" height="20" class="pf-logo" />
+        <span class="pf-org">ULTRA INSTINCT CREW</span>
+        <span class="footer-sep">&bull;</span>
+        <span class="pf-partner-wrap">
+          <span>POWERED BY</span>
+          <img src="/assets/logo/riftops-horizontal-dark.svg" alt="RiftOPS" class="pf-riftops-logo" width="88" height="20" />
+        </span>
+      </div>
+      <div class="pf-links">
+        <span>WEB: <strong>ultrainstinctcrew.com</strong></span>
+        <span class="footer-sep">&bull;</span>
+        <span>DISCORD: <strong>discord.gg/ultrainstinctcrew</strong></span>
+        <span class="footer-sep">&bull;</span>
+        <span>SHOP: <strong>teams.spized.com/ultrainstinctcrew</strong></span>
+        <span class="footer-sep">&bull;</span>
+        <span>X: <strong>@uic_gaming</strong></span>
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+<style is:global>
+  /* --- SCENE 3: BREAK (1280x720 HIGHLIGHT WINDOW + TEAM SIDEBAR) --- */
+  #stage-pause {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    padding: 72px 88px 28px;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body.ticker-off #stage-pause {
+    padding-top: 32px;
+  }
+
+  body.scene-pause #stage-pause {
+    display: flex !important;
+  }
+
+  .pause-layout-box {
+    width: 1744px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  /* 1. TOP BREAK HEADER BAR */
+  .pause-header-strip {
+    width: 100%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    background: rgba(10, 15, 26, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+  }
+
+  .pause-label-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .pause-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.45);
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #00E5FF;
+  }
+
+  .pause-title-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .pause-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .pause-sub-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .pause-team-tag {
+    color: #00E5FF;
+  }
+
+  .pause-sub-dot {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .pause-sub {
+    color: var(--text-secondary);
+  }
+
+  .pause-timer-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(6, 10, 18, 0.92);
+    border: 1px solid rgba(0, 229, 255, 0.42);
+    padding: 8px 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.16);
+  }
+
+  .timer-lead {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #00E5FF;
+  }
+
+  .pause-cd-digits {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 14px rgba(0, 229, 255, 0.55);
+  }
+
+  /* 2. MAIN STAGE GRID: 1280x720 (LEFT) + 440x720 (RIGHT) */
+  .pause-main-grid {
+    display: grid;
+    grid-template-columns: 1280px 440px;
+    gap: 24px;
+    width: 1744px;
+    height: 720px;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+
+  /* Left: 1280x720 (Exact 16:9) Highlight Window */
+  .pause-highlight-frame {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 2px solid rgba(0, 229, 255, 0.75);
+    border-radius: 10px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), inset 0 0 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    overflow: hidden;
+  }
+
+  .pause-highlight-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 36px;
+    right: 36px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.45) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .pause-highlight-hole {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  .pause-highlight-label {
+    bottom: 16px;
+    left: 18px;
+  }
+
+  /* Right Sidebar (440x720) */
+  .pause-sidebar {
+    width: 440px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .pause-classic-sidebar {
+    display: none;
+  }
+
+  body.team-none #stage-pause .pause-team-sidebar {
+    display: none !important;
+  }
+
+  body.team-none #stage-pause .pause-classic-sidebar {
+    display: flex !important;
+  }
+
+  .pause-side-card {
+    background: rgba(10, 15, 26, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .pause-side-card.ps-card-grow {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ps-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .ps-card-tag {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.14em;
+  }
+
+  .ps-card-meta {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* Card 1: Matchup */
+  .ps-matchup-box {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+  }
+
+  .ps-team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .ps-team.ps-away {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .ps-crest {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.3));
+  }
+
+  .ps-t-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ps-vs-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .ps-vs-pill {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 900;
+    color: #00E5FF;
+    letter-spacing: 0.1em;
+  }
+
+  .ps-match-time {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .ps-record-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 12px;
+    background: rgba(6, 10, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+
+  .ps-rec-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ps-rec-lbl {
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .ps-rec-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  /* Card 2: 5 Starters List */
+  .ps-starters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ps-starter-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    background: rgba(6, 10, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+  }
+
+  .ps-st-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.08em;
+  }
+
+  .ps-st-role img {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+  }
+
+  .ps-st-name {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ps-st-rank {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  /* Card 3: Schedule List */
+  .ps-schedule-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .ps-sched-row {
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 12px;
+    background: rgba(6, 10, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    font-size: 0.75rem;
+  }
+
+  .ps-sched-row.is-next {
+    border-color: rgba(0, 229, 255, 0.5);
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.14) 0%, rgba(6, 10, 18, 0.8) 100%);
+  }
+
+  .ps-sch-day {
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.06em;
+  }
+
+  .ps-sch-enemy {
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ps-sch-res {
+    font-weight: 800;
+    color: var(--text-secondary);
+  }
+
+  /* Classic Sidebar (?team=none) */
+  .ps-classic-hero {
+    align-items: center;
+    text-align: center;
+    padding: 28px 24px;
+    gap: 12px;
+  }
+
+  .ps-classic-crest {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.4));
+  }
+
+  .ps-classic-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+  }
+
+  .ps-classic-sub {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.12em;
+  }
+
+  .ps-classic-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .ps-cl-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    background: rgba(6, 10, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+  }
+
+  .ps-cl-tag {
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: #00E5FF;
+    letter-spacing: 0.14em;
+  }
+
+  .ps-cl-val {
+    font-size: 0.8125rem;
+    color: #ffffff;
+  }
+
+  .ps-cl-partner {
+    height: 22px;
+    width: auto;
+    object-fit: contain;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  /* 3. BOTTOM FOOTER STRIP */
+  .pause-footer-strip {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 26px;
+    background: rgba(10, 15, 26, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .pf-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pf-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .pf-org {
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.14em;
+  }
+
+  .pf-partner-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.6875rem;
+    font-weight: 800;
+  }
+
+  .pf-riftops-logo {
+    height: 17px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .pf-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .pf-links strong {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .footer-sep {
+    color: rgba(0, 229, 255, 0.5);
+  }
+</style>

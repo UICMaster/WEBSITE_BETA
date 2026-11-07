@@ -1,0 +1,232 @@
+---
+// src/components/overlay/ReplayScene.astro
+---
+
+<!-- SCENE 4: REPLAY (TRANSPARENT FULLSCREEN REPLAY STAGE, TOP-LEFT "INSTANT REPLAY • POWERED BY RIFTOPS" OVERLAY CARD & TOP-RIGHT 16:9 LIVE GAME PIP) -->
+<section id="stage-replay" class="broadcast-stage" aria-label="4. Replay">
+
+  <!-- 1. OUTER BROADCAST MATTE FRAME (Leaves the 1920x1080 Replay behind the overlay visible) -->
+  <div class="replay-matte-border" aria-hidden="true"></div>
+
+  <!-- 2. TOP-LEFT: UNIFIED OVERLAY CARD ("INSTANT REPLAY • POWERED BY RIFTOPS") -->
+  <header class="replay-top-left">
+    <div class="replay-brand-card">
+      <!-- Left: Instant Replay Title in Overlay Design -->
+      <div class="rbc-replay-side">
+        <span class="rbc-accent"></span>
+        <div class="rbc-title-group">
+          <span class="rbc-kicker text-mono" id="replay-meta-kicker">PRIME LEAGUE &bull; WIEDERHOLUNG</span>
+          <span class="rbc-title">INSTANT REPLAY</span>
+        </div>
+      </div>
+
+      <span class="rbc-divider" aria-hidden="true"></span>
+
+      <!-- Right: Powered by Partner RiftOPS -->
+      <div class="rbc-partner-side">
+        <span class="rbc-powered text-mono">POWERED BY</span>
+        <img src="/assets/logo/riftops-horizontal-dark.svg" alt="RiftOPS" class="rbc-partner-logo" width="128" height="29" />
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. TOP-RIGHT: LIVE GAME PICTURE-IN-PICTURE FRAME (544x306 • EXACT 16:9) -->
+  <aside class="replay-live-pip" id="replay-live-pip" aria-label="Aktuelles Live-Spiel (16:9)">
+    <div class="replay-pip-hole"></div>
+    <div class="cam-lower-third replay-pip-label">
+      <span class="cam-lt-accent"></span>
+      <span class="cam-lt-tag text-mono">LIVE</span>
+      <span class="cam-lt-sep"></span>
+      <span class="cam-lt-name" id="replay-pip-matchup">AKTUELLES SPIEL</span>
+    </div>
+  </aside>
+
+</section>
+
+<style is:global>
+  /* --- SCENE 4: REPLAY (100% TRANSPARENT CANVAS FOR OBS REPLAY SOURCE BEHIND OVERLAY) --- */
+  body.scene-replay,
+  html:has(body.scene-replay) {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  body.scene-replay #esports-bg,
+  body.scene-replay #overlay-ticker {
+    display: none !important;
+  }
+
+  #stage-replay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  body.scene-replay #stage-replay {
+    display: block !important;
+  }
+
+  /* 1. Outer Broadcast Frame around the 1920x1080 Replay */
+  .replay-matte-border {
+    position: absolute;
+    inset: 0;
+    border: 14px solid #080c15;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+      inset 0 0 28px rgba(0, 0, 0, 0.65);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* 2. Top-Left Unified Overlay Card: "INSTANT REPLAY • POWERED BY RIFTOPS" */
+  .replay-top-left {
+    position: absolute;
+    top: 26px;
+    left: 26px;
+    z-index: 10;
+  }
+
+  .replay-brand-card {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    height: 68px;
+    padding: 0 26px 0 20px;
+    background: rgba(10, 15, 26, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 2px solid rgba(0, 229, 255, 0.75);
+    border-radius: 10px;
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .replay-brand-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.5) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .rbc-replay-side {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rbc-accent {
+    width: 4px;
+    height: 34px;
+    border-radius: 2px;
+    background: #00E5FF;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.75);
+    flex-shrink: 0;
+  }
+
+  .rbc-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rbc-kicker {
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #00E5FF;
+    line-height: 1.1;
+  }
+
+  .rbc-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1875rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+
+  .rbc-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.16);
+    flex-shrink: 0;
+  }
+
+  .rbc-partner-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .rbc-powered {
+    font-size: 0.5625rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+
+  .rbc-partner-logo {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* 3. Top-Right Live Game Picture-in-Picture Frame (544x306 • Exact 16:9, Overlay Frame Style) */
+  .replay-live-pip {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 544px;
+    height: 306px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 2px solid rgba(0, 229, 255, 0.75);
+    border-radius: 10px;
+    box-shadow:
+      0 20px 48px rgba(0, 0, 0, 0.8),
+      inset 0 0 24px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .replay-live-pip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.45) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .replay-pip-hole {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  .replay-pip-label {
+    bottom: 12px;
+    left: 14px;
+  }
+</style>

@@ -1,0 +1,1591 @@
+---
+// src/pages/overlay.astro
+import '../styles/tokens.css';
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/plus-jakarta-sans/latin-800.css';
+import '@fontsource/space-grotesk/latin-500.css';
+import '@fontsource/space-grotesk/latin-700.css';
+import '@fontsource/orbitron/latin-500.css';
+import '@fontsource/orbitron/latin-700.css';
+import '@fontsource/orbitron/latin-800.css';
+import '@fontsource/orbitron/latin-900.css';
+
+import rawData from '../../data/data.json';
+import rawTeams from '../../data/teams.json';
+import rawPlayerState from '../../data/player_state.json';
+import rawPrimeStats from '../../data/prime_stats.json';
+
+const teamsMeta = (rawTeams || {}) as Record<string, any>;
+const primeMeta = (rawPrimeStats || {}) as Record<string, any>;
+const playerTelemetry = (rawPlayerState || {}) as Record<string, any>;
+const profileAssetMap = import.meta.glob('/public/assets/profile/*.{webp,png}');
+
+const enrichedTeams: Record<string, any> = {};
+
+for (const [key, meta] of Object.entries(teamsMeta)) {
+  if (key.toLowerCase() === 'community') continue;
+  const players = ((rawData as any)[key] || []) as any[];
+  const metaRoster = (meta.roster || []) as any[];
+
+  const enrichedPlayers = players.map(p => {
+    const mp = metaRoster.find(m => m.playerId === p.playerId || (m.gameName && m.gameName.toLowerCase() === p.name.toLowerCase()));
+    const puuid = mp?.puuid;
+    const pState = puuid ? playerTelemetry[puuid] : null;
+    const avg = pState?.averages || {};
+    const pid = p.playerId || "unknown";
+    const hasCustomWebp = `/public/assets/profile/${pid}.webp` in profileAssetMap;
+    const hasCustomPng = `/public/assets/profile/${pid}.png` in profileAssetMap;
+    const photoSrc = hasCustomWebp
+      ? `/assets/profile/${pid}.webp`
+      : hasCustomPng
+        ? `/assets/profile/${pid}.png`
+        : '/assets/profile/profile_placeholder.webp';
+
+    return {
+      playerId: pid,
+      name: p.name || "Unbekannt",
+      tagLine: mp?.tagLine || "",
+      role: p.role || mp?.role || "SUB",
+      tier: p.tier || "UNRANKED",
+      lp: p.lp || 0,
+      wins: p.wins || 0,
+      losses: p.losses || 0,
+      winRate: p.winRate || 0,
+      icon: p.icon || "/assets/profile/placeholder.webp",
+      photoSrc,
+      isCaptain: !!mp?.isCaptain,
+      isSubstitute: mp?.rosterStatus === "substitute" || p.role === "SUB",
+      kda: Number.isFinite(avg.kda) ? Number(avg.kda.toFixed(1)) : null,
+      dpm: Number.isFinite(avg.dpm) ? Math.round(avg.dpm) : null,
+      csm: Number.isFinite(avg.csm) ? Number(avg.csm.toFixed(1)) : null,
+      kp: Number.isFinite(avg.kp) ? Math.round(avg.kp) : null,
+      gd15: Number.isFinite(avg.gd15) ? Math.round(avg.gd15) : null,
+      games: Array.isArray(pState?.processedMatches) ? pState.processedMatches.length : 0
+    };
+  });
+
+  const avgOf = (field: string) => {
+    const vals = enrichedPlayers
+      .filter(pl => !pl.isSubstitute && (pl as any)[field] !== null && (pl as any)[field] !== undefined)
+      .map(pl => (pl as any)[field] as number);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  };
+  const teamStats = {
+    kda: avgOf('kda'),
+    dpm: avgOf('dpm'),
+    csm: avgOf('csm'),
+    kp: avgOf('kp'),
+    gd15: avgOf('gd15'),
+    players: enrichedPlayers.filter(pl => !pl.isSubstitute && pl.kda !== null).length
+  };
+
+  enrichedTeams[key] = {
+    key,
+    displayName: meta.teamDisplay || ("UIC " + key.toUpperCase()),
+    tier: meta.tier || "Prime League",
+    logoSrc: meta.logoUrl || ("/assets/teams/" + key + ".webp"),
+    players: enrichedPlayers,
+    stats: teamStats
+  };
+}
+
+const cleanPrimeStats: Record<string, any> = {};
+for (const [key, pTeam] of Object.entries(primeMeta as Record<string, any>)) {
+  if (!pTeam || key.toLowerCase() === 'community') continue;
+  cleanPrimeStats[key] = {
+    teamDisplay: pTeam.teamDisplay,
+    tier: pTeam.tier,
+    api_meta: pTeam.api_meta ? { logo_url: pTeam.api_meta.logo_url, name: pTeam.api_meta.name, team_tag: pTeam.api_meta.team_tag } : null,
+    matches: (pTeam.matches || []).map((m: any) => ({
+      id: m.id || m.match_id,
+      match_day: m.match_day,
+      begin: m.begin,
+      confirmed: !!m.confirmed,
+      result: m.result || null,
+      enemy_team: m.enemy_team ? {
+        name: m.enemy_team.name || m.enemy_team.team_tag || "Gegner",
+        team_tag: m.enemy_team.team_tag || "OPP",
+        logo_url: m.enemy_team.logo_url || "/assets/logo/logo.png"
+      } : null
+    }))
+  };
+}
+
+import EsportsBackground from '../components/overlay/EsportsBackground.astro';
+import OverlayTicker from '../components/overlay/OverlayTicker.astro';
+import StartingScene from '../components/overlay/StartingScene.astro';
+import PregameScene from '../components/overlay/PregameScene.astro';
+import PauseScene from '../components/overlay/PauseScene.astro';
+import ReplayScene from '../components/overlay/ReplayScene.astro';
+import EndingScene from '../components/overlay/EndingScene.astro';
+---
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UIC OBS Broadcast Overlay</title>
+</head>
+
+<body class="scene-pregame layout-cam-2">
+
+  <script id="uic-embedded-data" type="application/json" set:html={JSON.stringify({ enriched: enrichedTeams, primeStats: cleanPrimeStats })}></script>
+
+  <EsportsBackground />
+  <OverlayTicker />
+  <StartingScene />
+  <PregameScene />
+  <PauseScene />
+  <ReplayScene />
+  <EndingScene />
+
+  <!-- Global Streamlabs Alert Layer (Active when ?alert_url= is configured) -->
+  <div id="streamlabs-alert-layer" class="streamlabs-alert-layer" aria-hidden="true">
+    <iframe
+      id="alert-widget-iframe"
+      class="alert-widget-iframe"
+      title="Streamlabs Alert Widget"
+      allow="autoplay"
+    ></iframe>
+  </div>
+
+  <script is:inline>
+    (function() {
+      var embeddedRaw = document.getElementById("uic-embedded-data");
+      var embeddedData = embeddedRaw ? JSON.parse(embeddedRaw.textContent || "{}") : {};
+      var enrichedTeamsMap = embeddedData.enriched || {};
+
+      // URL Parameters
+      var params = new URLSearchParams(window.location.search);
+      var currentScene = (params.get("scene") || "pregame").toLowerCase();
+      var currentLayout = (params.get("layout") || "cam-2").toLowerCase();
+      var rawTickerParam = params.get("ticker");
+      var tickerPos = (rawTickerParam || "top").toLowerCase();
+      var chatParam = params.get("chat");
+      var rawChatUrl = params.get("chat_url") || "";
+      var rawAlertUrl = params.get("alert_url") || "";
+      var rawTeamParam = (params.get("team") || "").trim().toLowerCase();
+      var inlineMatchDay = "";
+      if (rawTeamParam.indexOf(":") !== -1) {
+        var tParts = rawTeamParam.split(":");
+        rawTeamParam = tParts[0].trim();
+        inlineMatchDay = (tParts[1] || "").trim();
+      }
+      var matchDayParam = (params.get("matchday") || params.get("match") || inlineMatchDay || "").trim();
+      var isNoTeamMode = (rawTeamParam === "none" || rawTeamParam === "off" || rawTeamParam === "classic");
+      var hasExplicitTeam = rawTeamParam !== "" && rawTeamParam !== "auto" && !isNoTeamMode;
+      var timerMinutes = parseInt(params.get("timer"), 10) || 5;
+      var startParam = params.get("start");
+
+      var activeTeamKey = hasExplicitTeam ? rawTeamParam : "prime";
+      var teamAutoResolved = hasExplicitTeam;
+      var primeStatsData = null;
+
+      // 1. Apply Scene (1. start, 2. pregame, 3. break, 4. replay, 5. end + legacy aliases)
+      function applyScene(sc) {
+        currentScene = sc;
+        document.body.classList.remove("scene-starting", "scene-pregame", "scene-pause", "scene-replay", "scene-ending");
+        if (sc === "start" || sc === "starting") document.body.classList.add("scene-starting");
+        else if (sc === "break" || sc === "pause" || sc === "ingame") document.body.classList.add("scene-pause");
+        else if (sc === "replay") document.body.classList.add("scene-replay");
+        else if (sc === "end" || sc === "ending") document.body.classList.add("scene-ending");
+        else document.body.classList.add("scene-pregame");
+      }
+      applyScene(currentScene);
+
+      // 1b. Apply Classic No-Team Mode (?team=none)
+      if (isNoTeamMode) {
+        document.body.classList.add("team-none");
+      }
+
+      // 1c. Mount Streamlabs Chat & Alert Widgets (if URL parameters or tokens are provided)
+      function resolveStreamlabsUrl(raw, widgetType) {
+        if (!raw) return "";
+        var s = String(raw).trim();
+        try {
+          if (s.indexOf("%3A") !== -1 || s.indexOf("%3a") !== -1 || s.indexOf("%2F") !== -1 || s.indexOf("%2f") !== -1) {
+            s = decodeURIComponent(s).trim();
+          }
+        } catch (e) {}
+        if (/^[A-Fa-f0-9]{24,}$/.test(s)) {
+          return widgetType === "alert"
+            ? "https://streamlabs.com/alert-box/v3/" + s
+            : "https://streamlabs.com/widgets/chat-box/v1/" + s;
+        }
+        if (/^(www\.)?streamlabs\.com\//i.test(s)) {
+          s = "https://" + s;
+        }
+        try {
+          var u = new URL(s);
+          if (u.protocol === "https:" || u.protocol === "http:") return u.href;
+        } catch (e2) {}
+        return "";
+      }
+
+      var validChatUrl = resolveStreamlabsUrl(rawChatUrl, "chat");
+      var chatWidgetIframe = document.getElementById("chat-widget-iframe");
+      var chatChannelTag = document.getElementById("chat-channel-tag");
+      if (chatWidgetIframe && validChatUrl) {
+        chatWidgetIframe.src = validChatUrl;
+        chatWidgetIframe.classList.add("is-loaded");
+        if (chatChannelTag) {
+          chatChannelTag.textContent = "TWITCH \u2022 VERBUNDEN";
+          chatChannelTag.classList.add("is-connected");
+        }
+      }
+
+      var validAlertUrl = resolveStreamlabsUrl(rawAlertUrl, "alert");
+      var alertWidgetIframe = document.getElementById("alert-widget-iframe");
+      var alertLayerEl = document.getElementById("streamlabs-alert-layer");
+      if (alertWidgetIframe && alertLayerEl && validAlertUrl) {
+        alertWidgetIframe.src = validAlertUrl;
+        alertLayerEl.classList.add("is-active");
+      }
+
+      // 2. Apply Ticker Visibility (in team=none mode, default ticker to off unless ?ticker=top is explicitly set)
+      var hideTicker = tickerPos === "off" || (isNoTeamMode && (!rawTickerParam || tickerPos !== "top"));
+      if (hideTicker) document.body.classList.add("ticker-off");
+
+      // 3. Apply Chat Visibility
+      if (chatParam === "0") document.body.classList.add("chat-off");
+      else document.body.classList.remove("chat-off");
+
+      // 4. Apply PreGame Camera Layout & Punch Alpha-Transparent Cutouts in #esports-bg (Pregame Cams + Break Highlight Box)
+      function getStageOffsetRect(el) {
+        var x = 0, y = 0;
+        var w = el.offsetWidth || 0;
+        var h = el.offsetHeight || 0;
+        var cur = el;
+        while (cur && cur !== document.body && cur !== document.documentElement) {
+          x += cur.offsetLeft || 0;
+          y += cur.offsetTop || 0;
+          cur = cur.offsetParent;
+        }
+        return { x: x, y: y, w: w, h: h };
+      }
+
+      function buildRoundedHolePath(x, y, w, h, r) {
+        return " M " + (x + r) + " " + y +
+          " A " + r + " " + r + " 0 0 0 " + x + " " + (y + r) +
+          " V " + (y + h - r) +
+          " A " + r + " " + r + " 0 0 0 " + (x + r) + " " + (y + h) +
+          " H " + (x + w - r) +
+          " A " + r + " " + r + " 0 0 0 " + (x + w) + " " + (y + h - r) +
+          " V " + (y + r) +
+          " A " + r + " " + r + " 0 0 0 " + (x + w - r) + " " + y +
+          " Z";
+      }
+
+      function updateCameraCutoutMask() {
+        var bgEl = document.getElementById("esports-bg");
+        if (!bgEl) return;
+        var isPregameCams = document.body.classList.contains("scene-pregame") && !document.body.classList.contains("layout-none");
+        var isBreakScene = document.body.classList.contains("scene-pause");
+        if (!isPregameCams && !isBreakScene) {
+          bgEl.style.clipPath = "";
+          bgEl.style.webkitClipPath = "";
+          return;
+        }
+        var pathStr = "M 0 0 H 1920 V 1080 H 0 Z";
+        var cutoutIds = isPregameCams ? ["cam-box-1", "cam-box-2"] : ["break-highlight-box"];
+        for (var c = 0; c < cutoutIds.length; c++) {
+          var box = document.getElementById(cutoutIds[c]);
+          if (box && box.style.display !== "none" && box.offsetWidth > 0) {
+            var rect = getStageOffsetRect(box);
+            pathStr += buildRoundedHolePath(rect.x + 1, rect.y + 1, rect.w - 2, rect.h - 3, 9);
+          }
+        }
+        bgEl.style.clipPath = "path('" + pathStr + "')";
+        bgEl.style.webkitClipPath = "path('" + pathStr + "')";
+      }
+
+      function applyLayout(ly) {
+        currentLayout = ly;
+        document.body.classList.remove("layout-cam-2", "layout-cam-1", "layout-none");
+        var camsWrap = document.getElementById("pregame-cams-wrapper");
+        var cam1 = document.getElementById("cam-box-1");
+        var cam2 = document.getElementById("cam-box-2");
+        var cam1Lbl = document.getElementById("cam-1-label");
+
+        if (ly === "cam-1") {
+          document.body.classList.add("layout-cam-1");
+          if (camsWrap) camsWrap.style.display = "flex";
+          if (cam1) {
+            cam1.style.display = "block";
+            cam1.classList.add("is-solo");
+          }
+          if (cam2) cam2.style.display = "none";
+          if (cam1Lbl) cam1Lbl.textContent = "CASTER";
+        } else if (ly === "none" || ly === "chat-only") {
+          document.body.classList.add("layout-none");
+          if (camsWrap) camsWrap.style.display = "none";
+        } else {
+          document.body.classList.add("layout-cam-2");
+          if (camsWrap) camsWrap.style.display = "flex";
+          if (cam1) {
+            cam1.style.display = "block";
+            cam1.classList.remove("is-solo");
+          }
+          if (cam2) cam2.style.display = "block";
+          if (cam1Lbl) cam1Lbl.textContent = "CASTER 1";
+        }
+        setTimeout(updateCameraCutoutMask, 20);
+      }
+      applyLayout(currentLayout);
+      window.addEventListener("load", updateCameraCutoutMask);
+
+      // 5. Countdown Timer Engine
+      var startMinEl = document.getElementById("start-cd-min");
+      var startSecEl = document.getElementById("start-cd-sec");
+      var pauseTimerEl = document.getElementById("pause-cd-timer");
+
+      function formatNum(n) { return n < 10 ? "0" + n : "" + n; }
+
+      function parseStartTarget(value) {
+        if (!value) return null;
+        var v = String(value).trim();
+        var clock = /^(\d{1,2}):(\d{2})$/.exec(v);
+        if (clock) {
+          var d = new Date();
+          d.setHours(parseInt(clock[1], 10), parseInt(clock[2], 10), 0, 0);
+          return d.getTime();
+        }
+        var parsed = new Date(v).getTime();
+        return isNaN(parsed) ? null : parsed;
+      }
+
+      var wantsAutoStart = startParam && startParam.toLowerCase() === "auto";
+      var autoStartResolved = false;
+      var targetMs = wantsAutoStart ? null : parseStartTarget(startParam);
+      if (targetMs === null) targetMs = Date.now() + timerMinutes * 60 * 1000;
+
+      function updateCountdown() {
+        var totalSeconds = Math.max(0, Math.ceil((targetMs - Date.now()) / 1000));
+        var mins = Math.floor(totalSeconds / 60);
+        var secs = totalSeconds % 60;
+
+        var timeStr = formatNum(mins) + ":" + formatNum(secs);
+        if (startMinEl) startMinEl.textContent = formatNum(mins);
+        if (startSecEl) startSecEl.textContent = formatNum(secs);
+        if (pauseTimerEl) pauseTimerEl.textContent = timeStr;
+        var syncEls = document.querySelectorAll(".sync-cd-time");
+        for (var si = 0; si < syncEls.length; si++) {
+          syncEls[si].textContent = timeStr;
+        }
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 250);
+
+      // 6. Background Canvas Particles
+      var canvas = document.getElementById("streak-canvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        var width = window.innerWidth || 1920;
+        var height = window.innerHeight || 1080;
+
+        function resizeCanvas() {
+          width = window.innerWidth || 1920;
+          height = window.innerHeight || 1080;
+          canvas.width = width;
+          canvas.height = height;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        var streaks = [];
+        var sparks = [];
+        var STREAK_COUNT = 15;
+        var SPARK_COUNT = 36;
+
+        var palette = [
+          { c1: "#00E5FF", c2: "#3A7BD5" },
+          { c1: "#38C8FF", c2: "#8A2BE2" },
+          { c1: "#8A2BE2", c2: "#D900FF" },
+          { c1: "#00E5FF", c2: "#FFFFFF" }
+        ];
+
+        function createStreak() {
+          var col = palette[Math.floor(Math.random() * palette.length)];
+          var len = 50 + Math.random() * 145;
+          var speed = 1.1 + Math.random() * 2.8;
+          var dir = Math.random() > 0.35 ? 1 : -1;
+          return {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            len: len,
+            speed: speed * dir,
+            thickness: 1.4 + Math.random() * 2.2,
+            alpha: 0.22 + Math.random() * 0.55,
+            c1: col.c1,
+            c2: col.c2
+          };
+        }
+
+        function createSpark() {
+          return {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: 0.8 + Math.random() * 1.7,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            alpha: 0.12 + Math.random() * 0.45,
+            pulse: Math.random() * Math.PI * 2,
+            color: Math.random() > 0.5 ? "#00E5FF" : "#9D4EDD"
+          };
+        }
+
+        for (var si = 0; si < STREAK_COUNT; si++) streaks.push(createStreak());
+        for (var pi = 0; pi < SPARK_COUNT; pi++) sparks.push(createSpark());
+
+        var INV_SQRT2 = 0.70710678;
+        var lastAnimTime = 0;
+
+        function renderBackgroundParticles(now) {
+          requestAnimationFrame(renderBackgroundParticles);
+          if (now - lastAnimTime < 32) return;
+          lastAnimTime = now;
+
+          ctx.clearRect(0, 0, width, height);
+
+          for (var j = 0; j < sparks.length; j++) {
+            var sp = sparks[j];
+            sp.x += sp.vx;
+            sp.y += sp.vy;
+            sp.pulse += 0.025;
+
+            if (sp.x < 0) sp.x = width;
+            if (sp.x > width) sp.x = 0;
+            if (sp.y < 0) sp.y = height;
+            if (sp.y > height) sp.y = 0;
+
+            var curAlpha = sp.alpha * (0.6 + 0.4 * Math.sin(sp.pulse));
+            ctx.globalAlpha = curAlpha;
+            ctx.fillStyle = sp.color;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          for (var i = 0; i < streaks.length; i++) {
+            var s = streaks[i];
+            s.x += s.speed * INV_SQRT2;
+            s.y -= s.speed * INV_SQRT2;
+
+            var margin = 200;
+            if (s.x > width + margin || s.y < -margin) {
+              s.x = Math.random() * (width * 0.8) - 100;
+              s.y = height + Math.random() * 150;
+            } else if (s.x < -margin || s.y > height + margin) {
+              s.x = Math.random() * width + 100;
+              s.y = -Math.random() * 150;
+            }
+
+            var x2 = s.x - s.len * INV_SQRT2;
+            var y2 = s.y + s.len * INV_SQRT2;
+
+            var grad = ctx.createLinearGradient(x2, y2, s.x, s.y);
+            grad.addColorStop(0, "rgba(0, 229, 255, 0)");
+            grad.addColorStop(0.5, s.c2);
+            grad.addColorStop(1, s.c1);
+
+            ctx.globalAlpha = s.alpha;
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = s.thickness;
+            ctx.lineCap = "round";
+
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(s.x, s.y);
+            ctx.stroke();
+          }
+          ctx.globalAlpha = 1.0;
+        }
+
+        requestAnimationFrame(renderBackgroundParticles);
+      }
+
+      // 7. Formatting Helpers
+      function esc(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      function formatTierLabel(tier, lp) {
+        if (!tier) return "UNRANKED";
+        var t = tier.toUpperCase();
+        if (t.endsWith("IV")) t = t.slice(0, -2) + " IV";
+        else if (t.endsWith("III")) t = t.slice(0, -3) + " III";
+        else if (t.endsWith("II")) t = t.slice(0, -2) + " II";
+        else if (t.endsWith("I")) t = t.slice(0, -1) + " I";
+        if (lp !== undefined && lp !== null) t += " (" + lp + " LP)";
+        return t;
+      }
+
+      function formatSlotDate(iso) {
+        var d = iso ? new Date(iso) : null;
+        if (!d || isNaN(d.getTime())) return "\u2013";
+        return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", timeZone: "Europe/Berlin" }) +
+          " \u00b7 " + d.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Berlin" });
+      }
+
+      function formatRelativeTime(iso) {
+        if (!iso) return { label: "TERMIN OFFEN", isToday: false, isTomorrow: false };
+        var d = new Date(iso);
+        var now = new Date();
+
+        var timeStr = "";
+        try {
+          timeStr = new Intl.DateTimeFormat("de-DE", {
+            timeZone: "Europe/Berlin",
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(d) + " UHR";
+        } catch (e) {
+          timeStr = "UHRZEIT OFFEN";
+        }
+
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var matchDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        var diffDays = Math.round((matchDay - today) / (1000 * 60 * 60 * 24));
+
+        var dayStr = "";
+        var isToday = false;
+        var isTomorrow = false;
+
+        if (diffDays === 0) {
+          dayStr = "HEUTE";
+          isToday = true;
+        } else if (diffDays === 1) {
+          dayStr = "MORGEN";
+          isTomorrow = true;
+        } else {
+          try {
+            var weekday = new Intl.DateTimeFormat("de-DE", {
+              timeZone: "Europe/Berlin",
+              weekday: "short"
+            }).format(d).replace(/\./g, "").toUpperCase();
+            var dayMonth = new Intl.DateTimeFormat("de-DE", {
+              timeZone: "Europe/Berlin",
+              day: "2-digit",
+              month: "2-digit"
+            }).format(d);
+            dayStr = weekday + "., " + dayMonth + ".";
+          } catch (e2) {
+            dayStr = "TERMIN";
+          }
+        }
+
+        return { label: dayStr + " " + timeStr, isToday: isToday, isTomorrow: isTomorrow };
+      }
+
+      // 8. Compute Team State & Automatically Select Next Match of the Given Team
+      function computeTeamState(teamKey) {
+        var fallbackLogo = "/assets/logo/logo.png";
+        var teamStats = (primeStatsData && primeStatsData[teamKey]) ? primeStatsData[teamKey] : null;
+        var enrichedTeam = enrichedTeamsMap[teamKey] || {};
+        var teamPlayers = enrichedTeam.players || [];
+
+        var displayName = (teamStats && teamStats.teamDisplay) || enrichedTeam.displayName || ("UIC " + teamKey.toUpperCase());
+        var tierName = (teamStats && teamStats.tier) || enrichedTeam.tier || "Prime League";
+        var uicLogo = (teamStats && teamStats.api_meta && teamStats.api_meta.logo_url) ? teamStats.api_meta.logo_url : fallbackLogo;
+
+        var wins = 0, losses = 0, draws = 0;
+        var formArr = [];
+        var nextMatch = null;
+        var cutoff = new Date(new Date().getTime() - (6 * 3600 * 1000));
+
+        if (teamStats && teamStats.matches && Array.isArray(teamStats.matches)) {
+          var played = teamStats.matches.filter(function(m) { return m.result; })
+            .sort(function(a, b) { return new Date(a.begin) - new Date(b.begin); });
+
+          for (var pIdx = 0; pIdx < played.length; pIdx++) {
+            var resParts = played[pIdx].result.split(":").map(Number);
+            if (resParts.length === 2) {
+              if (resParts[0] > resParts[1]) { wins++; formArr.push("W"); }
+              else if (resParts[0] < resParts[1]) { losses++; formArr.push("L"); }
+              else { draws++; formArr.push("D"); }
+            }
+          }
+
+          // Optional explicit matchday/match selection (?matchday=4 or ?match=1165669)
+          var explicitMatch = null;
+          if (matchDayParam) {
+            var candidates = teamStats.matches.filter(function(m) {
+              return String(m.id) === matchDayParam || String(m.match_day) === matchDayParam;
+            });
+            if (candidates.length > 0) {
+              candidates.sort(function(a, b) {
+                return new Date(b.begin || 0) - new Date(a.begin || 0);
+              });
+              explicitMatch = candidates[0];
+            }
+          }
+
+          // Chronologically next upcoming match of this team; fallback to latest unplayed or last played
+          var upcomingFuture = teamStats.matches.filter(function(m) {
+            return !m.result && (!m.begin || new Date(m.begin) >= cutoff);
+          }).sort(function(a, b) { return new Date(a.begin) - new Date(b.begin); });
+
+          var anyUnplayed = teamStats.matches.filter(function(m) {
+            return !m.result;
+          }).sort(function(a, b) { return new Date(b.begin || 0) - new Date(a.begin || 0); });
+
+          nextMatch = explicitMatch || upcomingFuture[0] || anyUnplayed[0] || played[played.length - 1] || null;
+        }
+
+        var enemyName = "Gegner offen";
+        var enemyLogo = fallbackLogo;
+        var matchTimeStr = "TERMIN OFFEN";
+        var isConfirmed = false;
+        var matchDayNum = null;
+
+        if (nextMatch) {
+          if (nextMatch.enemy_team) {
+            enemyName = nextMatch.enemy_team.name || nextMatch.enemy_team.team_tag || "Gegner";
+            if (nextMatch.enemy_team.logo_url) enemyLogo = nextMatch.enemy_team.logo_url;
+          }
+          if (nextMatch.begin) {
+            var formatted = formatRelativeTime(nextMatch.begin);
+            matchTimeStr = formatted.label;
+          }
+          isConfirmed = nextMatch.confirmed === true;
+          if (nextMatch.match_day) matchDayNum = nextMatch.match_day;
+        }
+
+        var totalMatches = wins + losses + draws;
+        var wrPercent = totalMatches > 0 ? Math.round((wins / totalMatches) * 100) : null;
+        var tierUpper = tierName.toUpperCase();
+
+        var seriesLabel = "";
+        if (teamStats && Array.isArray(teamStats.matches)) {
+          var finished = teamStats.matches.filter(function(m) { return m.result && /^\d+:\d+$/.test(m.result); });
+          if (finished.length > 0 && finished.every(function(m) {
+            var sc = m.result.split(":").map(Number);
+            return Math.max(sc[0], sc[1]) === 2;
+          })) seriesLabel = "BO3";
+        }
+
+        var seasonLabel = "";
+        if (teamStats && Array.isArray(teamStats.matches)) {
+          var earliestYear = null;
+          for (var sy = 0; sy < teamStats.matches.length; sy++) {
+            var syDate = teamStats.matches[sy].begin ? new Date(teamStats.matches[sy].begin) : null;
+            if (syDate && !isNaN(syDate.getTime())) {
+              var yr = syDate.getFullYear();
+              if (earliestYear === null || yr < earliestYear) earliestYear = yr;
+            }
+          }
+          if (earliestYear !== null) seasonLabel = "SAISON " + earliestYear;
+        }
+
+        var targetRoles = ["TOP", "JGL", "MID", "BOT", "SUP"];
+        var enrichedList = (embeddedData && embeddedData.enriched && embeddedData.enriched[teamKey])
+          ? embeddedData.enriched[teamKey].players
+          : teamPlayers;
+
+        var starters = [];
+        for (var rk = 0; rk < targetRoles.length; rk++) {
+          var targetRole = targetRoles[rk];
+          var matchedPlayer = enrichedList.find(function(p) {
+            return (p.role && p.role.toUpperCase() === targetRole) ||
+                   (targetRole === "BOT" && (p.role === "ADC" || p.role === "BOT"));
+          });
+          if (!matchedPlayer && enrichedList[rk]) {
+            matchedPlayer = enrichedList[rk];
+          }
+
+          var pName = matchedPlayer ? matchedPlayer.name : "\u2013";
+          var pTag = matchedPlayer && matchedPlayer.tagLine ? "#" + matchedPlayer.tagLine : "";
+          var pRole = matchedPlayer && matchedPlayer.role ? matchedPlayer.role : targetRole;
+          var roleKey = targetRole.toLowerCase();
+          var roleIconSrc = "/assets/roles/" + (roleKey === "bot" ? "bot" : roleKey) + ".webp";
+          var pPhoto = matchedPlayer && matchedPlayer.photoSrc ? matchedPlayer.photoSrc : (matchedPlayer && matchedPlayer.playerId ? "/assets/profile/" + matchedPlayer.playerId + ".webp" : "/assets/profile/profile_placeholder.webp");
+          var pIcon = matchedPlayer && matchedPlayer.icon ? matchedPlayer.icon : "/assets/profile/placeholder.webp";
+          var pTier = matchedPlayer ? formatTierLabel(matchedPlayer.tier, matchedPlayer.lp) : "\u2013";
+          var pWr = matchedPlayer && matchedPlayer.winRate ? matchedPlayer.winRate + "% WR" : "\u2013";
+          var pWins = matchedPlayer && matchedPlayer.wins ? matchedPlayer.wins : 0;
+          var pLosses = matchedPlayer && matchedPlayer.losses ? matchedPlayer.losses : 0;
+          var showVal = function(v, suffix) { return (v === null || v === undefined) ? "\u2013" : v + (suffix || ""); };
+
+          starters.push({
+            name: pName,
+            tag: pTag,
+            role: pRole,
+            roleIconSrc: roleIconSrc,
+            photoSrc: pPhoto,
+            iconSrc: pIcon,
+            tier: pTier,
+            wr: pWr,
+            wins: pWins,
+            losses: pLosses,
+            kda: matchedPlayer ? showVal(matchedPlayer.kda) : "\u2013",
+            dpm: matchedPlayer ? showVal(matchedPlayer.dpm) : "\u2013",
+            csm: matchedPlayer ? showVal(matchedPlayer.csm) : "\u2013",
+            kp: matchedPlayer ? showVal(matchedPlayer.kp, "%") : "\u2013",
+            isCaptain: matchedPlayer && matchedPlayer.isCaptain === true,
+            isSubstitute: matchedPlayer && matchedPlayer.isSubstitute === true
+          });
+        }
+
+        var embeddedTeam = (embeddedData.enriched && embeddedData.enriched[teamKey]) || {};
+        var ts = embeddedTeam.stats || {};
+        var has = function(v) { return v !== null && v !== undefined && isFinite(v); };
+        var clampPct = function(v) { return Math.max(0, Math.min(100, Math.round(v))); };
+
+        var metricsData = [];
+        if (wrPercent !== null) metricsData.push({ label: "WINRATE PRIME LEAGUE", uicVal: wrPercent + "%", pct: wrPercent });
+        if (has(ts.kda)) metricsData.push({ label: "\u00d8 KDA", uicVal: ts.kda.toFixed(2), pct: clampPct(ts.kda / 6 * 100) });
+        if (has(ts.dpm)) metricsData.push({ label: "\u00d8 SCHADEN / MIN", uicVal: String(Math.round(ts.dpm)), pct: clampPct(ts.dpm / 1200 * 100) });
+        if (has(ts.csm)) metricsData.push({ label: "\u00d8 CS / MIN", uicVal: ts.csm.toFixed(1), pct: clampPct(ts.csm / 10 * 100) });
+        if (has(ts.kp)) metricsData.push({ label: "\u00d8 KILL-BETEILIGUNG", uicVal: Math.round(ts.kp) + "%", pct: clampPct(ts.kp) });
+        if (has(ts.gd15)) metricsData.push({ label: "\u00d8 GOLD-DIFF @ 15", uicVal: (ts.gd15 > 0 ? "+" : "") + Math.round(ts.gd15), pct: clampPct(50 + ts.gd15 / 20) });
+
+        var schedule = (teamStats && Array.isArray(teamStats.matches) ? teamStats.matches.slice() : [])
+          .sort(function(a, b) {
+            if (!a.begin) return 1;
+            if (!b.begin) return -1;
+            return new Date(a.begin) - new Date(b.begin);
+          });
+
+        var maxRows = 8;
+        if (schedule.length > maxRows) {
+          var nextIdx = Math.max(0, schedule.indexOf(nextMatch));
+          var sliceStart = Math.max(0, Math.min(nextIdx - 3, schedule.length - maxRows));
+          schedule = schedule.slice(sliceStart, sliceStart + maxRows);
+        }
+
+        return {
+          teamKey: teamKey,
+          teamStats: teamStats,
+          displayName: displayName,
+          tierName: tierName,
+          tierUpper: tierUpper,
+          uicLogo: uicLogo,
+          fallbackLogo: fallbackLogo,
+          wins: wins,
+          losses: losses,
+          draws: draws,
+          formArr: formArr,
+          nextMatch: nextMatch,
+          enemyName: enemyName,
+          enemyLogo: enemyLogo,
+          matchTimeStr: matchTimeStr,
+          isConfirmed: isConfirmed,
+          matchDayNum: matchDayNum,
+          seriesLabel: seriesLabel,
+          seasonLabel: seasonLabel,
+          wrPercent: wrPercent,
+          starters: starters,
+          metricsData: metricsData,
+          schedule: schedule
+        };
+      }
+
+      function buildFormBadgesHtml(formArr, emptyText) {
+        var rf = formArr.slice(-5);
+        if (rf.length === 0) return '<span class="form-badge draw">' + (emptyText || "\u2013") + '</span>';
+        var html = "";
+        for (var i = 0; i < rf.length; i++) {
+          var cls = rf[i] === "W" ? "win" : (rf[i] === "L" ? "loss" : "draw");
+          html += '<span class="form-badge ' + cls + '">' + rf[i] + '</span>';
+        }
+        return html;
+      }
+
+      // 8a. Scene 1: Starting Soon Renderer
+      function renderStartingScene(state) {
+        var startBadge = document.getElementById("start-badge-pill");
+        if (startBadge) startBadge.textContent = "PRIME LEAGUE";
+
+        var splitTitleEl = document.getElementById("start-split-title");
+        if (splitTitleEl) {
+          splitTitleEl.textContent = state.seasonLabel;
+          splitTitleEl.style.display = state.seasonLabel ? "" : "none";
+          if (splitTitleEl.previousElementSibling) splitTitleEl.previousElementSibling.style.display = state.seasonLabel ? "" : "none";
+        }
+
+        var groupTagEl = document.getElementById("start-group-tag");
+        if (groupTagEl) {
+          var cleanDiv = state.tierUpper.replace("PRIME LEAGUE", "").trim();
+          if (cleanDiv && !cleanDiv.startsWith("DIV") && !cleanDiv.startsWith("GROUP")) cleanDiv = "GROUP " + cleanDiv;
+          groupTagEl.textContent = cleanDiv;
+          groupTagEl.style.display = cleanDiv ? "" : "none";
+          if (groupTagEl.previousElementSibling) groupTagEl.previousElementSibling.style.display = cleanDiv ? "" : "none";
+        }
+
+        var hudMetaDay = document.getElementById("hud-meta-day");
+        if (hudMetaDay) {
+          var metaParts = [];
+          if (state.matchDayNum) metaParts.push("SPIELTAG " + state.matchDayNum);
+          if (state.seriesLabel) metaParts.push(state.seriesLabel);
+          hudMetaDay.textContent = metaParts.join(" \u2022 ");
+        }
+
+        var startClashFormat = document.getElementById("start-clash-format");
+        if (startClashFormat) {
+          startClashFormat.textContent = state.seriesLabel || "";
+          startClashFormat.style.display = state.seriesLabel ? "" : "none";
+        }
+
+        var startUicLogo = document.getElementById("start-uic-logo");
+        if (startUicLogo) startUicLogo.src = state.uicLogo;
+        var startUicName = document.getElementById("start-uic-name");
+        if (startUicName) startUicName.textContent = state.displayName;
+        var startUicSub = document.getElementById("start-uic-sub");
+        if (startUicSub) startUicSub.textContent = state.tierUpper;
+
+        var startMatchTime = document.getElementById("start-match-time");
+        if (startMatchTime) startMatchTime.textContent = state.matchTimeStr;
+
+        var startEnemyLogo = document.getElementById("start-enemy-logo");
+        if (startEnemyLogo) startEnemyLogo.src = state.enemyLogo;
+        var startEnemyName = document.getElementById("start-enemy-name");
+        if (startEnemyName) startEnemyName.textContent = state.enemyName;
+        var startEnemySub = document.getElementById("start-enemy-sub");
+        if (startEnemySub) startEnemySub.textContent = state.tierUpper;
+
+        var startFormBadges = document.getElementById("start-form-badges");
+        if (startFormBadges) {
+          var recentForm = state.formArr.slice(-5);
+          if (recentForm.length === 0) {
+            startFormBadges.innerHTML = "";
+          } else {
+            var formHtml = '<span class="form-lbl text-mono">FORM</span>' + buildFormBadgesHtml(recentForm);
+            formHtml += '<span class="form-rec text-mono">' + state.wins + 'S \u2013 ' + state.losses + 'N</span>';
+            startFormBadges.innerHTML = formHtml;
+          }
+        }
+
+        var standingsTbody = document.getElementById("start-standings-tbody");
+        if (standingsTbody) {
+          var tableHtml = "";
+          for (var r = 0; r < state.schedule.length; r++) {
+            var sm = state.schedule[r];
+            var enemy = sm.enemy_team || {};
+            var isNext = state.nextMatch && sm === state.nextMatch;
+            var resultHtml = '<span class="res-pending">\u2013</span>';
+            if (sm.result && /^\d+:\d+$/.test(sm.result)) {
+              var sc = sm.result.split(":").map(Number);
+              var outcome = sc[0] > sc[1] ? "win" : (sc[0] < sc[1] ? "loss" : "draw");
+              resultHtml = '<span class="res-chip ' + outcome + '">' + sc[0] + ' : ' + sc[1] + '</span>';
+            }
+            tableHtml += '<tr class="standings-row' + (isNext ? ' is-next' : '') + '">' +
+              '<td class="td-rank text-mono">' + esc(sm.match_day || "\u2013") + '</td>' +
+              '<td class="td-team">' +
+                '<img src="' + esc(enemy.logo_url || state.fallbackLogo) + '" alt="' + esc(enemy.name || "") + '" class="td-team-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
+                '<span class="td-team-name">' + esc(enemy.name || "Gegner") + '</span>' +
+              '</td>' +
+              '<td class="td-stat text-mono">' + esc(formatSlotDate(sm.begin)) + '</td>' +
+              '<td class="td-stat text-mono">' + resultHtml + '</td>' +
+            '</tr>';
+          }
+          if (!tableHtml) {
+            tableHtml = '<tr class="standings-row"><td class="td-team" colspan="4" style="grid-column: 1 / -1;"><span class="td-team-name">Keine Spieltermine vorhanden</span></td></tr>';
+          }
+          standingsTbody.innerHTML = tableHtml;
+        }
+
+        var statsGrid = document.getElementById("start-stats-grid");
+        if (statsGrid) {
+          var statsHtml = "";
+          for (var s = 0; s < state.metricsData.length; s++) {
+            var m = state.metricsData[s];
+            statsHtml += '<div class="metric-card">' +
+              '<div class="metric-top">' +
+                '<span class="metric-lbl text-mono">' + m.label + '</span>' +
+              '</div>' +
+              '<div class="metric-values">' +
+                '<span class="metric-uic-val">' + m.uicVal + '</span>' +
+              '</div>' +
+              '<div class="metric-bar-wrap">' +
+                '<div class="metric-bar-fill" style="width:' + m.pct + '%"></div>' +
+              '</div>' +
+            '</div>';
+          }
+          statsGrid.innerHTML = statsHtml;
+        }
+
+        var startersDock = document.getElementById("start-starters-dock");
+        if (startersDock) {
+          var startersHtml = "";
+          for (var sk = 0; sk < state.starters.length; sk++) {
+            var p = state.starters[sk];
+            startersHtml += '<article class="player-card">' +
+              '<div class="p-stage">' +
+                '<div class="p-stage-badges">' +
+                  '<span class="p-role-badge text-mono">' +
+                    '<img src="' + p.roleIconSrc + '" alt="" class="lane-role-icon" width="14" height="14">' +
+                    '<span>' + esc(p.role) + '</span>' +
+                  '</span>' +
+                  '<div class="p-status-badges">' +
+                    (p.isCaptain ? '<span class="p-captain-badge text-mono">\u2605 KAPIT\u00c4N</span>' : '') +
+                    (p.isSubstitute ? '<span class="p-sub-badge text-mono">\u21c4 ERSATZ</span>' : '') +
+                  '</div>' +
+                '</div>' +
+                '<img src="' + esc(p.photoSrc) + '" alt="' + esc(p.name) + '" class="p-photo" onerror="this.src=\'/assets/profile/profile_placeholder.webp\';">' +
+                '<div class="p-shade"></div>' +
+              '</div>' +
+              '<div class="p-body">' +
+                '<div class="p-identity">' +
+                  '<img src="' + esc(p.iconSrc) + '" alt="' + esc(p.name) + '" class="p-riot-icon" onerror="this.src=\'/assets/profile/placeholder.webp\';">' +
+                  '<div class="p-name-block">' +
+                    '<div class="p-name">' + esc(p.name) + '</div>' +
+                    '<div class="p-lvl text-mono">' + esc(p.tag) + '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="p-rank-chip text-mono">' +
+                  '<span class="p-rank-label">RANG</span>' +
+                  '<span class="p-rank-val">' + esc(p.tier) + '</span>' +
+                '</div>' +
+                '<div class="p-record-chip text-mono">' +
+                  '<span class="rec-wr">' + p.wr + '</span>' +
+                  '<span class="rec-games">' + p.wins + 'S / ' + p.losses + 'N</span>' +
+                '</div>' +
+                '<div class="telemetry-bar text-mono">' +
+                  '<div class="tel-cell"><span class="tel-lbl">KDA</span><span class="tel-val">' + p.kda + '</span></div>' +
+                  '<div class="tel-cell"><span class="tel-lbl">DPM</span><span class="tel-val">' + p.dpm + '</span></div>' +
+                  '<div class="tel-cell"><span class="tel-lbl">CS/M</span><span class="tel-val">' + p.csm + '</span></div>' +
+                  '<div class="tel-cell"><span class="tel-lbl">KP%</span><span class="tel-val">' + p.kp + '</span></div>' +
+                '</div>' +
+              '</div>' +
+            '</article>';
+          }
+          startersDock.innerHTML = startersHtml;
+        }
+      }
+
+      // 8b. Scene 2: PreGame & Draft Renderer
+      function renderPregameScene(state) {
+        var preUicLogo = document.getElementById("pregame-uic-logo");
+        if (preUicLogo) preUicLogo.src = state.uicLogo;
+        var preUicName = document.getElementById("pregame-uic-name");
+        if (preUicName) preUicName.textContent = state.displayName;
+        var preUicMeta = document.getElementById("pregame-uic-meta");
+        if (preUicMeta) preUicMeta.textContent = "PRIME LEAGUE" + (state.tierUpper ? " \u2022 " + state.tierUpper : "");
+
+        var preRecordVal = document.getElementById("pregame-record-val");
+        if (preRecordVal) preRecordVal.textContent = state.wins + "S \u2013 " + state.losses + "N";
+
+        var preFormPills = document.getElementById("pregame-form-pills");
+        if (preFormPills) preFormPills.innerHTML = buildFormBadgesHtml(state.formArr);
+
+        var preMatchMeta = document.getElementById("pregame-match-meta");
+        if (preMatchMeta) {
+          var mParts = [];
+          if (state.matchDayNum) mParts.push("SPIELTAG " + state.matchDayNum);
+          if (state.seriesLabel) mParts.push(state.seriesLabel);
+          preMatchMeta.textContent = mParts.length > 0 ? mParts.join(" \u2022 ") : "PRIME LEAGUE";
+        }
+
+        var preMatchTime = document.getElementById("pregame-match-time");
+        if (preMatchTime) preMatchTime.textContent = state.matchTimeStr;
+
+        var preMatchStatus = document.getElementById("pregame-match-status");
+        if (preMatchStatus) {
+          preMatchStatus.textContent = state.isConfirmed ? "TERMIN BEST\u00c4TIGT" : "SPIELTAG";
+        }
+
+        var preEnemyLogo = document.getElementById("pregame-enemy-logo");
+        if (preEnemyLogo) preEnemyLogo.src = state.enemyLogo;
+        var preEnemyName = document.getElementById("pregame-enemy-name");
+        if (preEnemyName) preEnemyName.textContent = state.enemyName;
+        var preEnemyMeta = document.getElementById("pregame-enemy-meta");
+        if (preEnemyMeta) preEnemyMeta.textContent = state.tierUpper || "PRIME LEAGUE";
+
+        // 5 Starters Strip
+        var startersStrip = document.getElementById("pregame-starters-strip");
+        if (startersStrip) {
+          var stHtml = "";
+          for (var i = 0; i < state.starters.length; i++) {
+            var sp = state.starters[i];
+            stHtml += '<div class="pg-starter-card">' +
+              '<img src="' + esc(sp.photoSrc) + '" alt="' + esc(sp.name) + '" class="pg-starter-avatar" onerror="this.src=\'/assets/profile/profile_placeholder.webp\';">' +
+              '<div class="pg-starter-body">' +
+                '<div class="pg-starter-top text-mono">' +
+                  '<span class="pg-starter-role"><img src="' + sp.roleIconSrc + '" alt="">' + esc(sp.role) + '</span>' +
+                  '<span class="pg-starter-kda">' + (sp.kda !== "\u2013" ? sp.kda + " KDA" : sp.wr) + '</span>' +
+                '</div>' +
+                '<div class="pg-starter-name">' + esc(sp.name) + '</div>' +
+                '<div class="pg-starter-rank text-mono">' + esc(sp.tier) + '</div>' +
+              '</div>' +
+            '</div>';
+          }
+          startersStrip.innerHTML = stHtml;
+        }
+
+        // No-Cam Schedule Panel (?layout=none)
+        var nocamTeam = document.getElementById("pregame-nocam-team");
+        if (nocamTeam) nocamTeam.textContent = state.displayName.toUpperCase() + (state.seasonLabel ? " \u2022 " + state.seasonLabel : "");
+        var nocamSched = document.getElementById("pregame-nocam-schedule");
+        if (nocamSched) {
+          var ncHtml = "";
+          var rows = state.schedule.slice(0, 6);
+          for (var nr = 0; nr < rows.length; nr++) {
+            var nm = rows[nr];
+            var nEnemy = nm.enemy_team || {};
+            var isNext = state.nextMatch && nm === state.nextMatch;
+            var resBadge = formatSlotDate(nm.begin);
+            if (nm.result && /^\d+:\d+$/.test(nm.result)) {
+              var sc = nm.result.split(":").map(Number);
+              var cls = sc[0] > sc[1] ? "win" : (sc[0] < sc[1] ? "loss" : "draw");
+              resBadge = '<span class="res-chip ' + cls + '">' + sc[0] + ' : ' + sc[1] + '</span>';
+            }
+            ncHtml += '<div class="nocam-match-row' + (isNext ? ' is-next' : '') + '">' +
+              '<div class="nocam-m-left">' +
+                '<span class="nocam-m-day text-mono">T' + esc(nm.match_day || "\u2013") + '</span>' +
+                '<img src="' + esc(nEnemy.logo_url || state.fallbackLogo) + '" alt="" class="nocam-m-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
+                '<span class="nocam-m-enemy">' + esc(nEnemy.name || "Gegner") + '</span>' +
+              '</div>' +
+              '<div class="nocam-m-right text-mono">' + resBadge + '</div>' +
+            '</div>';
+          }
+          nocamSched.innerHTML = ncHtml;
+        }
+      }
+
+      // 8c. Scene 3: Pause Renderer
+      function renderPauseScene(state) {
+        var pauseTeamInfo = document.getElementById("pause-team-info");
+        if (pauseTeamInfo) pauseTeamInfo.textContent = state.displayName.toUpperCase();
+        var pauseDivInfo = document.getElementById("pause-division-info");
+        if (pauseDivInfo) pauseDivInfo.textContent = "PRIME LEAGUE" + (state.tierUpper ? " \u2022 " + state.tierUpper : "");
+
+        var pauseUicLogo = document.getElementById("pause-uic-logo");
+        if (pauseUicLogo) pauseUicLogo.src = state.uicLogo;
+        var pauseUicName = document.getElementById("pause-uic-name");
+        if (pauseUicName) pauseUicName.textContent = state.displayName;
+        var pauseEnemyName = document.getElementById("pause-enemy-name");
+        if (pauseEnemyName) pauseEnemyName.textContent = state.enemyName;
+        var pauseEnemyLogo = document.getElementById("pause-enemy-logo");
+        if (pauseEnemyLogo) pauseEnemyLogo.src = state.enemyLogo;
+
+        var pauseMatchdayBadge = document.getElementById("pause-matchday-badge");
+        if (pauseMatchdayBadge) {
+          pauseMatchdayBadge.textContent = state.matchDayNum ? ("SPIELTAG " + state.matchDayNum) : "PRIME LEAGUE";
+        }
+
+        var pauseMatchTime = document.getElementById("pause-match-time");
+        if (pauseMatchTime) pauseMatchTime.textContent = state.matchTimeStr;
+        var pauseRecordVal = document.getElementById("pause-record-val");
+        if (pauseRecordVal) pauseRecordVal.textContent = state.wins + "S \u2013 " + state.losses + "N";
+        var pauseFormPills = document.getElementById("pause-form-pills");
+        if (pauseFormPills) pauseFormPills.innerHTML = buildFormBadgesHtml(state.formArr);
+
+        var pauseStarters = document.getElementById("pause-starters-list");
+        if (pauseStarters) {
+          var psHtml = "";
+          for (var i = 0; i < state.starters.length; i++) {
+            var sp = state.starters[i];
+            psHtml += '<div class="ps-starter-row">' +
+              '<span class="ps-st-role text-mono"><img src="' + sp.roleIconSrc + '" alt="">' + esc(sp.role) + '</span>' +
+              '<span class="ps-st-name">' + esc(sp.name) + '</span>' +
+              '<span class="ps-st-rank text-mono">' + esc(sp.tier) + '</span>' +
+            '</div>';
+          }
+          pauseStarters.innerHTML = psHtml;
+        }
+
+        var pauseSeasonLbl = document.getElementById("pause-season-label");
+        if (pauseSeasonLbl) pauseSeasonLbl.textContent = state.seasonLabel || "PRIME LEAGUE";
+
+        var pauseSched = document.getElementById("pause-schedule-list");
+        if (pauseSched) {
+          var scRows = state.schedule;
+          if (scRows.length > 4) {
+            var nIdx = Math.max(0, scRows.indexOf(state.nextMatch));
+            var sStart = Math.max(0, Math.min(nIdx - 1, scRows.length - 4));
+            scRows = scRows.slice(sStart, sStart + 4);
+          }
+          var scHtml = "";
+          for (var r = 0; r < scRows.length; r++) {
+            var sm = scRows[r];
+            var enemy = sm.enemy_team || {};
+            var isNext = state.nextMatch && sm === state.nextMatch;
+            var rightTxt = sm.result ? sm.result : formatSlotDate(sm.begin);
+            scHtml += '<div class="ps-sched-row' + (isNext ? ' is-next' : '') + '">' +
+              '<span class="ps-sch-day text-mono">T' + esc(sm.match_day || "\u2013") + '</span>' +
+              '<span class="ps-sch-enemy">' + esc(enemy.name || "Gegner") + '</span>' +
+              '<span class="ps-sch-res text-mono">' + esc(rightTxt) + '</span>' +
+            '</div>';
+          }
+          pauseSched.innerHTML = scHtml;
+        }
+      }
+
+      // 8d. Scene 4: Ending Renderer
+      function renderEndingScene(state) {
+        var endSub = document.getElementById("ending-team-sub");
+        if (endSub) {
+          var parts = [state.displayName.toUpperCase()];
+          if (state.tierUpper) parts.push(state.tierUpper);
+          if (state.seasonLabel) parts.push(state.seasonLabel);
+          endSub.textContent = parts.join(" \u2022 ");
+        }
+
+        var endLogo = document.getElementById("ending-uic-logo");
+        if (endLogo) endLogo.src = state.uicLogo;
+        var endName = document.getElementById("ending-uic-name");
+        if (endName) endName.textContent = state.displayName;
+        var endDiv = document.getElementById("ending-uic-div");
+        if (endDiv) endDiv.textContent = "PRIME LEAGUE" + (state.tierUpper ? " \u2022 " + state.tierUpper : "");
+
+        var endRec = document.getElementById("ending-record-val");
+        if (endRec) endRec.textContent = state.wins + "S \u2013 " + state.losses + "N";
+        var endForm = document.getElementById("ending-form-pills");
+        if (endForm) endForm.innerHTML = buildFormBadgesHtml(state.formArr);
+
+        var endSeason = document.getElementById("ending-season-label");
+        if (endSeason) endSeason.textContent = state.seasonLabel || "PRIME LEAGUE";
+
+        var endSched = document.getElementById("ending-schedule-list");
+        if (endSched) {
+          var eRows = state.schedule;
+          if (eRows.length > 5) {
+            var nIdx = Math.max(0, eRows.indexOf(state.nextMatch));
+            var sStart = Math.max(0, Math.min(nIdx - 2, eRows.length - 5));
+            eRows = eRows.slice(sStart, sStart + 5);
+          }
+          var eHtml = "";
+          for (var r = 0; r < eRows.length; r++) {
+            var sm = eRows[r];
+            var enemy = sm.enemy_team || {};
+            var isNext = state.nextMatch && sm === state.nextMatch;
+            var resCell = '<span class="res-pending">OFFEN</span>';
+            if (sm.result && /^\d+:\d+$/.test(sm.result)) {
+              var sc = sm.result.split(":").map(Number);
+              var cls = sc[0] > sc[1] ? "win" : (sc[0] < sc[1] ? "loss" : "draw");
+              resCell = '<span class="res-chip ' + cls + '">' + sc[0] + ' : ' + sc[1] + '</span>';
+            } else if (isNext) {
+              resCell = '<span class="pg-status-chip">N\u00c4CHSTES</span>';
+            }
+            eHtml += '<div class="et-sched-row' + (isNext ? ' is-next' : '') + '">' +
+              '<span class="et-sch-day text-mono">TAG ' + esc(sm.match_day || "\u2013") + '</span>' +
+              '<div class="et-sch-opp">' +
+                '<img src="' + esc(enemy.logo_url || state.fallbackLogo) + '" alt="" class="et-sch-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
+                '<span class="et-sch-name">' + esc(enemy.name || "Gegner") + '</span>' +
+              '</div>' +
+              '<span class="et-sch-time text-mono">' + esc(formatSlotDate(sm.begin)) + '</span>' +
+              '<div class="et-sch-res text-mono">' + resCell + '</div>' +
+            '</div>';
+          }
+          endSched.innerHTML = eHtml;
+        }
+      }
+
+      // 8d-bis. Scene 4: Replay Renderer
+      function renderReplayScene(state) {
+        var rpKicker = document.getElementById("replay-meta-kicker");
+        if (rpKicker) {
+          var kParts = [state.displayName.toUpperCase()];
+          if (state.matchDayNum) kParts.push("SPIELTAG " + state.matchDayNum);
+          else kParts.push("WIEDERHOLUNG");
+          rpKicker.textContent = kParts.join(" \u2022 ");
+        }
+
+        var rpPipLabel = document.getElementById("replay-pip-matchup");
+        if (rpPipLabel) rpPipLabel.textContent = state.displayName.toUpperCase() + " VS " + state.enemyName.toUpperCase();
+      }
+
+      // 8e. Orchestrator: Set Active Team & Update All Scenes
+      function setActiveTeam(teamKey) {
+        if (!teamKey || isNoTeamMode) return;
+        activeTeamKey = teamKey.toLowerCase();
+        teamAutoResolved = true;
+
+        var state = computeTeamState(activeTeamKey);
+        renderStartingScene(state);
+        renderPregameScene(state);
+        renderPauseScene(state);
+        renderReplayScene(state);
+        renderEndingScene(state);
+      }
+
+      // 8f. Classic No-Team Organization Mode (?team=none)
+      function applyClassicNoTeamScene() {
+        var startBadge = document.getElementById("start-badge-pill");
+        if (startBadge) startBadge.textContent = "ULTRA INSTINCT CREW";
+        var startSub = document.getElementById("start-stage-subtitle");
+        if (startSub) startSub.textContent = "ESPORT & COMMUNITY STREAM";
+
+        var ncTeam = document.getElementById("pregame-nocam-team");
+        if (ncTeam) ncTeam.textContent = "ULTRA INSTINCT CREW";
+        var ncRecord = document.getElementById("pregame-nocam-record");
+        if (ncRecord) ncRecord.textContent = "ESPORT & COMMUNITY";
+        var ncSched = document.getElementById("pregame-nocam-schedule");
+        if (ncSched) {
+          var channels = [
+            { tag: "WEB", name: "ultrainstinctcrew.com", sub: "TEAMS & INFOS" },
+            { tag: "DISCORD", name: "discord.gg/ultrainstinctcrew", sub: "COMMUNITY SERVER" },
+            { tag: "SHOP", name: "teams.spized.com/ultrainstinctcrew", sub: "TRIKOTS & MERCH" },
+            { tag: "SOCIAL", name: "@uic_gaming", sub: "NEWS & HIGHLIGHTS" }
+          ];
+          var chHtml = "";
+          for (var c = 0; c < channels.length; c++) {
+            chHtml += '<div class="pg-sched-row">' +
+              '<span class="pg-sch-day text-mono">' + channels[c].tag + '</span>' +
+              '<div class="pg-sch-opp"><span class="pg-sch-name">' + channels[c].name + '</span></div>' +
+              '<span class="pg-sch-time text-mono">' + channels[c].sub + '</span>' +
+              '<div class="pg-sch-res text-mono"><span class="pg-status-chip">OFFIZIELL</span></div>' +
+            '</div>';
+          }
+          ncSched.innerHTML = chHtml;
+        }
+
+        var pauseDay = document.getElementById("pause-matchday-badge");
+        if (pauseDay) pauseDay.textContent = "LIVE STREAM";
+        var pauseTeam = document.getElementById("pause-team-info");
+        if (pauseTeam) pauseTeam.textContent = "ULTRA INSTINCT CREW";
+        var pauseDiv = document.getElementById("pause-division-info");
+        if (pauseDiv) pauseDiv.textContent = "DIE CASTER SIND IN KÜRZE ZURÜCK";
+
+        var rpKicker = document.getElementById("replay-meta-kicker");
+        if (rpKicker) rpKicker.textContent = "ULTRA INSTINCT CREW \u2022 WIEDERHOLUNG";
+        var rpPipLabel = document.getElementById("replay-pip-matchup");
+        if (rpPipLabel) rpPipLabel.textContent = "AKTUELLES SPIEL";
+
+        var endSub = document.getElementById("ending-team-sub");
+        if (endSub) endSub.textContent = "ULTRA INSTINCT CREW \u2022 ESPORT & COMMUNITY";
+      }
+
+      // 9. Prime League Ticker Engine
+      var tickerTrack = document.getElementById("ticker-track");
+      var animFrameId = null;
+      var scrollPos = 0;
+      var lastTimestamp = null;
+      var TICKER_SPEED_PX_PER_SEC = 55;
+      var lastDataHash = "";
+      var fallbackLogo = "/assets/logo/logo.png";
+
+      function startContinuousScroll() {
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        scrollPos = 0;
+        lastTimestamp = null;
+
+        function step(timestamp) {
+          if (!lastTimestamp) lastTimestamp = timestamp;
+          var elapsed = (timestamp - lastTimestamp) / 1000;
+          lastTimestamp = timestamp;
+          if (elapsed > 0.1) elapsed = 0.1;
+
+          if (tickerTrack) {
+            scrollPos += TICKER_SPEED_PX_PER_SEC * elapsed;
+            var halfWidth = tickerTrack.scrollWidth / 2;
+            if (halfWidth > 0 && scrollPos >= halfWidth) {
+              scrollPos -= halfWidth;
+            }
+            tickerTrack.style.transform = "translateX(-" + scrollPos.toFixed(2) + "px)";
+          }
+          animFrameId = requestAnimationFrame(step);
+        }
+
+        animFrameId = requestAnimationFrame(step);
+      }
+
+      function processPrimeData(data) {
+        if (!data) return;
+        primeStatsData = data;
+
+        var upcomingMatches = [];
+        var recentMatches = [];
+        var now = new Date();
+        var cutoffTime = new Date(now.getTime() - (6 * 3600 * 1000));
+
+        for (var teamKey in data) {
+          if (!data.hasOwnProperty(teamKey)) continue;
+          if (teamKey.toLowerCase() === "community") continue;
+
+          var teamData = data[teamKey];
+          if (!teamData || !teamData.matches || !Array.isArray(teamData.matches)) continue;
+
+          var teamDisplayName = teamData.teamDisplay || ("UIC " + teamKey.toUpperCase());
+          var uicLogoStr = (teamData.api_meta && teamData.api_meta.logo_url) ? teamData.api_meta.logo_url : fallbackLogo;
+
+          for (var mIdx = 0; mIdx < teamData.matches.length; mIdx++) {
+            var m = teamData.matches[mIdx];
+            var enemyLogoStr = (m.enemy_team && m.enemy_team.logo_url) ? m.enemy_team.logo_url : fallbackLogo;
+            var enemyNameStr = m.enemy_team ? (m.enemy_team.name || m.enemy_team.team_tag || "Gegner") : "Gegner";
+            var mDate = m.begin ? new Date(m.begin) : null;
+
+            var matchItem = {
+              id: m.id || m.match_id,
+              teamKey: teamKey,
+              startsAt: m.begin,
+              confirmed: m.confirmed === true,
+              result: m.result || null,
+              uicTeamName: teamDisplayName,
+              uicLogo: uicLogoStr,
+              opponentLogo: enemyLogoStr,
+              opponentName: enemyNameStr
+            };
+
+            if (!m.result) {
+              if (!mDate || mDate >= cutoffTime) {
+                upcomingMatches.push(matchItem);
+              }
+            } else {
+              recentMatches.push(matchItem);
+            }
+          }
+        }
+
+        upcomingMatches.sort(function(a, b) {
+          if (!a.startsAt) return 1;
+          if (!b.startsAt) return -1;
+          return new Date(a.startsAt) - new Date(b.startsAt);
+        });
+
+        recentMatches.sort(function(a, b) {
+          if (!a.startsAt) return 1;
+          if (!b.startsAt) return -1;
+          return new Date(b.startsAt) - new Date(a.startsAt);
+        });
+
+        // Without explicit ?team= parameter, automatically select the team with the chronologically next upcoming match
+        if (!isNoTeamMode) {
+          if (!hasExplicitTeam && !teamAutoResolved && upcomingMatches.length > 0) {
+            activeTeamKey = upcomingMatches[0].teamKey;
+          }
+
+          setActiveTeam(activeTeamKey);
+
+          // ?start=auto -> set countdown target to the next match start of the active team
+          if (wantsAutoStart && !autoStartResolved) {
+            var activeState = computeTeamState(activeTeamKey);
+            if (activeState.nextMatch && activeState.nextMatch.begin) {
+              var autoTarget = new Date(activeState.nextMatch.begin).getTime();
+              if (!isNaN(autoTarget)) {
+                targetMs = autoTarget;
+                autoStartResolved = true;
+                updateCountdown();
+              }
+            }
+          }
+        }
+
+        if (!tickerTrack || hideTicker) return;
+
+        var dataHash = JSON.stringify(upcomingMatches);
+        if (dataHash === lastDataHash && tickerTrack.children.length > 1) {
+          return;
+        }
+        lastDataHash = dataHash;
+
+        var displayList = upcomingMatches.slice(0, 20);
+        if (displayList.length < 5) {
+          displayList = displayList.concat(recentMatches.slice(0, 6));
+        }
+
+        if (displayList.length === 0) {
+          tickerTrack.innerHTML = '<div class="match-item"><span class="m-time-badge">SPIELPLAN</span><span>Keine offenen Spieltermine hinterlegt</span></div>';
+          return;
+        }
+
+        var singleSetHTML = "";
+        for (var i = 0; i < displayList.length; i++) {
+          var cur = displayList[i];
+          var time = formatRelativeTime(cur.startsAt);
+          var timeBadgeClass = "m-time-badge";
+          if (time.isToday) timeBadgeClass += " heute";
+          else if (time.isTomorrow) timeBadgeClass += " morgen";
+
+          var statusBadgeClass = cur.confirmed ? "match-status-badge is-confirmed" : "match-status-badge is-unconfirmed";
+          var statusLabel = cur.confirmed ? "BEST\u00c4TIGT" : "OFFEN";
+
+          if (cur.result) {
+            statusBadgeClass = "match-status-badge is-result";
+            statusLabel = cur.result;
+          }
+
+          singleSetHTML += '<div class="match-item">' +
+            '<span class="' + timeBadgeClass + '">' + esc(time.label) + '</span>' +
+            '<span class="' + statusBadgeClass + '">' + esc(statusLabel) + '</span>' +
+            '<div class="m-team">' +
+              '<img class="m-logo" width="18" height="18" src="' + esc(cur.uicLogo) + '" alt="' + esc(cur.uicTeamName) + '" onerror="this.src=\'' + fallbackLogo + '\';">' +
+              '<span class="m-name">' + esc(cur.uicTeamName) + '</span>' +
+            '</div>' +
+            '<span class="m-vs">VS</span>' +
+            '<div class="m-team">' +
+              '<span class="m-name">' + esc(cur.opponentName) + '</span>' +
+              '<img class="m-logo" width="18" height="18" src="' + esc(cur.opponentLogo) + '" alt="' + esc(cur.opponentName) + '" onerror="this.src=\'' + fallbackLogo + '\';">' +
+            '</div>' +
+          '</div>';
+        }
+
+        tickerTrack.innerHTML = singleSetHTML + singleSetHTML;
+        startContinuousScroll();
+      }
+
+      function loadTickerData() {
+        fetch("/data/prime_stats.json")
+          .then(function(res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+          })
+          .then(function(data) {
+            processPrimeData(data);
+          })
+          .catch(function(err) {
+            console.warn("Ticker background sync note:", err);
+          });
+      }
+
+      // 10. Starting Soon Multi-View Rotator (Controlled via ?start_view= parameter)
+      var startViews = ["matchup", "table", "roster", "stats"];
+      var activeStartView = "matchup";
+      var isAutoRotate = true;
+      var ROTATE_DURATION_MS = 10000;
+      var rotateStartTime = Date.now();
+      var rotateProgressBar = document.getElementById("rotate-timer-bar");
+      var autoRotatePill = document.getElementById("auto-rotate-pill");
+
+      var subTitles = {
+        "matchup": "BEGEGNUNG & MATCHUP",
+        "table": "SPIELPLAN & ERGEBNISSE",
+        "roster": "AUFSTELLUNG & 5 STARTER",
+        "stats": "TEAM STATISTIKEN"
+      };
+
+      function setStartingView(viewName) {
+        if (!startViews.includes(viewName)) viewName = "matchup";
+        activeStartView = viewName;
+
+        var subEl = document.getElementById("start-stage-subtitle");
+        if (subEl) {
+          subEl.classList.add("sub-switching");
+          setTimeout(function() {
+            subEl.textContent = subTitles[viewName] || "MATCHUP";
+            subEl.classList.remove("sub-switching");
+          }, 150);
+        }
+
+        for (var vi = 0; vi < startViews.length; vi++) {
+          var v = startViews[vi];
+          var btn = document.getElementById("tab-btn-" + v);
+          var panel = document.getElementById("view-" + v);
+          if (btn) {
+            if (v === viewName) btn.classList.add("is-active");
+            else btn.classList.remove("is-active");
+          }
+          if (panel) {
+            if (v === viewName) panel.classList.add("is-active");
+            else panel.classList.remove("is-active");
+          }
+        }
+
+        rotateStartTime = Date.now();
+      }
+
+      var initialStartView = (params.get("start_view") || "").toLowerCase();
+      if (isNoTeamMode) {
+        isAutoRotate = false;
+        if (autoRotatePill) autoRotatePill.style.display = "none";
+      } else if (initialStartView && startViews.includes(initialStartView)) {
+        isAutoRotate = false;
+        setStartingView(initialStartView);
+        if (autoRotatePill) autoRotatePill.style.display = "none";
+      }
+
+      setInterval(function() {
+        if (!isAutoRotate) return;
+        var elapsed = Date.now() - rotateStartTime;
+        var pct = Math.min(100, (elapsed / ROTATE_DURATION_MS) * 100);
+        if (rotateProgressBar) rotateProgressBar.style.width = pct + "%";
+
+        if (elapsed >= ROTATE_DURATION_MS) {
+          var curIdx = startViews.indexOf(activeStartView);
+          var nextIdx = (curIdx + 1) % startViews.length;
+          setStartingView(startViews[nextIdx]);
+        }
+      }, 100);
+
+      if (isNoTeamMode) {
+        applyClassicNoTeamScene();
+        if (!hideTicker) {
+          if (embeddedData && embeddedData.primeStats) {
+            processPrimeData(embeddedData.primeStats);
+          } else {
+            loadTickerData();
+          }
+          setInterval(loadTickerData, 120000);
+        }
+      } else {
+        if (embeddedData && embeddedData.primeStats) {
+          processPrimeData(embeddedData.primeStats);
+        } else {
+          loadTickerData();
+        }
+        setInterval(loadTickerData, 120000);
+      }
+    })();
+  </script>
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .text-mono { font-family: var(--font-mono); }
+
+  .broadcast-stage {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    display: none;
+    z-index: 10;
+  }
+
+  body.scene-starting #stage-starting,
+  body.scene-pregame #stage-pregame,
+  body.scene-pause #stage-pause,
+  body.scene-replay #stage-replay,
+  body.scene-ending #stage-ending {
+    display: block;
+  }
+
+  /* Streamlabs Alert Box Overlay Layer */
+  .streamlabs-alert-layer {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 320px;
+    pointer-events: none;
+    z-index: 60;
+    overflow: hidden;
+  }
+
+  .streamlabs-alert-layer.is-active {
+    display: block;
+  }
+
+  .alert-widget-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+  }
+</style>
