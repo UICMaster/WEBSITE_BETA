@@ -147,32 +147,28 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
         </div>
       </div>
 
-      <!-- Brand Matrix Column 3: Media Dimensions & Asset Sizes -->
+      <!-- Brand Matrix Column 3: Broadcast & OBS Specifications -->
       <div class="brandkit-card">
         <div class="bkit-header">
-          <span class="bkit-tag text-mono">MEDIA-FORMATE</span>
-          <span class="bkit-sub text-mono">OFFIZIELLE MASSE</span>
+          <span class="bkit-tag text-mono">BROADCAST-SPECS</span>
+          <span class="bkit-sub text-mono">OBS & OVERLAY SETUP</span>
         </div>
         <div class="chips-stack">
           <div class="format-chip">
-            <span class="format-label">Stream-Hintergrund</span>
+            <span class="format-label">OBS Browser-Source</span>
             <span class="format-dim text-mono">1920 &times; 1080 PX</span>
           </div>
           <div class="format-chip">
-            <span class="format-label">Twitter / X Banner</span>
-            <span class="format-dim text-mono">1500 &times; 500 PX</span>
+            <span class="format-label">BlueBottle Draft-Zone</span>
+            <span class="format-dim text-mono">1920 &times; 320 PX</span>
           </div>
           <div class="format-chip">
-            <span class="format-label">Twitch Infoboxen</span>
-            <span class="format-dim text-mono">320 &times; 160 PX</span>
+            <span class="format-label">Bildrate & Rendering</span>
+            <span class="format-dim text-mono">60 FPS &bull; OBS CEF</span>
           </div>
           <div class="format-chip">
-            <span class="format-label">Discord Serverbanner</span>
-            <span class="format-dim text-mono">960 &times; 540 PX</span>
-          </div>
-          <div class="format-chip">
-            <span class="format-label">Profilbild & Wappen</span>
-            <span class="format-dim text-mono">512 &times; 512 PX</span>
+            <span class="format-label">Hintergrund & Modus</span>
+            <span class="format-dim text-mono">ALPHA TRANSPARENT</span>
           </div>
         </div>
       </div>
@@ -426,7 +422,7 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 9px 12px;
     background: #141418;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-sm);
@@ -434,6 +430,7 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
 
   .format-label {
     font-size: 0.8125rem;
+    font-weight: 600;
     color: var(--text-primary);
   }
 
