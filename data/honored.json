@@ -47,10 +47,74 @@
     ],
     "seasons": [
       {
-        "season": "[Platzhalter: z. B. Prime League Spring Split 2025]",
+        "season": "PRM Winter Split '23",
         "team": "UIC Prime",
-        "division": "[Platzhalter: Division]",
-        "note": "[Platzhalter: Ergebnis / Anmerkung zum Split]"
+        "division": "Prime League",
+        "note": "8 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Spring Split '24",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "9 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Summer Split '24",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "7 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Winter Split '24/25",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "4 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Spring Split '24/25",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "15 absolvierte Ligaspiele (Rekord-Split)",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Summer Split '24/25",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "7 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Fall Split '25/26",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "11 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Winter Split '25/26",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "12 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Spring Split '25/26",
+        "team": "UIC Prime",
+        "division": "Prime League",
+        "note": "7 absolvierte Ligaspiele",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
+      },
+      {
+        "season": "Prime League Fall Split '26/27",
+        "team": "UIC Prime",
+        "division": "Division 4",
+        "note": "5 absolvierte Ligaspiele (Aktuelle Saison)",
+        "teamLink": "https://www.primeleague.gg/de/leagues/teams/185856-uic-prime"
       }
     ],
     "voiceClips": [
