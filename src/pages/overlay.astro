@@ -1419,7 +1419,9 @@ import EndingScene from '../components/overlay/EndingScene.astro';
       }
 
       function loadTickerData() {
-        fetch("/data/prime_stats.json")
+        var basePath = window.location.pathname.replace(/\/(overlay|obs).*$/, '');
+        var statsUrl = (basePath || '') + "/data/prime_stats.json";
+        fetch(statsUrl)
           .then(function(res) {
             if (!res.ok) throw new Error("HTTP " + res.status);
             return res.json();

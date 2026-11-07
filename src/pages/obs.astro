@@ -871,9 +871,9 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
 
     const rawQuery = q.toString().replace(/%3A/gi, ':').replace(/%2F/gi, '/');
     const queryString = rawQuery ? `?${rawQuery}` : '';
-    const baseUrl = 'https://ultrainstinctcrew.com/overlay';
-    const relativeUrl = `/overlay${queryString}`;
-    const fullUrl = `${baseUrl}${queryString}`;
+    const basePath = window.location.pathname.replace(/\/(obs|overlay).*$/, '');
+    const relativeUrl = `${basePath}/overlay${queryString}`;
+    const fullUrl = `${window.location.origin}${relativeUrl}`;
 
     if (relativeUrl !== lastLoadedPreviewUrl) {
       lastLoadedPreviewUrl = relativeUrl;
