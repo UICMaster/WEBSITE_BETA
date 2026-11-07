@@ -5,6 +5,7 @@
     "photoSrc": "/assets/honored/0001.webp",
     "title": "Kapitän der Ultra Instinct Crew Prime",
     "inductedAt": "2026-10-28",
+    "bioLead": "Kapitän, ruhender Pol und das schlagende Herz der Ultra Instinct Crew. Eine Hommage an einen außergewöhnlichen Spieler, einen unerschütterlichen Leader und einen noch viel besseren Freund.",
     "phrases": [
       "Die Faust Gottes",
       "Spuuudy",
@@ -16,80 +17,106 @@
         "subtitle": "DIE ANFÄNGE",
         "title": "Als Speedy unscheinbar unsere Herzen gewonnen hat",
         "paragraphs": [
-          "[Platzhalter: Textabsatz 1.1 – Hintergrund zur Person, wie und wann der Einstieg in die Ultra Instinct Crew erfolgte.]",
-          "[Platzhalter: Textabsatz 1.2 – Erste gemeinsame Saisons und Aufbau des Teams.]"
+          "Es gibt Begegnungen, die ein ganzes Team verändern, ohne dass man es im ersten Moment begreift. Als Speedy damals dazustieß, tat er das leise, bescheiden und völlig ohne Allüren. Doch wer ihn auch nur für einen einzigen Abend im Discord erlebte, merkte sofort: Hier sitzt kein gewöhnlicher Mitspieler, sondern ein Mensch mit einem riesigen Herzen, entwaffnender Ehrlichkeit und diesem unverwechselbaren Humor, der selbst nach bitteren Niederlagen jedem ein Lächeln ins Gesicht zaubert.",
+          "In einer Gaming-Welt, die oft von Hektik und Egoismus geprägt ist, war Speedy von Beginn an das genaue Gegenteil: loyal bis auf die Knochen, immer mit einem offenen Ohr für jeden Einzelnen und bereit, alles für seine Mitspieler zu geben. So wurde aus einem unscheinbaren Neuzugang binnen kürzester Zeit der wichtigste emotionale Anker unserer gesamten Gemeinschaft."
         ]
       },
       {
         "subtitle": "DER FOKUSIERTE SPEEDY",
-        "title": "[Platzhalter: Überschrift Abschnitt 2]",
+        "title": "Vom stillen Denker zum unerschütterlichen Fels in der Brandung",
         "paragraphs": [
-          "[Platzhalter: Textabsatz 2.1 – Persönliche Geschichte, besondere Momente und Aufgaben innerhalb der Gemeinschaft.]"
+          "Sobald der Draft vorbei ist und die Kluft lädt, zeigt sich die zweite Seite unseres Kapitäns: der absolut fokussierte, unerbittliche Toplaner. Auf seiner Lane ist Speedy eine uneinnehmbare Festung. Selbst wenn die Wellen über ihm zusammenschlagen, verliert er nie die Nerven. Mit spielentscheidenden Teleports, stoischer Gelassenheit und der berüchtigten „Faust Gottes“ hat er unzählige Matches herumgerissen und Momente geschaffen, die für immer in die Geschichte von UIC Prime eingehen.",
+          "Als Kapitän führt er das Team nicht durch laute Worte, sondern durch Taten, Respekt und unendliche Geduld. Er fängt Frust auf, baut Mitspieler wieder auf, wenn das Selbstvertrauen wankt, und beweist in jedem einzelnen Prime-League-Spieltag, was echte Führungsstärke bedeutet."
+        ]
+      },
+      {
+        "subtitle": "MEHR ALS NUR EIN TEAMKOLLEGE",
+        "title": "Ein wahrer Freund und das Fundament der Organisation",
+        "paragraphs": [
+          "Am Ende des Tages sind Ränge, KDA und Ligatexturen vergänglich – was bleibt, sind die Menschen, die diesen Weg gemeinsam gehen. Speedy ist der menschliche Klebstoff, der diese Organisation zusammenhält. Seine Wärme, sein verlässliches Dasein und die gemeinsamen Nächte voller Lachen und intensiver Gespräche bedeuten uns allen mehr als jeder Sieg auf dem Server.",
+          "Danke, Speedy, für jeden Call, jede geteilte Freude, jeden Trost und deine unverbrüchliche Freundschaft. Diese Ruhmeshalle trägt deinen Namen an Position #0001, weil du genau das verkörperst, wofür die Ultra Instinct Crew im tiefsten Inneren steht. Für immer unser Kapitän, für immer Familie."
         ]
       }
     ],
     "impact": [
-      "Kapitän der Ultra Instinct Crew Prime",
-      "Seele und Schlüsselfigur der Community",
-      "Menschlicher Anker und ein Piller der Vernunft"
+      "Kapitän, Shotcaller und sportliches Aushängeschild von UIC Prime in Division 4",
+      "Seele, Ruhepol und menschliches Herzstück der gesamten Organisation",
+      "Unverrückbarer Pfeiler der Vernunft – in Siegen bescheiden, in Stürmen der Fels",
+      "Lebendiges Vorbild für Loyalität, Zusammenhalt und unerschütterliche Freundschaft"
     ],
     "milestones": [
       {
-        "date": "[2024 / Oktober]",
-        "label": "[Platzhalter: Station 1 im Werdegang]",
-        "detail": "[Platzhalter: Kurze Beschreibung zum Meilenstein]"
+        "date": "2024 / Oktober",
+        "label": "Gründung & Kapitänsbinde bei UIC Prime",
+        "detail": "Übernahme der Führungsrolle auf der Toplane und Start der gemeinsamen Reise unter der Flagge der Ultra Instinct Crew."
       },
       {
-        "date": "[JJJJ / Monat]",
-        "label": "[Platzhalter: Station 2 im Werdegang]",
-        "detail": "[Platzhalter: Kurze Beschreibung zum Meilenstein]"
+        "date": "2025 / Frühjahr",
+        "label": "Aufstiegskampf & Etablierung in Division 4",
+        "detail": "Mit starkem Shotcalling und unnachgiebigem Durchhaltewillen führt Speedy das Team durch harte Relegations- und Ligaspiele."
+      },
+      {
+        "date": "2025 / Winter",
+        "label": "Über 100 offizielle Prime League Begegnungen",
+        "detail": "Eindrucksvolles Dienstjubiläum im deutschsprachigen LoL-Circuit – vom HGG-Veteran zum unangefochtenen Leitwolf."
+      },
+      {
+        "date": "28. Oktober 2026",
+        "label": "Feierliche Aufnahme in die UIC Ruhmeshalle",
+        "detail": "Verleihung des lebenslangen Ehrenstatus #0001 als erstes Mitglied der Ruhmeshalle für herausragende Verdienste um Team und Verein."
       }
     ],
     "seasons": [
       {
-        "season": "[Platzhalter: z. B. Prime League Spring Split 2025]",
+        "season": "Prime League Winter Split 2024",
         "team": "UIC Prime",
-        "division": "[Platzhalter: Division]",
-        "note": "[Platzhalter: Ergebnis / Anmerkung zum Split]"
+        "division": "Division 5 / Starter",
+        "note": "Erfolgreicher Playoff-Run und Grundsteinlegung für das heutige Division-4-Kader."
+      },
+      {
+        "season": "Prime League Spring Split 2025",
+        "team": "UIC Prime",
+        "division": "Division 4",
+        "note": "Starke Serie auf der Toplane, wichtige Siege gegen Top-Konkurrenten und souveräner Klassenerhalt."
+      },
+      {
+        "season": "Prime League Winter Split 2026",
+        "team": "UIC Prime",
+        "division": "Division 4",
+        "note": "Laufender Split als unangefochtener Starter, Team-Kapitän und Taktgeber."
       }
     ],
     "voiceClips": [
       {
-        "title": "Sprachnachricht / Audio 1 (Beispiel-Datei)",
+        "title": "Organisations-Hymne 2026 (Remix)",
         "src": "/assets/audio/ULTRA_INSTINCT_CREW_ORGA_HYMNE_2026_2.mp3",
-        "context": "[Platzhalter: Kontext der Aufnahme]"
+        "context": "Gewidmet unserem Kapitän & der Prime-Familie"
       },
       {
-        "title": "Sprachnachricht / Audio 2 (Beispiel-Datei)",
+        "title": "UIC Prime Fam Edition Hymne",
         "src": "/assets/audio/ULTRA_INSTINCT_CREW_ORGA_HYMNE_2026_FAM.mp3",
-        "context": "[Platzhalter: Kontext der Aufnahme]"
+        "context": "Team-Vibe vor den Spieltagen"
       }
     ],
     "videos": [
       {
-        "title": "[Platzhalter: Titel des Videos]",
+        "title": "Ultra Instinct Crew – Offizielles Vereinsvideo 2026",
         "src": "/assets/video/ULTRA_INSTINCT_CREW_ORGA_HYMNE_VIDEO_2026.webm",
-        "description": "[Platzhalter: Kurze Beschreibung zum Video]"
+        "description": "Gemeinsame Momente, Emotionen und die Geschichte unserer Gemeinschaft."
       }
     ],
     "images": [
       {
-        "src": "/assets/profile/0001.webp",
-        "title": "[Platzhalter: Bildtitel 1]",
-        "caption": "[Platzhalter: Bildunterschrift / Kontext zur Aufnahme]",
-        "date": "[JJJJ]"
+        "src": "/assets/honored/0001.webp",
+        "title": "UIC Speedy – Ehrenmitglied #0001",
+        "caption": "Das Gesicht unserer Ruhmeshalle: Kapitän, Mentor und Freund.",
+        "date": "2026"
       },
       {
         "src": "/assets/logo/logo.png",
-        "title": "[Platzhalter: Bildtitel 2]",
-        "caption": "[Platzhalter: Bildunterschrift / Kontext zur Aufnahme]",
-        "date": "[JJJJ]"
-      },
-      {
-        "src": "/assets/hoshi/hoshi_turnier_banner.jpg",
-        "title": "[Platzhalter: Bildtitel 3]",
-        "caption": "[Platzhalter: Bildunterschrift / Kontext zur Aufnahme]",
-        "date": "[JJJJ]"
+        "title": "Ultra Instinct Crew Wappen",
+        "caption": "Unter diesem Wappen zieht Speedy Woche für Woche mit seinem Team in die Kluft.",
+        "date": "2026"
       }
     ]
   }
