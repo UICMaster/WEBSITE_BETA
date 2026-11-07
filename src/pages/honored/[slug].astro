@@ -340,46 +340,48 @@ const firstVideo = player.videos[0] || null;
             )}
           </div>
 
-          <div class="roadmap-list">
-            {player.seasons.map((s, idx) => (
-              <div class="roadmap-item">
-                <div class="rm-rail">
-                  <span class="rm-idx text-mono">{String(idx + 1).padStart(2, '0')}</span>
-                  {idx < player.seasons.length - 1 && <span class="rm-line"></span>}
-                </div>
-
-                <div class="rm-card">
-                  <div class="rm-top text-mono">
-                    <span class="rm-season">{s.season}</span>
-                    <span class={`rm-badge ${s.source === 'api' ? 'is-api' : ''}`}>
-                      {s.source === 'api' ? 'API-SYNC' : 'CHRONIK'}
-                    </span>
+          {player.seasons.length > 0 ? (
+            <div class="roadmap-list">
+              {player.seasons.map((s, idx) => (
+                <div class="roadmap-item">
+                  <div class="rm-rail">
+                    <span class="rm-idx text-mono">{String(idx + 1).padStart(2, '0')}</span>
+                    {idx < player.seasons.length - 1 && <span class="rm-line"></span>}
                   </div>
 
-                  <div class="rm-team-row">
-                    <div class="name-with-link">
-                      <h3 class="rm-team">{s.team}</h3>
-                      {s.teamLink && (
-                        <a
-                          href={s.teamLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="link-forward-arrow"
-                          title={`${s.team} auf Prime League öffnen`}
-                          aria-label={`${s.team} auf Prime League öffnen`}
-                        >
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                      )}
+                  <div class="rm-card">
+                    <div class="rm-top text-mono">
+                      <span class="rm-season">{s.season}</span>
+                      <span class="rm-badge">CHRONIK</span>
                     </div>
-                    {s.division && <span class="rm-div text-mono">{s.division}</span>}
-                  </div>
 
-                  {s.note && <p class="rm-note">{s.note}</p>}
+                    <div class="rm-team-row">
+                      <div class="name-with-link">
+                        <h3 class="rm-team">{s.team}</h3>
+                        {s.teamLink && (
+                          <a
+                            href={s.teamLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-forward-arrow"
+                            title={`${s.team} auf Prime League öffnen`}
+                            aria-label={`${s.team} auf Prime League öffnen`}
+                          >
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                          </a>
+                        )}
+                      </div>
+                      {s.division && <span class="rm-div text-mono">{s.division}</span>}
+                    </div>
+
+                    {s.note && <p class="rm-note">{s.note}</p>}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p class="placeholder-text">[Platzhalter: Keine gespielten Splits hinterlegt]</p>
+          )}
         </div>
 
         <!-- Right Half: Video Area -->

@@ -122,61 +122,25 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
     }
   }
 
-  // Scan prime_stats.json for API player ID and splits/teams played
-  let primeLeagueUserId: number | null = null;
-  let primeLeagueAccountName: string | null = null;
-  const apiDetectedSeasons: HonoredSeasonEntry[] = [];
+  // Resolve Prime League user metadata (manual config or fallback from roster match)
+  let primeLeagueUserId: number | null = cfg.primeLeagueUserId ? Number(cfg.primeLeagueUserId) : null;
+  let primeLeagueAccountName: string | null = cfg.primeLeagueAccountName || null;
 
-  for (const [teamKey, teamData] of Object.entries(primeMeta)) {
-    if (!teamData) continue;
-    const rosterMatch = (teamData.roster || []).find(
-      (rp: any) =>
-        String(rp.playerId) === playerId ||
-        (foundRosterMeta?.gameName &&
-          rp.gameName &&
-          rp.gameName.toLowerCase() === foundRosterMeta.gameName.toLowerCase())
-    );
-
-    if (rosterMatch?.api_id) {
-      primeLeagueUserId = Number(rosterMatch.api_id);
-      primeLeagueAccountName = rosterMatch.api_name || null;
-    }
-
-    const matches = Array.isArray(teamData.matches) ? teamData.matches : [];
-    let lineupAppearances = 0;
-    let earliestYear: number | null = null;
-
-    for (const m of matches) {
-      if (m.begin) {
-        const y = new Date(m.begin).getFullYear();
-        if (!isNaN(y) && (earliestYear === null || y < earliestYear)) {
-          earliestYear = y;
-        }
-      }
-      const lineup = Array.isArray(m.team_lineup) ? m.team_lineup : [];
-      const inLineup = lineup.some(
-        (lp: any) =>
-          (primeLeagueUserId && lp.id === primeLeagueUserId) ||
+  if (!primeLeagueUserId) {
+    for (const teamData of Object.values(primeMeta)) {
+      if (!teamData) continue;
+      const rosterMatch = (teamData.roster || []).find(
+        (rp: any) =>
+          String(rp.playerId) === playerId ||
           (foundRosterMeta?.gameName &&
-            typeof lp.summoner_name === 'string' &&
-            lp.summoner_name.toLowerCase().startsWith(foundRosterMeta.gameName.toLowerCase()))
+            rp.gameName &&
+            rp.gameName.toLowerCase() === foundRosterMeta.gameName.toLowerCase())
       );
-      if (inLineup) lineupAppearances++;
-    }
-
-    if (rosterMatch || lineupAppearances > 0) {
-      const splitYear = earliestYear || new Date().getFullYear();
-      apiDetectedSeasons.push({
-        season: `Prime League Saison ${splitYear} (Aktueller Split)`,
-        team: teamData.teamDisplay || `UIC ${teamKey.toUpperCase()}`,
-        division: teamData.tier || teamData.api_meta?.division || 'Prime League',
-        note:
-          lineupAppearances > 0
-            ? `${lineupAppearances} erfasste Aufstellungen im laufenden Split`
-            : 'Im offiziellen Prime League Kader gemeldet',
-        teamLink: teamData.api_meta?.prime_league_link || null,
-        source: 'api'
-      });
+      if (rosterMatch?.api_id) {
+        primeLeagueUserId = Number(rosterMatch.api_id);
+        primeLeagueAccountName = rosterMatch.api_name || null;
+        break;
+      }
     }
   }
 
@@ -272,7 +236,7 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
     bioSections,
     impact,
     milestones: Array.isArray(cfg.milestones) ? cfg.milestones : [],
-    seasons: [...apiDetectedSeasons, ...manualSeasons],
+    seasons: manualSeasons,
     voiceClips: Array.isArray(cfg.voiceClips) ? cfg.voiceClips : [],
     videos: Array.isArray(cfg.videos) ? cfg.videos : [],
     images
