@@ -1,4 +1,4 @@
-// https://astro.build/config
+// @ts-check
 import { defineConfig } from 'astro/config';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,6 +8,10 @@ const isDev = process.argv.includes('dev');
 const base = isDev ? '/' : (process.env.BASE_PATH || '/WEBSITE_BETA');
 const site = base === '/' ? 'https://ultrainstinctcrew.com' : 'https://uicmaster.github.io';
 
+/**
+ * @param {string} basePath
+ * @returns {import('astro').AstroIntegration}
+ */
 function basePathPrefixer(basePath) {
   return {
     name: 'base-path-prefixer',
@@ -18,6 +22,7 @@ function basePathPrefixer(basePath) {
         const cleanBase = basePath.replace(/\/+$/, '');
         const baseName = cleanBase.slice(1);
 
+        /** @param {string} currentDir */
         function walk(currentDir) {
           const entries = fs.readdirSync(currentDir, { withFileTypes: true });
           for (const entry of entries) {
@@ -25,7 +30,7 @@ function basePathPrefixer(basePath) {
             if (entry.isDirectory()) {
               walk(fullPath);
             } else if (/\.(html|js|css|xml|json)$/i.test(entry.name)) {
-              let text = fs.readFileSync(fullPath, 'utf8');
+              const text = fs.readFileSync(fullPath, 'utf8');
               let updated = text;
 
               // 1. HTML attributes: href, src, action, poster (handling "/" and "/..." while ignoring "//")

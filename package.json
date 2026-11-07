@@ -30,5 +30,8 @@
     "@fontsource/plus-jakarta-sans": "^5.3.0",
     "@fontsource/space-grotesk": "^5.3.0",
     "astro": "^7.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6"
   }
 }
