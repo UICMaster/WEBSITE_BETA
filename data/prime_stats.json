@@ -109,7 +109,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165678",
-        "updated_at": "2026-11-08T08:55:15.186761+01:00",
+        "updated_at": "2026-11-08T16:25:17.423790+01:00",
         "enemy_team": {
           "id": 204880,
           "name": "Feather Storm",
@@ -511,7 +511,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165575",
-        "updated_at": "2026-11-08T08:40:11.467382+01:00",
+        "updated_at": "2026-11-08T16:10:14.844355+01:00",
         "enemy_team": {
           "id": 192610,
           "name": "eSports Cologne Senioren",
@@ -812,7 +812,7 @@
         "trackStats": true,
         "discordId": "855126257859821579",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2286224,
         "api_name": "GLT Rayando07",
@@ -827,7 +827,7 @@
         "trackStats": true,
         "discordId": "415606674120900628",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 925501,
         "api_name": "Davyjgl",
@@ -913,7 +913,7 @@
         "gameName": "UIC xd2#LISA",
         "role": "UNKNOWN",
         "rosterStatus": "api_only",
-        "isCaptain": true,
+        "isCaptain": false,
         "api_id": 2228388,
         "in_api_roster": true,
         "missing_in_local": true
@@ -981,8 +981,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1002,8 +1002,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1036,8 +1036,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1057,8 +1057,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1091,8 +1091,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1112,8 +1112,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1146,8 +1146,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1167,8 +1167,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1201,8 +1201,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1222,8 +1222,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1256,8 +1256,8 @@
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2069062,
@@ -1277,8 +1277,8 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 1401242,
@@ -1331,14 +1331,14 @@
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
             "is_leader": false,
-            "updated_at": "2026-11-08T07:20:45.498329+01:00"
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
           },
           {
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 1815406,
@@ -1351,15 +1351,15 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 925501,
             "summoner_name": "UIC Davy#JGL",
             "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.094599+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
           }
         ]
       },
@@ -1386,14 +1386,14 @@
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
             "is_leader": false,
-            "updated_at": "2026-11-08T07:20:45.498329+01:00"
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
           },
           {
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 1815406,
@@ -1406,15 +1406,15 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 925501,
             "summoner_name": "UIC Davy#JGL",
             "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.094599+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
           }
         ]
       },
@@ -1441,28 +1441,28 @@
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
             "is_leader": false,
-            "updated_at": "2026-11-08T07:20:45.498329+01:00"
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
           },
           {
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 925501,
             "summoner_name": "UIC Davy#JGL",
             "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.094599+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
           },
           {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 657213,
@@ -1496,7 +1496,7 @@
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
             "is_leader": false,
-            "updated_at": "2026-11-08T07:20:45.498329+01:00"
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
           },
           {
             "id": 2330276,
@@ -1523,8 +1523,8 @@
             "id": 925501,
             "summoner_name": "UIC Davy#JGL",
             "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.094599+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
           }
         ]
       },
@@ -1551,14 +1551,14 @@
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
             "is_leader": false,
-            "updated_at": "2026-11-08T07:20:45.498329+01:00"
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
           },
           {
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.108990+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
           },
           {
             "id": 2167118,
@@ -1571,15 +1571,15 @@
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.103420+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
           },
           {
             "id": 925501,
             "summoner_name": "UIC Davy#JGL",
             "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:26:13.094599+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
           }
         ]
       },
@@ -1592,7 +1592,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1169896",
-        "updated_at": "2026-11-08T08:54:03.738072+01:00",
+        "updated_at": "2026-11-08T16:24:05.003763+01:00",
         "enemy_team": {
           "id": 206394,
           "name": "Scaling Scuttles",
@@ -1600,7 +1600,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206394",
           "logo_url": null
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 1432161,
+            "summoner_name": "UIC BL4CKPINKFAN#FLOW",
+            "name": "IPM Flow",
+            "is_leader": false,
+            "updated_at": "2026-11-08T16:20:47.306831+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.015629+01:00"
+          },
+          {
+            "id": 2291693,
+            "summoner_name": "Zephyr#Janna",
+            "name": "jannaeuw",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:26:13.113832+01:00"
+          },
+          {
+            "id": 2286224,
+            "summoner_name": "UIC Rayando07#Help",
+            "name": "GLT Rayando07",
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.001711+01:00"
+          },
+          {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:54:28.005630+01:00"
+          }
+        ]
       }
     ]
   },
@@ -1693,11 +1729,11 @@
         "trackStats": true,
         "discordId": "465698775638212610",
         "rosterStatus": "staff",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
-        "api_id": 1557329,
-        "api_name": "RyuPanda",
-        "in_api_roster": true
+        "api_id": null,
+        "api_name": null,
+        "in_api_roster": false
       },
       {
         "playerId": "UNKNOWN_LOCAL",
@@ -1737,7 +1773,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208606.jpg?1786906544",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208606",
-      "updated_at": "2026-11-08T08:50:48.097493+01:00"
+      "updated_at": "2026-11-08T16:20:51.346751+01:00"
     },
     "matches": [
       {
@@ -1749,7 +1785,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166369",
-        "updated_at": "2026-11-08T08:52:12.000403+01:00",
+        "updated_at": "2026-11-08T16:26:19.831525+01:00",
         "enemy_team": {
           "id": 112154,
           "name": "1. ECF Rainbow",
@@ -1914,7 +1950,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166376",
-        "updated_at": "2026-11-08T08:52:16.032120+01:00",
+        "updated_at": "2026-11-08T16:22:17.264437+01:00",
         "enemy_team": {
           "id": 212926,
           "name": "OGC ekonomikings",
@@ -1933,7 +1969,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166377",
-        "updated_at": "2026-11-08T08:52:15.020897+01:00",
+        "updated_at": "2026-11-08T16:22:18.280455+01:00",
         "enemy_team": {
           "id": 179487,
           "name": "Hamburger Wale",
@@ -2345,7 +2381,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165696",
-        "updated_at": "2026-11-08T08:38:57.063916+01:00",
+        "updated_at": "2026-11-08T16:09:00.368988+01:00",
         "enemy_team": {
           "id": 207881,
           "name": "Senru",
@@ -2419,7 +2455,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165704",
-        "updated_at": "2026-11-08T08:38:58.032518+01:00",
+        "updated_at": "2026-11-08T16:09:01.356156+01:00",
         "enemy_team": {
           "id": 181155,
           "name": "TSV Hamelspringe Wels",
@@ -2438,7 +2474,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165708",
-        "updated_at": "2026-11-08T08:38:59.078978+01:00",
+        "updated_at": "2026-11-08T16:09:03.380313+01:00",
         "enemy_team": {
           "id": 200762,
           "name": "SSP Overdrive",
@@ -2610,7 +2646,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167429",
-        "updated_at": "2026-11-08T08:54:53.060751+01:00",
+        "updated_at": "2026-11-08T16:24:55.283993+01:00",
         "enemy_team": {
           "id": 178531,
           "name": "Friendly Fire",
@@ -2629,7 +2665,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167423",
-        "updated_at": "2026-11-08T08:54:54.072266+01:00",
+        "updated_at": "2026-11-08T16:24:56.309337+01:00",
         "enemy_team": {
           "id": 212296,
           "name": "Andromeda Aszendent",
@@ -3361,7 +3397,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167065",
-        "updated_at": "2026-11-08T08:38:36.898327+01:00",
+        "updated_at": "2026-11-08T16:08:41.224544+01:00",
         "enemy_team": {
           "id": 212015,
           "name": "POA Lumi",
@@ -3768,7 +3804,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166054",
-        "updated_at": "2026-11-08T08:39:12.164617+01:00",
+        "updated_at": "2026-11-08T16:09:15.449512+01:00",
         "enemy_team": {
           "id": 207219,
           "name": "Porofessionals",
@@ -3787,7 +3823,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166055",
-        "updated_at": "2026-11-08T08:39:13.149512+01:00",
+        "updated_at": "2026-11-08T16:09:16.479804+01:00",
         "enemy_team": {
           "id": 207904,
           "name": "Feather Stanka",
@@ -4204,7 +4240,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165888",
-        "updated_at": "2026-11-08T08:39:25.177922+01:00",
+        "updated_at": "2026-11-08T16:09:28.497782+01:00",
         "enemy_team": {
           "id": 211985,
           "name": "Teemokopfkeeno",
@@ -4223,7 +4259,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165885",
-        "updated_at": "2026-11-08T08:39:24.182682+01:00",
+        "updated_at": "2026-11-08T16:09:27.527257+01:00",
         "enemy_team": {
           "id": 211953,
           "name": "Team SpieltEinfach",
@@ -4970,7 +5006,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167342",
-        "updated_at": "2026-11-08T08:53:58.699144+01:00",
+        "updated_at": "2026-11-08T16:23:59.918931+01:00",
         "enemy_team": {
           "id": 212996,
           "name": "Trümmertruppe",
@@ -4989,7 +5025,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167343",
-        "updated_at": "2026-11-08T08:53:59.715327+01:00",
+        "updated_at": "2026-11-08T16:24:00.928871+01:00",
         "enemy_team": {
           "id": 189490,
           "name": "Baltic eSports Kiel e.V. Flötenfische",
@@ -5206,7 +5242,7 @@
         "trackStats": true,
         "discordId": "487236534924476416",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2316693,
         "api_name": "Angie6875",
@@ -5281,6 +5317,16 @@
         "api_id": 810479,
         "in_api_roster": true,
         "missing_in_local": true
+      },
+      {
+        "playerId": "UNKNOWN_LOCAL",
+        "gameName": "UIC trance#zzxo",
+        "role": "UNKNOWN",
+        "rosterStatus": "api_only",
+        "isCaptain": false,
+        "api_id": 2192699,
+        "in_api_roster": true,
+        "missing_in_local": true
       }
     ],
     "api_meta": {
@@ -5336,15 +5382,15 @@
             "id": 2316693,
             "summoner_name": "UIC Angie6875#555",
             "name": "Angie6875",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:22:00.483402+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.413911+01:00"
           },
           {
             "id": 1486717,
             "summoner_name": "UIC Lynx#XIV",
             "name": "UIC Lynx",
             "is_leader": true,
-            "updated_at": "2026-11-08T07:06:08.158285+01:00"
+            "updated_at": "2026-11-08T15:36:23.921091+01:00"
           }
         ]
       },
@@ -5391,15 +5437,15 @@
             "id": 2316693,
             "summoner_name": "UIC Angie6875#555",
             "name": "Angie6875",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:22:00.483402+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.413911+01:00"
           },
           {
             "id": 1486717,
             "summoner_name": "UIC Lynx#XIV",
             "name": "UIC Lynx",
             "is_leader": true,
-            "updated_at": "2026-11-08T07:06:08.158285+01:00"
+            "updated_at": "2026-11-08T15:36:23.921091+01:00"
           }
         ]
       },
@@ -5412,7 +5458,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168066",
-        "updated_at": "2026-11-08T08:39:22.174544+01:00",
+        "updated_at": "2026-11-08T16:09:25.518343+01:00",
         "enemy_team": {
           "id": 207997,
           "name": "Noot Noot",
@@ -5431,7 +5477,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168071",
-        "updated_at": "2026-11-08T08:39:23.223945+01:00",
+        "updated_at": "2026-11-08T16:09:26.546043+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
@@ -5450,7 +5496,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168069",
-        "updated_at": "2026-11-08T08:39:21.193343+01:00",
+        "updated_at": "2026-11-08T16:09:23.506972+01:00",
         "enemy_team": {
           "id": 207021,
           "name": "VGS Void IX",
@@ -5458,7 +5504,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207021",
           "logo_url": null
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 1881159,
+            "summoner_name": "UIC Schlnken#UIC",
+            "name": "Schinkenowo",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:22:00.497260+01:00"
+          },
+          {
+            "id": 2315892,
+            "summoner_name": "UIC SoulxEater#1908",
+            "name": "Soul_Eater190",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:22:00.502675+01:00"
+          },
+          {
+            "id": 2316693,
+            "summoner_name": "UIC Angie6875#555",
+            "name": "Angie6875",
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.413911+01:00"
+          },
+          {
+            "id": 2192699,
+            "summoner_name": "UIC trance#zzxo",
+            "name": "trancegodzx",
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.418913+01:00"
+          },
+          {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-08T15:36:23.921091+01:00"
+          }
+        ]
       },
       {
         "id": 44754,
@@ -5496,22 +5578,22 @@
             "id": 2316693,
             "summoner_name": "UIC Angie6875#555",
             "name": "Angie6875",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:22:00.483402+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.413911+01:00"
           },
           {
             "id": 2192699,
             "summoner_name": "UIC trance#zzxo",
             "name": "trancegodzx",
             "is_leader": false,
-            "updated_at": "2026-11-08T04:52:24.807160+01:00"
+            "updated_at": "2026-11-08T15:09:35.418913+01:00"
           },
           {
             "id": 1486717,
             "summoner_name": "UIC Lynx#XIV",
             "name": "UIC Lynx",
             "is_leader": true,
-            "updated_at": "2026-11-08T07:06:08.158285+01:00"
+            "updated_at": "2026-11-08T15:36:23.921091+01:00"
           }
         ]
       },
@@ -5551,22 +5633,22 @@
             "id": 2316693,
             "summoner_name": "UIC Angie6875#555",
             "name": "Angie6875",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:22:00.483402+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-08T15:09:35.413911+01:00"
           },
           {
             "id": 2192699,
             "summoner_name": "UIC trance#zzxo",
             "name": "trancegodzx",
             "is_leader": false,
-            "updated_at": "2026-11-08T04:52:24.807160+01:00"
+            "updated_at": "2026-11-08T15:09:35.418913+01:00"
           },
           {
             "id": 1486717,
             "summoner_name": "UIC Lynx#XIV",
             "name": "UIC Lynx",
             "is_leader": true,
-            "updated_at": "2026-11-08T07:06:08.158285+01:00"
+            "updated_at": "2026-11-08T15:36:23.921091+01:00"
           }
         ]
       }
@@ -5752,7 +5834,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167006",
-        "updated_at": "2026-11-08T08:39:50.381196+01:00",
+        "updated_at": "2026-11-08T16:09:53.685383+01:00",
         "enemy_team": {
           "id": 163587,
           "name": "EKO Budgies",
@@ -5771,7 +5853,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167007",
-        "updated_at": "2026-11-08T08:39:51.395310+01:00",
+        "updated_at": "2026-11-08T16:09:54.699219+01:00",
         "enemy_team": {
           "id": 211214,
           "name": "Exhaustion Gaming",
@@ -6473,7 +6555,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167370",
-        "updated_at": "2026-11-08T08:38:38.949755+01:00",
+        "updated_at": "2026-11-08T16:08:43.235958+01:00",
         "enemy_team": {
           "id": 213059,
           "name": "Freaky Blinders",
@@ -6492,7 +6574,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167371",
-        "updated_at": "2026-11-08T08:38:39.964783+01:00",
+        "updated_at": "2026-11-08T16:08:44.254515+01:00",
         "enemy_team": {
           "id": 211174,
           "name": "dRift Arcade",
@@ -6583,6 +6665,16 @@
         "api_id": 1674832,
         "api_name": "AI Cherry",
         "in_api_roster": true
+      },
+      {
+        "playerId": "UNKNOWN_LOCAL",
+        "gameName": "UIC Panda#CSX",
+        "role": "UNKNOWN",
+        "rosterStatus": "api_only",
+        "isCaptain": false,
+        "api_id": 1557329,
+        "in_api_roster": true,
+        "missing_in_local": true
       }
     ],
     "api_meta": {
@@ -6592,7 +6684,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212432.jpg?1789934435",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212432",
-      "updated_at": "2026-11-08T08:36:33.022957+01:00"
+      "updated_at": "2026-11-08T16:36:46.918073+01:00"
     },
     "matches": [
       {
@@ -7319,7 +7411,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167038",
-        "updated_at": "2026-11-08T08:38:48.028211+01:00",
+        "updated_at": "2026-11-08T16:08:51.289877+01:00",
         "enemy_team": {
           "id": 212978,
           "name": "Elysion Flora Fatalis",
