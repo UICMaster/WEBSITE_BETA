@@ -46,7 +46,12 @@ const honoredMap = (rawHonored || {}) as Record<string, any>;
 const profileAssetMap = import.meta.glob('/public/assets/profile/*.{webp,png}');
 const teamAssetMap = import.meta.glob('/public/assets/teams/*.{webp,png,jpg,svg}');
 
-const teamsList = Object.entries((rawRosters || {}) as Record<string, any[]>).map(([key, players]) => {
+const teamsList = Object.entries((rawRosters || {}) as Record<string, any[]>)
+  .filter(([key]) => {
+    const id = teamsMeta[key]?.primeLeagueId;
+    return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+  })
+  .map(([key, players]) => {
   const meta = teamsMeta[key] || {};
   const metaRoster = meta.roster || [];
   const primeLeagueLink: string | null = primeMeta[key]?.api_meta?.prime_league_link || null;

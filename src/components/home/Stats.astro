@@ -1,6 +1,7 @@
 ---
 // src/components/home/Stats.astro
 import rawPrimeStats from '../../../data/prime_stats.json';
+import rawTeams from '../../../data/teams.json';
 
 interface Match {
   begin?: string;
@@ -60,8 +61,14 @@ let totalGlobalDraws = 0;
 let totalGlobalPoints = 0;
 const teamAssetMap = import.meta.glob('/public/assets/teams/*.{webp,png,jpg,svg}');
 
+const teamsMeta = (rawTeams || {}) as Record<string, any>;
+const hasPrimeLeagueId = (key: string, teamObj?: any): boolean => {
+  const id = teamsMeta[key]?.primeLeagueId ?? teamObj?.primeLeagueId;
+  return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+};
+
 const teamsStatsList: TeamStatsComputed[] = Object.entries(rawPrimeStats as Record<string, any>)
-  .filter(([_, team]) => team && team.matches)
+  .filter(([key, team]) => team && Array.isArray(team.matches) && hasPrimeLeagueId(key, team))
   .map(([key, team]) => {
     const matches: Match[] = team.matches || [];
     let mapWins = 0, mapLosses = 0, points = 0, sWins = 0, sLosses = 0;

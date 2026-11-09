@@ -118,12 +118,14 @@
   .sponsor-logo {
     max-height: 52px;
     width: auto;
-    filter: brightness(0) invert(1);
+    filter: grayscale(1) brightness(1.15);
     opacity: 0.75;
-    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    transition: filter var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
   }
 
-  .sponsor-item:hover .sponsor-logo {
+  .sponsor-item:hover .sponsor-logo,
+  .sponsor-item:focus-visible .sponsor-logo {
+    filter: grayscale(0) brightness(1);
     opacity: 1;
     transform: scale(1.05);
   }

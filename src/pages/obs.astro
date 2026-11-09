@@ -7,8 +7,13 @@ import rawPrimeStats from '../../data/prime_stats.json';
 const teamsMap = (rawTeams || {}) as Record<string, any>;
 const primeStatsMap = (rawPrimeStats || {}) as Record<string, any>;
 
+const hasPrimeLeagueId = (key: string): boolean => {
+  const id = teamsMap[key]?.primeLeagueId;
+  return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+};
+
 const teamOptions = Object.entries(teamsMap)
-  .filter(([key]) => key.toLowerCase() !== 'community')
+  .filter(([key]) => hasPrimeLeagueId(key))
   .map(([key, val]) => ({
     key,
     name: val.teamDisplay || `UIC ${key.toUpperCase()}`,

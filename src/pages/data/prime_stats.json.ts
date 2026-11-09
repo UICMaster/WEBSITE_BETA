@@ -1,11 +1,18 @@
 import type { APIRoute } from 'astro';
 import rawPrimeStats from '../../../data/prime_stats.json';
+import rawTeams from '../../../data/teams.json';
 
 const rawMap = (rawPrimeStats || {}) as Record<string, any>;
+const teamsMap = (rawTeams || {}) as Record<string, any>;
+const hasPrimeLeagueId = (key: string, teamObj?: any): boolean => {
+  const id = teamsMap[key]?.primeLeagueId ?? teamObj?.primeLeagueId;
+  return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+};
+
 const publicPrimeStats: Record<string, any> = {};
 
 for (const [key, pTeam] of Object.entries(rawMap)) {
-  if (!pTeam || key.toLowerCase() === 'community') continue;
+  if (!pTeam || !hasPrimeLeagueId(key, pTeam)) continue;
   publicPrimeStats[key] = {
     teamDisplay: pTeam.teamDisplay,
     tier: pTeam.tier,

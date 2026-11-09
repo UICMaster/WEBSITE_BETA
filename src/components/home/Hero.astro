@@ -4,11 +4,16 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
 ---
 
 <section id="hero" class="hero-section">
-  <!-- Subtle Background Glare & Line Architecture -->
+  <!-- Animated Background Glare, Beams, Tactical Grid & Energy Particles -->
   <div class="hero-bg-fx" aria-hidden="true">
     <div class="hero-glare"></div>
+    <div class="hero-orb hero-orb-primary"></div>
+    <div class="hero-orb hero-orb-secondary"></div>
     <div class="hero-beam"></div>
+    <div class="hero-beam hero-beam-alt"></div>
     <div class="hero-lines"></div>
+    <div class="hero-scanline"></div>
+    <canvas id="hero-particles-canvas" class="hero-particles-canvas"></canvas>
   </div>
 
   <div class="container hero-container">
@@ -259,7 +264,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     overflow: hidden;
   }
 
-  /* Subtle Background Glare & Line Effect */
+  /* Animated Background Glare, Beams, Tactical Grid & Energy Particles */
   .hero-bg-fx {
     position: absolute;
     inset: 0;
@@ -272,37 +277,134 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 45% at 24% 20%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.018) 45%, transparent 75%),
-      radial-gradient(circle at 80% 55%, rgba(255, 255, 255, 0.04) 0%, transparent 55%);
+      radial-gradient(ellipse 60% 45% at 24% 20%, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.022) 45%, transparent 75%),
+      radial-gradient(circle at 80% 55%, rgba(148, 163, 184, 0.06) 0%, transparent 55%);
+    animation: heroGlarePulse 9s ease-in-out infinite alternate;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(72px);
+    will-change: transform, opacity;
+  }
+
+  .hero-orb-primary {
+    width: clamp(280px, 42vw, 560px);
+    height: clamp(280px, 42vw, 560px);
+    top: -8%;
+    left: 6%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(186, 230, 253, 0.05) 45%, transparent 72%);
+    animation: heroOrbDriftPrimary 16s ease-in-out infinite alternate;
+  }
+
+  .hero-orb-secondary {
+    width: clamp(240px, 36vw, 480px);
+    height: clamp(240px, 36vw, 480px);
+    bottom: 2%;
+    right: 8%;
+    background: radial-gradient(circle, rgba(226, 232, 240, 0.09) 0%, rgba(148, 163, 184, 0.04) 50%, transparent 74%);
+    animation: heroOrbDriftSecondary 20s ease-in-out infinite alternate;
   }
 
   .hero-beam {
     position: absolute;
-    inset: -20%;
+    inset: -25%;
     background:
-      linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.022) 48%, rgba(255, 255, 255, 0.055) 50%, rgba(255, 255, 255, 0.018) 52%, transparent 64%),
-      linear-gradient(118deg, transparent 58%, rgba(255, 255, 255, 0.025) 68%, transparent 74%);
+      linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.025) 48%, rgba(255, 255, 255, 0.075) 50%, rgba(255, 255, 255, 0.022) 52%, transparent 64%),
+      linear-gradient(118deg, transparent 58%, rgba(255, 255, 255, 0.035) 68%, transparent 74%);
     filter: blur(12px);
+    will-change: transform, opacity;
+    animation: heroBeamSweep 14s ease-in-out infinite alternate;
+  }
+
+  .hero-beam-alt {
+    background:
+      linear-gradient(62deg, transparent 30%, rgba(226, 232, 240, 0.018) 45%, rgba(255, 255, 255, 0.048) 48%, transparent 60%);
+    animation: heroBeamSweepAlt 18s ease-in-out infinite alternate;
   }
 
   .hero-lines {
     position: absolute;
-    inset: 0;
+    inset: -64px;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 78% 68% at 50% 42%, #000000 15%, transparent 82%);
-    -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 42%, #000000 15%, transparent 82%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 42%, #000000 18%, transparent 82%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 42%, #000000 18%, transparent 82%);
+    will-change: transform;
+    animation: heroGridDrift 24s linear infinite;
+  }
+
+  .hero-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.035) 50%, rgba(255, 255, 255, 0.08) 98%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 100% at 50% 50%, #000000 20%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 100% at 50% 50%, #000000 20%, transparent 85%);
+    will-change: transform, opacity;
+    animation: heroScanWave 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .hero-particles-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.85;
+  }
+
+  @keyframes heroGlarePulse {
+    0% { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.06); }
+  }
+
+  @keyframes heroOrbDriftPrimary {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+    50% { transform: translate3d(6%, 8%, 0) scale(1.12); opacity: 1; }
+    100% { transform: translate3d(-4%, 12%, 0) scale(0.95); opacity: 0.8; }
+  }
+
+  @keyframes heroOrbDriftSecondary {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
+    50% { transform: translate3d(-8%, -6%, 0) scale(1.15); opacity: 0.95; }
+    100% { transform: translate3d(5%, -10%, 0) scale(0.92); opacity: 0.7; }
+  }
+
+  @keyframes heroBeamSweep {
+    0% { transform: translate3d(-4%, -2%, 0) rotate(-1deg); opacity: 0.65; }
+    100% { transform: translate3d(5%, 3%, 0) rotate(1.5deg); opacity: 1; }
+  }
+
+  @keyframes heroBeamSweepAlt {
+    0% { transform: translate3d(4%, 2%, 0) rotate(1deg); opacity: 0.5; }
+    100% { transform: translate3d(-5%, -3%, 0) rotate(-1.5deg); opacity: 0.9; }
+  }
+
+  @keyframes heroGridDrift {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(64px, 64px, 0); }
+  }
+
+  @keyframes heroScanWave {
+    0% { transform: translateY(-180px); opacity: 0; }
+    15% { opacity: 0.9; }
+    85% { opacity: 0.9; }
+    100% { transform: translateY(110vh); opacity: 0; }
   }
 
   .hero-container {
     position: relative;
     z-index: 1;
     width: 100%;
+    max-width: 100%;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
   }
 
@@ -311,11 +413,14 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    min-width: 0;
+    max-width: 100%;
   }
 
   .hero-badge-strip {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-xs);
   }
 
@@ -348,16 +453,19 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
   .hero-title {
     margin: 0;
     line-height: 0.95;
+    max-width: 100%;
   }
 
   .hero-title-main {
     font-family: var(--font-display);
-    font-size: clamp(3.8rem, 8.5vw, 7.5rem);
+    font-size: clamp(2.35rem, 8.2vw, 7.5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
     color: #ffffff;
     display: block;
     text-transform: uppercase;
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .hero-desc {
@@ -378,11 +486,14 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-md);
     width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .metric-item {
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
 
   .metric-val {
@@ -403,6 +514,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     width: 1px;
     height: 30px;
     background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
   }
 
   /* Hero Actions */
@@ -411,6 +523,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     align-items: center;
     gap: var(--space-sm);
     flex-wrap: wrap;
+    width: 100%;
   }
 
   .btn-lg {
@@ -428,6 +541,8 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
   /* Matchup Card (Matching Ökosystem Bento Design Layers) */
   .hero-matchup-col {
     position: relative;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .matchup-bento-card {
@@ -441,6 +556,8 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     gap: var(--space-lg);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
     transition: border-color var(--transition-fast), transform var(--transition-smooth);
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .matchup-bento-card:hover {
@@ -452,6 +569,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
   .card-meta {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-sm);
     margin-bottom: var(--space-xs);
   }
@@ -501,6 +619,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     align-items: center;
     gap: 8px;
     flex: 1;
+    min-width: 0;
     text-align: center;
   }
 
@@ -515,6 +634,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     justify-content: center;
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
   }
 
   .m-crest-full {
@@ -539,6 +659,8 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     font-weight: 800;
     font-size: 0.9375rem;
     color: #ffffff;
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .m-clash-badge {
@@ -550,6 +672,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     background: #141418;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-sm);
+    flex-shrink: 0;
   }
 
   .m-vs {
@@ -578,6 +701,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: var(--space-sm);
     padding: 10px 14px;
     margin-bottom: var(--space-sm);
@@ -712,13 +836,210 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
 
   @media (max-width: 1024px) {
     .hero-container {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-2xl);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-section {
+      padding-top: 6rem;
+      padding-bottom: 4.5rem;
+      min-height: auto;
+    }
+
+    .hero-content {
+      gap: var(--space-md);
+    }
+
+    .hero-title-main {
+      font-size: clamp(2.15rem, 10.5vw, 3.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .hero-metrics-bar {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 16px;
+      padding: var(--space-md);
+    }
+
+    .metric-sep {
+      display: none;
+    }
+
+    .metric-item {
+      padding: 4px 6px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-xs);
+    }
+
+    .metric-val {
+      font-size: 1.25rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-actions .btn-lg {
+      width: 100%;
+      justify-content: center;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    .matchup-bento-card {
+      padding: var(--space-lg);
+      gap: var(--space-md);
+    }
+
+    .matchup-clash-strip {
+      padding: var(--space-md);
+      gap: var(--space-xs);
+    }
+
+    .m-crest-wrap {
+      width: 46px;
+      height: 46px;
+    }
+
+    .m-name {
+      font-size: 0.8125rem;
+    }
+
+    .m-clash-badge {
+      padding: 5px 8px;
+    }
+
+    .matchup-cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .matchup-cta-btn,
+    .matchup-ics-btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-glare,
+    .hero-orb,
+    .hero-beam,
+    .hero-lines,
+    .hero-scanline {
+      animation: none !important;
     }
   }
 </style>
 
 <script>
+  // Animated Ultra Instinct Background Energy Particles
+  const heroCanvas = document.getElementById('hero-particles-canvas') as HTMLCanvasElement | null;
+  if (heroCanvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = heroCanvas.getContext('2d');
+    if (ctx) {
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      interface Particle {
+        x: number;
+        y: number;
+        r: number;
+        vy: number;
+        vx: number;
+        alpha: number;
+        pulseSpeed: number;
+        phase: number;
+      }
+
+      let particles: Particle[] = [];
+
+      const initParticles = () => {
+        const rect = heroCanvas.parentElement?.getBoundingClientRect();
+        width = rect ? rect.width : window.innerWidth;
+        height = rect ? rect.height : window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        heroCanvas.width = width * dpr;
+        heroCanvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const count = width < 640 ? 26 : 52;
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.8 + 0.6,
+          vy: -(Math.random() * 0.45 + 0.15),
+          vx: (Math.random() - 0.5) * 0.25,
+          alpha: Math.random() * 0.55 + 0.15,
+          pulseSpeed: Math.random() * 0.025 + 0.01,
+          phase: Math.random() * Math.PI * 2
+        }));
+      };
+
+      initParticles();
+      window.addEventListener('resize', initParticles, { passive: true });
+
+      let isHeroVisible = true;
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            isHeroVisible = entry.isIntersecting;
+          }
+        },
+        { threshold: 0 }
+      );
+      heroObserver.observe(heroCanvas);
+
+      const renderParticles = () => {
+        if (isHeroVisible) {
+          ctx.clearRect(0, 0, width, height);
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.phase += p.pulseSpeed;
+            p.y += p.vy;
+            p.x += p.vx + Math.sin(p.phase) * 0.18;
+
+            if (p.y < -10) {
+              p.y = height + 10;
+              p.x = Math.random() * width;
+            }
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+
+            const currentAlpha = p.alpha * (0.65 + 0.35 * Math.sin(p.phase));
+
+            // Soft aura glow + bright silver core
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 2.6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(226, 232, 240, ${currentAlpha * 0.22})`;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+            ctx.fill();
+          }
+        }
+        requestAnimationFrame(renderParticles);
+      };
+
+      requestAnimationFrame(renderParticles);
+    }
+  }
+
   const cdWrap = document.getElementById('hero-match-countdown');
   if (cdWrap) {
     const beginIso = cdWrap.getAttribute('data-begin-iso');

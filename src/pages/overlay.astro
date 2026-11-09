@@ -22,10 +22,15 @@ const primeMeta = (rawPrimeStats || {}) as Record<string, any>;
 const playerTelemetry = (rawPlayerState || {}) as Record<string, any>;
 const profileAssetMap = import.meta.glob('/public/assets/profile/*.{webp,png}');
 
+const hasPrimeLeagueId = (key: string, teamObj?: any): boolean => {
+  const id = teamsMeta[key]?.primeLeagueId ?? teamObj?.primeLeagueId;
+  return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+};
+
 const enrichedTeams: Record<string, any> = {};
 
 for (const [key, meta] of Object.entries(teamsMeta)) {
-  if (key.toLowerCase() === 'community') continue;
+  if (!hasPrimeLeagueId(key, meta)) continue;
   const players = ((rawData as any)[key] || []) as any[];
   const metaRoster = (meta.roster || []) as any[];
 
@@ -93,7 +98,7 @@ for (const [key, meta] of Object.entries(teamsMeta)) {
 
 const cleanPrimeStats: Record<string, any> = {};
 for (const [key, pTeam] of Object.entries(primeMeta as Record<string, any>)) {
-  if (!pTeam || key.toLowerCase() === 'community') continue;
+  if (!pTeam || !hasPrimeLeagueId(key, pTeam)) continue;
   cleanPrimeStats[key] = {
     teamDisplay: pTeam.teamDisplay,
     tier: pTeam.tier,

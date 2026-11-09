@@ -38,6 +38,14 @@ async function buildGoldenJSON() {
     const goldenDatabase = {};
 
     for (const [teamKey, localTeamInfo] of Object.entries(localTeamsData)) {
+        const teamId = localTeamInfo.primeLeagueId;
+
+        // Only include teams with a valid Prime League ID
+        if (!teamId || String(teamId).trim() === "") {
+            console.log(`⚠️ Skipping ${teamKey} (No Prime League ID).`);
+            continue;
+        }
+
         console.log(`📡 Fetching data for: ${localTeamInfo.teamDisplay || teamKey}...`);
         
         // Initialize the base structure inheriting your local data
@@ -47,14 +55,6 @@ async function buildGoldenJSON() {
             roster: [...localTeamInfo.roster], // Clone to safely mutate
             matches: []
         };
-
-        const teamId = localTeamInfo.primeLeagueId;
-        
-        // Fix: Convert to string safely before using .trim()
-        if (!teamId || String(teamId).trim() === "") {
-            console.log(`⚠️ Skipping API fetch for ${teamKey} (No Prime League ID).`);
-            continue;
-        }
 
         try {
             const response = await fetch(`https://primebot.me/api/v1/teams/${teamId}/`, { headers: HEADERS });

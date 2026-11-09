@@ -7,11 +7,18 @@ const rosters = (rawRosters || {}) as Record<string, any[]>;
 const teams = (rawTeams || {}) as Record<string, any>;
 const primeStats = (rawPrimeStats || {}) as Record<string, any>;
 
-export const totalTeams = Object.keys(rosters).length;
+export const hasPrimeLeagueId = (key: string): boolean => {
+  const id = teams[key]?.primeLeagueId;
+  return Boolean(id !== undefined && id !== null && String(id).trim() !== '');
+};
 
-export const totalAthletes = Object.values(rosters).reduce((acc: number, r: any) => {
-  return acc + (Array.isArray(r) ? r.length : 0);
-}, 0);
+export const totalTeams = Object.keys(rosters).filter(hasPrimeLeagueId).length;
+
+export const totalAthletes = Object.entries(rosters)
+  .filter(([key]) => hasPrimeLeagueId(key))
+  .reduce((acc: number, [_, r]: [string, any]) => {
+    return acc + (Array.isArray(r) ? r.length : 0);
+  }, 0);
 
 export const primeTier = teams.prime?.tier || "Division 4";
 export const primeTierShort = primeTier.toUpperCase().replace("DIVISION", "DIV").trim();
@@ -57,7 +64,7 @@ export const matchLookupByUrl: Record<string, { confirmed: boolean; begin?: stri
 const allUpcomingMatches: (NextMatchInfo & { timestamp: number })[] = [];
 
 for (const [teamKey, teamObj] of Object.entries(primeStats)) {
-  if (!teamObj || teamKey === 'community') continue;
+  if (!teamObj || !hasPrimeLeagueId(teamKey)) continue;
   const matches = Array.isArray(teamObj.matches) ? teamObj.matches : [];
   const teamDisplay = teamObj.teamDisplay || `UIC ${teamKey.toUpperCase()}`;
   const teamTier = teamObj.tier || teamObj.api_meta?.division || "Prime League";
