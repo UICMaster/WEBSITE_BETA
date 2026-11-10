@@ -3,7 +3,7 @@
 ---
 
 <section id="partners" class="section-pad partners-section">
-  <!-- Ultra-Subtle Minimalist Monochrome Topographic Contours -->
+  <!-- Minimalist Monochrome Summoner's Rift Lane Background -->
   <div class="partners-bg-fx" aria-hidden="true">
     <div class="partners-topo-wrap">
       <svg
@@ -13,37 +13,73 @@
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="partners-subtle-line" x1="0%" y1="50%" x2="100%" y2="50%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.01" />
-            <stop offset="30%" stop-color="#ffffff" stop-opacity="0.05" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.035" />
-            <stop offset="70%" stop-color="#ffffff" stop-opacity="0.05" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01" />
+          <linearGradient id="partners-lane-stroke" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.015" />
+            <stop offset="25%" stop-color="#ffffff" stop-opacity="0.075" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.095" />
+            <stop offset="75%" stop-color="#ffffff" stop-opacity="0.075" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.015" />
+          </linearGradient>
+          <linearGradient id="partners-river-cross" x1="25%" y1="0%" x2="75%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.0" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.055" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
           </linearGradient>
         </defs>
 
-        <!-- Minimal Sweeping Horizon Contours -->
-        <g stroke="url(#partners-subtle-line)" stroke-width="0.9">
-          <path d="M-100,440 C240,415 480,330 800,330 C1120,330 1360,415 1700,440" />
-          <path d="M-100,485 C260,460 500,372 800,372 C1100,372 1340,460 1700,485" stroke-opacity="0.7" />
-          <path d="M-100,220 C260,245 500,290 800,290 C1100,290 1340,245 1700,220" stroke-opacity="0.6" />
+        <!-- 1. Flanking Lane Wall Topographic Banks (North-West & South-East Ridges) -->
+        <g stroke="url(#partners-lane-stroke)" stroke-width="0.9">
+          <!-- Upper Lane Bank Contours -->
+          <path d="M-120,475 C260,395 540,305 800,245 C1060,185 1340,95 1720,15" stroke-opacity="0.55" />
+          <path d="M-120,515 C265,435 545,342 800,282 C1055,222 1335,132 1720,52" stroke-opacity="0.8" />
+          <!-- Inner Lane Corridor Boundaries -->
+          <path d="M-120,548 C270,468 550,375 800,315 C1050,255 1330,162 1720,82" stroke-width="1.05" />
+          <path d="M-120,602 C270,522 550,429 800,369 C1050,309 1330,216 1720,136" stroke-width="1.05" />
+          <!-- Lower Lane Bank Contours -->
+          <path d="M-120,635 C265,555 545,462 800,402 C1055,342 1335,252 1720,172" stroke-opacity="0.8" />
+          <path d="M-120,675 C260,595 540,505 800,445 C1060,385 1340,295 1720,215" stroke-opacity="0.55" />
         </g>
 
-        <!-- Whisper-Quiet Symmetrical Contour Rings Left & Right -->
-        <g stroke="rgba(255, 255, 255, 0.038)" stroke-width="0.85">
-          <path d="M 520,225 C 430,175 305,200 275,290 C 245,380 315,465 430,458 C 485,454 525,430 548,395" />
-          <circle cx="430" cy="330" r="46" stroke-dasharray="4 8" />
-          <circle cx="430" cy="330" r="18" />
-
-          <path d="M 1080,225 C 1170,175 1295,200 1325,290 C 1355,380 1285,465 1170,458 C 1115,454 1075,430 1052,395" />
-          <circle cx="1170" cy="330" r="46" stroke-dasharray="4 8" />
-          <circle cx="1170" cy="330" r="18" />
-        </g>
-
-        <!-- Single Subtle Glint Along Horizon Line -->
+        <!-- 2. Center Lane Track (Dashed Minion Wave Axis) -->
         <path
-          class="partners-topo-glint"
-          d="M-100,440 C240,415 480,330 800,330 C1120,330 1360,415 1700,440"
+          d="M-120,575 C270,495 550,402 800,342 C1050,282 1330,189 1720,109"
+          stroke="url(#partners-lane-stroke)"
+          stroke-width="1"
+          stroke-dasharray="8 10"
+        />
+
+        <!-- 3. Subtle Transverse River Crossing at Mid-Lane Center -->
+        <g stroke="url(#partners-river-cross)" stroke-width="0.85">
+          <path d="M 520,-40 C 640,165 735,285 800,342 C 865,399 960,515 1080,720" stroke-dasharray="5 9" />
+          <path d="M 475,-40 C 598,170 695,292 762,350 C 829,408 925,525 1042,720" />
+          <path d="M 565,-40 C 682,160 775,278 838,334 C 901,390 995,505 1118,720" />
+        </g>
+
+        <!-- 4. Minimalist Outer Turret Nodes & Center Lane Clash Ring -->
+        <g stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.95">
+          <!-- Left Outer Turret Node (Blue Side) -->
+          <circle cx="430" cy="432" r="24" stroke="rgba(255, 255, 255, 0.06)" stroke-dasharray="3 5" />
+          <circle cx="430" cy="432" r="5" fill="#050507" />
+          <circle cx="430" cy="432" r="1.8" fill="rgba(255, 255, 255, 0.38)" stroke="none" />
+
+          <!-- Center Lane Intersection Node -->
+          <circle cx="800" cy="342" r="14" stroke="rgba(255, 255, 255, 0.08)" />
+          <circle cx="800" cy="342" r="2" fill="rgba(255, 255, 255, 0.3)" stroke="none" />
+
+          <!-- Right Outer Turret Node (Red Side) -->
+          <circle cx="1170" cy="252" r="24" stroke="rgba(255, 255, 255, 0.06)" stroke-dasharray="3 5" />
+          <circle cx="1170" cy="252" r="5" fill="#050507" />
+          <circle cx="1170" cy="252" r="1.8" fill="rgba(255, 255, 255, 0.38)" stroke="none" />
+        </g>
+
+        <!-- 5. Animated Lane Wave Glints (Flowing Along the Lane Corridor) -->
+        <path
+          class="partners-lane-glint"
+          d="M-120,548 C270,468 550,375 800,315 C1050,255 1330,162 1720,82"
+        />
+        <path
+          class="partners-lane-glint partners-lane-glint-reverse"
+          d="M 1720,136 C 1330,216 1050,309 800,369 C 550,429 270,522 -120,602"
         />
       </svg>
     </div>
@@ -149,7 +185,7 @@
     overflow: hidden;
   }
 
-  /* Ultra-Subtle Minimalist Topographic Background */
+  /* Minimalist Summoner's Rift Lane Background */
   .partners-bg-fx {
     position: absolute;
     inset: 0;
@@ -161,34 +197,47 @@
   .partners-topo-wrap {
     position: absolute;
     inset: 0;
-    mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000000 15%, rgba(0, 0, 0, 0.5) 58%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000000 15%, rgba(0, 0, 0, 0.5) 58%, transparent 90%);
+    mask-image: radial-gradient(ellipse 88% 78% at 50% 45%, #000000 18%, rgba(0, 0, 0, 0.55) 60%, transparent 92%);
+    -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 45%, #000000 18%, rgba(0, 0, 0, 0.55) 60%, transparent 92%);
   }
 
   .partners-topo-svg {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -2%;
+    width: 104%;
+    height: 104%;
     display: block;
+    animation: partnersLaneDrift 34s ease-in-out infinite alternate;
   }
 
-  .partners-topo-glint {
-    stroke: rgba(255, 255, 255, 0.11);
-    stroke-width: 1;
+  .partners-lane-glint {
+    stroke: rgba(255, 255, 255, 0.16);
+    stroke-width: 1.1;
     stroke-linecap: round;
     stroke-dasharray: 180 1800;
     stroke-dashoffset: 1980;
-    animation: partnersGlintTravel 36s linear infinite;
+    animation: partnersLaneGlint 24s linear infinite;
   }
 
-  @keyframes partnersGlintTravel {
+  .partners-lane-glint-reverse {
+    stroke: rgba(255, 255, 255, 0.14);
+    animation-duration: 28s;
+    animation-delay: -11s;
+  }
+
+  @keyframes partnersLaneDrift {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-1%, 0.6%, 0) scale(1.018); }
+  }
+
+  @keyframes partnersLaneGlint {
     0% { stroke-dashoffset: 1980; }
     100% { stroke-dashoffset: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .partners-topo-glint {
+    .partners-topo-svg,
+    .partners-lane-glint {
       animation: none !important;
     }
   }
