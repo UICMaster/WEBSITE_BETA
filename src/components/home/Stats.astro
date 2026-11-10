@@ -186,6 +186,78 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 ---
 
 <section id="stats" class="section-pad war-room-section">
+  <!-- Minimalist Monochrome Baron / Dragon Pit & River Cliff Topographic Background -->
+  <div class="stats-bg-fx" aria-hidden="true">
+    <div class="stats-glare"></div>
+
+    <div class="stats-topo-wrap">
+      <svg
+        class="stats-topo-svg"
+        viewBox="0 0 1600 900"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <linearGradient id="stats-river-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.02" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.09" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+          </linearGradient>
+          <linearGradient id="stats-pit-wall" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.16" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04" />
+          </linearGradient>
+        </defs>
+
+        <!-- 1. Diagonal River Channel Currents -->
+        <g stroke="url(#stats-river-stroke)" stroke-width="1">
+          <path d="M-120,210 C260,265 620,385 980,535 C1260,652 1490,760 1720,860" />
+          <path d="M-120,265 C240,320 595,440 950,590 C1230,708 1465,815 1720,910" />
+          <path d="M-120,155 C280,210 645,330 1010,480 C1290,598 1515,705 1720,805" stroke-opacity="0.65" />
+        </g>
+
+        <!-- 2. Stepped Horseshoe Pit Cliff Contours (Baron / Dragon Pit Amphitheater @ 1165, 310) -->
+        <g stroke="url(#stats-pit-wall)" stroke-width="1.05">
+          <!-- Outer Cliff Rim (C-Shaped Amphitheater Opening Southwest Toward River) -->
+          <path d="M 945,425 C 895,295 965,145 1125,115 C 1285,85 1445,175 1455,325 C 1465,475 1335,575 1175,555" />
+          <path d="M 978,405 C 938,298 995,175 1132,148 C 1269,121 1405,198 1412,322 C 1419,446 1308,532 1175,515" />
+          <path d="M 1012,386 C 980,300 1025,204 1138,182 C 1251,160 1362,222 1368,320 C 1374,418 1282,488 1175,475" />
+          <path d="M 1048,368 C 1022,302 1058,232 1144,215 C 1230,198 1318,245 1322,318 C 1326,391 1256,445 1175,435" />
+          <!-- Inner Pit Rim Wall -->
+          <path d="M 1082,350 C 1064,302 1090,256 1150,244 C 1210,232 1272,266 1275,316 C 1278,366 1230,404 1175,396" stroke-width="1.35" />
+        </g>
+
+        <!-- 3. Objective Arena Floor Rings & Geometric Crest (@ 1172, 320) -->
+        <g>
+          <circle cx="1172" cy="320" r="56" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.9" stroke-dasharray="5 7" />
+          <circle cx="1172" cy="320" r="32" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1" />
+          <polygon
+            points="1172,298 1194,320 1172,342 1150,320"
+            stroke="rgba(255, 255, 255, 0.28)"
+            stroke-width="1.1"
+            fill="rgba(255, 255, 255, 0.025)"
+          />
+          <circle cx="1172" cy="320" r="2.5" fill="rgba(255, 255, 255, 0.5)" />
+          <!-- Pit Entrance Vision Ward / Scuttle Shrine Node in River (@ 975, 485) -->
+          <circle cx="975" cy="485" r="28" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.85" stroke-dasharray="3 6" />
+          <circle cx="975" cy="485" r="9" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
+          <circle cx="975" cy="485" r="2" fill="rgba(255, 255, 255, 0.35)" />
+        </g>
+
+        <!-- 4. Travelling Monochrome Cliff & River Glints -->
+        <path
+          class="stats-topo-glint"
+          d="M 945,425 C 895,295 965,145 1125,115 C 1285,85 1445,175 1455,325 C 1465,475 1335,575 1175,555"
+        />
+        <path
+          class="stats-topo-glint stats-glint-river"
+          d="M-120,210 C260,265 620,385 980,535 C1260,652 1490,760 1720,860"
+        />
+      </svg>
+    </div>
+  </div>
+
   <div class="container">
     
     <div class="section-header">
@@ -471,10 +543,78 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
 <style>
   .war-room-section {
+    position: relative;
     background-color: #000000;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding-bottom: clamp(6rem, 10vw, 9rem);
+    overflow: hidden;
+  }
+
+  /* Minimalist Monochrome Baron / Dragon Pit Topographic Background */
+  .stats-bg-fx {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .stats-glare {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 46% 42% at 74% 34%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, transparent 78%);
+  }
+
+  .stats-topo-wrap {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(ellipse 90% 80% at 62% 42%, #000000 20%, rgba(0, 0, 0, 0.65) 62%, transparent 92%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 62% 42%, #000000 20%, rgba(0, 0, 0, 0.65) 62%, transparent 92%);
+  }
+
+  .stats-topo-svg {
+    position: absolute;
+    inset: -3%;
+    width: 106%;
+    height: 106%;
+    display: block;
+    animation: statsTopoBreathe 30s ease-in-out infinite alternate;
+  }
+
+  .stats-topo-glint {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    stroke-dasharray: 180 1400;
+    stroke-dashoffset: 1580;
+    animation: statsGlintTravel 26s linear infinite;
+  }
+
+  .stats-glint-river {
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-dasharray: 220 1700;
+    stroke-dashoffset: 1920;
+    animation-duration: 34s;
+    animation-delay: -12s;
+  }
+
+  @keyframes statsTopoBreathe {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-1.2%, 1%, 0) scale(1.025); }
+  }
+
+  @keyframes statsGlintTravel {
+    0% { stroke-dashoffset: 1580; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stats-topo-svg,
+    .stats-topo-glint {
+      animation: none !important;
+    }
   }
 
   /* Telemetry Master Deck */

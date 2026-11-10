@@ -95,6 +95,161 @@ const eventsJsonLd = events.map((event) => {
 ---
 
 <section id="events" class="section-pad events-section">
+  <!-- Minimalist Monochrome Rift Turret & Topographic Lane Bastion Background -->
+  <div class="events-bg-fx" aria-hidden="true">
+    <div class="events-glare"></div>
+
+    <div class="events-topo-wrap">
+      <svg
+        class="events-topo-svg"
+        viewBox="0 0 1600 820"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <linearGradient id="events-topo-line" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.025" />
+            <stop offset="55%" stop-color="#ffffff" stop-opacity="0.09" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+          </linearGradient>
+          <linearGradient id="events-turret-stroke" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.13" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
+          </linearGradient>
+        </defs>
+
+        <!-- 1. Flanking Lane & Jungle Cliff Topographic Contours -->
+        <g stroke="url(#events-topo-line)" stroke-width="1">
+          <!-- Sweeping Lane Corridor Isolines -->
+          <path d="M-120,690 C240,650 560,575 890,545 C1220,515 1440,455 1720,395" />
+          <path d="M-120,735 C260,695 585,615 920,582 C1255,549 1465,492 1720,435" />
+          <path d="M-120,645 C220,605 535,535 860,508 C1185,481 1415,418 1720,355" stroke-opacity="0.65" />
+
+          <!-- Left High-Ground Jungle Wall Contours -->
+          <path d="M-90,140 C95,95 310,115 435,205 C560,295 520,445 365,505 C210,565 15,525 -100,440 Z" />
+          <path d="M-50,180 C105,142 282,158 385,232 C488,306 455,425 328,472 C201,519 42,488 -60,415 Z" />
+          <path d="M-10,220 C115,190 252,202 332,258 C412,314 388,402 290,438 C192,474 68,450 -18,390 Z" />
+
+          <!-- Right Bastion Cliff Elevation Contours (Behind Turret) -->
+          <path d="M980,95 C1165,45 1420,65 1575,165 C1730,265 1690,435 1515,505 C1340,575 1095,535 975,425 C855,315 795,145 980,95 Z" />
+          <path d="M1035,135 C1185,95 1390,110 1515,192 C1640,274 1608,410 1468,465 C1328,520 1132,488 1035,400 C938,312 885,175 1035,135 Z" />
+        </g>
+
+        <!-- 2. Turret Aggro-Range & Bastion Ground Rings (Perspective Ellipses @ 1190, 545) -->
+        <g class="turret-ground-rings">
+          <!-- Outer Aggro Boundary Ring -->
+          <ellipse
+            cx="1190"
+            cy="545"
+            rx="310"
+            ry="108"
+            stroke="rgba(255, 255, 255, 0.08)"
+            stroke-width="1"
+            stroke-dasharray="8 10"
+          />
+          <!-- Secondary Tactical Range Ring -->
+          <ellipse
+            cx="1190"
+            cy="545"
+            rx="225"
+            ry="78"
+            stroke="rgba(255, 255, 255, 0.09)"
+            stroke-width="0.95"
+          />
+          <!-- Stepped Pedestal Base Rings -->
+          <ellipse
+            cx="1190"
+            cy="545"
+            rx="135"
+            ry="46"
+            stroke="rgba(255, 255, 255, 0.13)"
+            stroke-width="1"
+            stroke-dasharray="4 6"
+          />
+          <ellipse
+            cx="1190"
+            cy="545"
+            rx="78"
+            ry="26"
+            stroke="rgba(255, 255, 255, 0.18)"
+            stroke-width="1.1"
+          />
+          <!-- Ground Axis Crosshairs -->
+          <line x1="860" y1="545" x2="915" y2="545" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
+          <line x1="1465" y1="545" x2="1520" y2="545" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
+          <line x1="1190" y1="635" x2="1190" y2="668" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
+        </g>
+
+        <!-- 3. Minimalist Summoner's Rift Turret Architecture (Wireframe Monolith @ X=1190) -->
+        <g stroke="url(#events-turret-stroke)" stroke-width="1.1" stroke-linejoin="round">
+          <!-- Octagonal Stepped Plinth / Pedestal -->
+          <polygon points="1118,545 1146,562 1234,562 1262,545 1246,515 1134,515" fill="rgba(255, 255, 255, 0.012)" />
+          <polygon points="1134,515 1156,528 1224,528 1246,515 1232,482 1148,482" />
+          <line x1="1156" y1="528" x2="1146" y2="562" />
+          <line x1="1224" y1="528" x2="1234" y2="562" />
+          <line x1="1190" y1="482" x2="1190" y2="562" stroke-opacity="0.5" />
+
+          <!-- Tapered Central Monolith Column & Facet Ribs -->
+          <polygon points="1148,482 1166,492 1214,492 1232,482 1216,295 1190,308 1164,295" fill="rgba(255, 255, 255, 0.015)" />
+          <line x1="1190" y1="308" x2="1190" y2="492" />
+          <line x1="1166" y1="492" x2="1174" y2="302" stroke-opacity="0.6" />
+          <line x1="1214" y1="492" x2="1206" y2="302" stroke-opacity="0.6" />
+
+          <!-- Iconic Floating Shoulder Shields / Wing Buttresses -->
+          <polygon points="1116,355 1142,272 1154,292 1144,415 1122,395" fill="rgba(255, 255, 255, 0.015)" />
+          <polygon points="1264,355 1238,272 1226,292 1236,415 1258,395" fill="rgba(255, 255, 255, 0.015)" />
+
+          <!-- Upper Crown Horns Framing the Arcane Core -->
+          <polygon points="1146,268 1132,188 1158,215 1172,278" fill="rgba(255, 255, 255, 0.02)" />
+          <polygon points="1234,268 1248,188 1222,215 1208,278" fill="rgba(255, 255, 255, 0.02)" />
+          <!-- Inner Crown Cradle -->
+          <path d="M 1158,274 L 1190,290 L 1222,274" />
+        </g>
+
+        <!-- 4. Levitating Arcane Turret Crystal & Targeting Pulse (@ 1190, 205) -->
+        <g class="turret-crystal-core">
+          <!-- Concentric Arcane Halo Rings -->
+          <circle cx="1190" cy="205" r="56" stroke="rgba(255, 255, 255, 0.07)" stroke-width="0.85" stroke-dasharray="3 6" />
+          <circle cx="1190" cy="205" r="34" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.9" />
+          <!-- Faceted Octahedron Crystal -->
+          <polygon
+            points="1190,162 1212,205 1190,248 1168,205"
+            stroke="rgba(255, 255, 255, 0.34)"
+            stroke-width="1.2"
+            fill="rgba(255, 255, 255, 0.04)"
+          />
+          <polyline points="1168,205 1190,214 1212,205" stroke="rgba(255, 255, 255, 0.24)" stroke-width="0.95" />
+          <line x1="1190" y1="162" x2="1190" y2="248" stroke="rgba(255, 255, 255, 0.24)" stroke-width="0.95" />
+          <circle cx="1190" cy="205" r="2.5" fill="rgba(255, 255, 255, 0.65)" />
+        </g>
+
+        <!-- Subtle Targeting Beam Line from Crystal to Outer Aggro Ring -->
+        <line
+          x1="1190"
+          y1="205"
+          x2="925"
+          y2="598"
+          stroke="rgba(255, 255, 255, 0.08)"
+          stroke-width="0.9"
+          stroke-dasharray="4 8"
+        />
+        <circle cx="925" cy="598" r="5" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1" />
+        <circle cx="925" cy="598" r="1.8" fill="rgba(255, 255, 255, 0.45)" />
+
+        <!-- 5. Travelling Monochrome Glints along Lane & Turret Ring -->
+        <path
+          class="events-topo-glint"
+          d="M-120,690 C240,650 560,575 890,545 C1220,515 1440,455 1720,395"
+        />
+        <path
+          class="events-topo-glint events-glint-ring"
+          d="M 965,545 A 225,78 0 1,1 1415,545 A 225,78 0 1,1 965,545"
+        />
+      </svg>
+    </div>
+  </div>
+
   <!-- Schema.org SportsEvent & Event Structured Data (Pre-rendered for Instant Crawler Discovery) -->
   {eventsJsonLd.length > 0 && (
     <script type="application/ld+json" set:html={JSON.stringify(eventsJsonLd)} />
@@ -232,7 +387,106 @@ const eventsJsonLd = events.map((event) => {
 
 <style>
   .events-section {
+    position: relative;
     background-color: #000000;
+    overflow: hidden;
+  }
+
+  /* Minimalist Monochrome Rift Turret & Topographic Background */
+  .events-bg-fx {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .events-glare {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 48% 50% at 74% 38%, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.012) 52%, transparent 78%),
+      radial-gradient(ellipse 45% 40% at 18% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  }
+
+  .events-topo-wrap {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(ellipse 90% 82% at 58% 48%, #000000 22%, rgba(0, 0, 0, 0.65) 64%, transparent 94%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 82% at 58% 48%, #000000 22%, rgba(0, 0, 0, 0.65) 64%, transparent 94%);
+  }
+
+  .events-topo-svg {
+    position: absolute;
+    inset: -3%;
+    width: 106%;
+    height: 106%;
+    display: block;
+    animation: eventsTopoBreathe 32s ease-in-out infinite alternate;
+  }
+
+  .turret-crystal-core {
+    animation: turretCrystalFloat 7s ease-in-out infinite alternate;
+  }
+
+  .events-topo-glint {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    stroke-dasharray: 200 1600;
+    stroke-dashoffset: 1800;
+    animation: eventsGlintTravel 28s linear infinite;
+  }
+
+  .events-glint-ring {
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-dasharray: 140 1100;
+    stroke-dashoffset: 1240;
+    animation: eventsRingGlint 22s linear infinite;
+  }
+
+  @keyframes eventsTopoBreathe {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(-1%, 0.8%, 0) scale(1.025);
+    }
+  }
+
+  @keyframes turretCrystalFloat {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @keyframes eventsGlintTravel {
+    0% {
+      stroke-dashoffset: 1800;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes eventsRingGlint {
+    0% {
+      stroke-dashoffset: 1240;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .events-topo-svg,
+    .turret-crystal-core,
+    .events-topo-glint {
+      animation: none !important;
+    }
   }
 
   .events-grid {
