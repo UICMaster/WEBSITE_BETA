@@ -4,12 +4,12 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
 ---
 
 <section id="hero" class="hero-section">
-  <!-- Architectural Monochrome Summoner's Rift Tactical Minimap -->
+  <!-- Architectural Monochrome Topographic Contours -->
   <div class="hero-bg-fx" aria-hidden="true">
     <div class="hero-glare"></div>
 
     <div class="hero-topo-wrap">
-      <!-- Primary Tactical Minimap Layer: Lanes, Bases, Turrets, River & Objective Pits -->
+      <!-- Primary Elevation Contours (Rift Basin & Dual Ridges) -->
       <svg
         class="hero-topo-svg topo-layer-primary"
         viewBox="0 0 1600 900"
@@ -17,226 +17,117 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="rift-lane-stroke" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.14" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.06" />
-          </linearGradient>
-          <linearGradient id="rift-river-stroke" x1="20%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.02" />
-            <stop offset="30%" stop-color="#ffffff" stop-opacity="0.11" />
-            <stop offset="70%" stop-color="#ffffff" stop-opacity="0.11" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+          <linearGradient id="topo-stroke-base" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.03" />
+            <stop offset="45%" stop-color="#ffffff" stop-opacity="0.095" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.025" />
           </linearGradient>
           <linearGradient id="topo-stroke-ridge" x1="0%" y1="20%" x2="100%" y2="80%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.035" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.14" />
             <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03" />
           </linearGradient>
         </defs>
 
-        <!-- ================= 1. OUTER RIFT MAP BOUNDARY & ALCOVES ================= -->
-        <g stroke="rgba(255, 255, 255, 0.055)" stroke-width="1">
-          <!-- Outer Map Frame -->
-          <path d="M 145,785 L 145,190 C 145,95 215,52 365,52 L 1360,95 C 1430,98 1455,125 1455,195 L 1455,710 C 1455,805 1385,848 1235,848 L 240,805 C 170,802 145,785 145,785 Z" />
-          <!-- Top-Left Alcove Pocket -->
-          <path d="M 145,235 C 102,165 112,92 185,58 C 245,30 320,40 385,53" stroke-dasharray="4 6" />
-          <!-- Bottom-Right Alcove Pocket -->
-          <path d="M 1455,665 C 1498,735 1488,808 1415,842 C 1355,870 1280,860 1215,847" stroke-dasharray="4 6" />
+        <!-- Diagonal Rift Valley Sweeps (Full-Stage Isolines) -->
+        <g stroke="url(#topo-stroke-base)" stroke-width="1">
+          <path d="M-120,780 C180,710 390,520 680,470 C970,420 1190,230 1720,120" />
+          <path d="M-120,805 C195,730 405,538 698,485 C990,432 1210,245 1720,142" stroke-opacity="0.65" />
+          <path d="M-120,830 C210,750 420,555 715,500 C1010,445 1230,260 1720,165" />
+          <path d="M-120,880 C240,790 450,590 750,530 C1050,470 1270,295 1720,210" />
+          <path d="M-120,755 C165,688 375,502 662,455 C950,408 1170,212 1720,98" stroke-opacity="0.65" />
+          <path d="M-120,730 C150,665 360,485 645,440 C930,395 1150,195 1720,75" />
+          <path d="M-120,680 C120,620 330,450 610,410 C890,370 1110,160 1720,30" />
         </g>
 
-        <!-- ================= 2. RIVER CHANNEL (NW TO SE DIAGONAL) ================= -->
-        <g stroke="url(#rift-river-stroke)">
-          <!-- River Banks (Left & Right Shorelines) -->
-          <path d="M 310,115 C 430,220 505,270 615,355 C 725,440 835,515 955,595 C 1075,675 1175,745 1290,815" stroke-width="1" />
-          <path d="M 375,95 C 495,195 575,245 685,330 C 795,415 905,490 1025,570 C 1145,650 1235,720 1345,790" stroke-width="1" />
-          <!-- River Center Current Isolines -->
-          <path d="M 342,105 C 462,208 540,258 650,342 C 760,426 870,502 990,582 C 1110,662 1205,732 1318,802" stroke-width="0.9" stroke-dasharray="8 10" />
+        <!-- North-West High-Ground Elevation Rings (Behind Hero Title) -->
+        <g stroke="url(#topo-stroke-ridge)" stroke-width="1">
+          <path d="M-80,140 C80,90 290,70 430,145 C570,220 550,355 410,420 C270,485 70,460 -90,390 Z" />
+          <path d="M-40,175 C95,130 270,115 385,175 C500,235 485,340 370,390 C255,440 85,420 -50,360 Z" />
+          <path d="M10,210 C115,172 245,160 335,205 C425,250 415,322 325,358 C235,394 105,380 5,332 Z" />
+          <path d="M65,242 C135,215 220,208 282,238 C344,268 338,308 275,330 C212,352 130,342 62,308 Z" />
+          <path d="M115,264 C158,248 205,244 242,262 C279,280 275,302 238,314 C201,326 152,320 112,300 Z" />
+          <path d="M-130,95 C65,35 320,15 490,110 C660,205 635,380 465,465 C295,550 50,520 -140,435 Z" />
+          <path d="M-180,50 C50,-20 355,-40 555,75 C755,190 720,405 525,510 C330,615 30,580 -190,480 Z" />
         </g>
 
-        <!-- ================= 3. THREE ICONIC LANES (TOP, MID, BOT) ================= -->
-        <!-- TOP LANE CORRIDOR -->
-        <g stroke="url(#rift-lane-stroke)">
-          <path d="M 172,635 L 172,215 C 172,115 245,72 395,74 L 1285,122" stroke-width="0.9" />
-          <path d="M 218,635 L 218,235 C 218,148 278,112 410,114 L 1285,164" stroke-width="0.9" />
-          <path d="M 195,635 L 195,225 C 195,130 262,92 402,94 L 1285,143" stroke-width="1.1" stroke-dasharray="6 8" />
+        <!-- South-East Tactical Plateau Rings (Behind Matchup Card) -->
+        <g stroke="url(#topo-stroke-ridge)" stroke-width="1">
+          <path d="M1040,460 C1175,395 1375,410 1495,500 C1615,590 1585,735 1445,795 C1305,855 1110,825 1005,725 C900,625 905,525 1040,460 Z" />
+          <path d="M1085,495 C1195,442 1355,455 1450,528 C1545,601 1522,715 1410,762 C1298,809 1142,785 1058,705 C974,625 975,548 1085,495 Z" />
+          <path d="M1132,532 C1218,490 1335,500 1405,556 C1475,612 1458,695 1372,730 C1286,765 1172,748 1110,686 C1048,624 1046,574 1132,532 Z" />
+          <path d="M1182,570 C1242,540 1318,548 1362,585 C1406,622 1395,674 1338,696 C1281,718 1205,708 1165,668 C1125,628 1122,600 1182,570 Z" />
+          <path d="M1222,600 C1260,582 1304,586 1328,608 C1352,630 1345,658 1312,670 C1279,682 1235,676 1212,652 C1189,628 1184,618 1222,600 Z" />
+          <path d="M990,420 C1155,342 1400,360 1545,470 C1690,580 1655,760 1485,832 C1315,904 1075,868 950,748 C825,628 825,498 990,420 Z" />
         </g>
 
-        <!-- MID LANE CORRIDOR (DIAGONAL SPINE) -->
-        <g stroke="url(#rift-lane-stroke)">
-          <path d="M 272,656 L 1302,206" stroke-width="0.95" />
-          <path d="M 298,694 L 1328,244" stroke-width="0.95" />
-          <path d="M 285,675 L 1315,225" stroke-width="1.25" stroke-dasharray="10 8" />
+        <!-- Secondary Valley Pocket Contours (Subtle Mid-Basin & Flank Knolls) -->
+        <g stroke="url(#topo-stroke-base)" stroke-width="0.9">
+          <!-- Upper-Right Valley Depression -->
+          <path d="M830,135 C925,95 1065,105 1135,165 C1205,225 1175,315 1075,348 C975,381 845,355 795,285 C745,215 735,175 830,135 Z" />
+          <path d="M875,168 C945,138 1042,145 1092,188 C1142,231 1120,295 1048,318 C976,341 885,322 848,272 C811,222 805,198 875,168 Z" />
+          <!-- Lower-Left Valley Depression -->
+          <path d="M455,565 C550,525 685,540 745,605 C805,670 775,762 675,795 C575,828 450,798 405,725 C360,652 360,605 455,565 Z" />
+          <path d="M498,598 C568,568 662,580 705,625 C748,670 728,735 655,758 C582,781 492,760 458,708 C424,656 428,628 498,598 Z" />
         </g>
 
-        <!-- BOT LANE CORRIDOR -->
-        <g stroke="url(#rift-lane-stroke)">
-          <path d="M 315,736 L 1190,786 C 1322,788 1382,752 1382,665 L 1382,265" stroke-width="0.9" />
-          <path d="M 315,778 L 1205,826 C 1355,828 1428,785 1428,685 L 1428,265" stroke-width="0.9" />
-          <path d="M 315,757 L 1198,806 C 1338,808 1405,768 1405,675 L 1405,265" stroke-width="1.1" stroke-dasharray="6 8" />
+        <!-- Subtle Cartographic Basin Markers & Contour Ticks (Purely Geometric) -->
+        <g stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9">
+          <!-- Upper Basin Focal Node -->
+          <circle cx="595" cy="345" r="22" stroke-dasharray="3 5" />
+          <circle cx="595" cy="345" r="8" />
+          <circle cx="595" cy="345" r="2" fill="rgba(255, 255, 255, 0.35)" stroke="none" />
+          <line x1="589" y1="345" x2="601" y2="345" />
+          <line x1="595" y1="339" x2="595" y2="351" />
+
+          <!-- Lower Basin Focal Node -->
+          <circle cx="885" cy="545" r="22" stroke-dasharray="3 5" />
+          <circle cx="885" cy="545" r="8" />
+          <circle cx="885" cy="545" r="2" fill="rgba(255, 255, 255, 0.35)" stroke="none" />
+          <line x1="879" y1="545" x2="891" y2="545" />
+          <line x1="885" y1="539" x2="885" y2="551" />
+
+          <!-- Center Valley Axis Node & Peak Waypoints -->
+          <circle cx="715" cy="485" r="4.5" />
+          <circle cx="715" cy="485" r="1.5" fill="rgba(255, 255, 255, 0.3)" stroke="none" />
+          <circle cx="195" cy="280" r="3.5" />
+          <circle cx="1265" cy="628" r="3.5" />
+          <circle cx="968" cy="232" r="3" />
+          <circle cx="578" cy="675" r="3" />
         </g>
 
-        <!-- ================= 4. JUNGLE QUADRANT TOPOGRAPHIC CONTOURS ================= -->
-        <g stroke="url(#topo-stroke-ridge)" stroke-width="0.95">
-          <!-- NW Quadrant (Blue Top-Side Jungle: Gromp / Blue Sentinel / Wolves) -->
-          <path d="M 265,245 C 335,205 435,215 485,275 C 535,335 495,435 415,475 C 335,515 255,475 245,385 C 235,295 230,265 265,245 Z" />
-          <path d="M 295,275 C 348,245 420,252 455,298 C 490,344 462,415 402,445 C 342,475 282,445 275,378 C 268,311 265,292 295,275 Z" />
-          <path d="M 328,308 C 365,288 408,292 428,322 C 448,352 430,395 390,414 C 350,433 310,414 305,370 C 300,326 305,320 328,308 Z" />
-
-          <!-- NE Quadrant (Red Top-Side Jungle: Red Brambleback / Krugs / Raptors) -->
-          <path d="M 655,155 C 795,135 985,148 1095,195 C 1145,218 1115,275 1015,320 C 915,365 785,375 705,320 C 625,265 575,167 655,155 Z" />
-          <path d="M 705,180 C 815,165 955,175 1038,210 C 1075,228 1052,268 978,302 C 904,336 802,342 742,300 C 682,258 645,190 705,180 Z" />
-          <path d="M 760,205 C 835,195 925,202 980,225 C 1005,236 990,262 940,284 C 890,306 820,310 780,282 C 740,254 718,212 760,205 Z" />
-
-          <!-- SW Quadrant (Blue Bot-Side Jungle: Red Brambleback / Raptors / Krugs) -->
-          <path d="M 505,705 C 455,682 485,625 585,580 C 685,535 815,525 895,580 C 975,635 1025,733 945,745 C 805,765 615,752 505,705 Z" />
-          <path d="M 562,690 C 525,672 548,632 622,598 C 696,564 798,558 858,600 C 918,642 955,710 895,720 C 785,735 645,725 562,690 Z" />
-          <path d="M 620,675 C 595,664 610,638 660,616 C 710,594 780,590 820,618 C 860,646 882,688 840,695 C 765,705 675,698 620,675 Z" />
-
-          <!-- SE Quadrant (Red Bot-Side Jungle: Blue Sentinel / Gromp / Wolves) -->
-          <path d="M 1185,425 C 1265,385 1345,425 1355,515 C 1365,605 1370,635 1335,655 C 1265,695 1165,685 1115,625 C 1065,565 1105,465 1185,425 Z" />
-          <path d="M 1198,455 C 1258,425 1318,455 1325,522 C 1332,589 1335,608 1305,625 C 1252,655 1180,648 1145,602 C 1110,556 1138,485 1198,455 Z" />
-          <path d="M 1210,486 C 1250,467 1290,486 1295,530 C 1300,574 1295,580 1272,592 C 1235,612 1192,608 1172,578 C 1152,548 1170,505 1210,486 Z" />
-        </g>
-
-        <!-- ================= 5. BARON NASHOR & DRAGON PITS ================= -->
-        <!-- BARON NASHOR PIT (Upper-Left River @ 575, 295) -->
-        <g class="rift-objective-pit">
-          <!-- Horseshoe Pit Wall Opening Toward River -->
-          <path
-            d="M 615,260 C 575,230 518,248 515,295 C 512,342 568,362 612,332"
-            stroke="rgba(255, 255, 255, 0.28)"
-            stroke-width="1.8"
-            stroke-linecap="round"
-          />
-          <circle cx="572" cy="295" r="44" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.9" stroke-dasharray="4 6" />
-          <circle cx="572" cy="295" r="24" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
-          <!-- Baron Pit Crosshair & Diamond Core -->
-          <polygon points="572,285 582,295 572,305 562,295" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.1" fill="rgba(255, 255, 255, 0.05)" />
-          <circle cx="572" cy="295" r="2.5" fill="rgba(255, 255, 255, 0.45)" />
-          <line x1="572" y1="242" x2="572" y2="256" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.9" />
-          <line x1="572" y1="334" x2="572" y2="348" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.9" />
-          <text x="515" y="232" fill="rgba(255, 255, 255, 0.18)" font-family="monospace" font-size="9" letter-spacing="2">BARON // PIT</text>
-        </g>
-
-        <!-- DRAGON PIT (Lower-Right River @ 1028, 605) -->
-        <g class="rift-objective-pit">
-          <!-- Horseshoe Pit Wall Opening Toward River -->
-          <path
-            d="M 985,568 C 1032,538 1088,558 1085,605 C 1082,652 1025,670 985,640"
-            stroke="rgba(255, 255, 255, 0.28)"
-            stroke-width="1.8"
-            stroke-linecap="round"
-          />
-          <circle cx="1028" cy="605" r="44" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.9" stroke-dasharray="4 6" />
-          <circle cx="1028" cy="605" r="24" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
-          <!-- Dragon Pit Diamond Core -->
-          <polygon points="1028,595 1038,605 1028,615 1018,605" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.1" fill="rgba(255, 255, 255, 0.05)" />
-          <circle cx="1028" cy="605" r="2.5" fill="rgba(255, 255, 255, 0.45)" />
-          <line x1="1028" y1="552" x2="1028" y2="566" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.9" />
-          <line x1="1028" y1="644" x2="1028" y2="658" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.9" />
-          <text x="990" y="672" fill="rgba(255, 255, 255, 0.18)" font-family="monospace" font-size="9" letter-spacing="2">DRAKE // PIT</text>
-        </g>
-
-        <!-- ================= 6. BLUE & RED BASES (NEXUS & INHIBITORS) ================= -->
-        <!-- BLUE BASE (Bottom-Left Order Base @ 195, 755) -->
-        <g>
-          <!-- Base Perimeter Walls -->
-          <circle cx="195" cy="755" r="145" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.1" stroke-dasharray="18 8" />
-          <circle cx="195" cy="755" r="108" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.9" />
-          <!-- Nexus Core -->
-          <circle cx="195" cy="755" r="22" stroke="rgba(255, 255, 255, 0.32)" stroke-width="1.3" fill="rgba(255, 255, 255, 0.03)" />
-          <polygon points="195,743 207,755 195,767 183,755" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.1" fill="rgba(255, 255, 255, 0.08)" />
-          <circle cx="195" cy="755" r="3.5" fill="rgba(255, 255, 255, 0.65)" />
-          <!-- 3 Blue Inhibitors (Top, Mid, Bot) -->
-          <rect x="189" y="641" width="12" height="12" transform="rotate(45 195 647)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-          <rect x="267" y="677" width="12" height="12" transform="rotate(45 273 683)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-          <rect x="297" y="751" width="12" height="12" transform="rotate(45 303 757)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-        </g>
-
-        <!-- RED BASE (Top-Right Chaos Base @ 1405, 145) -->
-        <g>
-          <!-- Base Perimeter Walls -->
-          <circle cx="1405" cy="145" r="145" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.1" stroke-dasharray="18 8" />
-          <circle cx="1405" cy="145" r="108" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.9" />
-          <!-- Nexus Core -->
-          <circle cx="1405" cy="145" r="22" stroke="rgba(255, 255, 255, 0.32)" stroke-width="1.3" fill="rgba(255, 255, 255, 0.03)" />
-          <polygon points="1405,133 1417,145 1405,157 1393,145" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.1" fill="rgba(255, 255, 255, 0.08)" />
-          <circle cx="1405" cy="145" r="3.5" fill="rgba(255, 255, 255, 0.65)" />
-          <!-- 3 Red Inhibitors (Top, Mid, Bot) -->
-          <rect x="1291" y="137" width="12" height="12" transform="rotate(45 1297 143)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-          <rect x="1321" y="211" width="12" height="12" transform="rotate(45 1327 217)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-          <rect x="1399" y="247" width="12" height="12" transform="rotate(45 1405 253)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.1" fill="#000000" />
-        </g>
-
-        <!-- ================= 7. LANE TURRET NODES (T1 / T2 / T3 TOWERS) ================= -->
-        <g stroke="rgba(255, 255, 255, 0.28)" stroke-width="1.1" fill="#050507">
-          <!-- Mid Lane Turrets -->
-          <circle cx="445" cy="605" r="5.5" /><circle cx="445" cy="605" r="2" fill="rgba(255,255,255,0.45)" stroke="none" />
-          <circle cx="620" cy="528" r="5.5" /><circle cx="620" cy="528" r="2" fill="rgba(255,255,255,0.45)" stroke="none" />
-          <circle cx="980" cy="372" r="5.5" /><circle cx="980" cy="372" r="2" fill="rgba(255,255,255,0.45)" stroke="none" />
-          <circle cx="1155" cy="295" r="5.5" /><circle cx="1155" cy="295" r="2" fill="rgba(255,255,255,0.45)" stroke="none" />
-
-          <!-- Top Lane Turrets -->
-          <circle cx="195" cy="445" r="5.5" /><circle cx="195" cy="445" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="202" cy="235" r="5.5" /><circle cx="202" cy="235" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="545" cy="102" r="5.5" /><circle cx="545" cy="102" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="920" cy="122" r="5.5" /><circle cx="920" cy="122" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-
-          <!-- Bot Lane Turrets -->
-          <circle cx="680" cy="778" r="5.5" /><circle cx="680" cy="778" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="1055" cy="798" r="5.5" /><circle cx="1055" cy="798" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="1398" cy="665" r="5.5" /><circle cx="1398" cy="665" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-          <circle cx="1405" cy="455" r="5.5" /><circle cx="1405" cy="455" r="2" fill="rgba(255,255,255,0.4)" stroke="none" />
-
-          <!-- 4 Jungle Buff Camp Nodes (Blue & Red Buffs) -->
-          <circle cx="368" cy="360" r="4" stroke="rgba(255,255,255,0.22)" />
-          <circle cx="865" cy="245" r="4" stroke="rgba(255,255,255,0.22)" />
-          <circle cx="735" cy="655" r="4" stroke="rgba(255,255,255,0.22)" />
-          <circle cx="1232" cy="540" r="4" stroke="rgba(255,255,255,0.22)" />
-        </g>
-
-        <!-- ================= 8. TRAVELLING TACTICAL LANE & RIVER GLINTS ================= -->
-        <!-- Mid Lane Glint -->
+        <!-- Subtle Travelling Monochrome Ridge Glints -->
         <path
           class="topo-ridge-glint"
-          d="M 285,675 L 1315,225"
+          d="M-120,780 C180,710 390,520 680,470 C970,420 1190,230 1720,120"
         />
-        <!-- Top Lane Glint -->
         <path
           class="topo-ridge-glint topo-glint-delayed"
-          d="M 195,635 L 195,225 C 195,130 262,92 402,94 L 1285,143"
+          d="M-80,140 C80,90 290,70 430,145 C570,220 550,355 410,420 C270,485 70,460 -90,390 Z"
         />
-        <!-- Bot Lane Glint -->
         <path
           class="topo-ridge-glint topo-glint-slow"
-          d="M 315,757 L 1198,806 C 1338,808 1405,768 1405,675 L 1405,265"
-        />
-        <!-- River Current Glint -->
-        <path
-          class="topo-ridge-glint topo-glint-delayed"
-          d="M 342,105 C 462,208 540,258 650,342 C 760,426 870,502 990,582 C 1110,662 1205,732 1318,802"
+          d="M1040,460 C1175,395 1375,410 1495,500 C1615,590 1585,735 1445,795 C1305,855 1110,825 1005,725 C900,625 905,525 1040,460 Z"
         />
       </svg>
 
-      <!-- Secondary Tactical Telemetry Overlay (Vision Rings & Jungle Pathing Vectors) -->
+      <!-- Secondary Deep-Field Contours (Counter-Drifting Parallax Layer) -->
       <svg
         class="hero-topo-svg topo-layer-secondary"
         viewBox="0 0 1600 900"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
       >
-        <!-- Mid-River Intersection Vision Radar Ring -->
-        <circle cx="800" cy="450" r="68" stroke="rgba(255, 255, 255, 0.06)" stroke-width="0.9" stroke-dasharray="3 7" />
-        <circle cx="800" cy="450" r="135" stroke="rgba(255, 255, 255, 0.035)" stroke-width="0.8" />
-        <line x1="788" y1="450" x2="812" y2="450" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
-        <line x1="800" y1="438" x2="800" y2="462" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.9" />
-
-        <!-- Jungle Roam & River Pathing Vectors -->
-        <g stroke="rgba(255, 255, 255, 0.045)" stroke-width="0.85" stroke-dasharray="5 9">
-          <path d="M 195,755 C 310,590 340,460 368,360 C 395,260 485,280 572,295" />
-          <path d="M 1405,145 C 1290,310 1260,440 1232,540 C 1205,640 1115,620 1028,605" />
-          <path d="M 368,360 C 510,410 640,435 800,450 C 960,465 1090,490 1232,540" />
+        <g stroke="rgba(255, 255, 255, 0.045)" stroke-width="0.85" stroke-dasharray="6 10">
+          <path d="M-100,610 C220,560 440,390 740,360 C1040,330 1280,150 1700,40" />
+          <path d="M-100,920 C270,830 510,640 820,580 C1130,520 1350,350 1700,270" />
+          <path d="M310,-40 C480,175 615,345 740,465 C865,585 1015,735 1230,940" />
+        </g>
+        <g stroke="rgba(255, 255, 255, 0.035)" stroke-width="0.85">
+          <path d="M240,-60 C420,80 590,230 790,260 C990,290 1190,190 1420,-40" />
+          <path d="M180,-60 C385,110 570,275 795,310 C1020,345 1240,230 1490,-40" />
+          <path d="M120,960 C340,790 550,660 780,640 C1010,620 1210,730 1440,960" />
+          <path d="M60,960 C305,760 535,615 785,590 C1035,565 1255,695 1510,960" />
         </g>
       </svg>
     </div>
