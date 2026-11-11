@@ -3,83 +3,189 @@
 ---
 
 <section id="partners" class="section-pad partners-section">
-  <!-- Minimalist Monochrome Summoner's Rift Lane Background -->
+  <!-- Minimalist Monochrome Faceted Glass-Chip Drake & Fine Line Architecture -->
   <div class="partners-bg-fx" aria-hidden="true">
-    <div class="partners-topo-wrap">
+    <div class="partners-glare"></div>
+
+    <div class="partners-drake-wrap">
       <svg
-        class="partners-topo-svg"
-        viewBox="0 0 1600 680"
+        class="partners-drake-svg"
+        viewBox="0 0 1600 720"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="partners-lane-stroke" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.015" />
-            <stop offset="25%" stop-color="#ffffff" stop-opacity="0.075" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.095" />
-            <stop offset="75%" stop-color="#ffffff" stop-opacity="0.075" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.015" />
+          <!-- Translucent Glass-Chip Surface Gradients -->
+          <linearGradient id="drake-glass-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.055" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.022" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.008" />
           </linearGradient>
-          <linearGradient id="partners-river-cross" x1="25%" y1="0%" x2="75%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.0" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.055" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
+          <linearGradient id="drake-glass-mid" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.038" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01" />
+          </linearGradient>
+          <linearGradient id="drake-glass-soft" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.026" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.005" />
+          </linearGradient>
+          <!-- Fine Edge Wireframe Gradient -->
+          <linearGradient id="drake-edge-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
           </linearGradient>
         </defs>
 
-        <!-- 1. Flanking Lane Wall Topographic Banks (North-West & South-East Ridges) -->
-        <g stroke="url(#partners-lane-stroke)" stroke-width="0.9">
-          <!-- Upper Lane Bank Contours -->
-          <path d="M-120,475 C260,395 540,305 800,245 C1060,185 1340,95 1720,15" stroke-opacity="0.55" />
-          <path d="M-120,515 C265,435 545,342 800,282 C1055,222 1335,132 1720,52" stroke-opacity="0.8" />
-          <!-- Inner Lane Corridor Boundaries -->
-          <path d="M-120,548 C270,468 550,375 800,315 C1050,255 1330,162 1720,82" stroke-width="1.05" />
-          <path d="M-120,602 C270,522 550,429 800,369 C1050,309 1330,216 1720,136" stroke-width="1.05" />
-          <!-- Lower Lane Bank Contours -->
-          <path d="M-120,635 C265,555 545,462 800,402 C1055,342 1335,252 1720,172" stroke-opacity="0.8" />
-          <path d="M-120,675 C260,595 540,505 800,445 C1060,385 1340,295 1720,215" stroke-opacity="0.55" />
+        <!-- ================= 1. FINE ARCHITECTURAL CONSTRUCTION LINES & ALTAR RINGS ================= -->
+        <g stroke="rgba(255, 255, 255, 0.065)" stroke-width="0.85">
+          <!-- Perspective Dragon Pit / Pedestal Rings at Base -->
+          <ellipse cx="800" cy="590" rx="340" ry="74" stroke-dasharray="8 10" />
+          <ellipse cx="800" cy="590" rx="210" ry="44" />
+          <!-- Geometric Wing-Span Construction Arcs & Guides -->
+          <circle cx="800" cy="285" r="245" stroke-dasharray="3 8" stroke-opacity="0.7" />
+          <line x1="140" y1="165" x2="1460" y2="165" stroke-dasharray="4 10" stroke-opacity="0.45" />
+          <line x1="800" y1="35" x2="800" y2="665" stroke-dasharray="5 9" stroke-opacity="0.5" />
+          <!-- Diagonal Structural Tangents from Wing Joints -->
+          <line x1="520" y1="115" x2="210" y2="480" stroke-dasharray="3 7" stroke-opacity="0.45" />
+          <line x1="1080" y1="115" x2="1390" y2="480" stroke-dasharray="3 7" stroke-opacity="0.45" />
         </g>
 
-        <!-- 2. Center Lane Track (Dashed Minion Wave Axis) -->
+        <!-- ================= 2. LEFT WING — TRANSLUCENT GLASS-CHIP PANELS & SPARS ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
+          <!-- Outer Primary Wing Blade (Glass Chip 1 & 2) -->
+          <polygon points="742,225 520,115 155,165 365,245" fill="url(#drake-glass-bright)" />
+          <polygon points="155,165 365,245 215,315" fill="url(#drake-glass-mid)" />
+          <!-- Mid-Outer Wing Membrane Panel (Glass Chip 3 & 4) -->
+          <polygon points="742,225 365,245 485,335 732,278" fill="url(#drake-glass-soft)" />
+          <polygon points="365,245 215,315 340,395 485,335" fill="url(#drake-glass-bright)" />
+          <!-- Mid-Inner Wing Membrane Panel (Glass Chip 5 & 6) -->
+          <polygon points="732,278 485,335 585,425 748,332" fill="url(#drake-glass-mid)" />
+          <polygon points="485,335 340,395 468,472 585,425" fill="url(#drake-glass-soft)" />
+          <!-- Inner Trailing Wing Pinion (Glass Chip 7) -->
+          <polygon points="748,332 585,425 655,498 762,385" fill="url(#drake-glass-bright)" />
+          <!-- Wing Thumb Claw Spire at Apex (@ 520, 115) -->
+          <polygon points="520,115 488,62 548,96" fill="url(#drake-glass-bright)" />
+          <polygon points="520,115 548,96 635,172" fill="url(#drake-glass-soft)" />
+
+          <!-- Fine Internal Wing Facet Ribs (Secondary Hairlines) -->
+          <g stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75">
+            <line x1="520" y1="115" x2="365" y2="245" />
+            <line x1="520" y1="115" x2="485" y2="335" />
+            <line x1="742" y1="225" x2="215" y2="315" />
+            <line x1="732" y1="278" x2="340" y2="395" />
+            <line x1="748" y1="332" x2="468" y2="472" />
+          </g>
+        </g>
+
+        <!-- ================= 3. RIGHT WING — TRANSLUCENT GLASS-CHIP PANELS & SPARS ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
+          <!-- Outer Primary Wing Blade (Glass Chip 1 & 2) -->
+          <polygon points="858,225 1080,115 1445,165 1235,245" fill="url(#drake-glass-bright)" />
+          <polygon points="1445,165 1235,245 1385,315" fill="url(#drake-glass-mid)" />
+          <!-- Mid-Outer Wing Membrane Panel (Glass Chip 3 & 4) -->
+          <polygon points="858,225 1235,245 1115,335 868,278" fill="url(#drake-glass-soft)" />
+          <polygon points="1235,245 1385,315 1260,395 1115,335" fill="url(#drake-glass-bright)" />
+          <!-- Mid-Inner Wing Membrane Panel (Glass Chip 5 & 6) -->
+          <polygon points="868,278 1115,335 1015,425 852,332" fill="url(#drake-glass-mid)" />
+          <polygon points="1115,335 1260,395 1132,472 1015,425" fill="url(#drake-glass-soft)" />
+          <!-- Inner Trailing Wing Pinion (Glass Chip 7) -->
+          <polygon points="852,332 1015,425 945,498 838,385" fill="url(#drake-glass-bright)" />
+          <!-- Wing Thumb Claw Spire at Apex (@ 1080, 115) -->
+          <polygon points="1080,115 1112,62 1052,96" fill="url(#drake-glass-bright)" />
+          <polygon points="1080,115 1052,96 965,172" fill="url(#drake-glass-soft)" />
+
+          <!-- Fine Internal Wing Facet Ribs (Secondary Hairlines) -->
+          <g stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75">
+            <line x1="1080" y1="115" x2="1235" y2="245" />
+            <line x1="1080" y1="115" x2="1115" y2="335" />
+            <line x1="858" y1="225" x2="1385" y2="315" />
+            <line x1="868" y1="278" x2="1260" y2="395" />
+            <line x1="852" y1="332" x2="1132" y2="472" />
+          </g>
+        </g>
+
+        <!-- ================= 4. HORNED DRAGON HEAD, TORSO ARMOR & TAIL PLATES ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1.05" stroke-linejoin="round">
+          <!-- Swept-Back Dragon Crown Horns -->
+          <polygon points="782,118 728,46 762,135" fill="url(#drake-glass-bright)" />
+          <polygon points="818,118 872,46 838,135" fill="url(#drake-glass-bright)" />
+          <polygon points="762,135 712,88 754,158" fill="url(#drake-glass-mid)" />
+          <polygon points="838,135 888,88 846,158" fill="url(#drake-glass-mid)" />
+
+          <!-- Sculpted Dragon Skull, Brow & Snout -->
+          <polygon points="800,88 818,118 800,152 782,118" fill="url(#drake-glass-bright)" />
+          <polygon points="782,118 762,135 776,176 800,152" fill="url(#drake-glass-mid)" />
+          <polygon points="818,118 838,135 824,176 800,152" fill="url(#drake-glass-mid)" />
+          <polygon points="800,152 824,176 800,202 776,176" fill="url(#drake-glass-bright)" />
+
+          <!-- Segmented Neck & Shoulder Armor Plates -->
+          <polygon points="776,176 742,225 800,238 800,202" fill="url(#drake-glass-soft)" />
+          <polygon points="824,176 858,225 800,238 800,202" fill="url(#drake-glass-soft)" />
+          <polygon points="742,225 732,278 768,285 800,238" fill="url(#drake-glass-mid)" />
+          <polygon points="858,225 868,278 832,285 800,238" fill="url(#drake-glass-mid)" />
+
+          <!-- Lower Ribcage & Waist Chevron Shards -->
+          <polygon points="732,278 748,332 800,356 768,285" fill="url(#drake-glass-soft)" />
+          <polygon points="868,278 852,332 800,356 832,285" fill="url(#drake-glass-soft)" />
+          <polygon points="748,332 762,385 800,418 800,356" fill="url(#drake-glass-mid)" />
+          <polygon points="852,332 838,385 800,418 800,356" fill="url(#drake-glass-mid)" />
+
+          <!-- Sweeping Articulated Tail Vertebrae & Tail-Spade -->
+          <polygon points="762,385 774,452 800,478 800,418" fill="url(#drake-glass-soft)" />
+          <polygon points="838,385 826,452 800,478 800,418" fill="url(#drake-glass-soft)" />
+          <polygon points="774,452 792,522 818,505 800,478" fill="url(#drake-glass-mid)" />
+          <polygon points="826,452 818,505 792,522 836,548 852,498" fill="url(#drake-glass-bright)" />
+          <polygon points="792,522 836,548 878,592 824,578" fill="url(#drake-glass-mid)" />
+          <!-- Bladed Tail Tip Crest -->
+          <polygon points="878,592 942,612 895,642 824,578" fill="url(#drake-glass-bright)" />
+        </g>
+
+        <!-- ================= 5. DETACHED FLOATING GLASS-CHIP SHARDS & VERTEX NODES ================= -->
+        <g class="drake-floating-shards" stroke="rgba(255, 255, 255, 0.16)" stroke-width="0.9">
+          <!-- Left Wingtip Floating Shards -->
+          <polygon points="105,195 142,182 128,218" fill="url(#drake-glass-bright)" />
+          <polygon points="168,352 198,338 186,374" fill="url(#drake-glass-mid)" />
+          <polygon points="442,78 468,64 462,96" fill="url(#drake-glass-soft)" />
+          <!-- Right Wingtip Floating Shards -->
+          <polygon points="1495,195 1458,182 1472,218" fill="url(#drake-glass-bright)" />
+          <polygon points="1432,352 1402,338 1414,374" fill="url(#drake-glass-mid)" />
+          <polygon points="1158,78 1132,64 1138,96" fill="url(#drake-glass-soft)" />
+        </g>
+
+        <!-- ================= 6. LEVITATING DRAGON SOUL CRYSTAL CORE (@ 800, 290) ================= -->
+        <g class="drake-soul-core">
+          <circle cx="800" cy="290" r="46" stroke="rgba(255, 255, 255, 0.09)" stroke-width="0.85" stroke-dasharray="3 6" />
+          <circle cx="800" cy="290" r="28" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.95" />
+          <polygon
+            points="800,248 824,290 800,332 776,290"
+            stroke="rgba(255, 255, 255, 0.34)"
+            stroke-width="1.15"
+            fill="rgba(255, 255, 255, 0.045)"
+          />
+          <polyline points="776,290 800,302 824,290" stroke="rgba(255, 255, 255, 0.24)" stroke-width="0.9" />
+          <line x1="800" y1="248" x2="800" y2="332" stroke="rgba(255, 255, 255, 0.24)" stroke-width="0.9" />
+          <circle cx="800" cy="290" r="2.5" fill="rgba(255, 255, 255, 0.65)" />
+        </g>
+
+        <!-- Structural Vertex Nodes on Wing Knuckles & Tips -->
+        <g stroke="rgba(255, 255, 255, 0.22)" stroke-width="0.9" fill="#050507">
+          <circle cx="520" cy="115" r="4" /><circle cx="520" cy="115" r="1.5" fill="rgba(255, 255, 255, 0.45)" stroke="none" />
+          <circle cx="1080" cy="115" r="4" /><circle cx="1080" cy="115" r="1.5" fill="rgba(255, 255, 255, 0.45)" stroke="none" />
+          <circle cx="155" cy="165" r="3.5" />
+          <circle cx="1445" cy="165" r="3.5" />
+          <circle cx="365" cy="245" r="3" />
+          <circle cx="1235" cy="245" r="3" />
+        </g>
+
+        <!-- ================= 7. TRAVELLING MONOCHROME EDGE GLINTS ================= -->
         <path
-          d="M-120,575 C270,495 550,402 800,342 C1050,282 1330,189 1720,109"
-          stroke="url(#partners-lane-stroke)"
-          stroke-width="1"
-          stroke-dasharray="8 10"
+          class="partners-drake-glint"
+          d="M 155,165 L 520,115 L 742,225 L 800,152 L 858,225 L 1080,115 L 1445,165"
         />
-
-        <!-- 3. Subtle Transverse River Crossing at Mid-Lane Center -->
-        <g stroke="url(#partners-river-cross)" stroke-width="0.85">
-          <path d="M 520,-40 C 640,165 735,285 800,342 C 865,399 960,515 1080,720" stroke-dasharray="5 9" />
-          <path d="M 475,-40 C 598,170 695,292 762,350 C 829,408 925,525 1042,720" />
-          <path d="M 565,-40 C 682,160 775,278 838,334 C 901,390 995,505 1118,720" />
-        </g>
-
-        <!-- 4. Minimalist Outer Turret Nodes & Center Lane Clash Ring -->
-        <g stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.95">
-          <!-- Left Outer Turret Node (Blue Side) -->
-          <circle cx="430" cy="432" r="24" stroke="rgba(255, 255, 255, 0.06)" stroke-dasharray="3 5" />
-          <circle cx="430" cy="432" r="5" fill="#050507" />
-          <circle cx="430" cy="432" r="1.8" fill="rgba(255, 255, 255, 0.38)" stroke="none" />
-
-          <!-- Center Lane Intersection Node -->
-          <circle cx="800" cy="342" r="14" stroke="rgba(255, 255, 255, 0.08)" />
-          <circle cx="800" cy="342" r="2" fill="rgba(255, 255, 255, 0.3)" stroke="none" />
-
-          <!-- Right Outer Turret Node (Red Side) -->
-          <circle cx="1170" cy="252" r="24" stroke="rgba(255, 255, 255, 0.06)" stroke-dasharray="3 5" />
-          <circle cx="1170" cy="252" r="5" fill="#050507" />
-          <circle cx="1170" cy="252" r="1.8" fill="rgba(255, 255, 255, 0.38)" stroke="none" />
-        </g>
-
-        <!-- 5. Animated Lane Wave Glints (Flowing Along the Lane Corridor) -->
         <path
-          class="partners-lane-glint"
-          d="M-120,548 C270,468 550,375 800,315 C1050,255 1330,162 1720,82"
-        />
-        <path
-          class="partners-lane-glint partners-lane-glint-reverse"
-          d="M 1720,136 C 1330,216 1050,309 800,369 C 550,429 270,522 -120,602"
+          class="partners-drake-glint partners-drake-glint-delayed"
+          d="M 215,315 L 365,245 L 485,335 L 585,425 L 748,332 L 800,418 L 852,332 L 1015,425 L 1115,335 L 1235,245 L 1385,315"
         />
       </svg>
     </div>
@@ -185,7 +291,7 @@
     overflow: hidden;
   }
 
-  /* Minimalist Summoner's Rift Lane Background */
+  /* Minimalist Monochrome Faceted Glass-Chip Drake Background */
   .partners-bg-fx {
     position: absolute;
     inset: 0;
@@ -194,50 +300,72 @@
     overflow: hidden;
   }
 
-  .partners-topo-wrap {
+  .partners-glare {
     position: absolute;
     inset: 0;
-    mask-image: radial-gradient(ellipse 88% 78% at 50% 45%, #000000 18%, rgba(0, 0, 0, 0.55) 60%, transparent 92%);
-    -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 45%, #000000 18%, rgba(0, 0, 0, 0.55) 60%, transparent 92%);
+    background:
+      radial-gradient(ellipse 52% 45% at 50% 38%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 52%, transparent 78%);
   }
 
-  .partners-topo-svg {
+  .partners-drake-wrap {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(ellipse 90% 82% at 50% 46%, #000000 22%, rgba(0, 0, 0, 0.65) 64%, transparent 94%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 82% at 50% 46%, #000000 22%, rgba(0, 0, 0, 0.65) 64%, transparent 94%);
+  }
+
+  .partners-drake-svg {
     position: absolute;
     inset: -2%;
     width: 104%;
     height: 104%;
     display: block;
-    animation: partnersLaneDrift 34s ease-in-out infinite alternate;
+    animation: drakeWingBreathe 30s ease-in-out infinite alternate;
   }
 
-  .partners-lane-glint {
-    stroke: rgba(255, 255, 255, 0.16);
-    stroke-width: 1.1;
+  .drake-soul-core,
+  .drake-floating-shards {
+    animation: drakeCrystalFloat 7s ease-in-out infinite alternate;
+  }
+
+  .partners-drake-glint {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.15;
     stroke-linecap: round;
-    stroke-dasharray: 180 1800;
-    stroke-dashoffset: 1980;
-    animation: partnersLaneGlint 24s linear infinite;
+    stroke-linejoin: round;
+    stroke-dasharray: 200 1600;
+    stroke-dashoffset: 1800;
+    animation: drakeGlintTravel 26s linear infinite;
   }
 
-  .partners-lane-glint-reverse {
-    stroke: rgba(255, 255, 255, 0.14);
-    animation-duration: 28s;
-    animation-delay: -11s;
+  .partners-drake-glint-delayed {
+    stroke: rgba(255, 255, 255, 0.16);
+    stroke-dasharray: 160 1500;
+    stroke-dashoffset: 1660;
+    animation-duration: 32s;
+    animation-delay: -14s;
   }
 
-  @keyframes partnersLaneDrift {
+  @keyframes drakeWingBreathe {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    100% { transform: translate3d(-1%, 0.6%, 0) scale(1.018); }
+    100% { transform: translate3d(0, -1%, 0) scale(1.022); }
   }
 
-  @keyframes partnersLaneGlint {
-    0% { stroke-dashoffset: 1980; }
+  @keyframes drakeCrystalFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+  }
+
+  @keyframes drakeGlintTravel {
+    0% { stroke-dashoffset: 1800; }
     100% { stroke-dashoffset: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .partners-topo-svg,
-    .partners-lane-glint {
+    .partners-drake-svg,
+    .drake-soul-core,
+    .drake-floating-shards,
+    .partners-drake-glint {
       animation: none !important;
     }
   }
