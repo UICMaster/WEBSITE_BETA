@@ -3,7 +3,7 @@
 ---
 
 <section id="partners" class="section-pad partners-section">
-  <!-- Minimalist Monochrome 3/4 Roaring Hextech-Drake (Left-Side Glass-Chip & Fine Line Architecture) -->
+  <!-- High-Detail Monochrome 3/4 Roaring Hextech-Drake (Left-Side Glass-Chip & Fine Line Architecture) -->
   <div class="partners-bg-fx" aria-hidden="true">
     <div class="partners-glare"></div>
 
@@ -16,204 +16,394 @@
       >
         <defs>
           <!-- Translucent Glass-Chip Surface Gradients -->
+          <linearGradient id="drake-glass-crystal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.11" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.048" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.015" />
+          </linearGradient>
           <linearGradient id="drake-glass-bright" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.068" />
-            <stop offset="55%" stop-color="#ffffff" stop-opacity="0.028" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.072" />
+            <stop offset="55%" stop-color="#ffffff" stop-opacity="0.03" />
             <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01" />
           </linearGradient>
           <linearGradient id="drake-glass-mid" x1="20%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.042" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.045" />
             <stop offset="100%" stop-color="#ffffff" stop-opacity="0.012" />
           </linearGradient>
           <linearGradient id="drake-glass-soft" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.026" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.028" />
             <stop offset="100%" stop-color="#ffffff" stop-opacity="0.006" />
           </linearGradient>
-          <linearGradient id="drake-maw-depth" x1="50%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.018" />
-            <stop offset="50%" stop-color="#000000" stop-opacity="0.45" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.025" />
+          <linearGradient id="drake-maw-depth" x1="30%" y1="0%" x2="70%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.025" />
+            <stop offset="45%" stop-color="#000000" stop-opacity="0.55" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03" />
           </linearGradient>
-          <!-- Fine Edge Wireframe Gradient -->
+          <!-- Fine Edge Wireframe Gradients -->
           <linearGradient id="drake-edge-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08" />
-            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.06" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.09" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.07" />
           </linearGradient>
           <linearGradient id="drake-pit-fade" x1="0%" y1="50%" x2="100%" y2="50%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.03" />
-            <stop offset="35%" stop-color="#ffffff" stop-opacity="0.11" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04" />
+            <stop offset="35%" stop-color="#ffffff" stop-opacity="0.13" />
             <stop offset="75%" stop-color="#ffffff" stop-opacity="0.04" />
             <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
           </linearGradient>
         </defs>
 
-        <!-- ================= 1. DRAGON PIT FLOOR SIGIL & FINE CONSTRUCTION LINES (LEFT STAGE) ================= -->
+        <!-- ================= 1. HEXTECH DRAGON PIT FLOOR SIGIL & ENERGY FISSURES ================= -->
         <g stroke="url(#drake-pit-fade)" stroke-width="0.95">
-          <!-- Perspective Hextech Pit Floor Rings Beneath Drake (@ 375, 535) -->
-          <ellipse cx="375" cy="535" rx="310" ry="102" stroke-dasharray="12 10" />
-          <ellipse cx="375" cy="535" rx="225" ry="74" />
-          <ellipse cx="375" cy="535" rx="145" ry="48" stroke-dasharray="5 7" />
-          <!-- Geometric Hextech Floor Pattern Notches -->
-          <polygon points="150,535 205,512 245,535 205,558" fill="url(#drake-glass-soft)" />
-          <polygon points="600,535 545,512 505,535 545,558" fill="url(#drake-glass-soft)" />
-          <path d="M 245,535 L 505,535" stroke-dasharray="4 8" stroke-opacity="0.6" />
-          <path d="M 375,433 L 375,637" stroke-dasharray="4 8" stroke-opacity="0.6" />
-          <!-- Subtle Sweeping Contour Extension Toward Center-Right -->
-          <path d="M 600,535 C 790,535 960,485 1240,455" stroke-dasharray="6 10" stroke-opacity="0.5" />
-          <path d="M 555,215 C 745,255 940,315 1180,335" stroke-dasharray="3 9" stroke-opacity="0.4" />
-        </g>
-
-        <!-- ================= 2. ARCHED SEGMENTED TAIL & HEXTECH TAIL-MACE (SWEEPING UP-LEFT) ================= -->
-        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
-          <!-- Segmented Armored Tail Vertebrae (Rising from Hip @ 295,365 to Tip @ 105,105) -->
-          <polygon points="295,365 252,338 272,308 318,338" fill="url(#drake-glass-mid)" />
-          <polygon points="252,338 214,298 238,270 272,308" fill="url(#drake-glass-bright)" />
-          <polygon points="214,298 182,254 206,230 238,270" fill="url(#drake-glass-mid)" />
-          <polygon points="182,254 156,208 178,188 206,230" fill="url(#drake-glass-bright)" />
-          <polygon points="156,208 136,164 156,150 178,188" fill="url(#drake-glass-soft)" />
-          <!-- Dorsal Tail Ridge Spikes -->
-          <polygon points="272,308 286,286 302,324" fill="url(#drake-glass-bright)" />
-          <polygon points="238,270 252,248 266,284" fill="url(#drake-glass-bright)" />
-          <polygon points="206,230 218,210 232,244" fill="url(#drake-glass-bright)" />
-          <!-- Iconic 3-Pronged Hextech Tail-Mace / Spade (@ 132, 136) -->
-          <polygon points="156,150 162,108 142,124 136,164" fill="url(#drake-glass-bright)" />
-          <polygon points="136,164 102,138 122,126 142,124" fill="url(#drake-glass-mid)" />
-          <polygon points="142,124 96,86 122,126" fill="url(#drake-glass-bright)" />
-          <circle cx="136" cy="136" r="6" fill="#050507" stroke="rgba(255, 255, 255, 0.3)" />
-          <circle cx="136" cy="136" r="2" fill="rgba(255, 255, 255, 0.55)" stroke="none" />
-        </g>
-
-        <!-- ================= 3. LEFT WING (EXTENDING HORIZONTALLY LEFT WITH GAUNTLET JOINT) ================= -->
-        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
-          <!-- Inner Wing Arm (Shoulder @ 325,358 to Wing Gauntlet @ 215,365) -->
-          <polygon points="325,335 215,342 225,382 332,374" fill="url(#drake-glass-mid)" />
-          <!-- Armored Hextech Wing-Wrist Gauntlet (@ 165..245, 330..388) -->
-          <polygon points="245,336 162,322 145,346 218,386 248,368" fill="url(#drake-glass-bright)" />
-          <polygon points="162,322 115,314 145,346" fill="url(#drake-glass-mid)" />
-          <!-- Swept-Left Wing Blades & Translucent Membrane Chips -->
-          <polygon points="162,322 -65,248 -25,295 145,346" fill="url(#drake-glass-bright)" />
-          <polygon points="145,346 -25,295 -45,332 185,368" fill="url(#drake-glass-soft)" />
-          <polygon points="218,386 -45,332 45,375 248,368" fill="url(#drake-glass-mid)" />
-          <!-- Fine Internal Wing Ribs -->
-          <line x1="162" y1="322" x2="-25" y2="295" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.75" />
-          <line x1="218" y1="386" x2="-25" y2="295" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75" />
-        </g>
-
-        <!-- ================= 4. RIGHT WING (SWEEPING HIGH UP-RIGHT LIKE REFERENCE POSTURE) ================= -->
-        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
-          <!-- Rising Wing Arm from Upper Back (@ 465, 268) to High Knuckle Joint (@ 555, 215) -->
-          <polygon points="455,265 535,195 568,225 485,292" fill="url(#drake-glass-mid)" />
-          <!-- Armored High Wing-Knuckle Gauntlet & Jewel Node (@ 555, 215) -->
-          <polygon points="525,235 552,162 595,125 582,208 545,248" fill="url(#drake-glass-bright)" />
-          <circle cx="552" cy="206" r="7" fill="#050507" stroke="rgba(255, 255, 255, 0.32)" />
-          <circle cx="552" cy="206" r="2.5" fill="rgba(255, 255, 255, 0.6)" stroke="none" />
-          <!-- High Sweeping Primary Wing Spars & Glass-Chip Membranes (Reaching Top @ 690, -15) -->
-          <polygon points="552,162 542,78 578,108 595,125" fill="url(#drake-glass-soft)" />
-          <polygon points="595,125 658,-20 622,115 582,208" fill="url(#drake-glass-bright)" />
-          <polygon points="582,208 622,115 715,-10 645,148" fill="url(#drake-glass-mid)" />
-          <polygon points="542,78 658,-20 595,125 578,108" fill="url(#drake-glass-soft)" />
-          <!-- Fine Internal Wing Ribs & Construction Tangents -->
-          <line x1="552" y1="206" x2="658" y2="-20" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.85" />
-          <line x1="582" y1="208" x2="715" y2="-10" stroke="rgba(255, 255, 255, 0.11)" stroke-width="0.8" />
-        </g>
-
-        <!-- ================= 5. HIND LEGS, CLAWS & ARMORED TORSO / SADDLE PLATES ================= -->
-        <g stroke="url(#drake-edge-stroke)" stroke-width="1.05" stroke-linejoin="round">
-          <!-- Back-Left Hind Leg & Talons (@ 272, 478) -->
-          <polygon points="318,374 275,412 298,438 342,398" fill="url(#drake-glass-soft)" />
-          <polygon points="275,412 262,462 288,468 298,438" fill="url(#drake-glass-mid)" />
-          <polygon points="262,462 248,486 266,488 275,492 288,468" fill="url(#drake-glass-bright)" />
-
-          <!-- Foreground Center-Left Leg & Armored Knee Claws (@ 348, 578) -->
-          <polygon points="365,435 328,488 358,505 395,458" fill="url(#drake-glass-mid)" />
-          <polygon points="328,488 334,548 360,548 358,505" fill="url(#drake-glass-bright)" />
-          <polygon points="334,548 322,584 344,588 358,585 368,576 360,548" fill="url(#drake-glass-bright)" />
-
-          <!-- Dorsal Back Armor Saddle & Glowing Spine Crystal (@ 385, 318) -->
-          <polygon points="318,338 385,305 432,325 368,365" fill="url(#drake-glass-bright)" />
-          <polygon points="385,305 376,262 402,292 412,316" fill="url(#drake-glass-bright)" />
-          <!-- Neck Collar / Pauldron Armor Plate (@ 435, 305) -->
-          <polygon points="418,282 468,262 492,302 448,348 412,322" fill="url(#drake-glass-bright)" />
-
-          <!-- Torso / Chest Plates & Hextech Shoulder Core (@ 388, 432) -->
-          <polygon points="332,374 368,365 448,348 465,428 395,458 342,398" fill="url(#drake-glass-soft)" />
-          <polygon points="395,458 465,428 485,468 425,478" fill="url(#drake-glass-mid)" />
-          <!-- Octagonal Hextech Shoulder Core Node (@ 388, 432) -->
-          <polygon points="388,408 408,420 408,444 388,456 368,444 368,420" fill="url(#drake-glass-bright)" />
-          <circle cx="388" cy="432" r="8" fill="#050507" stroke="rgba(255, 255, 255, 0.34)" />
-          <circle cx="388" cy="432" r="2.8" fill="rgba(255, 255, 255, 0.65)" stroke="none" />
-        </g>
-
-        <!-- ================= 6. ICONIC ROARING HEXTECH HEAD, TALL NASAL HORN & OPEN MAW ================= -->
-        <g stroke="url(#drake-edge-stroke)" stroke-width="1.1" stroke-linejoin="round">
-          <!-- Open Roaring Maw Interior (Faceted Dark Cavity Between Upper & Lower Jaws) -->
+          <!-- Perspective Hextech Pit Floor Rings Beneath Drake (@ 375, 540) -->
+          <ellipse cx="375" cy="540" rx="325" ry="106" stroke-dasharray="14 10" />
+          <ellipse cx="375" cy="540" rx="255" ry="82" />
+          <ellipse cx="375" cy="540" rx="185" ry="58" />
+          <ellipse cx="375" cy="540" rx="125" ry="38" stroke-dasharray="6 6" />
+          <!-- Inner Hextech Floor Star & Energy Fissure Cracks (Matching Screenshot Floor Glow) -->
           <polygon
-            points="515,318 568,308 548,432 512,468 482,395"
+            points="190,540 245,522 215,502 278,510 310,486 342,504 375,482 408,504 440,486 472,510 535,502 505,522 560,540 505,558 535,578 472,570 440,594 408,576 375,598 342,576 310,594 278,570 215,578 245,558"
+            fill="url(#drake-glass-soft)"
+            stroke="rgba(255, 255, 255, 0.11)"
+            stroke-width="0.85"
+          />
+          <!-- Radial Hextech Floor Fissure Lines -->
+          <polyline points="215,502 155,482 112,485" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.85" />
+          <polyline points="215,578 148,605 95,612" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.85" />
+          <polyline points="535,578 605,602 668,608" stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.85" />
+          <!-- Subtle Architectural Extension Lines Across Stage -->
+          <path d="M 630,540 C 820,540 990,485 1280,450" stroke-dasharray="5 10" stroke-opacity="0.45" />
+          <path d="M 565,205 C 760,245 955,308 1210,330" stroke-dasharray="3 9" stroke-opacity="0.38" />
+        </g>
+
+        <!-- ================= 2. DETAILED ARCHED TAIL & 3-PRONGED HEXTECH TAIL-MACE ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
+          <!-- 8 Interlocking Armored Tail Segments (Hip @ 305,368 curving up-left to 136,154) -->
+          <!-- Segment 1 (Hip Base) -->
+          <polygon points="308,368 272,348 288,318 326,338" fill="url(#drake-glass-mid)" />
+          <polygon points="272,348 264,362 296,382 308,368" fill="url(#drake-glass-soft)" />
+          <!-- Segment 2 -->
+          <polygon points="272,348 242,322 258,294 288,318" fill="url(#drake-glass-bright)" />
+          <polygon points="242,322 235,336 264,362 272,348" fill="url(#drake-glass-soft)" />
+          <!-- Segment 3 -->
+          <polygon points="242,322 214,292 232,268 258,294" fill="url(#drake-glass-mid)" />
+          <polygon points="214,292 208,306 235,336 242,322" fill="url(#drake-glass-soft)" />
+          <!-- Segment 4 -->
+          <polygon points="214,292 190,260 208,238 232,268" fill="url(#drake-glass-bright)" />
+          <polygon points="190,260 184,274 208,306 214,292" fill="url(#drake-glass-soft)" />
+          <!-- Segment 5 -->
+          <polygon points="190,260 168,226 186,208 208,238" fill="url(#drake-glass-mid)" />
+          <polygon points="168,226 162,238 184,274 190,260" fill="url(#drake-glass-soft)" />
+          <!-- Segment 6 -->
+          <polygon points="168,226 150,192 166,178 186,208" fill="url(#drake-glass-bright)" />
+          <!-- Segment 7 (Tail Neck) -->
+          <polygon points="150,192 136,162 152,150 166,178" fill="url(#drake-glass-mid)" />
+
+          <!-- Serrated Dorsal Tail Ridge Spikes (6 Chevrons Along Upper Tail Curve) -->
+          <polygon points="288,318 298,296 314,328" fill="url(#drake-glass-crystal)" />
+          <polygon points="258,294 268,272 282,304" fill="url(#drake-glass-crystal)" />
+          <polygon points="232,268 242,246 254,278" fill="url(#drake-glass-crystal)" />
+          <polygon points="208,238 218,218 228,248" fill="url(#drake-glass-crystal)" />
+          <polygon points="186,208 195,190 204,218" fill="url(#drake-glass-crystal)" />
+          <polygon points="166,178 174,162 182,188" fill="url(#drake-glass-crystal)" />
+
+          <!-- Ornate 3-Pronged Hextech Tail-Mace Head (@ 94..168, 82..168) -->
+          <!-- Right Mace Wing-Guard -->
+          <polygon points="152,150 168,122 154,96 142,118 136,142" fill="url(#drake-glass-bright)" />
+          <!-- Left Mace Wing-Guard -->
+          <polygon points="136,162 108,148 92,126 118,128 136,142" fill="url(#drake-glass-bright)" />
+          <!-- Central Mace Housing Bezel -->
+          <polygon points="122,124 142,116 152,136 136,154 118,142" fill="url(#drake-glass-mid)" />
+          <!-- Central Razor Spear-Tip Spire -->
+          <polygon points="122,124 94,82 142,116 132,128" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.3)" />
+          <line x1="94" y1="82" x2="132" y2="128" stroke="rgba(255, 255, 255, 0.22)" stroke-width="0.8" />
+          <!-- Tail-Mace Hextech Gem Core -->
+          <circle cx="135" cy="135" r="7" fill="#050507" stroke="rgba(255, 255, 255, 0.34)" />
+          <circle cx="135" cy="135" r="2.5" fill="rgba(255, 255, 255, 0.65)" stroke="none" />
+        </g>
+
+        <!-- ================= 3. LEFT FOREGROUND WING (DETAILED GAUNTLET, SPARS & MEMBRANES) ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
+          <!-- Multi-Faceted Inner Wing Arm (Shoulder @ 330,355 to Wrist Gauntlet @ 225,365) -->
+          <polygon points="332,332 268,334 275,358 338,356" fill="url(#drake-glass-bright)" />
+          <polygon points="268,334 218,340 228,364 275,358" fill="url(#drake-glass-mid)" />
+          <polygon points="338,356 275,358 228,364 236,386 292,388 342,376" fill="url(#drake-glass-soft)" />
+
+          <!-- Ornate Hextech Wing-Wrist Gauntlet Housing (@ 135..248, 315..392) -->
+          <polygon points="248,332 182,320 165,342 225,362" fill="url(#drake-glass-bright)" />
+          <polygon points="182,320 138,314 128,332 165,342" fill="url(#drake-glass-crystal)" />
+          <polygon points="165,342 225,362 242,378 205,392 148,368" fill="url(#drake-glass-mid)" />
+          <polygon points="225,362 256,356 242,378" fill="url(#drake-glass-bright)" />
+          <!-- Gauntlet Thumb-Claw & Hextech Gem -->
+          <polygon points="138,314 104,306 128,332" fill="url(#drake-glass-crystal)" />
+          <circle cx="196" cy="354" r="5.5" fill="#050507" stroke="rgba(255, 255, 255, 0.3)" />
+          <circle cx="196" cy="354" r="1.8" fill="rgba(255, 255, 255, 0.55)" stroke="none" />
+
+          <!-- Primary Leading-Edge Wing Spar & Crystal Tip -->
+          <polygon points="138,314 -70,242 -42,268 128,332" fill="url(#drake-glass-crystal)" />
+          <!-- Secondary Mid Wing Spar & Embedded Blue-Tip Crystal (@ 35, 342) -->
+          <polygon points="148,368 42,338 28,348 135,378" fill="url(#drake-glass-bright)" />
+          <polygon points="42,338 6,332 28,348" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.32)" />
+
+          <!-- Triangulated Translucent Glass-Chip Wing Membranes -->
+          <polygon points="128,332 -42,268 -15,302 88,338" fill="url(#drake-glass-bright)" />
+          <polygon points="128,332 88,338 42,338 148,368" fill="url(#drake-glass-mid)" />
+          <polygon points="-42,268 -65,308 -15,302" fill="url(#drake-glass-soft)" />
+          <polygon points="-15,302 -65,308 6,332 42,338 88,338" fill="url(#drake-glass-soft)" />
+          <polygon points="148,368 205,392 118,396 28,348" fill="url(#drake-glass-mid)" />
+          <polygon points="205,392 292,388 228,412 118,396" fill="url(#drake-glass-soft)" />
+
+          <!-- Fine Internal Membrane Stress Lines -->
+          <g stroke="rgba(255, 255, 255, 0.085)" stroke-width="0.7">
+            <line x1="128" y1="332" x2="-15" y2="302" />
+            <line x1="88" y1="338" x2="6" y2="332" />
+            <line x1="148" y1="368" x2="118" y2="396" />
+          </g>
+        </g>
+
+        <!-- ================= 4. RIGHT BACKGROUND WING (SWEEPING HIGH UP-RIGHT WITH KNUCKLE GAUNTLET) ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1" stroke-linejoin="round">
+          <!-- Muscular Upper Wing Arm Rising From Shoulder (@ 458, 268) to Knuckle (@ 552, 206) -->
+          <polygon points="452,264 512,208 532,228 475,285" fill="url(#drake-glass-mid)" />
+          <polygon points="475,285 532,228 548,248 492,302" fill="url(#drake-glass-soft)" />
+
+          <!-- Ornate High Wing-Knuckle Gauntlet & Hextech Core (@ 520..602, 118..252) -->
+          <polygon points="518,228 548,158 576,142 562,212 536,248" fill="url(#drake-glass-bright)" />
+          <polygon points="576,142 604,112 592,188 562,212" fill="url(#drake-glass-crystal)" />
+          <polygon points="562,212 592,188 612,172 578,236 536,248" fill="url(#drake-glass-mid)" />
+          <!-- Knuckle Wing-Thumb Claw Spire (@ 540, 74) -->
+          <polygon points="548,158 536,74 566,118 576,142" fill="url(#drake-glass-crystal)" />
+          <!-- Knuckle Hextech Core Socket -->
+          <polygon points="552,192 565,200 565,214 552,222 539,214 539,200" fill="url(#drake-glass-bright)" />
+          <circle cx="552" cy="207" r="6.5" fill="#050507" stroke="rgba(255, 255, 255, 0.36)" />
+          <circle cx="552" cy="207" r="2.4" fill="rgba(255, 255, 255, 0.68)" stroke="none" />
+
+          <!-- High-Sweeping Wing Finger Spars & Glass-Chip Membranes (Reaching Top @ 640..725, -25) -->
+          <!-- Primary Leading Spar -->
+          <polygon points="576,142 648,-25 662,-18 604,112" fill="url(#drake-glass-crystal)" />
+          <!-- Secondary Mid Spar -->
+          <polygon points="592,188 698,-15 712,-8 612,172" fill="url(#drake-glass-bright)" />
+          <!-- Trailing Spar -->
+          <polygon points="578,236 742,15 655,165" fill="url(#drake-glass-mid)" />
+
+          <!-- Triangulated Wing Membrane Panels -->
+          <polygon points="536,74 585,42 566,118" fill="url(#drake-glass-soft)" />
+          <polygon points="566,118 585,42 648,-25 576,142" fill="url(#drake-glass-mid)" />
+          <polygon points="604,112 662,-18 698,-15 636,96" fill="url(#drake-glass-bright)" />
+          <polygon points="604,112 636,96 592,188" fill="url(#drake-glass-soft)" />
+          <polygon points="612,172 712,-8 742,15 655,165" fill="url(#drake-glass-soft)" />
+          <polygon points="612,172 655,165 578,236" fill="url(#drake-glass-mid)" />
+
+          <!-- Fine Internal Wing Membrane Ribs -->
+          <g stroke="rgba(255, 255, 255, 0.09)" stroke-width="0.75">
+            <line x1="566" y1="118" x2="648" y2="-25" />
+            <line x1="604" y1="112" x2="698" y2="-15" />
+            <line x1="592" y1="188" x2="655" y2="165" />
+          </g>
+        </g>
+
+        <!-- ================= 5. DETAILED HIND LEGS, KNEE GUARDS, TALONS & TORSO ARMOR ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1.05" stroke-linejoin="round">
+          <!-- Back-Left Hind Leg (Thigh, Knee, Shin & 4 Articulated Talons @ 242..292, 488) -->
+          <polygon points="315,372 272,406 292,428 338,395" fill="url(#drake-glass-soft)" />
+          <polygon points="272,406 258,432 282,442 292,428" fill="url(#drake-glass-mid)" />
+          <polygon points="258,432 260,464 284,466 282,442" fill="url(#drake-glass-bright)" />
+          <!-- Back Foot & 4 Claws -->
+          <polygon points="260,464 242,486 254,484 268,468" fill="url(#drake-glass-crystal)" />
+          <polygon points="260,464 256,492 268,488 274,468" fill="url(#drake-glass-crystal)" />
+          <polygon points="274,468 272,492 282,488 284,466" fill="url(#drake-glass-crystal)" />
+          <polygon points="284,466 286,486 294,480 288,464" fill="url(#drake-glass-mid)" />
+
+          <!-- Foreground Left Leg (Armored Thigh, Hex Knee-Guard, Greave & 4 Talons @ 316..372, 588) -->
+          <polygon points="358,432 322,478 352,496 392,456" fill="url(#drake-glass-mid)" />
+          <polygon points="392,456 352,496 368,512 402,474" fill="url(#drake-glass-soft)" />
+          <!-- Hexagonal Hextech Knee-Guard Plate (@ 344, 505) -->
+          <polygon points="322,478 316,508 338,522 356,506 352,496" fill="url(#drake-glass-bright)" />
+          <!-- Shin Greave & Ankle -->
+          <polygon points="326,515 332,554 358,554 356,506" fill="url(#drake-glass-bright)" />
+          <polygon points="332,554 328,568 362,566 358,554" fill="url(#drake-glass-mid)" />
+          <!-- 4 Articulated Foreground Talons -->
+          <polygon points="328,568 314,588 326,586 336,570" fill="url(#drake-glass-crystal)" />
+          <polygon points="336,570 332,596 344,592 346,570" fill="url(#drake-glass-crystal)" />
+          <polygon points="346,570 350,594 360,588 356,568" fill="url(#drake-glass-crystal)" />
+          <polygon points="356,568 366,584 374,576 362,566" fill="url(#drake-glass-mid)" />
+
+          <!-- Ornate Dorsal Saddle Armor & Glowing Back Crystal (@ 318..435, 255..365) -->
+          <polygon points="318,338 358,312 396,322 362,362" fill="url(#drake-glass-bright)" />
+          <polygon points="358,312 395,298 432,318 396,322" fill="url(#drake-glass-crystal)" />
+          <polygon points="396,322 432,318 416,352 362,362" fill="url(#drake-glass-mid)" />
+          <!-- Dorsal Back Crystal Spire Rising From Saddle (@ 385, 255) -->
+          <polygon
+            points="378,304 372,254 398,286 406,308"
+            fill="url(#drake-glass-crystal)"
+            stroke="rgba(255, 255, 255, 0.34)"
+          />
+          <line x1="372" y1="254" x2="392" y2="306" stroke="rgba(255, 255, 255, 0.22)" stroke-width="0.85" />
+
+          <!-- Heavy Hextech Neck-Collar / Pauldron Armor (@ 412..495, 258..352) -->
+          <polygon points="415,282 465,258 488,286 442,312" fill="url(#drake-glass-crystal)" />
+          <polygon points="442,312 488,286 496,315 452,348 412,324" fill="url(#drake-glass-bright)" />
+          <polygon points="415,282 442,312 412,324 398,298" fill="url(#drake-glass-mid)" />
+
+          <!-- Muscular Chest, Ribcage & Pleated Throat/Belly Scales -->
+          <polygon points="338,356 362,362 416,352 412,405 358,432 332,392" fill="url(#drake-glass-soft)" />
+          <polygon points="416,352 452,348 468,395 412,405" fill="url(#drake-glass-mid)" />
+          <polygon points="412,405 468,395 478,438 422,452 392,456" fill="url(#drake-glass-soft)" />
+          <polygon points="422,452 478,438 492,468 445,482 402,474" fill="url(#drake-glass-mid)" />
+          <!-- Pleated Throat & Chest Scale Striations -->
+          <g stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.75">
+            <path d="M 432,366 L 462,374 L 448,392" />
+            <path d="M 426,388 L 464,398 L 445,416" />
+            <path d="M 422,412 L 468,422 L 442,442" />
+            <path d="M 418,436 L 472,448 L 440,466" />
+          </g>
+
+          <!-- Detailed Octagonal Hextech Shoulder Core Socket (@ 388, 432) -->
+          <polygon
+            points="388,402 410,411 418,432 410,453 388,462 366,453 358,432 366,411"
+            fill="url(#drake-glass-bright)"
+          />
+          <polygon
+            points="388,410 404,417 410,432 404,447 388,454 372,447 366,432 372,417"
+            fill="#050507"
+            stroke="rgba(255, 255, 255, 0.28)"
+          />
+          <!-- Radial Socket Bezel Ticks -->
+          <line x1="388" y1="402" x2="388" y2="410" />
+          <line x1="388" y1="454" x2="388" y2="462" />
+          <line x1="358" y1="432" x2="366" y2="432" />
+          <line x1="410" y1="432" x2="418" y2="432" />
+          <polygon points="388,420 398,432 388,444 378,432" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.4)" />
+          <circle cx="388" cy="432" r="2.8" fill="rgba(255, 255, 255, 0.72)" stroke="none" />
+        </g>
+
+        <!-- ================= 6. HIGH-DETAIL ROARING HEXTECH HEAD, FANGS, CHEEK FINS & HORN ================= -->
+        <g stroke="url(#drake-edge-stroke)" stroke-width="1.1" stroke-linejoin="round">
+          <!-- Open Roaring Maw Cavity & Palate Folds -->
+          <polygon
+            points="512,316 574,306 552,436 514,472 478,395"
             fill="url(#drake-maw-depth)"
           />
-          <!-- Internal Maw Geometric Soundwave / Energy Ribs -->
-          <line x1="492" y1="358" x2="554" y2="352" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75" />
-          <line x1="488" y1="388" x2="548" y2="392" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75" />
-          <line x1="496" y1="418" x2="540" y2="425" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.75" />
+          <!-- Inner Maw Palate Ridges, Throat Folds & Tongue Silhouette -->
+          <g stroke="rgba(255, 255, 255, 0.09)" stroke-width="0.75">
+            <polyline points="512,316 522,368 514,442" />
+            <polyline points="538,312 542,374 532,438" />
+            <path d="M 486,352 L 522,346 L 562,354" />
+            <path d="M 482,376 L 522,368 L 558,378" />
+            <path d="M 484,402 L 520,394 L 554,404" />
+            <!-- Pointed Dragon Tongue Tip Inside Lower Maw -->
+            <polygon points="494,412 536,396 524,428 502,432" fill="url(#drake-glass-soft)" stroke="rgba(255,255,255,0.14)" />
+          </g>
 
-          <!-- Heavy Armored Lower Jaw & Chin Beard-Spike Dropping Steeply (@ 518, 498) -->
-          <polygon points="462,382 496,392 508,448 475,432" fill="url(#drake-glass-mid)" />
-          <polygon points="452,412 475,402 486,428 458,432" fill="url(#drake-glass-bright)" />
-          <polygon points="475,432 508,448 552,432 568,452 536,458 518,502 486,458" fill="url(#drake-glass-bright)" />
-          <!-- Lower Jaw Fangs -->
-          <polygon points="508,448 516,430 524,445" fill="url(#drake-glass-bright)" />
-          <polygon points="532,442 542,424 548,438" fill="url(#drake-glass-bright)" />
+          <!-- Detailed Lower Mandible, Jaw Hinge Spikes & Chin Beard-Spike -->
+          <!-- Jaw Hinge & 2 Rear Cheek Spikes (@ 440..495, 375..435) -->
+          <polygon points="462,376 492,388 504,442 472,428" fill="url(#drake-glass-mid)" />
+          <polygon points="462,376 438,386 456,398 472,402" fill="url(#drake-glass-crystal)" />
+          <polygon points="456,398 432,414 458,418 472,428" fill="url(#drake-glass-bright)" />
+          <polygon points="458,418 446,434 472,428" fill="url(#drake-glass-mid)" />
 
-          <!-- Upper Snout, Brow Armor & Maxilla Fangs (@ 470..585, 260..325) -->
-          <polygon points="468,262 518,248 532,282 482,302" fill="url(#drake-glass-mid)" />
-          <polygon points="482,302 532,282 586,282 572,312 515,318" fill="url(#drake-glass-bright)" />
-          <!-- Glowing Slit Eye Facet -->
-          <polygon points="502,292 526,285 518,298 498,298" fill="rgba(255, 255, 255, 0.65)" stroke="none" />
-          <!-- Upper Jaw Fangs -->
-          <polygon points="536,315 544,332 552,314" fill="url(#drake-glass-bright)" />
-          <polygon points="558,312 565,328 572,312" fill="url(#drake-glass-bright)" />
+          <!-- Lower Jaw Main Armored Chin Plates & Steep Chin-Spike (@ 518, 506) -->
+          <polygon points="472,428 504,442 522,462 486,462" fill="url(#drake-glass-bright)" />
+          <polygon points="504,442 552,432 542,458 522,462" fill="url(#drake-glass-mid)" />
+          <polygon points="486,462 522,462 518,506 496,482" fill="url(#drake-glass-crystal)" />
+          <polygon points="522,462 542,458 518,506" fill="url(#drake-glass-bright)" />
+          <!-- Right-Side Lower Jaw Tusk Flare (@ 576, 446) -->
+          <polygon points="552,432 578,446 558,456 542,458" fill="url(#drake-glass-crystal)" />
 
-          <!-- Tall Iconic Hextech Nasal Horn Spire Rising From Snout Bridge (@ 532,282 -> 504,162) -->
+          <!-- Full Row of Lower Jaw Fangs (6 Sharp Teeth) -->
+          <g fill="url(#drake-glass-crystal)" stroke="rgba(255, 255, 255, 0.28)" stroke-width="0.85">
+            <polygon points="496,438 502,422 508,440" />
+            <polygon points="508,440 515,420 522,440" />
+            <polygon points="522,440 528,424 534,438" />
+            <polygon points="534,438 541,418 548,434" />
+            <polygon points="546,434 554,414 558,432" />
+            <polygon points="488,415 498,408 494,424" />
+          </g>
+
+          <!-- Detailed Upper Skull, Crown Gem, Brow Armor & Snout Maxilla -->
+          <!-- Forehead Crown Plate & Embedded Hextech Gem (@ 465..528, 238..288) -->
+          <polygon points="465,258 508,236 528,268 482,292" fill="url(#drake-glass-bright)" />
+          <polygon points="482,256 498,248 506,262 492,272 478,266" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.34)" />
+          <circle cx="492" cy="260" r="2.2" fill="rgba(255, 255, 255, 0.68)" stroke="none" />
+
+          <!-- Armored Orbital Brow & Upper Snout Bridge (@ 482..590, 276..318) -->
+          <polygon points="482,292 534,278 590,280 578,298 518,304" fill="url(#drake-glass-crystal)" />
+          <polygon points="482,292 518,304 578,298 574,312 512,318 478,308" fill="url(#drake-glass-bright)" />
+          <!-- Snout Bevel Line & Nostril Slit -->
+          <line x1="518" y1="304" x2="590" y2="280" stroke="rgba(255, 255, 255, 0.24)" stroke-width="0.85" />
+          <polygon points="562,292 574,289 570,295 560,295" fill="#050507" stroke="rgba(255,255,255,0.25)" stroke-width="0.7" />
+
+          <!-- Glowing Slit Dragon Eye & Inner Iris (@ 500..528, 286..299) -->
+          <polygon points="496,294 526,286 520,298 494,299" fill="rgba(255, 255, 255, 0.78)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="0.7" />
+          <polygon points="506,291 516,289 514,296 504,297" fill="#ffffff" stroke="none" />
+
+          <!-- Full Row of Upper Maxilla Fangs (6 Sharp Teeth) -->
+          <g fill="url(#drake-glass-crystal)" stroke="rgba(255, 255, 255, 0.28)" stroke-width="0.85">
+            <polygon points="516,318 521,332 526,317" />
+            <polygon points="526,317 532,336 538,316" />
+            <polygon points="538,316 543,330 548,315" />
+            <polygon points="548,315 554,334 560,313" />
+            <polygon points="560,313 566,328 572,312" />
+            <polygon points="572,312 578,332 582,308" />
+          </g>
+
+          <!-- Multi-Faceted Tall Hextech Nasal Horn Spire (@ 518,282 -> 498,154) -->
+          <!-- Horn Base Collar -->
+          <polygon points="516,282 524,258 552,262 544,282" fill="url(#drake-glass-mid)" />
+          <!-- Left Crystalline Horn Bevel -->
           <polygon
-            class="drake-horn-spire"
-            points="522,282 502,162 554,264 542,286"
-            fill="url(#drake-glass-bright)"
-            stroke="rgba(255, 255, 255, 0.35)"
+            points="524,258 498,154 532,238 534,264"
+            fill="url(#drake-glass-crystal)"
+            stroke="rgba(255, 255, 255, 0.38)"
           />
-          <line x1="502" y1="162" x2="534" y2="284" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.9" />
+          <!-- Right Crystalline Horn Bevel -->
+          <polygon
+            points="532,238 498,154 556,248 552,262 534,264"
+            fill="url(#drake-glass-bright)"
+            stroke="rgba(255, 255, 255, 0.3)"
+          />
+          <!-- Glowing Horn Tip Shard -->
+          <polygon points="498,154 514,205 532,212" fill="rgba(255, 255, 255, 0.14)" stroke="none" />
 
-          <!-- Three Swept-Back Cheek / Temple Crystal Fins (Exact Match to Screenshot) -->
-          <polygon points="485,295 432,282 465,312" fill="url(#drake-glass-bright)" stroke="rgba(255, 255, 255, 0.28)" />
-          <polygon points="482,312 424,312 462,332" fill="url(#drake-glass-bright)" stroke="rgba(255, 255, 255, 0.28)" />
-          <polygon points="478,330 434,344 468,348" fill="url(#drake-glass-mid)" stroke="rgba(255, 255, 255, 0.24)" />
+          <!-- Three Detailed Cheek / Temple Crystal Fins With Metallic Sockets (@ 418..486, 280..352) -->
+          <!-- Fin 1 (Upper Temple Fin) -->
+          <polygon points="486,292 462,286 468,302 484,304" fill="url(#drake-glass-mid)" />
+          <polygon points="462,286 422,276 448,302 468,302" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.32)" />
+          <!-- Fin 2 (Middle Cheek Fin) -->
+          <polygon points="482,308 458,306 464,322 480,322" fill="url(#drake-glass-mid)" />
+          <polygon points="458,306 414,308 444,326 464,322" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.32)" />
+          <!-- Fin 3 (Lower Jaw-Cheek Fin) -->
+          <polygon points="478,326 456,328 462,342 476,340" fill="url(#drake-glass-mid)" />
+          <polygon points="456,328 424,342 452,348 462,342" fill="url(#drake-glass-crystal)" stroke="rgba(255,255,255,0.28)" />
         </g>
 
-        <!-- ================= 7. FLOATING GLASS-CHIP SHARDS & STRUCTURAL VERTEX NODES ================= -->
+        <!-- ================= 7. FLOATING GLASS-CHIP SHARDS & TECHNICAL VERTEX NODES ================= -->
         <g class="drake-floating-shards" stroke="rgba(255, 255, 255, 0.18)" stroke-width="0.9">
-          <polygon points="478,135 496,118 492,148" fill="url(#drake-glass-bright)" />
-          <polygon points="615,285 648,272 634,304" fill="url(#drake-glass-mid)" />
-          <polygon points="592,382 618,374 608,402" fill="url(#drake-glass-soft)" />
-          <polygon points="72,115 92,98 88,128" fill="url(#drake-glass-bright)" />
+          <polygon points="474,128 492,112 488,142" fill="url(#drake-glass-crystal)" />
+          <polygon points="615,278 648,265 634,296" fill="url(#drake-glass-mid)" />
+          <polygon points="595,378 622,370 612,398" fill="url(#drake-glass-soft)" />
+          <polygon points="68,108 88,92 84,122" fill="url(#drake-glass-crystal)" />
+          <polygon points="352,228 368,214 366,242" fill="url(#drake-glass-bright)" />
         </g>
 
         <!-- Fine Technical Vertex Nodes on Key Silhouette Points -->
-        <g stroke="rgba(255, 255, 255, 0.26)" stroke-width="0.9" fill="#050507">
-          <circle cx="502" cy="162" r="3.5" /><circle cx="502" cy="162" r="1.4" fill="rgba(255, 255, 255, 0.65)" stroke="none" />
-          <circle cx="586" cy="282" r="3" />
-          <circle cx="518" cy="502" r="3" />
-          <circle cx="162" cy="322" r="3.5" />
-          <circle cx="96" cy="86" r="3" />
+        <g stroke="rgba(255, 255, 255, 0.28)" stroke-width="0.9" fill="#050507">
+          <circle cx="498" cy="154" r="3.5" /><circle cx="498" cy="154" r="1.4" fill="rgba(255, 255, 255, 0.7)" stroke="none" />
+          <circle cx="590" cy="280" r="3" />
+          <circle cx="518" cy="506" r="3" />
+          <circle cx="138" cy="314" r="3.5" />
+          <circle cx="94" cy="82" r="3" />
+          <circle cx="372" cy="254" r="2.8" />
         </g>
 
         <!-- ================= 8. TRAVELLING MONOCHROME EDGE GLINTS ================= -->
         <path
           class="partners-drake-glint"
-          d="M -65,248 L 162,322 L 325,335 L 418,282 L 502,162 L 554,264 L 586,282 L 518,502"
+          d="M -70,242 L 138,314 L 332,332 L 415,282 L 498,154 L 556,248 L 590,280 L 518,506"
         />
         <path
           class="partners-drake-glint partners-drake-glint-delayed"
-          d="M 96,86 L 156,150 L 238,270 L 318,338 L 455,265 L 552,162 L 658,-20"
+          d="M 94,82 L 152,150 L 232,268 L 318,338 L 452,264 L 548,158 L 648,-25"
         />
       </svg>
     </div>
@@ -319,7 +509,7 @@
     overflow: hidden;
   }
 
-  /* Minimalist Monochrome 3/4 Roaring Hextech-Drake Background (Left Stage) */
+  /* High-Detail Monochrome 3/4 Roaring Hextech-Drake Background (Left Stage) */
   .partners-bg-fx {
     position: absolute;
     inset: 0;
