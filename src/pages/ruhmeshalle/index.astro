@@ -1,5 +1,5 @@
 ---
-// src/pages/honored/index.astro
+// src/pages/ruhmeshalle/index.astro
 import Layout from '../../layouts/Layout.astro';
 import { honoredPlayers } from '../../utils/honoredData';
 ---
@@ -29,7 +29,7 @@ import { honoredPlayers } from '../../utils/honoredData';
 
       <div class="honored-grid">
         {honoredPlayers.map((player) => (
-          <a href={`/honored/${player.slug}`} class="honored-card">
+          <a href={`/ruhmeshalle/${player.slug}`} class="honored-card">
             <div class="hc-stage">
               <div class="hc-badges text-mono">
                 <span class="hc-serial">#{player.playerId}</span>

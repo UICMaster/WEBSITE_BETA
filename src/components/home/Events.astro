@@ -29,7 +29,7 @@ const defaultImage = `${siteUrl}/assets/logo/logo.png`;
 
 const eventsJsonLd = events.map((event) => {
   const isMatch = event.type === 'ESPORTS MATCH' || event.name.toLowerCase().includes('vs');
-  const eventUrl = event.location || `${siteUrl}/#events`;
+  const eventUrl = event.location || `${siteUrl}/#termine`;
   const endFallback = event.end || (event.start ? new Date(new Date(event.start).getTime() + 2 * 3600000).toISOString() : event.start);
 
   const schema: Record<string, any> = {
@@ -94,7 +94,7 @@ const eventsJsonLd = events.map((event) => {
 });
 ---
 
-<section id="events" class="section-pad events-section">
+<section id="termine" class="section-pad events-section">
   <!-- Schema.org SportsEvent & Event Structured Data (Pre-rendered for Instant Crawler Discovery) -->
   {eventsJsonLd.length > 0 && (
     <script type="application/ld+json" set:html={JSON.stringify(eventsJsonLd)} />
@@ -108,7 +108,7 @@ const eventsJsonLd = events.map((event) => {
         GEPLANTE <span class="text-gradient">TERMINE</span>
       </h2>
       <p class="section-desc">
-        Kommende Prime League Spieltage, Turniere und Vereinstreffen direkt aus unserem Terminkalender.
+        Kommende Prime League Spieltage, Turniere und Community-Events direkt aus unserem Terminkalender.
       </p>
     </div>
 
@@ -143,7 +143,7 @@ const eventsJsonLd = events.map((event) => {
                   </span>
                 </div>
                 <span class={`type-badge text-mono ${isMatch ? 'match-badge' : 'community-badge'}`}>
-                  {isMatch ? 'LIGASPIEL' : 'VEREINSTREFFEN'}
+                  {isMatch ? 'LIGASPIEL' : 'COMMUNITY-EVENT'}
                 </span>
               </div>
 

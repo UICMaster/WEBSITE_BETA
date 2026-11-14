@@ -5,13 +5,13 @@ export const GET: APIRoute = () => {
   const lastmod = new Date().toISOString().split('T')[0];
   const pages = [
     { loc: 'https://ultrainstinctcrew.com/', priority: '1.00' },
-    { loc: 'https://ultrainstinctcrew.com/honored', priority: '0.80' },
+    { loc: 'https://ultrainstinctcrew.com/ruhmeshalle', priority: '0.80' },
     ...honoredPlayers.map((p) => ({
-      loc: `https://ultrainstinctcrew.com/honored/${p.slug}`,
+      loc: `https://ultrainstinctcrew.com/ruhmeshalle/${p.slug}`,
       priority: '0.70'
     })),
-    { loc: 'https://ultrainstinctcrew.com/impressum.html', priority: '0.30' },
-    { loc: 'https://ultrainstinctcrew.com/datenschutzbestimmungen.html', priority: '0.30' }
+    { loc: 'https://ultrainstinctcrew.com/impressum', priority: '0.30' },
+    { loc: 'https://ultrainstinctcrew.com/datenschutzbestimmungen', priority: '0.30' }
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

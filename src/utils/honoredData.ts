@@ -264,7 +264,7 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
 export function getHonoredHref(playerId: string, playerName: string): string {
   const existing = honoredPlayers.find((hp) => hp.playerId === String(playerId));
   if (existing) {
-    return `/honored/${existing.slug}`;
+    return `/ruhmeshalle/${existing.slug}`;
   }
-  return `/honored/${slugifyPlayerName(playerName, String(playerId))}`;
+  return `/ruhmeshalle/${slugifyPlayerName(playerName, String(playerId))}`;
 }
