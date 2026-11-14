@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-pad {
-  padding-block: clamp(4.5rem, 8vw, 8rem);
+  padding-block: clamp(2.5rem, 4.5vw, 4.25rem);
   position: relative;
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
@@ -124,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Clean Section Headers */
 .section-header {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
   position: relative;
   z-index: 1;
 }
