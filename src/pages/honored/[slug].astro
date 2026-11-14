@@ -15,8 +15,15 @@ interface Props {
 }
 
 const { player } = Astro.props;
-const firstVoice = player.voiceClips[0] || null;
+const firstVoice = player.audioTrack || player.voiceClips[0] || null;
 const firstVideo = player.videos[0] || null;
+
+// 44-bar deterministic studio waveform profile for the single-track audio player
+const waveformHeights = [
+  28, 42, 64, 52, 78, 92, 60, 46, 84, 96, 72, 54, 68, 88, 100, 76, 58, 44, 70, 90,
+  82, 62, 94, 74, 50, 66, 86, 98, 70, 56, 80, 92, 64, 48, 76, 88, 60, 44, 54, 38,
+  50, 34, 42, 26
+];
 ---
 
 <Layout
@@ -111,16 +118,34 @@ const firstVideo = player.videos[0] || null;
 
             <h1 class="person-name">{player.name}</h1>
             <p class="person-title">{player.title}</p>
+
+            <!-- Dedicated Intro Text Area Underneath Title -->
+            <div class="hero-intro-box">
+              <p class="hero-intro-text">
+                {player.heroIntro || '[Platzhalter: Kurz-Intro unter dem Titel in data/honored.json unter "heroIntro" hinterlegen.]'}
+              </p>
+            </div>
           </div>
 
-          <!-- Phrases / Quotes -->
+          <!-- Redesigned Phrases / Signature Quotes Area -->
           <div class="phrases-section">
-            <span class="block-label text-mono">SPRÜCHE & ZITATE</span>
+            <div class="phrases-head">
+              <span class="block-label text-mono">LEGENDÄRE SPRÜCHE & ZITATE</span>
+              <span class="phrases-head-line" aria-hidden="true"></span>
+              <span class="phrases-count text-mono">{player.phrases.length} {player.phrases.length === 1 ? 'ZITAT' : 'ZITATE'}</span>
+            </div>
+
             {player.phrases.length > 0 ? (
               <div class="phrases-grid">
-                {player.phrases.map((phrase) => (
+                {player.phrases.map((phrase, idx) => (
                   <blockquote class="phrase-card">
-                    <p>„{phrase}“</p>
+                    <div class="phrase-card-top">
+                      <span class="phrase-idx text-mono">#{String(idx + 1).padStart(2, '0')}</span>
+                      <svg class="phrase-quote-mark" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                      </svg>
+                    </div>
+                    <p class="phrase-text">„{phrase}“</p>
                   </blockquote>
                 ))}
               </div>
@@ -132,61 +157,44 @@ const firstVideo = player.videos[0] || null;
       </section>
 
       <!-- =====================================================================
-           2. STANDALONE SLIM & WIDE GLASSMORPHISM AUDIO PLAYER (Outside the box)
+           2. SINGLE-TRACK SIGNATURE STUDIO AUDIO CONSOLE
            ===================================================================== -->
-      <section class="standalone-audio-bar" aria-label="Audio-Player für Sprachaufnahmen">
+      <section class="standalone-audio-bar" id="gad-player-shell" aria-label="Audio-Player für Ruhmeshalle-Aufnahme">
         {firstVoice ? (
           <>
-            <audio id="gad-audio" preload="none" src={firstVoice.src}></audio>
+            <audio id="gad-audio" preload="metadata" src={firstVoice.src}></audio>
 
-            <!-- Left: Transport Controls & Active Track Info -->
+            <!-- Left: Tactile Play/Pause Trigger & Single-Track Identity -->
             <div class="sab-left">
-              <div class="sab-controls">
-                <button
-                  type="button"
-                  id="gad-prev-btn"
-                  class="sab-icon-btn"
-                  aria-label="Vorherige Aufnahme"
-                  title="Vorherige Aufnahme"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                </button>
-
-                <button
-                  type="button"
-                  id="gad-play-btn"
-                  class="sab-play-btn"
-                  aria-label="Abspielen oder Pausieren"
-                >
-                  <svg id="gad-icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg id="gad-icon-pause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-
-                <button
-                  type="button"
-                  id="gad-next-btn"
-                  class="sab-icon-btn"
-                  aria-label="Nächste Aufnahme"
-                  title="Nächste Aufnahme"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                </button>
-              </div>
+              <button
+                type="button"
+                id="gad-play-btn"
+                class="sab-play-btn"
+                aria-label="Audio abspielen oder pausieren"
+              >
+                <svg id="gad-icon-play" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="gad-icon-pause" class="hidden" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
 
               <div class="sab-track-meta">
-                <div class="sab-title-row">
-                  <span class="sab-eq" id="gad-visualizer" aria-hidden="true">
-                    <span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span>
+                <div class="sab-kicker-row text-mono">
+                  <span class="sab-badge">
+                    <span class="sab-eq" id="gad-visualizer" aria-hidden="true">
+                      <span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span>
+                    </span>
+                    <span>SIGNATURE AUDIO</span>
                   </span>
-                  <span id="gad-current-title" class="sab-title">{firstVoice.title}</span>
+                  <span class="sab-dot" aria-hidden="true">&bull;</span>
+                  <span id="gad-current-ctx" class="sab-ctx">{firstVoice.context || 'Ruhmeshalle Audio-Track'}</span>
                 </div>
-                <span id="gad-current-ctx" class="sab-ctx text-mono">{firstVoice.context || 'Sprachaufnahme'}</span>
+                <span id="gad-current-title" class="sab-title">{firstVoice.title}</span>
               </div>
             </div>
 
-            <!-- Center: Wide Scrubbing Bar & Timecode -->
+            <!-- Center: Interactive Studio Waveform Scrubber & Timecode Pills -->
             <div class="sab-center">
-              <span id="gad-time-cur" class="sab-time text-mono">0:00</span>
+              <span id="gad-time-cur" class="sab-time sab-time-cur text-mono">0:00</span>
+
               <div
                 id="gad-scrub"
                 class="sab-scrub"
@@ -197,30 +205,29 @@ const firstVideo = player.videos[0] || null;
                 aria-valuemax="100"
                 aria-valuenow="0"
               >
-                <div id="gad-scrub-fill" class="sab-scrub-fill"></div>
+                <!-- Base Unplayed Waveform Bars -->
+                <div class="sab-wave-layer sab-wave-bg" aria-hidden="true">
+                  {waveformHeights.map((h) => (
+                    <span class="sab-wave-bar" style={`height: ${h}%`}></span>
+                  ))}
+                </div>
+
+                <!-- Active Gold/White Clipped Waveform Bars -->
+                <div id="gad-scrub-fill" class="sab-wave-layer sab-wave-fill" aria-hidden="true">
+                  {waveformHeights.map((h) => (
+                    <span class="sab-wave-bar" style={`height: ${h}%`}></span>
+                  ))}
+                </div>
+
+                <!-- Glowing Playhead Needle -->
+                <div id="gad-scrub-thumb" class="sab-playhead" aria-hidden="true"></div>
               </div>
+
               <span id="gad-time-dur" class="sab-time text-mono">0:00</span>
             </div>
 
-            <!-- Right: Track Selector Pills & Mute -->
+            <!-- Right: Volume Slider & Mute Control -->
             <div class="sab-right">
-              {player.voiceClips.length > 1 && (
-                <div class="sab-pills" role="list" aria-label="Sprachaufnahmen auswählen">
-                  {player.voiceClips.map((vc, idx) => (
-                    <button
-                      type="button"
-                      class={`sab-pill text-mono gad-track-item ${idx === 0 ? 'is-active' : ''}`}
-                      data-track-index={idx}
-                      data-voice-src={vc.src}
-                      data-voice-title={vc.title}
-                      data-voice-ctx={vc.context || 'Sprachaufnahme'}
-                    >
-                      #{idx + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
-
               <button
                 type="button"
                 id="gad-mute-btn"
@@ -231,11 +238,23 @@ const firstVideo = player.videos[0] || null;
                 <svg id="gad-icon-vol" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
                 <svg id="gad-icon-muted" class="hidden" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
               </button>
+
+              <div class="sab-vol-wrap">
+                <input
+                  type="range"
+                  id="gad-vol-slider"
+                  class="sab-vol-slider"
+                  min="0"
+                  max="100"
+                  value="85"
+                  aria-label="Lautstärke"
+                />
+              </div>
             </div>
           </>
         ) : (
           <div class="sab-empty text-mono">
-            [Platzhalter: Keine Audiodateien hinterlegt]
+            [Platzhalter: Keine Audiodatei in data/honored.json hinterlegt]
           </div>
         )}
       </section>
@@ -480,26 +499,20 @@ const firstVideo = player.videos[0] || null;
 </Layout>
 
 <script>
-  // Standalone Slim Glassmorphism Audio Bar Controller
+  // Single-Track Signature Studio Audio Console Controller
+  const playerShell = document.getElementById('gad-player-shell');
   const audio = document.getElementById('gad-audio') as HTMLAudioElement | null;
   const playBtn = document.getElementById('gad-play-btn');
-  const prevBtn = document.getElementById('gad-prev-btn');
-  const nextBtn = document.getElementById('gad-next-btn');
   const muteBtn = document.getElementById('gad-mute-btn');
+  const volSlider = document.getElementById('gad-vol-slider') as HTMLInputElement | null;
   const iconPlay = document.getElementById('gad-icon-play');
   const iconPause = document.getElementById('gad-icon-pause');
   const iconVol = document.getElementById('gad-icon-vol');
   const iconMuted = document.getElementById('gad-icon-muted');
   const visualizer = document.getElementById('gad-visualizer');
-  const curTitle = document.getElementById('gad-current-title');
-  const curCtx = document.getElementById('gad-current-ctx');
   const timeCur = document.getElementById('gad-time-cur');
   const timeDur = document.getElementById('gad-time-dur');
   const scrub = document.getElementById('gad-scrub');
-  const scrubFill = document.getElementById('gad-scrub-fill');
-  const trackItems = Array.from(document.querySelectorAll('.gad-track-item'));
-
-  let currentTrackIdx = 0;
 
   function formatTime(sec: number): string {
     if (!isFinite(sec) || sec < 0) return '0:00';
@@ -508,32 +521,26 @@ const firstVideo = player.videos[0] || null;
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   }
 
-  function loadTrack(idx: number, autoPlay = true) {
-    if (!audio || trackItems.length === 0) return;
-    currentTrackIdx = (idx + trackItems.length) % trackItems.length;
-    const target = trackItems[currentTrackIdx];
-    trackItems.forEach((btn, i) => btn.classList.toggle('is-active', i === currentTrackIdx));
-
-    const src = target.getAttribute('data-voice-src');
-    const title = target.getAttribute('data-voice-title');
-    const ctx = target.getAttribute('data-voice-ctx');
-
-    if (src) audio.src = src;
-    if (curTitle && title) curTitle.textContent = title;
-    if (curCtx) curCtx.textContent = ctx || '';
-    if (scrubFill) scrubFill.style.width = '0%';
-
-    if (autoPlay) {
-      audio.play().catch(() => {});
-    }
+  function updateProgressUI(pct: number) {
+    const clamped = Math.max(0, Math.min(100, pct));
+    scrub?.style.setProperty('--audio-pct', `${clamped}%`);
+    scrub?.setAttribute('aria-valuenow', String(Math.round(clamped)));
   }
 
   if (audio && playBtn) {
+    // Initialize default volume
+    if (volSlider) {
+      audio.volume = Number(volSlider.value) / 100;
+      volSlider.style.setProperty('--vol-pct', `${volSlider.value}%`);
+    }
+
     const syncState = () => {
       const playing = !audio.paused;
       iconPlay?.classList.toggle('hidden', playing);
       iconPause?.classList.toggle('hidden', !playing);
       visualizer?.classList.toggle('is-playing', playing);
+      playBtn.classList.toggle('is-playing', playing);
+      playerShell?.classList.toggle('is-playing', playing);
     };
 
     playBtn.addEventListener('click', () => {
@@ -544,11 +551,17 @@ const firstVideo = player.videos[0] || null;
       }
     });
 
-    prevBtn?.addEventListener('click', () => loadTrack(currentTrackIdx - 1, true));
-    nextBtn?.addEventListener('click', () => loadTrack(currentTrackIdx + 1, true));
-
     muteBtn?.addEventListener('click', () => {
       audio.muted = !audio.muted;
+      iconVol?.classList.toggle('hidden', audio.muted);
+      iconMuted?.classList.toggle('hidden', !audio.muted);
+    });
+
+    volSlider?.addEventListener('input', () => {
+      const val = Number(volSlider.value);
+      audio.volume = val / 100;
+      audio.muted = val === 0;
+      volSlider.style.setProperty('--vol-pct', `${val}%`);
       iconVol?.classList.toggle('hidden', audio.muted);
       iconMuted?.classList.toggle('hidden', !audio.muted);
     });
@@ -557,9 +570,7 @@ const firstVideo = player.videos[0] || null;
     audio.addEventListener('pause', syncState);
     audio.addEventListener('ended', () => {
       syncState();
-      if (trackItems.length > 1) {
-        loadTrack(currentTrackIdx + 1, true);
-      }
+      updateProgressUI(0);
     });
 
     audio.addEventListener('timeupdate', () => {
@@ -567,10 +578,8 @@ const firstVideo = player.videos[0] || null;
       const d = audio.duration || 0;
       if (timeCur) timeCur.textContent = formatTime(c);
       if (timeDur && d > 0) timeDur.textContent = formatTime(d);
-      if (scrubFill && d > 0) {
-        const pct = Math.min(100, Math.round((c / d) * 100));
-        scrubFill.style.width = `${pct}%`;
-        scrub?.setAttribute('aria-valuenow', String(pct));
+      if (d > 0) {
+        updateProgressUI((c / d) * 100);
       }
     });
 
@@ -578,12 +587,30 @@ const firstVideo = player.videos[0] || null;
       if (timeDur) timeDur.textContent = formatTime(audio.duration || 0);
     });
 
-    scrub?.addEventListener('click', (e) => {
+    const seekFromClientX = (clientX: number) => {
+      if (!scrub || !audio.duration) return;
       const rect = scrub.getBoundingClientRect();
-      const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      if (audio.duration) {
-        audio.currentTime = ratio * audio.duration;
-      }
+      const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      audio.currentTime = ratio * audio.duration;
+      updateProgressUI(ratio * 100);
+    };
+
+    let isScrubbing = false;
+    scrub?.addEventListener('pointerdown', (e) => {
+      isScrubbing = true;
+      scrub.setPointerCapture(e.pointerId);
+      seekFromClientX(e.clientX);
+    });
+
+    scrub?.addEventListener('pointermove', (e) => {
+      if (!isScrubbing) return;
+      seekFromClientX(e.clientX);
+    });
+
+    scrub?.addEventListener('pointerup', (e) => {
+      if (!isScrubbing) return;
+      isScrubbing = false;
+      scrub.releasePointerCapture(e.pointerId);
     });
 
     scrub?.addEventListener('keydown', (e) => {
@@ -595,10 +622,6 @@ const firstVideo = player.videos[0] || null;
         e.preventDefault();
         audio.currentTime = Math.max(0, audio.currentTime - 5);
       }
-    });
-
-    trackItems.forEach((btn, idx) => {
-      btn.addEventListener('click', () => loadTrack(idx, true));
     });
   }
 
@@ -825,6 +848,26 @@ const firstVideo = player.videos[0] || null;
     font-weight: 500;
   }
 
+  /* Dedicated Intro Text Area Underneath Title */
+  .hero-intro-box {
+    margin-top: 8px;
+    padding: 13px 16px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.032) 0%, rgba(255, 255, 255, 0.008) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-left: 2px solid #fbbf24;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    max-width: 72ch;
+  }
+
+  .hero-intro-text {
+    margin: 0;
+    font-size: 0.935rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
   .block-label {
     display: block;
     font-size: 0.6875rem;
@@ -834,64 +877,354 @@ const firstVideo = player.videos[0] || null;
     margin-bottom: 6px;
   }
 
+  /* Redesigned Collector Quote Plaques (Phrases Area) */
   .phrases-section {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 12px;
+  }
+
+  .phrases-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .phrases-head .block-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .phrases-head-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 100%);
+  }
+
+  .phrases-count {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: #141418;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2px 8px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.08em;
   }
 
   .phrases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 12px;
   }
 
   .phrase-card {
+    position: relative;
     margin: 0;
-    padding: 12px 16px;
-    background: #121216;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 2px solid #fbbf24;
+    padding: 14px 16px 16px;
+    background: linear-gradient(145deg, #15151c 0%, #0f0f14 100%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-style: italic;
-    font-size: 0.92rem;
-    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    overflow: hidden;
+    transition: border-color var(--transition-fast), transform var(--transition-smooth), box-shadow var(--transition-fast);
   }
 
-  /* =====================================================================
-     2. STANDALONE SLIM & WIDE GLASSMORPHISM AUDIO BAR (Outside the box)
-     ===================================================================== */
-  .standalone-audio-bar {
+  .phrase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    background: #fbbf24;
+    opacity: 0.85;
+    transition: width var(--transition-fast);
+  }
+
+  .phrase-card:hover {
+    border-color: rgba(251, 191, 36, 0.38);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .phrase-card:hover::before {
+    width: 56px;
+  }
+
+  .phrase-card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-xl);
-    padding: 14px 22px;
-    background: rgba(18, 18, 24, 0.72);
+    gap: 8px;
+  }
+
+  .phrase-idx {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+  }
+
+  .phrase-quote-mark {
+    color: rgba(255, 255, 255, 0.16);
+    transition: color var(--transition-fast);
+  }
+
+  .phrase-card:hover .phrase-quote-mark {
+    color: rgba(251, 191, 36, 0.45);
+  }
+
+  .phrase-text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+
+  /* =====================================================================
+     2. SINGLE-TRACK SIGNATURE STUDIO AUDIO CONSOLE
+     ===================================================================== */
+  .standalone-audio-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    padding: 16px 24px;
+    background: linear-gradient(135deg, rgba(20, 20, 26, 0.88) 0%, rgba(12, 12, 16, 0.92) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: var(--radius-md);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .standalone-audio-bar.is-playing {
+    border-color: rgba(251, 191, 36, 0.35);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), 0 0 28px rgba(251, 191, 36, 0.08);
   }
 
   .sab-left {
     display: flex;
     align-items: center;
-    gap: 14px;
-    min-width: 240px;
+    gap: 16px;
+    min-width: 260px;
+    max-width: 360px;
   }
 
-  .sab-controls {
+  .sab-play-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .sab-play-btn:hover,
+  .sab-play-btn.is-playing {
+    background: #fbbf24;
+    box-shadow: 0 0 0 5px rgba(251, 191, 36, 0.16), 0 0 20px rgba(251, 191, 36, 0.32);
+    transform: scale(1.04);
+  }
+
+  .sab-track-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .sab-kicker-row {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.65rem;
+  }
+
+  .sab-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    padding: 2px 7px;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+  }
+
+  .sab-dot {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .sab-eq {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+  }
+
+  .eq-b {
+    width: 2px;
+    height: 35%;
+    background: #fbbf24;
+    border-radius: 1px;
+    opacity: 0.65;
+  }
+
+  .sab-eq.is-playing .eq-b {
+    opacity: 1;
+    animation: eqPulse 0.65s ease-in-out infinite alternate;
+  }
+  .sab-eq.is-playing .eq-b:nth-child(2) { animation-duration: 0.45s; }
+  .sab-eq.is-playing .eq-b:nth-child(3) { animation-duration: 0.8s; }
+  .sab-eq.is-playing .eq-b:nth-child(4) { animation-duration: 0.55s; }
+  .sab-eq.is-playing .eq-b:nth-child(5) { animation-duration: 0.7s; }
+
+  @keyframes eqPulse {
+    0% { height: 25%; }
+    100% { height: 100%; }
+  }
+
+  .sab-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sab-ctx {
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Interactive Studio Waveform Scrubber */
+  .sab-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 180px;
+  }
+
+  .sab-time {
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+    min-width: 44px;
+    text-align: center;
+  }
+
+  .sab-time-cur {
+    color: #ffffff;
+  }
+
+  .sab-scrub {
+    --audio-pct: 0%;
+    position: relative;
+    flex: 1;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: none;
+    padding: 4px 0;
+  }
+
+  .sab-wave-layer {
+    position: absolute;
+    inset: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    pointer-events: none;
+  }
+
+  .sab-wave-bar {
+    flex: 1;
+    min-width: 2px;
+    border-radius: 999px;
+    transition: background-color var(--transition-fast);
+  }
+
+  .sab-wave-bg .sab-wave-bar {
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .sab-scrub:hover .sab-wave-bg .sab-wave-bar {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .sab-wave-fill {
+    clip-path: inset(0 calc(100% - var(--audio-pct, 0%)) 0 0);
+  }
+
+  .sab-wave-fill .sab-wave-bar {
+    background: linear-gradient(180deg, #fde68a 0%, #fbbf24 55%, #d97706 100%);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
+  }
+
+  .sab-playhead {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: var(--audio-pct, 0%);
+    width: 2px;
+    background: #ffffff;
+    border-radius: 999px;
+    box-shadow: 0 0 10px #fbbf24, 0 0 4px #ffffff;
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  /* Right Volume & Mute Cluster */
+  .sab-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 14px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .sab-icon-btn {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: var(--radius-xs);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -900,6 +1233,7 @@ const firstVideo = player.videos[0] || null;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    flex-shrink: 0;
     transition: all var(--transition-fast);
   }
 
@@ -909,137 +1243,55 @@ const firstVideo = player.videos[0] || null;
     background: rgba(255, 255, 255, 0.1);
   }
 
-  .sab-play-btn {
-    width: 38px;
-    height: 38px;
+  .sab-vol-wrap {
+    display: flex;
+    align-items: center;
+    width: 82px;
+  }
+
+  .sab-vol-slider {
+    --vol-pct: 85%;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      #fbbf24 0%,
+      #fbbf24 var(--vol-pct),
+      rgba(255, 255, 255, 0.14) var(--vol-pct),
+      rgba(255, 255, 255, 0.14) 100%
+    );
+    outline: none;
+    cursor: pointer;
+  }
+
+  .sab-vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     background: #ffffff;
-    color: #000000;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast), background var(--transition-fast);
+    transition: transform var(--transition-fast);
   }
 
-  .sab-play-btn:hover {
-    background: #fbbf24;
-    transform: scale(1.05);
+  .sab-vol-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
   }
 
-  .sab-track-meta {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
-  .sab-title-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .sab-eq {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 12px;
-  }
-
-  .eq-b {
-    width: 2px;
-    height: 35%;
-    background: var(--text-muted);
-    border-radius: 1px;
-  }
-
-  .sab-eq.is-playing .eq-b {
-    background: #fbbf24;
-    animation: eqPulse 0.7s ease-in-out infinite alternate;
-  }
-  .sab-eq.is-playing .eq-b:nth-child(2) { animation-duration: 0.5s; }
-  .sab-eq.is-playing .eq-b:nth-child(3) { animation-duration: 0.85s; }
-
-  @keyframes eqPulse {
-    0% { height: 25%; }
-    100% { height: 100%; }
-  }
-
-  .sab-title {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .sab-ctx {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-  }
-
-  .sab-center {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .sab-time {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    min-width: 34px;
-  }
-
-  .sab-scrub {
-    flex: 1;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 999px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .sab-scrub-fill {
-    width: 0%;
-    height: 100%;
-    background: #fbbf24;
-    border-radius: 999px;
-    transition: width 0.1s linear;
-  }
-
-  .sab-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .sab-pills {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .sab-pill {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: var(--radius-xs);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-
-  .sab-pill:hover,
-  .sab-pill.is-active {
+  .sab-vol-slider::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
     background: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
   }
 
   /* =====================================================================
@@ -1523,6 +1775,16 @@ const firstVideo = player.videos[0] || null;
       flex-direction: column;
       align-items: stretch;
       gap: var(--space-md);
+    }
+
+    .sab-left {
+      max-width: 100%;
+    }
+
+    .sab-right {
+      padding-left: 0;
+      border-left: none;
+      justify-content: flex-end;
     }
   }
 </style>

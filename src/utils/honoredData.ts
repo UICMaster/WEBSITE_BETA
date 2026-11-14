@@ -49,6 +49,7 @@ export interface HonoredPlayerDossier {
   name: string;
   photoSrc: string;
   title: string;
+  heroIntro?: string;
   inductedAtRaw: string;
   inductedAtFormatted: string;
   primeLeagueUserId: number | null;
@@ -60,6 +61,7 @@ export interface HonoredPlayerDossier {
   impact: string[];
   milestones: HonoredMilestone[];
   seasons: HonoredSeasonEntry[];
+  audioTrack: HonoredVoiceClip | null;
   voiceClips: HonoredVoiceClip[];
   videos: HonoredVideo[];
   images: HonoredImageEntry[];
@@ -216,12 +218,24 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
 
   const images: HonoredImageEntry[] = Array.isArray(cfg.images) ? cfg.images : [];
 
+  const voiceClips: HonoredVoiceClip[] = Array.isArray(cfg.voiceClips)
+    ? cfg.voiceClips
+    : cfg.audioTrack && cfg.audioTrack.src
+      ? [cfg.audioTrack]
+      : [];
+
+  const audioTrack: HonoredVoiceClip | null =
+    cfg.audioTrack && cfg.audioTrack.src
+      ? cfg.audioTrack
+      : voiceClips[0] || null;
+
   return {
     playerId,
     slug,
     name,
     photoSrc,
     title: cfg.title || '[Platzhalter: Funktion / Rolle in der Organisation]',
+    heroIntro: cfg.heroIntro || undefined,
     inductedAtRaw,
     inductedAtFormatted,
     primeLeagueUserId,
@@ -235,7 +249,8 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
     impact,
     milestones: Array.isArray(cfg.milestones) ? cfg.milestones : [],
     seasons: manualSeasons,
-    voiceClips: Array.isArray(cfg.voiceClips) ? cfg.voiceClips : [],
+    audioTrack,
+    voiceClips,
     videos: Array.isArray(cfg.videos) ? cfg.videos : [],
     images
   };

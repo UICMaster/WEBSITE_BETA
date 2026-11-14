@@ -4,6 +4,7 @@
     "name": "UIC Speedy",
     "photoSrc": "/assets/honored/0001.webp",
     "title": "Kapitän der Ultra Instinct Crew Prime",
+    "heroIntro": "Vom ersten Split an das unerschütterliche Fundament von UIC Prime – ein Kapitän, der nicht durch Lautstärke führt, sondern durch Ruhe, unbedingte Loyalität und legendäre Momente auf und neben der Kluft.",
     "inductedAt": "2026-10-28",
     "primeLeagueUserId": 751249,
     "primeLeagueAccountName": "HGG Speedy",
@@ -144,16 +145,16 @@
         "teamLink": "https://www.primeleague.gg/de/leagues/teams/116908-uic-prime"
       }
     ],
+    "audioTrack": {
+      "title": "UIC Orga-Hymne 2026",
+      "src": "/assets/audio/ULTRA_INSTINCT_CREW_ORGA_HYMNE_2026_2.mp3",
+      "context": "Persönliche Ruhmeshalle-Hymne & Ehrung"
+    },
     "voiceClips": [
       {
         "title": "UIC Orga-Hymne 2026",
         "src": "/assets/audio/ULTRA_INSTINCT_CREW_ORGA_HYMNE_2026_2.mp3",
-        "context": "Offizielle Clan-Hymne der Ultra Instinct Crew"
-      },
-      {
-        "title": "UIC Community-Version",
-        "src": "/assets/audio/ULTRA_INSTINCT_CREW_ORGA_HYMNE_2026_FAM.mp3",
-        "context": "Gewidmet allen Mitgliedern und Wegbegleitern"
+        "context": "Persönliche Ruhmeshalle-Hymne & Ehrung"
       }
     ],
     "videos": [

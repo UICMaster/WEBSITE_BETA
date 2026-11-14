@@ -55,11 +55,11 @@ import { honoredPlayers } from '../../utils/honoredData';
               <p class="hc-title">{player.title}</p>
 
               <div class="hc-meta-strip text-mono">
-                <span>{player.seasons.length} SPLITS</span>
+                <span>{player.seasons.length} {player.seasons.length === 1 ? 'SPLIT' : 'SPLITS'}</span>
                 <span>&bull;</span>
-                <span>{player.voiceClips.length} AUDIOS</span>
+                <span>{player.audioTrack ? '1 AUDIO' : '0 AUDIOS'}</span>
                 <span>&bull;</span>
-                <span>{player.videos.length} VIDEOS</span>
+                <span>{player.videos.length} {player.videos.length === 1 ? 'VIDEO' : 'VIDEOS'}</span>
               </div>
 
               <div class="hc-cta-row text-mono">
