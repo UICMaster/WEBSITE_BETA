@@ -119,12 +119,10 @@ const waveformHeights = [
             <h1 class="person-name">{player.name}</h1>
             <p class="person-title">{player.title}</p>
 
-            <!-- Dedicated Intro Text Area Underneath Title -->
-            <div class="hero-intro-box">
-              <p class="hero-intro-text">
-                {player.heroIntro || '[Platzhalter: Kurz-Intro unter dem Titel in data/honored.json unter "heroIntro" hinterlegen.]'}
-              </p>
-            </div>
+            <!-- Open Intro Text Underneath Title -->
+            <p class="hero-intro-text">
+              {player.heroIntro || '[Platzhalter: Kurz-Intro unter dem Titel in data/honored.json unter "heroIntro" hinterlegen.]'}
+            </p>
           </div>
 
           <!-- Redesigned Phrases / Signature Quotes Area -->
@@ -132,19 +130,15 @@ const waveformHeights = [
             <div class="phrases-head">
               <span class="block-label text-mono">LEGENDÄRE SPRÜCHE & ZITATE</span>
               <span class="phrases-head-line" aria-hidden="true"></span>
-              <span class="phrases-count text-mono">{player.phrases.length} {player.phrases.length === 1 ? 'ZITAT' : 'ZITATE'}</span>
             </div>
 
             {player.phrases.length > 0 ? (
               <div class="phrases-grid">
-                {player.phrases.map((phrase, idx) => (
+                {player.phrases.map((phrase) => (
                   <blockquote class="phrase-card">
-                    <div class="phrase-card-top">
-                      <span class="phrase-idx text-mono">#{String(idx + 1).padStart(2, '0')}</span>
-                      <svg class="phrase-quote-mark" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                      </svg>
-                    </div>
+                    <svg class="phrase-quote-mark" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
                     <p class="phrase-text">„{phrase}“</p>
                   </blockquote>
                 ))}
@@ -178,14 +172,7 @@ const waveformHeights = [
 
               <div class="sab-track-meta">
                 <div class="sab-kicker-row text-mono">
-                  <span class="sab-badge">
-                    <span class="sab-eq" id="gad-visualizer" aria-hidden="true">
-                      <span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span>
-                    </span>
-                    <span>SIGNATURE AUDIO</span>
-                  </span>
-                  <span class="sab-dot" aria-hidden="true">&bull;</span>
-                  <span id="gad-current-ctx" class="sab-ctx">{firstVoice.context || 'Ruhmeshalle Audio-Track'}</span>
+                  <span id="gad-current-ctx" class="sab-badge">{firstVoice.context || 'Ruhmeshalle Audio-Track'}</span>
                 </div>
                 <span id="gad-current-title" class="sab-title">{firstVoice.title}</span>
               </div>
@@ -848,24 +835,15 @@ const waveformHeights = [
     font-weight: 500;
   }
 
-  /* Dedicated Intro Text Area Underneath Title */
-  .hero-intro-box {
-    margin-top: 8px;
-    padding: 13px 16px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.032) 0%, rgba(255, 255, 255, 0.008) 100%);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-    border-right: 1px solid rgba(255, 255, 255, 0.07);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    border-left: 2px solid #fbbf24;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    max-width: 72ch;
-  }
-
+  /* Open Intro Text Area Underneath Title */
   .hero-intro-text {
-    margin: 0;
-    font-size: 0.935rem;
-    line-height: 1.65;
+    margin: 6px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.96rem;
+    line-height: 1.7;
     color: var(--text-secondary);
+    max-width: 72ch;
   }
 
   .block-label {
@@ -901,17 +879,6 @@ const waveformHeights = [
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 100%);
   }
 
-  .phrases-count {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    background: #141418;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2px 8px;
-    border-radius: var(--radius-xs);
-    letter-spacing: 0.08em;
-  }
-
   .phrases-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
@@ -921,14 +888,12 @@ const waveformHeights = [
   .phrase-card {
     position: relative;
     margin: 0;
-    padding: 14px 16px 16px;
+    padding: 16px 36px 16px 16px;
     background: linear-gradient(145deg, #15151c 0%, #0f0f14 100%);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: var(--radius-sm);
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
+    align-items: center;
     overflow: hidden;
     transition: border-color var(--transition-fast), transform var(--transition-smooth), box-shadow var(--transition-fast);
   }
@@ -955,26 +920,12 @@ const waveformHeights = [
     width: 56px;
   }
 
-  .phrase-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  .phrase-idx {
-    font-size: 0.65rem;
-    font-weight: 800;
-    color: #fbbf24;
-    background: rgba(251, 191, 36, 0.1);
-    border: 1px solid rgba(251, 191, 36, 0.25);
-    padding: 1px 6px;
-    border-radius: var(--radius-xs);
-    letter-spacing: 0.06em;
-  }
-
   .phrase-quote-mark {
-    color: rgba(255, 255, 255, 0.16);
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: rgba(255, 255, 255, 0.14);
+    pointer-events: none;
     transition: color var(--transition-fast);
   }
 
@@ -1050,7 +1001,7 @@ const waveformHeights = [
   .sab-track-meta {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     min-width: 0;
   }
 
@@ -1065,47 +1016,18 @@ const waveformHeights = [
   .sab-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
     font-weight: 800;
     color: #fbbf24;
     background: rgba(251, 191, 36, 0.1);
     border: 1px solid rgba(251, 191, 36, 0.28);
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: var(--radius-xs);
     letter-spacing: 0.06em;
-  }
-
-  .sab-dot {
-    color: rgba(255, 255, 255, 0.25);
-  }
-
-  .sab-eq {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 10px;
-  }
-
-  .eq-b {
-    width: 2px;
-    height: 35%;
-    background: #fbbf24;
-    border-radius: 1px;
-    opacity: 0.65;
-  }
-
-  .sab-eq.is-playing .eq-b {
-    opacity: 1;
-    animation: eqPulse 0.65s ease-in-out infinite alternate;
-  }
-  .sab-eq.is-playing .eq-b:nth-child(2) { animation-duration: 0.45s; }
-  .sab-eq.is-playing .eq-b:nth-child(3) { animation-duration: 0.8s; }
-  .sab-eq.is-playing .eq-b:nth-child(4) { animation-duration: 0.55s; }
-  .sab-eq.is-playing .eq-b:nth-child(5) { animation-duration: 0.7s; }
-
-  @keyframes eqPulse {
-    0% { height: 25%; }
-    100% { height: 100%; }
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .sab-title {
@@ -1114,13 +1036,6 @@ const waveformHeights = [
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.01em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .sab-ctx {
-    color: var(--text-muted);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
