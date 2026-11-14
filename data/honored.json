@@ -2,7 +2,7 @@
   "0001": {
     "slug": "speedy",
     "name": "UIC Speedy",
-    "photoSrc": "/assets/honored/0001.webp",
+    "photoSrc": "/assets/honored/0001/0001.webp",
     "title": "Kapitän der Ultra Instinct Crew Prime",
     "heroIntro": "Vom ersten Split an das unerschütterliche Fundament von UIC Prime – ein Kapitän, der nicht durch Lautstärke führt, sondern durch Ruhe, unbedingte Loyalität und legendäre Momente auf und neben der Kluft.",
     "inductedAt": "2026-10-28",
@@ -159,7 +159,7 @@
     ],
     "images": [
       {
-        "src": "/assets/honored/0001.webp",
+        "src": "/assets/honored/0001/images/0001.webp",
         "title": "UIC Speedy – Porträt",
         "caption": "Kapitän und Ehrenmitglied der Ultra Instinct Crew",
         "date": "2026"

@@ -70,7 +70,7 @@ export interface HonoredPlayerDossier {
 const honoredConfigMap = (rawHonored || {}) as Record<string, any>;
 const teamsMeta = (rawTeams || {}) as Record<string, any>;
 const primeMeta = (rawPrimeStats || {}) as Record<string, any>;
-const honoredAssetMap = (import.meta as any).glob('/public/assets/honored/*.{webp,png,jpg,jpeg}');
+const honoredAssetMap = (import.meta as any).glob('/public/assets/honored/**/*.{webp,png,jpg,jpeg}');
 
 export function slugifyPlayerName(name: string, fallbackId: string): string {
   const cleaned = name
@@ -151,12 +151,17 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
   const honoredExtensions = ['webp', 'png', 'jpg', 'jpeg'] as const;
   let detectedHonoredAsset: string | null = null;
   for (const ext of honoredExtensions) {
-    if (`/public/assets/honored/${playerId}.${ext}` in honoredAssetMap) {
-      detectedHonoredAsset = `/assets/honored/${playerId}.${ext}`;
-      break;
-    }
-    if (`/public/assets/honored/${slug}.${ext}` in honoredAssetMap) {
-      detectedHonoredAsset = `/assets/honored/${slug}.${ext}`;
+    const candidates = [
+      `/public/assets/honored/${playerId}/${playerId}.${ext}`,
+      `/public/assets/honored/${playerId}/portrait.${ext}`,
+      `/public/assets/honored/${slug}/${slug}.${ext}`,
+      `/public/assets/honored/${slug}/portrait.${ext}`,
+      `/public/assets/honored/${playerId}.${ext}`,
+      `/public/assets/honored/${slug}.${ext}`
+    ];
+    const found = candidates.find((c) => c in honoredAssetMap);
+    if (found) {
+      detectedHonoredAsset = found.replace(/^\/public/, '');
       break;
     }
   }
