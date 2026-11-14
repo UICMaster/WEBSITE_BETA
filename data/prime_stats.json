@@ -109,13 +109,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165678",
-        "updated_at": "2026-11-14T20:25:26.496546+01:00",
+        "updated_at": "2026-11-14T21:25:46.023977+01:00",
         "enemy_team": {
           "id": 204880,
           "name": "Feather Storm",
           "team_tag": "FTH",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/204880",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/204000/204880.jpg?1772296861"
         },
         "team_lineup": []
       },
@@ -134,7 +134,7 @@
           "name": "The Selected x Elektrolyse",
           "team_tag": "TSE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/209216",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/209000/209216.jpg?1786292922"
         },
         "team_lineup": [
           {
@@ -189,7 +189,7 @@
           "name": "ArcticBlaze Main",
           "team_tag": "ABL",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/182039",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/182000/182039.jpg?1679061905"
         },
         "team_lineup": [
           {
@@ -244,7 +244,7 @@
           "name": "Blue Balls",
           "team_tag": "BB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208311",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208311.jpg?1742040102"
         },
         "team_lineup": [
           {
@@ -299,7 +299,7 @@
           "name": "BS eSports Effortless",
           "team_tag": "BS",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/200038",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/200000/200038.jpg?1781170034"
         },
         "team_lineup": [
           {
@@ -354,7 +354,7 @@
           "name": "Demon King Impulse",
           "team_tag": "DKI",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206091",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206091.jpg?1786135504"
         },
         "team_lineup": [
           {
@@ -511,13 +511,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165575",
-        "updated_at": "2026-11-14T20:25:11.414091+01:00",
+        "updated_at": "2026-11-14T21:25:30.956507+01:00",
         "enemy_team": {
           "id": 192610,
           "name": "eSports Cologne Senioren",
           "team_tag": "ECO",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/192610",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/192000/192610.jpg?1779020014"
         },
         "team_lineup": [
           {
@@ -572,7 +572,7 @@
           "name": "LUST ASS Edition",
           "team_tag": "LUST",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/138020",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/138000/138020.jpg?1747933583"
         },
         "team_lineup": [
           {
@@ -627,7 +627,7 @@
           "name": "WeSports",
           "team_tag": "WES",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207208",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207208.jpg?1726505398"
         },
         "team_lineup": [
           {
@@ -682,7 +682,7 @@
           "name": "Bootz Not Bach",
           "team_tag": "BTZ",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/190230",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/190000/190230.jpg?1790692061"
         },
         "team_lineup": [
           {
@@ -737,7 +737,7 @@
           "name": "TSV Hamelspringe Dorsch",
           "team_tag": "TSVH",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/192258",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/192000/192258.jpg?1793555690"
         },
         "team_lineup": [
           {
@@ -792,7 +792,7 @@
           "name": "Lausanne Esports Helvetia",
           "team_tag": "eLS Helvetia",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/197022",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/197000/197022.jpg?1768947630"
         },
         "team_lineup": [
           {
@@ -1010,7 +1010,7 @@
           "name": "Ascendant Legion",
           "team_tag": "AL",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212904",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212904.jpg?1790015229"
         },
         "team_lineup": [
           {
@@ -1120,7 +1120,7 @@
           "name": "Quallenbande",
           "team_tag": "QUALLE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212643",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212643.jpg?1788813242"
         },
         "team_lineup": [
           {
@@ -1175,7 +1175,7 @@
           "name": "eSport Eisbären Nanuq",
           "team_tag": "ESB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/210896",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/210000/210896.jpg?1773855459"
         },
         "team_lineup": [
           {
@@ -1285,7 +1285,7 @@
           "name": "Freaky Blinders",
           "team_tag": "FB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/213059",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/213000/213059.jpg?1789768257"
         },
         "team_lineup": [
           {
@@ -1340,7 +1340,7 @@
           "name": "Bee Happy GmbH",
           "team_tag": "BEE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211078",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211078.jpg?1758312245"
         },
         "team_lineup": []
       },
@@ -1414,7 +1414,7 @@
           "name": "Phoenixfury",
           "team_tag": "PXF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/213053",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/213000/213053.jpg?1789590637"
         },
         "team_lineup": [
           {
@@ -1524,7 +1524,7 @@
           "name": "CRUSHED SIX HAVOC",
           "team_tag": "CX",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212857",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212857.jpg?1789735062"
         },
         "team_lineup": [
           {
@@ -1579,7 +1579,7 @@
           "name": "Demon King Apocalypse",
           "team_tag": "DKA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212326",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212326.jpg?1774220792"
         },
         "team_lineup": [
           {
@@ -1634,7 +1634,7 @@
           "name": "Scaling Scuttles",
           "team_tag": "SCS",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206394",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206394.jpg?1715362488"
         },
         "team_lineup": [
           {
@@ -1683,13 +1683,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1169961",
-        "updated_at": "2026-11-14T20:24:34.177226+01:00",
+        "updated_at": "2026-11-14T21:24:53.706983+01:00",
         "enemy_team": {
           "id": 213089,
           "name": "Ghost Impact Gaming Goats",
           "team_tag": "GIG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/213089",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/213000/213089.jpg?1790004706"
         },
         "team_lineup": []
       }
@@ -1784,11 +1784,11 @@
         "trackStats": true,
         "discordId": "465698775638212610",
         "rosterStatus": "staff",
-        "isCaptain": false,
+        "isCaptain": true,
         "honored": false,
-        "api_id": null,
-        "api_name": null,
-        "in_api_roster": false
+        "api_id": 1557329,
+        "api_name": "RyuPanda",
+        "in_api_roster": true
       },
       {
         "playerId": "UNKNOWN_LOCAL",
@@ -1838,7 +1838,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208606.jpg?1786906544",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208606",
-      "updated_at": "2026-11-14T20:20:45.323417+01:00"
+      "updated_at": "2026-11-14T21:36:05.318498+01:00"
     },
     "matches": [
       {
@@ -1856,7 +1856,7 @@
           "name": "1. ECF Rainbow",
           "team_tag": "1.ECF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/112154",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/112000/112154.jpg?1776455181"
         },
         "team_lineup": [
           {
@@ -1911,7 +1911,7 @@
           "name": "E-Sport Cybernetics",
           "team_tag": "CYB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212002",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212002.jpg?1776711752"
         },
         "team_lineup": [
           {
@@ -1966,7 +1966,7 @@
           "name": "LVM E-Sports",
           "team_tag": "LVM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/204544",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/204000/204544.jpg?1708802460"
         },
         "team_lineup": [
           {
@@ -2021,7 +2021,7 @@
           "name": "OGC ekonomikings",
           "team_tag": "OGC",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212926",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212926.jpg?1787769555"
         },
         "team_lineup": []
       },
@@ -2034,13 +2034,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166377",
-        "updated_at": "2026-11-14T20:22:01.164445+01:00",
+        "updated_at": "2026-11-14T21:22:20.702526+01:00",
         "enemy_team": {
           "id": 179487,
           "name": "Hamburger Wale",
           "team_tag": "HWale",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/179487",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/179000/179487.jpg?1780508133"
         },
         "team_lineup": []
       },
@@ -2059,7 +2059,7 @@
           "name": "T2 Vod@fone",
           "team_tag": "T2",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207176",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207176.jpg?1790094689"
         },
         "team_lineup": [
           {
@@ -2114,7 +2114,7 @@
           "name": "TeamPermaMad",
           "team_tag": "TPM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/185869",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/185000/185869.jpg?1690891950"
         },
         "team_lineup": [
           {
@@ -2287,7 +2287,7 @@
           "name": "Good Chi Flip Flops",
           "team_tag": "GCFF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206169",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206169.jpg?1774539131"
         },
         "team_lineup": [
           {
@@ -2342,7 +2342,7 @@
           "name": "Second Time Alive Eclipse",
           "team_tag": "2TA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/199850",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/199000/199850.jpg?1680531944"
         },
         "team_lineup": [
           {
@@ -2397,7 +2397,7 @@
           "name": "Project Zenith",
           "team_tag": "ZEN",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/201246",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/201000/201246.jpg?1791048510"
         },
         "team_lineup": [
           {
@@ -2452,7 +2452,7 @@
           "name": "Senru",
           "team_tag": "ORI",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207881",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207881.jpg?1778237807"
         },
         "team_lineup": [
           {
@@ -2507,7 +2507,7 @@
           "name": "Neko Elite Allstars",
           "team_tag": "NE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/202638",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/202000/202638.jpg?1788365034"
         },
         "team_lineup": [
           {
@@ -2556,13 +2556,13 @@
         "confirmed": true,
         "result": "0:2",
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165704",
-        "updated_at": "2026-11-14T20:23:45.861399+01:00",
+        "updated_at": "2026-11-14T21:24:05.400458+01:00",
         "enemy_team": {
           "id": 181155,
           "name": "TSV Hamelspringe Wels",
           "team_tag": "TSVH",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/181155",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/181000/181155.jpg?1793555665"
         },
         "team_lineup": [
           {
@@ -2611,13 +2611,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165708",
-        "updated_at": "2026-11-14T20:23:46.875330+01:00",
+        "updated_at": "2026-11-14T21:24:06.415534+01:00",
         "enemy_team": {
           "id": 200762,
           "name": "SSP Overdrive",
           "team_tag": "SSP OV",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/200762",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/200000/200762.jpg?1768736433"
         },
         "team_lineup": []
       }
@@ -2783,13 +2783,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167429",
-        "updated_at": "2026-11-14T20:25:05.351652+01:00",
+        "updated_at": "2026-11-14T21:25:24.928811+01:00",
         "enemy_team": {
           "id": 178531,
           "name": "Friendly Fire",
           "team_tag": "BTZ",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/178531",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/178000/178531.jpg?1715506392"
         },
         "team_lineup": []
       },
@@ -2808,7 +2808,7 @@
           "name": "Andromeda Aszendent",
           "team_tag": "AOM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212296",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212296.jpg?1773683480"
         },
         "team_lineup": [
           {
@@ -2863,7 +2863,7 @@
           "name": "SSP Arctic Edition",
           "team_tag": "SSP AE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206617",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206617.jpg?1768736743"
         },
         "team_lineup": [
           {
@@ -2918,7 +2918,7 @@
           "name": "Skill Issue e.V.",
           "team_tag": "SIV",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212966",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212966.jpg?1788531372"
         },
         "team_lineup": [
           {
@@ -2973,7 +2973,7 @@
           "name": "Helm",
           "team_tag": "HLM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211049",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211049.jpg?1758048894"
         },
         "team_lineup": [
           {
@@ -3028,7 +3028,7 @@
           "name": "Ghost Impact Gaming Scuttles",
           "team_tag": "GIG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211436",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211436.jpg?1785787778"
         },
         "team_lineup": [
           {
@@ -3083,7 +3083,7 @@
           "name": "Salem's Knights🗡",
           "team_tag": "SK",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211173",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211173.jpg?1779654077"
         },
         "team_lineup": [
           {
@@ -3246,7 +3246,7 @@
           "name": "Game of Throws",
           "team_tag": "GOT",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/170595",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/170000/170595.jpg?1656762230"
         },
         "team_lineup": [
           {
@@ -3301,7 +3301,7 @@
           "name": "Die Rentner Reunion",
           "team_tag": "DRR",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212482",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212482.jpg?1777568180"
         },
         "team_lineup": [
           {
@@ -3356,7 +3356,7 @@
           "name": "Good Vibes Esport Blue",
           "team_tag": "GVE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207659",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207659.jpg?1733413430"
         },
         "team_lineup": [
           {
@@ -3411,7 +3411,7 @@
           "name": "Hobby Horsing Heroes",
           "team_tag": "HOLY",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212624",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212624.jpg?1789814972"
         },
         "team_lineup": [
           {
@@ -3466,7 +3466,7 @@
           "name": "Weiß ich nicht",
           "team_tag": "WIN",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211157",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211157.jpg?1769951098"
         },
         "team_lineup": [
           {
@@ -3521,7 +3521,7 @@
           "name": "Arbeitszeit Betrug",
           "team_tag": "AZB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/210929",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/210000/210929.jpg?1754338085"
         },
         "team_lineup": [
           {
@@ -3570,13 +3570,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167065",
-        "updated_at": "2026-11-14T20:23:23.740718+01:00",
+        "updated_at": "2026-11-14T21:23:43.260922+01:00",
         "enemy_team": {
           "id": 212015,
           "name": "POA Lumi",
           "team_tag": "POA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212015",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212015.jpg?1790357608"
         },
         "team_lineup": []
       }
@@ -3708,7 +3708,7 @@
           "name": "Team RADICAL Elite",
           "team_tag": "RDC",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212436",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212436.jpg?1776440773"
         },
         "team_lineup": [
           {
@@ -3763,7 +3763,7 @@
           "name": "Wannabe Cult Lizards",
           "team_tag": "W2B LZ",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/202040",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/202000/202040.jpg?1757859774"
         },
         "team_lineup": [
           {
@@ -3818,7 +3818,7 @@
           "name": "Lunar Eclipse Azure",
           "team_tag": "LA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/135200",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/135000/135200.png?1789898322"
         },
         "team_lineup": [
           {
@@ -3873,7 +3873,7 @@
           "name": "Dynamo Aufbier",
           "team_tag": "DAB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211963",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211963.jpg?1768414444"
         },
         "team_lineup": [
           {
@@ -3928,7 +3928,7 @@
           "name": "The GG Friends",
           "team_tag": "GG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/204538",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/204000/204538.jpg?1737200983"
         },
         "team_lineup": [
           {
@@ -3983,7 +3983,7 @@
           "name": "Porofessionals",
           "team_tag": "PRO",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207219",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207219.jpg?1731068733"
         },
         "team_lineup": [
           {
@@ -4032,13 +4032,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166055",
-        "updated_at": "2026-11-14T20:23:50.893573+01:00",
+        "updated_at": "2026-11-14T21:24:10.427295+01:00",
         "enemy_team": {
           "id": 207904,
           "name": "Feather Stanka",
           "team_tag": "FTH",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207904",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207904.jpg?1772373586"
         },
         "team_lineup": []
       }
@@ -4180,7 +4180,7 @@
           "name": "Drink 'n' Dive",
           "team_tag": "DnD",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/200958",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/200000/200958.jpg?1683490692"
         },
         "team_lineup": [
           {
@@ -4235,7 +4235,7 @@
           "name": "Kaiserstuhl AG",
           "team_tag": "KS",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211153",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211153.jpg?1758386682"
         },
         "team_lineup": [
           {
@@ -4290,7 +4290,7 @@
           "name": "Deutsch Jahrndorf Five",
           "team_tag": "DJ5",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/117718",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/117000/117718.png?1791714179"
         },
         "team_lineup": [
           {
@@ -4345,7 +4345,7 @@
           "name": "Elektrolyse &amp; Söhne",
           "team_tag": "E&amp;S",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212417",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212417.jpg?1791396865"
         },
         "team_lineup": [
           {
@@ -4400,7 +4400,7 @@
           "name": "1. ECF Facecheck",
           "team_tag": "1.ECF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/192942",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/192000/192942.jpg?1776446671"
         },
         "team_lineup": [
           {
@@ -4455,7 +4455,7 @@
           "name": "Teemokopfkeeno",
           "team_tag": "TKK",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211985",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211985.jpg?1781520863"
         },
         "team_lineup": [
           {
@@ -4500,17 +4500,17 @@
         "match_id": 1165885,
         "match_type": "league",
         "match_day": 6,
-        "begin": "2026-11-15T15:00:00+01:00",
+        "begin": "2026-11-16T18:00:00+01:00",
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165885",
-        "updated_at": "2026-11-14T20:23:58.942450+01:00",
+        "updated_at": "2026-11-14T21:24:19.528923+01:00",
         "enemy_team": {
           "id": 211953,
           "name": "Team SpieltEinfach",
           "team_tag": "TSE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211953",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211953.jpg?1767548587"
         },
         "team_lineup": []
       }
@@ -4717,7 +4717,7 @@
           "name": "Schiggy Gang",
           "team_tag": "SG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/197366",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/197000/197366.jpg?1767548247"
         },
         "team_lineup": [
           {
@@ -4772,7 +4772,7 @@
           "name": "Late Night Canis",
           "team_tag": "LNCA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212440",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212440.jpg?1776520598"
         },
         "team_lineup": [
           {
@@ -4827,7 +4827,7 @@
           "name": "goofy goobers",
           "team_tag": "goob",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212912",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212912.jpg?1787676624"
         },
         "team_lineup": [
           {
@@ -4882,7 +4882,7 @@
           "name": "AUTRY Gaming",
           "team_tag": "AUTRY",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211132",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211132.jpg?1789766951"
         },
         "team_lineup": [
           {
@@ -4937,7 +4937,7 @@
           "name": "Ghost Impact Gaming Duckies",
           "team_tag": "GIG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212733",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212733.jpg?1785787826"
         },
         "team_lineup": [
           {
@@ -4992,7 +4992,7 @@
           "name": "TwoFace Gaming",
           "team_tag": "2F",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212719",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212719.jpg?1782580035"
         },
         "team_lineup": [
           {
@@ -5047,7 +5047,7 @@
           "name": "BestFeedersEU",
           "team_tag": "BFE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207474",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207474.jpg?1730410676"
         },
         "team_lineup": [
           {
@@ -5102,7 +5102,7 @@
           "name": "BAGF",
           "team_tag": "BAGF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207969",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207969.jpg?1747598520"
         },
         "team_lineup": [
           {
@@ -5157,7 +5157,7 @@
           "name": "Prismatic Rose",
           "team_tag": "PRS",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208761",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208761.jpg?1790427340"
         },
         "team_lineup": [
           {
@@ -5212,7 +5212,7 @@
           "name": "Schmerz mit Merz",
           "team_tag": "Merz",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212322",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212322.jpg?1778169002"
         },
         "team_lineup": [
           {
@@ -5267,7 +5267,7 @@
           "name": "Trümmertruppe",
           "team_tag": "TT",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212996",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212996.jpg?1789331117"
         },
         "team_lineup": []
       },
@@ -5280,13 +5280,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167343",
-        "updated_at": "2026-11-14T20:24:04.973785+01:00",
+        "updated_at": "2026-11-14T21:24:24.532500+01:00",
         "enemy_team": {
           "id": 189490,
           "name": "Baltic eSports Kiel e.V. Flötenfische",
           "team_tag": "BeKFF",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/189490",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/189000/189490.jpg?1676666618"
         },
         "team_lineup": [
           {
@@ -5341,7 +5341,7 @@
           "name": "Bonsai War Council",
           "team_tag": "BWC",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/210897",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/210000/210897.jpg?1754227750"
         },
         "team_lineup": [
           {
@@ -5396,7 +5396,7 @@
           "name": "Bee Happy GmbH",
           "team_tag": "BEE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211078",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211078.jpg?1758312245"
         },
         "team_lineup": [
           {
@@ -5609,7 +5609,7 @@
           "name": "HS8x Kleinganoven",
           "team_tag": "HS8x",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/169158",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/169000/169158.jpg?1763119690"
         },
         "team_lineup": [
           {
@@ -5664,7 +5664,7 @@
           "name": "Good Vibes Esport Red",
           "team_tag": "GVE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212644",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212644.jpg?1784750834"
         },
         "team_lineup": [
           {
@@ -5719,7 +5719,7 @@
           "name": "Noot Noot",
           "team_tag": "Noot",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207997",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207997.jpg?1738508317"
         },
         "team_lineup": [
           {
@@ -5768,13 +5768,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168071",
-        "updated_at": "2026-11-14T20:23:57.933645+01:00",
+        "updated_at": "2026-11-14T21:24:17.455377+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
           "team_tag": "GIG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212733",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212733.jpg?1785787826"
         },
         "team_lineup": []
       },
@@ -5793,7 +5793,7 @@
           "name": "VGS Void IX",
           "team_tag": "VGS",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207021",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207021.jpg?1783241694"
         },
         "team_lineup": [
           {
@@ -5848,7 +5848,7 @@
           "name": "KGE Bloodmoon",
           "team_tag": "KGE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212919",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212919.jpg?1787780669"
         },
         "team_lineup": [
           {
@@ -5903,7 +5903,7 @@
           "name": "Primeless",
           "team_tag": "PRM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212480",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212480.jpg?1777224718"
         },
         "team_lineup": [
           {
@@ -6131,7 +6131,7 @@
           "name": "EKO Budgies",
           "team_tag": "EKO",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/163587",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/163000/163587.jpg?1629744595"
         },
         "team_lineup": [
           {
@@ -6180,13 +6180,13 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167007",
-        "updated_at": "2026-11-14T20:24:40.152556+01:00",
+        "updated_at": "2026-11-14T21:24:59.784671+01:00",
         "enemy_team": {
           "id": 211214,
           "name": "Exhaustion Gaming",
           "team_tag": "EXG",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211214",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211214.jpg?1757672735"
         },
         "team_lineup": []
       },
@@ -6205,7 +6205,7 @@
           "name": "Cortisol Maxing",
           "team_tag": "CMX",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212517",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212517.jpg?1777420504"
         },
         "team_lineup": [
           {
@@ -6260,7 +6260,7 @@
           "name": "Devils Gate eSports",
           "team_tag": "DGE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/209560",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/209000/209560.jpg?1752781911"
         },
         "team_lineup": [
           {
@@ -6315,7 +6315,7 @@
           "name": "OBLIVION",
           "team_tag": "OVN",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212614",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212614.jpg?1779099821"
         },
         "team_lineup": [
           {
@@ -6370,7 +6370,7 @@
           "name": "Randoms",
           "team_tag": "RAN",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211881",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211881.jpg?1792437081"
         },
         "team_lineup": [
           {
@@ -6425,7 +6425,7 @@
           "name": "Hässle Black",
           "team_tag": "HBL",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206095",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206095.jpg?1789596024"
         },
         "team_lineup": [
           {
@@ -6778,7 +6778,7 @@
           "name": "DEMON KING ORNN",
           "team_tag": "DKO",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211241",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211241.jpg?1757937121"
         },
         "team_lineup": [
           {
@@ -6833,7 +6833,7 @@
           "name": "Treesonous Retreever´s",
           "team_tag": "TRR",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206069",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206069.jpg?1792631315"
         },
         "team_lineup": [
           {
@@ -6888,7 +6888,7 @@
           "name": "Freaky Blinders",
           "team_tag": "FB",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/213059",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/213000/213059.jpg?1789768257"
         },
         "team_lineup": [
           {
@@ -6937,13 +6937,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167371",
-        "updated_at": "2026-11-14T20:23:25.748779+01:00",
+        "updated_at": "2026-11-14T21:23:45.257255+01:00",
         "enemy_team": {
           "id": 211174,
           "name": "dRift Arcade",
           "team_tag": "DRA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211174",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211174.jpg?1791581467"
         },
         "team_lineup": []
       }
@@ -7047,7 +7047,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212432.jpg?1789934435",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212432",
-      "updated_at": "2026-11-14T20:21:34.843126+01:00"
+      "updated_at": "2026-11-14T21:36:57.875406+01:00"
     },
     "matches": [
       {
@@ -7120,7 +7120,7 @@
           "name": "AC Weather Squadron",
           "team_tag": "AC WTR",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212747",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212747.jpg?1783287921"
         },
         "team_lineup": [
           {
@@ -7175,7 +7175,7 @@
           "name": "Milchsalat",
           "team_tag": "MIL",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/107951",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/107000/107951.jpg?1670515713"
         },
         "team_lineup": [
           {
@@ -7230,7 +7230,7 @@
           "name": "Super-Weicheischuppen Jr.",
           "team_tag": "WEICH",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208897",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208897.jpg?1769971889"
         },
         "team_lineup": [
           {
@@ -7285,7 +7285,7 @@
           "name": "Randoms",
           "team_tag": "RAN",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211881",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211881.jpg?1792437081"
         },
         "team_lineup": [
           {
@@ -7340,7 +7340,7 @@
           "name": "Anonyme Orcas X e.V.",
           "team_tag": "ANX",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212472",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212472.jpg?1783079832"
         },
         "team_lineup": [
           {
@@ -7395,7 +7395,7 @@
           "name": "Lunar Eclipse Hubris",
           "team_tag": "LUNA",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206940",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206940.jpg?1785190422"
         },
         "team_lineup": [
           {
@@ -7450,7 +7450,7 @@
           "name": "Fondue Phalanx",
           "team_tag": "FP",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/207173",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/207000/207173.jpg?1729614523"
         },
         "team_lineup": [
           {
@@ -7505,7 +7505,7 @@
           "name": "Williwilli Gaming",
           "team_tag": "WwW",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/206671",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/206000/206671.jpg?1716638817"
         },
         "team_lineup": [
           {
@@ -7560,7 +7560,7 @@
           "name": "Andromeda Nova",
           "team_tag": "AOM",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212420",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212420.jpg?1776194696"
         },
         "team_lineup": [
           {
@@ -7615,7 +7615,7 @@
           "name": "Personal Space Invader",
           "team_tag": "PSI",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/196674",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/196000/196674.jpg?1780415815"
         },
         "team_lineup": [
           {
@@ -7670,7 +7670,7 @@
           "name": "HoopMonarchs",
           "team_tag": "HOOP",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212126",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212126.jpg?1781186317"
         },
         "team_lineup": [
           {
@@ -7725,7 +7725,7 @@
           "name": "Team RADICAL",
           "team_tag": "RDC",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211045",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211045.jpg?1758987333"
         },
         "team_lineup": [
           {
@@ -7774,13 +7774,13 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167038",
-        "updated_at": "2026-11-14T20:23:37.813983+01:00",
+        "updated_at": "2026-11-14T21:23:57.353297+01:00",
         "enemy_team": {
           "id": 212978,
           "name": "Elysion Flora Fatalis",
           "team_tag": "EYE",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212978",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212978.jpg?1788735260"
         },
         "team_lineup": []
       },
@@ -7799,7 +7799,7 @@
           "name": "Late Night GrandParents",
           "team_tag": "LNGP",
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211141",
-          "logo_url": null
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211141.jpg?1784139112"
         },
         "team_lineup": [
           {

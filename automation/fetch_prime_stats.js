@@ -37,6 +37,25 @@ async function buildGoldenJSON() {
     const localTeamsData = JSON.parse(fs.readFileSync(INPUT_PATH, 'utf8'));
     const goldenDatabase = {};
 
+    // Seed cache of known enemy team logos from existing prime_stats.json to minimize API calls
+    const enemyLogoCache = new Map();
+    if (fs.existsSync(OUTPUT_PATH)) {
+        try {
+            const existingData = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
+            for (const teamObj of Object.values(existingData)) {
+                for (const match of (teamObj?.matches || [])) {
+                    const eId = match?.enemy_team?.id;
+                    const eLogo = match?.enemy_team?.logo_url;
+                    if (eId && eLogo) {
+                        enemyLogoCache.set(eId, eLogo);
+                    }
+                }
+            }
+        } catch {
+            // Ignore malformed existing file
+        }
+    }
+
     for (const [teamKey, localTeamInfo] of Object.entries(localTeamsData)) {
         const teamId = localTeamInfo.primeLeagueId;
 
@@ -108,21 +127,41 @@ async function buildGoldenJSON() {
             if (apiData.matches) {
                 const enrichedMatches = [];
                 
-                // Fix: Switch to async for...of loop to fetch missing 'match_begin_confirmed' flags
+                // Fix: Switch to async for...of loop to fetch missing 'match_begin_confirmed' flags & enemy team logos
                 for (const m of apiData.matches) {
                     let isConfirmed = false;
+                    const enemyId = m.enemy_team?.id ?? null;
+                    let enemyLogoUrl = m.enemy_team?.logo_url || (enemyId ? enemyLogoCache.get(enemyId) : null) || null;
 
                     // If the match has a result, it happened in the past and is inherently confirmed
                     if (m.result) {
                         isConfirmed = true;
+                        // Fetch enemy logo once per unique enemy team if not yet cached
+                        if (enemyId && !enemyLogoCache.has(enemyId)) {
+                            try {
+                                const matchResponse = await fetch(`https://primebot.me/api/v1/matches/${m.id}/`, { headers: HEADERS });
+                                if (matchResponse.ok) {
+                                    const matchDetail = await matchResponse.json();
+                                    enemyLogoUrl = matchDetail.enemy_team?.logo_url || null;
+                                    enemyLogoCache.set(enemyId, enemyLogoUrl);
+                                }
+                                await new Promise(r => setTimeout(r, 150));
+                            } catch (err) {
+                                console.error(`⚠️ Could not fetch enemy logo for match ${m.id}`);
+                            }
+                        }
                     } 
-                    // If it has NO result, it's upcoming. Fetch the match detail endpoint to get the confirmed flag.
+                    // If it has NO result, it's upcoming. Fetch the match detail endpoint to get the confirmed flag & enemy logo.
                     else {
                         try {
                             const matchResponse = await fetch(`https://primebot.me/api/v1/matches/${m.id}/`, { headers: HEADERS });
                             if (matchResponse.ok) {
                                 const matchDetail = await matchResponse.json();
                                 isConfirmed = matchDetail.match_begin_confirmed === true;
+                                enemyLogoUrl = matchDetail.enemy_team?.logo_url || enemyLogoUrl || null;
+                                if (enemyId) {
+                                    enemyLogoCache.set(enemyId, enemyLogoUrl);
+                                }
                             }
                             // Respect API rate limits on these secondary calls
                             await new Promise(r => setTimeout(r, 200));
@@ -146,7 +185,7 @@ async function buildGoldenJSON() {
                             name: m.enemy_team.name,
                             team_tag: m.enemy_team.team_tag,
                             prime_league_link: m.enemy_team.prime_league_link,
-                            logo_url: m.enemy_team.logo_url || null
+                            logo_url: enemyLogoUrl
                         } : null,
                         team_lineup: m.team_lineup || []
                     });
