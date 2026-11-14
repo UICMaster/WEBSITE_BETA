@@ -150,6 +150,7 @@ import { honoredPlayers } from '../../utils/honoredData';
     height: 240px;
     background: #070709;
     overflow: hidden;
+    transform: translateZ(0);
   }
 
   .hc-badges {
@@ -194,10 +195,12 @@ import { honoredPlayers } from '../../utils/honoredData';
   }
 
   .hc-photo {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    backface-visibility: hidden;
     transition: transform var(--transition-smooth);
   }
 
@@ -207,11 +210,12 @@ import { honoredPlayers } from '../../utils/honoredData';
 
   .hc-shade {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 45%;
-    background: linear-gradient(180deg, transparent 0%, #0d0d10 100%);
+    bottom: -2px;
+    left: -1px;
+    right: -1px;
+    height: calc(45% + 2px);
+    background: linear-gradient(180deg, transparent 0%, #0d0d10 90%, #0d0d10 100%);
+    transform: translateZ(0);
     z-index: 2;
     pointer-events: none;
   }

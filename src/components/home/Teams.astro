@@ -913,6 +913,7 @@ const playerSearchIndex = teamsList.flatMap((t) =>
     height: 210px;
     background: #070709;
     overflow: hidden;
+    transform: translateZ(0);
   }
 
   .p-stage-badges {
@@ -987,10 +988,12 @@ const playerSearchIndex = teamsList.flatMap((t) =>
   }
 
   .p-photo {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    backface-visibility: hidden;
     transition: transform var(--transition-smooth);
   }
 
@@ -1000,11 +1003,12 @@ const playerSearchIndex = teamsList.flatMap((t) =>
 
   .p-shade {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 45%;
-    background: linear-gradient(180deg, transparent 0%, #0d0d10 100%);
+    bottom: -2px;
+    left: -1px;
+    right: -1px;
+    height: calc(45% + 2px);
+    background: linear-gradient(180deg, transparent 0%, #0d0d10 90%, #0d0d10 100%);
+    transform: translateZ(0);
     z-index: 3;
     pointer-events: none;
   }
