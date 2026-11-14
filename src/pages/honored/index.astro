@@ -148,7 +148,7 @@ import { honoredPlayers } from '../../utils/honoredData';
   .hc-stage {
     position: relative;
     height: 240px;
-    background: #070709;
+    background: #0d0d10;
     overflow: hidden;
     transform: translateZ(0);
   }
@@ -200,6 +200,8 @@ import { honoredPlayers } from '../../utils/honoredData';
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    -webkit-mask-image: linear-gradient(180deg, #000000 0%, #000000 55%, transparent 90%);
+    mask-image: linear-gradient(180deg, #000000 0%, #000000 55%, transparent 90%);
     backface-visibility: hidden;
     transition: transform var(--transition-smooth);
   }
@@ -214,7 +216,7 @@ import { honoredPlayers } from '../../utils/honoredData';
     left: -1px;
     right: -1px;
     height: calc(45% + 2px);
-    background: linear-gradient(180deg, transparent 0%, #0d0d10 90%, #0d0d10 100%);
+    background: linear-gradient(180deg, transparent 0%, #0d0d10 85%, #0d0d10 100%);
     transform: translateZ(0);
     z-index: 2;
     pointer-events: none;

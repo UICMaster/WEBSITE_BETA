@@ -911,7 +911,7 @@ const playerSearchIndex = teamsList.flatMap((t) =>
   .p-stage {
     position: relative;
     height: 210px;
-    background: #070709;
+    background: #0d0d10;
     overflow: hidden;
     transform: translateZ(0);
   }
@@ -993,6 +993,8 @@ const playerSearchIndex = teamsList.flatMap((t) =>
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    -webkit-mask-image: linear-gradient(180deg, #000000 0%, #000000 55%, transparent 90%);
+    mask-image: linear-gradient(180deg, #000000 0%, #000000 55%, transparent 90%);
     backface-visibility: hidden;
     transition: transform var(--transition-smooth);
   }
@@ -1007,7 +1009,7 @@ const playerSearchIndex = teamsList.flatMap((t) =>
     left: -1px;
     right: -1px;
     height: calc(45% + 2px);
-    background: linear-gradient(180deg, transparent 0%, #0d0d10 90%, #0d0d10 100%);
+    background: linear-gradient(180deg, transparent 0%, #0d0d10 85%, #0d0d10 100%);
     transform: translateZ(0);
     z-index: 3;
     pointer-events: none;
