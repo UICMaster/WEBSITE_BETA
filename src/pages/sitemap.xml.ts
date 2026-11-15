@@ -10,6 +10,8 @@ export const GET: APIRoute = () => {
       loc: `https://ultrainstinctcrew.com/ruhmeshalle/${p.slug}`,
       priority: '0.70'
     })),
+    { loc: 'https://ultrainstinctcrew.com/brandkit', priority: '0.75' },
+    { loc: 'https://ultrainstinctcrew.com/obs', priority: '0.70' },
     { loc: 'https://ultrainstinctcrew.com/impressum', priority: '0.30' },
     { loc: 'https://ultrainstinctcrew.com/datenschutzbestimmungen', priority: '0.30' }
   ];

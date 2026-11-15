@@ -978,6 +978,8 @@
   const path = window.location.pathname;
   if (path.includes('/ruhmeshalle') || path.includes('/honored')) {
     syncActiveState('path', '/ruhmeshalle');
+  } else if (path.includes('/brandkit') || path.includes('/obs')) {
+    syncActiveState('section', 'medien');
   } else if (path.includes('/impressum')) {
     syncActiveState('path', '/impressum');
   } else if (path.includes('/datenschutzbestimmungen')) {

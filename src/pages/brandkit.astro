@@ -1,0 +1,1973 @@
+---
+// src/pages/brandkit.astro
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../layouts/Layout.astro';
+import rawTeams from '../../data/teams.json';
+import { discordInviteUrl } from '../utils/uicData';
+
+const logoSvgPath = path.resolve(process.cwd(), 'public', 'assets', 'logo', 'logo.svg');
+const rawLogoSvg = fs.existsSync(logoSvgPath) ? fs.readFileSync(logoSvgPath, 'utf8').trim() : '';
+
+const teamsMap = (rawTeams || {}) as Record<string, any>;
+const teamAssetMap = import.meta.glob('/public/assets/teams/*.{webp,png,jpg,svg}');
+
+const activeTeamEmblems = Object.entries(teamsMap)
+  .filter(([, meta]) => Boolean(meta?.primeLeagueId))
+  .map(([key, meta]) => {
+    const hasWebp = `/public/assets/teams/${key}.webp` in teamAssetMap;
+    const hasPng = `/public/assets/teams/${key}.png` in teamAssetMap;
+    const fileSrc = hasWebp
+      ? `/assets/teams/${key}.webp`
+      : hasPng
+        ? `/assets/teams/${key}.png`
+        : null;
+    const formatLabel = hasWebp ? 'WEBP' : hasPng ? 'PNG' : null;
+    return {
+      key,
+      name: meta.teamDisplay || `UIC ${key.toUpperCase()}`,
+      tier: meta.tier || 'Prime League',
+      fileSrc,
+      formatLabel
+    };
+  });
+
+const primaryColors = [
+  {
+    name: 'Tiefschwarz (Void)',
+    hex: '#000000',
+    rgb: '0, 0, 0',
+    token: '--bg-void',
+    role: 'Primärer Seitenhintergrund & Canvas',
+    contrast: '21:1 mit #FFFFFF',
+    border: 'rgba(255, 255, 255, 0.32)',
+    darkInk: false
+  },
+  {
+    name: 'Karbon Obsidian',
+    hex: '#08080A',
+    rgb: '8, 8, 10',
+    token: '--bg-surface',
+    role: 'Abgesetzte Flächen & Footer-Ebene',
+    contrast: '19.8:1 mit #FFFFFF',
+    border: 'rgba(255, 255, 255, 0.24)',
+    darkInk: false
+  },
+  {
+    name: 'Karten-Schiefer',
+    hex: '#0D0D10',
+    rgb: '13, 13, 16',
+    token: '--bg-card',
+    role: 'Bento-Module, Karten & Boxen',
+    contrast: '18.9:1 mit #FFFFFF',
+    border: 'rgba(255, 255, 255, 0.22)',
+    darkInk: false
+  },
+  {
+    name: 'Reines Weiß (Primary)',
+    hex: '#FFFFFF',
+    rgb: '255, 255, 255',
+    token: '--text-white',
+    role: 'Wappen, Überschriften & Primär-CTAs',
+    contrast: '21:1 auf #000000',
+    border: 'rgba(255, 255, 255, 0.45)',
+    darkInk: true
+  },
+  {
+    name: 'Sekundärgrau',
+    hex: '#D4D4D8',
+    rgb: '212, 212, 216',
+    token: '--text-secondary',
+    role: 'Fließtext, Beschreibungen & Listen',
+    contrast: '14.3:1 auf #000000',
+    border: 'rgba(255, 255, 255, 0.25)',
+    darkInk: true
+  },
+  {
+    name: 'Stahl-Grau (Muted)',
+    hex: '#A1A1AA',
+    rgb: '161, 161, 170',
+    token: '--text-muted',
+    role: 'Metadaten, Kategorien & Captions',
+    contrast: '8.2:1 auf #000000',
+    border: 'rgba(255, 255, 255, 0.2)',
+    darkInk: true
+  }
+];
+
+const statusColors = [
+  {
+    name: 'Bestätigt / Sieg',
+    hex: '#10B981',
+    rgb: '16, 185, 129',
+    token: '--state-win',
+    usage: 'Ausschließlich für bestätigte Spieltermine und gewonnene Serien.'
+  },
+  {
+    name: 'Offen / Unentschieden',
+    hex: '#F59E0B',
+    rgb: '245, 158, 11',
+    token: '--state-draw',
+    usage: 'Ausschließlich für unbestätigte Termine, Unentschieden & Ruhmeshalle-Siegel.'
+  },
+  {
+    name: 'Niederlage / Warnung',
+    hex: '#F43F5E',
+    rgb: '244, 63, 94',
+    token: '--state-loss',
+    usage: 'Ausschließlich für Niederlagen, Live-Statuspunkte und Fehlerhinweise.'
+  }
+];
+
+const logoPlaceholders = [
+  {
+    id: 'LOC-01',
+    badge: 'PLATZHALTER • UPLOAD FOLGT',
+    title: 'Wortmarke / Horizontal Lockup',
+    spec: 'SVG & PNG • Empfohlen 1600 × 400 px • Transparent',
+    desc: 'Kombination aus UIC Wappen links und „ULTRA INSTINCT CREW“ Schriftzug rechts für Web-Header, Stream-Banderolen und Sponsoren-Leisten.',
+    previewType: 'horizontal'
+  },
+  {
+    id: 'LOC-02',
+    badge: 'PLATZHALTER • UPLOAD FOLGT',
+    title: 'Vertikales Lockup (Stacked)',
+    spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Transparent',
+    desc: 'Zentriertes Wappen über zweizeiliger Wortmarke für Poster, Pokale, Turnier-Kacheln und Print-Materialien.',
+    previewType: 'stacked'
+  },
+  {
+    id: 'LOC-03',
+    badge: 'PLATZHALTER • UPLOAD FOLGT',
+    title: 'Print-Wappen (Dunkel auf Hell)',
+    spec: 'SVG & EPS • #000000 Vollton • CMYK-tauglich',
+    desc: 'Dedizierte tiefschwarze Reinzeichnungs-Datei für weiße Trikots, Verträge, Briefbögen und helle Partner-Hintergründe.',
+    previewType: 'dark-ink'
+  }
+];
+
+const mediaPlaceholders = [
+  {
+    code: 'MEDIA-01',
+    category: 'SOCIAL MEDIA AVATARE',
+    title: 'Profilbilder-Set (1:1)',
+    format: '1000 × 1000 px • PNG / WEBP',
+    desc: 'Zentrierte Profilbilder mit vorkalibrierter Safe-Zone für runde Zuschnitte auf Discord, Twitch, X, YouTube und Instagram.',
+    aspect: '1 / 1'
+  },
+  {
+    code: 'MEDIA-02',
+    category: 'KANAL-BANNER',
+    title: 'Header & Offline-Screens',
+    format: '1500 × 500 px / 2560 × 1440 px',
+    desc: 'Einheitliche Kopfzeilen-Grafiken für Twitch-Panels, X-Header, YouTube-Kanalbanner und Prime-League-Teamseiten.',
+    aspect: '16 / 9'
+  },
+  {
+    code: 'MEDIA-03',
+    category: 'SPIELTAG & ERGEBNISSE',
+    title: 'Matchday- & Score-Templates',
+    format: '1080 × 1350 px / 1920 × 1080 px',
+    desc: 'Bearbeitbare Figma- & PSD-Vorlagen für Aufstellungs-Ankündigungen, Endergebnisse und Split-Rückblicke.',
+    aspect: '4 / 5'
+  },
+  {
+    code: 'MEDIA-04',
+    category: 'TRIKOTS & MERCH',
+    title: 'Jersey- & Spized-Richtlinie',
+    format: 'PDF Vektor / PSD Mockups',
+    desc: 'Verbindliche Positionierung von Hauptwappen, Spieler-Nicknames und Sponsoren-Logos auf offizieller Teamkleidung.',
+    aspect: '1 / 1'
+  },
+  {
+    code: 'MEDIA-05',
+    category: 'CO-BRANDING',
+    title: 'Partner- & Event-Lockups',
+    format: 'SVG / PNG • 16:9 Trennlinie',
+    desc: 'Standardisierte „UIC × Partner“-Kombinationen mit definierter Trennlinie und ausgeglichener optischer Logogröße.',
+    aspect: '16 / 9'
+  },
+  {
+    code: 'MEDIA-06',
+    category: 'PRESSE & MEDIA',
+    title: 'Foto- & Presse-Kit',
+    format: 'JPG / WEBP • Hochauflösend',
+    desc: 'Freigestellte Spieler-Porträts, Event-Eindrücke und freigegebene Team-Aufnahmen für Berichterstattung.',
+    aspect: '16 / 10'
+  }
+];
+---
+
+<Layout
+  title="Brandkit & Markenrichtlinien | Ultra Instinct Crew"
+  description="Offizielles Brandkit und Corporate Design Richtlinien der Ultra Instinct Crew (UIC): Logos, Schutzzonen, Monochrom-Farbsystem, Typografie, Team-Wappen und Medien-Vorlagen."
+>
+  <div class="brandkit-page section-pad">
+    <div class="container bk-container">
+
+      <!-- Top Back Bar -->
+      <div class="bk-topbar">
+        <a href="/#medien" class="back-link text-mono">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span>ZURÜCK ZU MEDIEN &amp; VORLAGEN</span>
+        </a>
+
+        <div class="bk-version-pills text-mono">
+          <span class="ver-pill">VERSION 1.0</span>
+          <span class="ver-pill is-highlight">STAND 2026</span>
+        </div>
+      </div>
+
+      <!-- Page Header -->
+      <header class="bk-header">
+        <div class="section-badge-pill">CORPORATE DESIGN &amp; RICHTLINIEN</div>
+        <h1 class="bk-title">
+          UIC MARKE &amp; <span class="text-gradient">BRANDKIT</span>
+        </h1>
+        <p class="bk-lead">
+          Verbindlicher Leitfaden für die visuelle Identität der Ultra Instinct Crew. Entwickelt für Partner, Turnierveranstalter, Caster, Medienschaffende und alle Teams innerhalb unserer Organisation.
+        </p>
+
+        <!-- Action Strip & Anchor Navigation -->
+        <div class="bk-controls-row">
+          <nav class="bk-toc text-mono" aria-label="Brandkit-Bereiche">
+            <a href="#markenkern" class="toc-chip">01 Markenkern</a>
+            <a href="#logos" class="toc-chip">02 Logo-System</a>
+            <a href="#regeln" class="toc-chip">03 Schutzzone &amp; Regeln</a>
+            <a href="#farben" class="toc-chip">04 Farbsystem</a>
+            <a href="#typografie" class="toc-chip">05 Typografie</a>
+            <a href="#teams-wappen" class="toc-chip">06 Team-Wappen</a>
+            <a href="#platzhalter" class="toc-chip">07 Vorlagen</a>
+            <a href="#nutzung" class="toc-chip">08 Nutzungsrechte</a>
+          </nav>
+
+          <button
+            type="button"
+            class="btn btn-outline btn-sm bundle-placeholder-btn text-mono"
+            disabled
+            aria-disabled="true"
+            title="Das gebündelte ZIP-Archiv wird ergänzt, sobald alle ausstehenden Vorlagen hochgeladen sind."
+          >
+            <span>GESAMTPAKET (.ZIP) &bull; PLATZHALTER</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- =================================================================
+           01. MARKENKERN & SCHREIBWEISE
+           ================================================================= -->
+      <section id="markenkern" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">01 / IDENTITÄT</span>
+          <h2 class="bk-sec-title">MARKENKERN &amp; SCHREIBWEISE</h2>
+          <p class="bk-sec-desc">
+            Konsistenz beginnt bei korrekten Begriffen. So werden die Organisation, unsere Teams und die Community offiziell benannt.
+          </p>
+        </div>
+
+        <div class="identity-grid">
+          <article class="bento-card id-card">
+            <span class="id-label text-mono">VOLLSTÄNDIGER NAME</span>
+            <h3 class="id-value">Ultra Instinct Crew</h3>
+            <p class="id-note">
+              Immer ausgeschrieben in Überschriften, Rechtstexten und offiziellen Ankündigungen. Die Abkürzung <strong>UIC</strong> steht für das Kürzel in Spielplänen, Tags und Badges.
+            </p>
+          </article>
+
+          <article class="bento-card id-card">
+            <span class="id-label text-mono">STRUKTUR &amp; BEGRIFFE</span>
+            <h3 class="id-value">Organisation &bull; Community &bull; Teams</h3>
+            <p class="id-note">
+              Wir bezeichnen uns ausschließlich als <strong>Organisation</strong> mit angeschlossener <strong>Community</strong> und aktiven <strong>Teams</strong>. Begriffe wie <em>„Verein“</em>, <em>„e.V.“</em> oder <em>„GbR“</em> werden nicht verwendet.
+            </p>
+          </article>
+
+          <article class="bento-card id-card">
+            <span class="id-label text-mono">GESTALTUNGSPRINZIP</span>
+            <h3 class="id-value">Scharf &bull; Monochrom &bull; Präzise</h3>
+            <p class="id-note">
+              Tiefschwarze Flächen, reines Weiß für Kernaussagen, feine Haarlinien-Rahmen und Verzicht auf verspielte Verläufe. Farbe wird ausschließlich funktional für Match- und Statusanzeigen eingesetzt.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           02. LOGO-SYSTEM & DOWNLOADS
+           ================================================================= -->
+      <section id="logos" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">02 / LOGOMARKEN</span>
+          <h2 class="bk-sec-title">PRIMÄRLOGO &amp; VARIANTEN</h2>
+          <p class="bk-sec-desc">
+            Das UIC-Wappen ist das zentrale Erkennungszeichen der Organisation. Für digitale Medien steht die verlustfreie SVG-Vektordatei im Vordergrund.
+          </p>
+        </div>
+
+        <!-- Primary Crest Showcase (Real Uploaded Asset) -->
+        <div class="bento-card logo-master-card">
+          <div class="lm-stage" id="master-logo-stage" data-bg="dark">
+            <div class="lm-stage-controls text-mono">
+              <span class="lm-status-pill is-live">VERFÜGBAR &bull; MASTER</span>
+              <div class="stage-bg-switch" role="group" aria-label="Hintergrund-Vorschau wechseln">
+                <button type="button" class="bg-sw-btn is-active" data-stage-bg="dark">SCHWARZ</button>
+                <button type="button" class="bg-sw-btn" data-stage-bg="slate">KARBON</button>
+                <button type="button" class="bg-sw-btn" data-stage-bg="grid">RASTER</button>
+              </div>
+            </div>
+
+            <div class="lm-preview-wrap">
+              <img
+                src="/assets/logo/logo.svg"
+                alt="Offizielles Ultra Instinct Crew Vektor-Wappen"
+                class="lm-logo-img"
+                width="160"
+                height="160"
+              />
+            </div>
+
+            <span class="lm-dim-caption text-mono">VIEWBOX 1000 &times; 1000 &bull; SYMMETRISCHER VEKTORPFAD</span>
+          </div>
+
+          <div class="lm-details">
+            <div class="asset-meta-row text-mono">
+              <span class="meta-type">PRIMÄRMARKE (WEISS)</span>
+              <span class="meta-spec">1:1 QUADRATISCH</span>
+            </div>
+            <h3 class="lm-title">UIC ORGANISATIONS-WAPPEN</h3>
+            <p class="lm-desc">
+              Standard-Logo in reinem Weiß (<code>#FFFFFF</code>) auf transparentem Hintergrund. Optimal für dunkle UI-Flächen, Twitch-Overlays, Turnier-Brackets und Social Media.
+            </p>
+
+            <div class="lm-specs-grid text-mono">
+              <div class="spec-mini">
+                <span class="sm-lbl">VEKTOR</span>
+                <span class="sm-val">SVG (1000&times;1000)</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">RASTER</span>
+                <span class="sm-val">PNG Hochauflösend</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">SEITENVERHÄLTNIS</span>
+                <span class="sm-val">1 : 1</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">FARBE</span>
+                <span class="sm-val">#FFFFFF</span>
+              </div>
+            </div>
+
+            <div class="lm-actions">
+              <a href="/assets/logo/logo.svg" download="uic-logo.svg" class="btn btn-primary btn-sm">
+                SVG HERUNTERLADEN ↓
+              </a>
+              <a href="/assets/logo/logo.png" download="uic-logo.png" class="btn btn-outline btn-sm">
+                PNG HERUNTERLADEN ↓
+              </a>
+              {rawLogoSvg && (
+                <button
+                  type="button"
+                  class="btn btn-outline btn-sm text-mono"
+                  id="copy-svg-btn"
+                  data-copy-svg={rawLogoSvg}
+                >
+                  SVG-CODE KOPIEREN
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Lockups & Un-uploaded Placeholders -->
+        <div class="lockups-grid">
+          {logoPlaceholders.map((item) => (
+            <article class="placeholder-card">
+              <div class="ph-header text-mono">
+                <span class="ph-code">{item.id}</span>
+                <span class="ph-badge">{item.badge}</span>
+              </div>
+
+              <div class={`ph-stage ph-stage-${item.previewType}`} aria-hidden="true">
+                {item.previewType === 'horizontal' && (
+                  <div class="ph-mock-horizontal">
+                    <span class="ph-mock-crest-box">UIC</span>
+                    <span class="ph-mock-wordbar">ULTRA INSTINCT CREW</span>
+                  </div>
+                )}
+                {item.previewType === 'stacked' && (
+                  <div class="ph-mock-stacked">
+                    <span class="ph-mock-crest-box">UIC</span>
+                    <span class="ph-mock-wordbar short">ULTRA INSTINCT CREW</span>
+                  </div>
+                )}
+                {item.previewType === 'dark-ink' && (
+                  <div class="ph-mock-darkink">
+                    <img
+                      src="/assets/logo/logo.svg"
+                      alt=""
+                      width="68"
+                      height="68"
+                      class="ph-dark-preview-img"
+                    />
+                  </div>
+                )}
+                <span class="ph-overlay-label text-mono">PLATZHALTER</span>
+              </div>
+
+              <div class="ph-body">
+                <h3 class="ph-title">{item.title}</h3>
+                <span class="ph-spec text-mono">{item.spec}</span>
+                <p class="ph-desc">{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- =================================================================
+           03. SCHUTZZONE, MINDESTGRÖSSE & DO'S / DON'TS
+           ================================================================= -->
+      <section id="regeln" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">03 / ANWENDUNGSREGELN</span>
+          <h2 class="bk-sec-title">SCHUTZZONE, MINDESTGRÖSSEN &amp; DO / DON'T</h2>
+          <p class="bk-sec-desc">
+            Klare Abstands- und Kontrastregeln sichern die Lesbarkeit unseres Wappens auf kleinen Handy-Displays ebenso wie auf großen Turnier-Bühnen.
+          </p>
+        </div>
+
+        <div class="rules-split">
+          <!-- Clearspace Diagram -->
+          <div class="bento-card clearspace-card">
+            <div class="card-meta">
+              <span class="meta-num">SCHUTZZONE</span>
+              <span class="meta-tag text-mono">PROPORTIONAL: X = 25% LOGOBREITE</span>
+            </div>
+
+            <div class="clearspace-diagram" aria-label="Schematische Darstellung der Logoschutzzone">
+              <div class="cs-outer-box">
+                <span class="cs-measure cs-top text-mono">x</span>
+                <span class="cs-measure cs-bottom text-mono">x</span>
+                <span class="cs-measure cs-left text-mono">x</span>
+                <span class="cs-measure cs-right text-mono">x</span>
+                <div class="cs-inner-box">
+                  <img src="/assets/logo/logo.svg" alt="UIC Logo in Schutzzone" width="110" height="110" />
+                </div>
+              </div>
+            </div>
+
+            <div class="minsize-row">
+              <div class="ms-box">
+                <span class="ms-lbl text-mono">DIGITAL MINIMUM</span>
+                <strong class="ms-val text-mono">32 &times; 32 px</strong>
+                <span class="ms-sub">Favicon-Ausnahme: 16 px</span>
+              </div>
+              <div class="ms-box">
+                <span class="ms-lbl text-mono">DRUCK &amp; STICKEREI</span>
+                <strong class="ms-val text-mono">15 &times; 15 mm</strong>
+                <span class="ms-sub">Darunter Feindetails prüfen</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Do's & Don'ts Grid -->
+          <div class="dos-donts-col">
+            <div class="dd-group-head text-mono is-do">ERLAUBT (DO)</div>
+            <div class="dd-grid">
+              <div class="dd-card is-do">
+                <div class="dd-preview dark">
+                  <img src="/assets/logo/logo.svg" alt="Korrekte Darstellung auf Schwarz" width="52" height="52" />
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-do text-mono">✓ RICHTIG</span>
+                  <p>Unverzerrt und kontrastreich in Reinweiß auf ruhigen dunklen Flächen platzieren.</p>
+                </div>
+              </div>
+
+              <div class="dd-card is-do">
+                <div class="dd-preview split">
+                  <span class="dd-badge-inline text-mono">UIC</span>
+                  <span class="dd-divider-x">&times;</span>
+                  <span class="dd-partner-box text-mono">PARTNER</span>
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-do text-mono">✓ RICHTIG</span>
+                  <p>Bei Co-Branding durch saubere Trennlinie und ausgeglichene Schutzzonen trennen.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dd-group-head text-mono is-dont">UNTERSAGT (DON'T)</div>
+            <div class="dd-grid">
+              <div class="dd-card is-dont">
+                <div class="dd-preview">
+                  <img src="/assets/logo/logo.svg" alt="" width="52" height="52" class="demo-stretch" />
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-dont text-mono">✕ FALSCH</span>
+                  <p>Proportionen niemals stauchen, strecken oder frei skalieren.</p>
+                </div>
+              </div>
+
+              <div class="dd-card is-dont">
+                <div class="dd-preview">
+                  <img src="/assets/logo/logo.svg" alt="" width="52" height="52" class="demo-recolor" />
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-dont text-mono">✕ FALSCH</span>
+                  <p>Keine Fremdfarben, bunten Neon-Scheine oder Effekte auf das Wappen anwenden.</p>
+                </div>
+              </div>
+
+              <div class="dd-card is-dont">
+                <div class="dd-preview">
+                  <img src="/assets/logo/logo.svg" alt="" width="52" height="52" class="demo-rotate" />
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-dont text-mono">✕ FALSCH</span>
+                  <p>Wappen nicht drehen, kippen, spiegeln oder Kanten beschneiden.</p>
+                </div>
+              </div>
+
+              <div class="dd-card is-dont">
+                <div class="dd-preview low-contrast">
+                  <img src="/assets/logo/logo.svg" alt="" width="52" height="52" class="demo-lowcontrast" />
+                </div>
+                <div class="dd-text">
+                  <span class="dd-badge is-dont text-mono">✕ FALSCH</span>
+                  <p>Nicht auf hellen oder unruhigen Fotos ohne ausreichenden Kontrast einsetzen.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           04. FARBSYSTEM & KONTRAST-TOKENS
+           ================================================================= -->
+      <section id="farben" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">04 / FARBSYSTEM</span>
+          <h2 class="bk-sec-title">MONOCHROME PALETTE &amp; FUNKTIONSFARBEN</h2>
+          <p class="bk-sec-desc">
+            Klick auf eine Farbkarte kopiert den HEX-Code direkt in die Zwischenablage. Statusfarben sind streng für Liga-Telemetrie reserviert.
+          </p>
+        </div>
+
+        <div class="swatches-grid">
+          {primaryColors.map((col) => (
+            <button
+              type="button"
+              class="swatch-card"
+              data-copy-color={col.hex}
+              title={`HEX-Code ${col.hex} kopieren`}
+            >
+              <div
+                class="swatch-fill"
+                style={`background-color: ${col.hex}; border-bottom: 1px solid ${col.border};`}
+              >
+                <span class={`swatch-hex-badge text-mono ${col.darkInk ? 'is-dark' : ''}`} data-color-status={col.hex}>
+                  {col.hex}
+                </span>
+              </div>
+              <div class="swatch-meta">
+                <h3 class="swatch-name">{col.name}</h3>
+                <div class="swatch-codes text-mono">
+                  <span>RGB {col.rgb}</span>
+                  <span>&bull;</span>
+                  <span>{col.token}</span>
+                </div>
+                <p class="swatch-role">{col.role}</p>
+                <span class="swatch-wcag text-mono">KONTRAST: {col.contrast}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <div class="status-colors-bar bento-card">
+          <div class="scb-header">
+            <span class="meta-num text-mono">FUNKTIONALE STATUSFARBEN</span>
+            <span class="meta-tag text-mono">NUR FÜR SPIELSTÄNDE &amp; LIVE-TELEMETRIE</span>
+          </div>
+          <div class="scb-grid">
+            {statusColors.map((st) => (
+              <button
+                type="button"
+                class="status-pill-card"
+                data-copy-color={st.hex}
+                title={`Status-HEX ${st.hex} kopieren`}
+              >
+                <span class="st-dot" style={`background: ${st.hex}; box-shadow: 0 0 12px ${st.hex}66;`}></span>
+                <div class="st-info">
+                  <div class="st-top">
+                    <strong class="st-name">{st.name}</strong>
+                    <span class="st-hex text-mono" data-color-status={st.hex}>{st.hex}</span>
+                  </div>
+                  <span class="st-token text-mono">{st.token} &bull; RGB {st.rgb}</span>
+                  <p class="st-usage">{st.usage}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           05. TYPOGRAFIE & HIERARCHIE
+           ================================================================= -->
+      <section id="typografie" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">05 / TYPOGRAFIE</span>
+          <h2 class="bk-sec-title">SCHRIFTSYSTEM &amp; HIERARCHIE</h2>
+          <p class="bk-sec-desc">
+            Zwei komplementäre Schriftfamilien decken alle Einsatzbereiche ab. Beide Schriften werden DSGVO-konform lokal ausgeliefert.
+          </p>
+        </div>
+
+        <div class="type-grid">
+          <article class="bento-card type-card">
+            <div class="card-meta">
+              <span class="meta-num">DISPLAY &amp; FLIESSTEXT</span>
+              <span class="meta-tag text-mono">PLUS JAKARTA SANS</span>
+            </div>
+            <div class="type-specimen" style="font-family: var(--font-display);">
+              <span class="specimen-big">Aa Bb Cc</span>
+              <span class="specimen-headline">ULTRA INSTINCT CREW</span>
+              <p class="specimen-alphabet">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ &bull; abcdefghijklmnopqrstuvwxyz &bull; 0123456789
+              </p>
+            </div>
+            <div class="type-weights text-mono">
+              <span class="weight-chip"><strong>800 ExtraBold</strong> Headlines &amp; CTAs (Tracking -0.035em)</span>
+              <span class="weight-chip"><strong>500 / 400</strong> Fließtext &amp; UI (Line-Height 1.6)</span>
+            </div>
+          </article>
+
+          <article class="bento-card type-card">
+            <div class="card-meta">
+              <span class="meta-num">TECHNIK, ZAHLEN &amp; BADGES</span>
+              <span class="meta-tag text-mono">SPACE GROTESK</span>
+            </div>
+            <div class="type-specimen" style="font-family: var(--font-mono);">
+              <span class="specimen-big">01 : 24</span>
+              <span class="specimen-headline">DIVISION 4 &bull; 68% SIEGQUOTE</span>
+              <p class="specimen-alphabet">
+                #FFFFFF &bull; 1920&times;1080 PX &bull; ST7 &bull; KDA 4.82 &bull; PRIME LEAGUE
+              </p>
+            </div>
+            <div class="type-weights text-mono">
+              <span class="weight-chip"><strong>700 Bold</strong> Metriken, Spieltage &amp; Tabellen</span>
+              <span class="weight-chip"><strong>500 Medium</strong> Tags, Status-Badges &amp; Labels</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           06. AKTIVE TEAM-WAPPEN
+           ================================================================= -->
+      <section id="teams-wappen" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">06 / SUB-MARKEN</span>
+          <h2 class="bk-sec-title">TEAM-WAPPEN DER ORGANISATION</h2>
+          <p class="bk-sec-desc">
+            Offizielle Embleme aller {activeTeamEmblems.length} Prime League Teams im aktuellen Raster-Format (<code>WEBP</code>). Einzelne Vektor-Versionen für Teams werden bei Bedarf ergänzt.
+          </p>
+        </div>
+
+        <div class="team-emblems-grid">
+          {activeTeamEmblems.map((t) => (
+            <div class="emblem-card">
+              <div class="emblem-stage">
+                {t.fileSrc ? (
+                  <img
+                    src={t.fileSrc}
+                    alt={`Team-Wappen von ${t.name}`}
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <span class="emblem-ph text-mono">PLATZHALTER</span>
+                )}
+              </div>
+              <div class="emblem-info">
+                <span class="emblem-tier text-mono">{t.tier}</span>
+                <h3 class="emblem-name">{t.name}</h3>
+                {t.fileSrc ? (
+                  <a
+                    href={t.fileSrc}
+                    download={`uic-${t.key}.${t.formatLabel?.toLowerCase() || 'webp'}`}
+                    class="emblem-dl text-mono"
+                  >
+                    {t.formatLabel} HERUNTERLADEN ↓
+                  </a>
+                ) : (
+                  <span class="emblem-dl is-missing text-mono">DATEI FOLGT</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- =================================================================
+           07. PLATZHALTER FÜR AUSSTEHENDE VORLAGEN & GRAFIKEN
+           ================================================================= -->
+      <section id="platzhalter" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">07 / AUSBAUSTUFEN</span>
+          <h2 class="bk-sec-title">VORLAGEN &amp; ASSET-PLATZHALTER</h2>
+          <p class="bk-sec-desc">
+            Strukturierte Platzhalter für alle Design-Pakete, die noch nicht hochgeladen wurden. Zielformate und Proportionen sind bereits nach Industriestandard hinterlegt.
+          </p>
+        </div>
+
+        <div class="media-placeholders-grid">
+          {mediaPlaceholders.map((mp) => (
+            <article class="placeholder-card">
+              <div class="ph-header text-mono">
+                <span class="ph-code">{mp.code} &bull; {mp.category}</span>
+                <span class="ph-badge">PLATZHALTER</span>
+              </div>
+
+              <div class="ph-wireframe-box" aria-hidden="true">
+                <div class="wf-frame" style={`aspect-ratio: ${mp.aspect};`}>
+                  <span class="wf-dims text-mono">{mp.aspect.replace(' / ', ':')}</span>
+                </div>
+              </div>
+
+              <div class="ph-body">
+                <h3 class="ph-title">{mp.title}</h3>
+                <span class="ph-spec text-mono">{mp.format}</span>
+                <p class="ph-desc">{mp.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- =================================================================
+           08. NUTZUNGSRECHTE & KONTAKT
+           ================================================================= -->
+      <section id="nutzung" class="bk-section">
+        <div class="bento-card usage-banner">
+          <div class="usage-content">
+            <span class="section-badge-pill">RECHTLICHES &amp; NUTZUNG</span>
+            <h2 class="usage-title">NUTZUNGSRICHTLINIEN &amp; ANFRAGEN</h2>
+            <p class="usage-desc">
+              Alle bereitgestellten Logos, Wortmarken und Team-Wappen dürfen von Turnierveranstaltern (z. B. Prime League), Castern, Partnern und für redaktionelle Berichterstattung unter Einhaltung dieser Richtlinien frei verwendet werden. Kommerzielle Eigenprodukte, Merchandising durch Dritte oder irreführende Verwendung erfordern eine vorherige schriftliche Freigabe.
+            </p>
+            <div class="usage-actions">
+              <a href="mailto:support@ultrainstinctcrew.com?subject=Brandkit%20%26%20Presseanfrage%20UIC" class="btn btn-primary btn-sm">
+                SONDERFORMATE ANFRAGEN ↗
+              </a>
+              <a href="/obs" class="btn btn-outline btn-sm">
+                OBS SPIELTAGS-OVERLAY ↗
+              </a>
+              <a href={discordInviteUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                DISCORD KONTAKT ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // 1. Master Logo Showcase Canvas Background Toggle
+  const masterStage = document.getElementById('master-logo-stage');
+  document.querySelectorAll<HTMLButtonElement>('[data-stage-bg]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-stage-bg');
+      if (!mode || !masterStage) return;
+      masterStage.setAttribute('data-bg', mode);
+      document.querySelectorAll('[data-stage-bg]').forEach((b) => b.classList.toggle('is-active', b === btn));
+    });
+  });
+
+  // 2. Copy SVG Markup to Clipboard
+  const copySvgBtn = document.getElementById('copy-svg-btn');
+  copySvgBtn?.addEventListener('click', () => {
+    const svgCode = copySvgBtn.getAttribute('data-copy-svg');
+    if (!svgCode) return;
+    navigator.clipboard?.writeText(svgCode).catch(() => {});
+    const original = copySvgBtn.textContent;
+    copySvgBtn.textContent = 'SVG KOPIERT ✓';
+    copySvgBtn.classList.add('is-copied');
+    setTimeout(() => {
+      copySvgBtn.textContent = original;
+      copySvgBtn.classList.remove('is-copied');
+    }, 1800);
+  });
+
+  // 3. Copy HEX Color Swatches to Clipboard
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-color]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const hex = btn.getAttribute('data-copy-color');
+      const statusEl = btn.querySelector<HTMLElement>('[data-color-status]');
+      if (!hex || !statusEl) return;
+      navigator.clipboard?.writeText(hex).catch(() => {});
+      statusEl.textContent = 'KOPIERT ✓';
+      btn.classList.add('is-copied');
+      setTimeout(() => {
+        statusEl.textContent = hex;
+        btn.classList.remove('is-copied');
+      }, 1500);
+    });
+  });
+</script>
+
+<style>
+  .brandkit-page {
+    background-color: var(--bg-void);
+    padding-top: 7.25rem;
+    padding-bottom: 5rem;
+    min-height: 100vh;
+  }
+
+  .bk-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  /* Top Bar */
+  .bk-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .back-link:hover {
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bk-version-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .ver-pill {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 5px 10px;
+    border-radius: var(--radius-xs);
+  }
+
+  .ver-pill.is-highlight {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Header */
+  .bk-header {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 2.25rem;
+  }
+
+  .bk-title {
+    font-size: clamp(2.4rem, 5vw, 4.25rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.03;
+    margin-bottom: var(--space-sm);
+  }
+
+  .bk-lead {
+    max-width: 760px;
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+  }
+
+  .bk-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .bk-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toc-chip {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .toc-chip:hover {
+    color: #000000;
+    background: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .bundle-placeholder-btn[disabled] {
+    opacity: 0.65;
+    cursor: not-allowed;
+    border-style: dashed;
+    font-size: 0.72rem;
+  }
+
+  /* Section Headings */
+  .bk-section {
+    scroll-margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .bk-sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bk-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .bk-sec-title {
+    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  .bk-sec-desc {
+    max-width: 680px;
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  .bk-sec-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    color: #ffffff;
+  }
+
+  /* 01 Identity Cards */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .id-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .id-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .id-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .id-note {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .id-note strong {
+    color: #ffffff;
+  }
+
+  /* 02 Master Logo Card */
+  .logo-master-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .lm-stage {
+    position: relative;
+    min-height: 290px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    transition: background-color var(--transition-fast);
+    overflow: hidden;
+  }
+
+  .lm-stage[data-bg="dark"] {
+    background-color: #000000;
+  }
+
+  .lm-stage[data-bg="slate"] {
+    background-color: #141418;
+  }
+
+  .lm-stage[data-bg="grid"] {
+    background-color: #050507;
+    background-image:
+      radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .lm-stage-controls {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .lm-status-pill {
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+
+  .stage-bg-switch {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-xs);
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .bg-sw-btn {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 3px 8px;
+    border-radius: 3px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .bg-sw-btn.is-active,
+  .bg-sw-btn:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .lm-preview-wrap {
+    padding: 2.25rem 0 1.25rem;
+  }
+
+  .lm-logo-img {
+    width: clamp(110px, 14vw, 155px);
+    height: auto;
+    filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.12));
+  }
+
+  .lm-dim-caption {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .lm-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .asset-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .meta-type {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: var(--radius-xs);
+    font-weight: 700;
+  }
+
+  .lm-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .lm-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .lm-desc code {
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    color: #ffffff;
+  }
+
+  .lm-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .spec-mini {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sm-lbl {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .sm-val {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .lm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 4px;
+  }
+
+  .lm-actions .is-copied {
+    background: #10b981;
+    border-color: #10b981;
+    color: #000000;
+  }
+
+  /* Placeholders Cards (Shared across Logo Variants & Media Templates) */
+  .lockups-grid,
+  .media-placeholders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .placeholder-card {
+    background: #09090c;
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: border-color var(--transition-fast);
+  }
+
+  .placeholder-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .ph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .ph-code {
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  .ph-badge {
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    padding: 2px 7px;
+    border-radius: var(--radius-xs);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .ph-stage {
+    position: relative;
+    height: 132px;
+    background: #040406;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ph-stage-dark-ink {
+    background: #f4f4f5;
+  }
+
+  .ph-dark-preview-img {
+    filter: brightness(0);
+    opacity: 0.85;
+  }
+
+  .ph-mock-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.45;
+  }
+
+  .ph-mock-stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.45;
+  }
+
+  .ph-mock-crest-box {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid rgba(255, 255, 255, 0.65);
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .ph-mock-wordbar {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    color: #ffffff;
+  }
+
+  .ph-mock-wordbar.short {
+    font-size: 0.625rem;
+  }
+
+  .ph-overlay-label {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .ph-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ph-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  .ph-spec {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .ph-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* 03 Clearspace & Do/Don't */
+  .rules-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: var(--space-lg);
+    align-items: stretch;
+  }
+
+  .clearspace-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-lg);
+  }
+
+  .clearspace-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) 0;
+  }
+
+  .cs-outer-box {
+    position: relative;
+    padding: 36px;
+    border: 1px dashed rgba(255, 255, 255, 0.35);
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 36px, transparent 36px, transparent calc(100% - 36px), rgba(255, 255, 255, 0.03) calc(100% - 36px)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03) 36px, transparent 36px, transparent calc(100% - 36px), rgba(255, 255, 255, 0.03) calc(100% - 36px));
+    border-radius: var(--radius-sm);
+  }
+
+  .cs-inner-box {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px;
+    background: #000000;
+  }
+
+  .cs-measure {
+    position: absolute;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .cs-top { top: 10px; left: 50%; transform: translateX(-50%); }
+  .cs-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+  .cs-left { left: 13px; top: 50%; transform: translateY(-50%); }
+  .cs-right { right: 13px; top: 50%; transform: translateY(-50%); }
+
+  .minsize-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .ms-box {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ms-lbl {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .ms-val {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+
+  .ms-sub {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .dos-donts-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dd-group-head {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .dd-group-head.is-do { color: #34d399; }
+  .dd-group-head.is-dont { color: #fb7185; margin-top: 6px; }
+
+  .dd-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .dd-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dd-card.is-do { border-color: rgba(16, 185, 129, 0.25); }
+  .dd-card.is-dont { border-color: rgba(244, 63, 94, 0.25); }
+
+  .dd-preview {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .dd-preview.split {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .dd-divider-x {
+    color: var(--text-dim);
+    font-size: 0.65rem;
+  }
+
+  .dd-preview.low-contrast {
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+  }
+
+  .demo-stretch { transform: scaleX(1.42) scaleY(0.7); }
+  .demo-recolor { filter: invert(48%) sepia(90%) saturate(1800%) hue-rotate(300deg); }
+  .demo-rotate { transform: rotate(28deg) scale(1.25); }
+  .demo-lowcontrast { opacity: 0.45; }
+
+  .dd-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dd-badge {
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .dd-badge.is-do { color: #34d399; }
+  .dd-badge.is-dont { color: #fb7185; }
+
+  .dd-text p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* 04 Swatches */
+  .swatches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .swatch-card {
+    text-align: left;
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .swatch-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .swatch-card.is-copied {
+    border-color: #10b981;
+  }
+
+  .swatch-fill {
+    height: 92px;
+    padding: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .swatch-hex-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 3px 9px;
+    border-radius: var(--radius-xs);
+  }
+
+  .swatch-hex-badge.is-dark {
+    color: #000000;
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .swatch-meta {
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .swatch-name {
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  .swatch-codes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .swatch-role {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .swatch-wcag {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .status-colors-bar {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .scb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .scb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .status-pill-card {
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    transition: border-color var(--transition-fast);
+  }
+
+  .status-pill-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .status-pill-card.is-copied {
+    border-color: #10b981;
+  }
+
+  .st-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .st-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .st-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .st-name {
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+
+  .st-hex {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .st-token {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .st-usage {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* 05 Typography */
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .type-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .meta-num {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .type-specimen {
+    background: #060608;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .specimen-big {
+    font-size: clamp(2.2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  .specimen-headline {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+
+  .specimen-alphabet {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  .type-weights {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .weight-chip {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 8px 12px;
+    border-radius: var(--radius-xs);
+  }
+
+  .weight-chip strong {
+    color: #ffffff;
+  }
+
+  /* 06 Team Emblems */
+  .team-emblems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .emblem-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: border-color var(--transition-fast);
+  }
+
+  .emblem-card:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .emblem-stage {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .emblem-stage img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+  }
+
+  .emblem-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .emblem-tier {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .emblem-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .emblem-dl {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-top: 2px;
+  }
+
+  .emblem-dl:hover {
+    color: #ffffff;
+  }
+
+  .emblem-dl.is-missing {
+    color: var(--text-dim);
+  }
+
+  /* 07 Media Placeholders */
+  .ph-wireframe-box {
+    height: 112px;
+    background: #040406;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .wf-frame {
+    height: 76px;
+    max-width: 100%;
+    border: 1px dashed rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .wf-dims {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  /* 08 Usage Banner */
+  .usage-banner {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .usage-title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    margin: 6px 0 var(--space-sm);
+  }
+
+  .usage-desc {
+    max-width: 760px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: var(--space-lg);
+  }
+
+  .usage-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .brandkit-page {
+      padding-top: 2rem;
+    }
+
+    .identity-grid,
+    .lockups-grid,
+    .media-placeholders-grid,
+    .swatches-grid,
+    .scb-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .logo-master-card,
+    .rules-split,
+    .type-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .identity-grid,
+    .lockups-grid,
+    .media-placeholders-grid,
+    .swatches-grid,
+    .scb-grid,
+    .dd-grid,
+    .lm-specs-grid,
+    .minsize-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
