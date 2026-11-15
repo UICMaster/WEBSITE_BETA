@@ -6,8 +6,49 @@ import Layout from '../layouts/Layout.astro';
 import rawTeams from '../../data/teams.json';
 import { discordInviteUrl } from '../utils/uicData';
 
-const logoSvgPath = path.resolve(process.cwd(), 'public', 'assets', 'logo', 'logo.svg');
-const rawLogoSvg = fs.existsSync(logoSvgPath) ? fs.readFileSync(logoSvgPath, 'utf8').trim() : '';
+interface ResolvedAsset {
+  src: string;
+  fileName: string;
+  ext: string;
+  sizeBytes: number;
+  sizeLabel: string;
+  svgMarkup: string | null;
+}
+
+const formatFileSize = (bytes: number): string => {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1).replace('.', ',')} MB`;
+};
+
+const publicRoot = path.resolve(process.cwd(), 'public');
+
+const resolvePublicAsset = (webPath: string): ResolvedAsset | null => {
+  const cleanPath = webPath.startsWith('/') ? webPath.slice(1) : webPath;
+  const absPath = path.join(publicRoot, ...cleanPath.split('/'));
+  if (!fs.existsSync(absPath)) return null;
+  const stat = fs.statSync(absPath);
+  if (!stat.isFile()) return null;
+  const ext = path.extname(cleanPath).slice(1).toUpperCase();
+  const fileName = path.basename(cleanPath);
+  const svgMarkup = ext === 'SVG' ? fs.readFileSync(absPath, 'utf8').trim() : null;
+  return {
+    src: `/${cleanPath}`,
+    fileName,
+    ext,
+    sizeBytes: stat.size,
+    sizeLabel: formatFileSize(stat.size),
+    svgMarkup
+  };
+};
+
+const resolveAssetList = (candidates: string[]): ResolvedAsset[] =>
+  candidates
+    .map((candidate) => resolvePublicAsset(candidate))
+    .filter((asset): asset is ResolvedAsset => asset !== null);
+
+const rawLogoSvg = resolvePublicAsset('/assets/logo/logo.svg')?.svgMarkup ?? '';
+const brandkitBundle = resolvePublicAsset('/assets/downloads/uic-brandkit.zip');
 
 const teamsMap = (rawTeams || {}) as Record<string, any>;
 const teamAssetMap = import.meta.glob('/public/assets/teams/*.{webp,png,jpg,svg}');
@@ -17,18 +58,23 @@ const activeTeamEmblems = Object.entries(teamsMap)
   .map(([key, meta]) => {
     const hasWebp = `/public/assets/teams/${key}.webp` in teamAssetMap;
     const hasPng = `/public/assets/teams/${key}.png` in teamAssetMap;
+    const hasSvg = `/public/assets/teams/${key}.svg` in teamAssetMap;
     const fileSrc = hasWebp
       ? `/assets/teams/${key}.webp`
       : hasPng
         ? `/assets/teams/${key}.png`
-        : null;
-    const formatLabel = hasWebp ? 'WEBP' : hasPng ? 'PNG' : null;
+        : hasSvg
+          ? `/assets/teams/${key}.svg`
+          : null;
+    const formatLabel = hasWebp ? 'WEBP' : hasPng ? 'PNG' : hasSvg ? 'SVG' : null;
+    const svgSrc = hasSvg ? `/assets/teams/${key}.svg` : null;
     return {
       key,
       name: meta.teamDisplay || `UIC ${key.toUpperCase()}`,
       tier: meta.tier || 'Prime League',
       fileSrc,
-      formatLabel
+      formatLabel,
+      svgSrc
     };
   });
 
@@ -126,7 +172,9 @@ const logoPlaceholders = [
     title: 'Wortmarke / Horizontal Lockup',
     spec: 'SVG & PNG • Empfohlen 1600 × 400 px • Transparent',
     desc: 'Kombination aus UIC Wappen links und „ULTRA INSTINCT CREW“ Schriftzug rechts für Web-Header, Stream-Banderolen und Sponsoren-Leisten.',
-    previewType: 'horizontal'
+    previewType: 'horizontal',
+    candidates: ['/assets/logo/logo-horizontal.svg', '/assets/logo/logo-horizontal.png'],
+    slotHint: 'public/assets/logo/logo-horizontal.svg'
   },
   {
     id: 'LOC-02',
@@ -134,7 +182,9 @@ const logoPlaceholders = [
     title: 'Vertikales Lockup (Stacked)',
     spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Transparent',
     desc: 'Zentriertes Wappen über zweizeiliger Wortmarke für Poster, Pokale, Turnier-Kacheln und Print-Materialien.',
-    previewType: 'stacked'
+    previewType: 'stacked',
+    candidates: ['/assets/logo/logo-stacked.svg', '/assets/logo/logo-stacked.png'],
+    slotHint: 'public/assets/logo/logo-stacked.svg'
   },
   {
     id: 'LOC-03',
@@ -142,9 +192,31 @@ const logoPlaceholders = [
     title: 'Print-Wappen (Dunkel auf Hell)',
     spec: 'SVG & EPS • #000000 Vollton • CMYK-tauglich',
     desc: 'Dedizierte tiefschwarze Reinzeichnungs-Datei für weiße Trikots, Verträge, Briefbögen und helle Partner-Hintergründe.',
-    previewType: 'dark-ink'
+    previewType: 'dark-ink',
+    candidates: [
+      '/assets/logo/logo-dark.svg',
+      '/assets/logo/logo-dark.png',
+      '/assets/logo/logo-dark.eps'
+    ],
+    slotHint: 'public/assets/logo/logo-dark.svg'
   }
 ];
+
+const logoVariants = logoPlaceholders.map((item) => {
+  const files = resolveAssetList(item.candidates);
+  const svgAsset = files.find((f) => f.ext === 'SVG') ?? null;
+  const previewAsset =
+    svgAsset ??
+    files.find((f) => f.ext === 'PNG' || f.ext === 'WEBP' || f.ext === 'JPG') ??
+    null;
+  return {
+    ...item,
+    files,
+    svgAsset,
+    previewAsset,
+    isAvailable: files.length > 0
+  };
+});
 
 const mediaPlaceholders = [
   {
@@ -153,7 +225,14 @@ const mediaPlaceholders = [
     title: 'Profilbilder-Set (1:1)',
     format: '1000 × 1000 px • PNG / WEBP',
     desc: 'Zentrierte Profilbilder mit vorkalibrierter Safe-Zone für runde Zuschnitte auf Discord, Twitch, X, YouTube und Instagram.',
-    aspect: '1 / 1'
+    aspect: '1 / 1',
+    candidates: ['/assets/brandkit/social-avatars.zip'],
+    previewCandidates: [
+      '/assets/brandkit/social-avatars.webp',
+      '/assets/brandkit/social-avatars.png',
+      '/assets/brandkit/social-avatars.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/social-avatars.zip'
   },
   {
     code: 'MEDIA-02',
@@ -161,7 +240,14 @@ const mediaPlaceholders = [
     title: 'Header & Offline-Screens',
     format: '1500 × 500 px / 2560 × 1440 px',
     desc: 'Einheitliche Kopfzeilen-Grafiken für Twitch-Panels, X-Header, YouTube-Kanalbanner und Prime-League-Teamseiten.',
-    aspect: '16 / 9'
+    aspect: '16 / 9',
+    candidates: ['/assets/brandkit/channel-banners.zip'],
+    previewCandidates: [
+      '/assets/brandkit/channel-banners.webp',
+      '/assets/brandkit/channel-banners.png',
+      '/assets/brandkit/channel-banners.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/channel-banners.zip'
   },
   {
     code: 'MEDIA-03',
@@ -169,7 +255,18 @@ const mediaPlaceholders = [
     title: 'Matchday- & Score-Templates',
     format: '1080 × 1350 px / 1920 × 1080 px',
     desc: 'Bearbeitbare Figma- & PSD-Vorlagen für Aufstellungs-Ankündigungen, Endergebnisse und Split-Rückblicke.',
-    aspect: '4 / 5'
+    aspect: '4 / 5',
+    candidates: [
+      '/assets/brandkit/matchday-templates.zip',
+      '/assets/brandkit/matchday-templates.fig',
+      '/assets/brandkit/matchday-templates.psd'
+    ],
+    previewCandidates: [
+      '/assets/brandkit/matchday-templates.webp',
+      '/assets/brandkit/matchday-templates.png',
+      '/assets/brandkit/matchday-templates.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/matchday-templates.zip'
   },
   {
     code: 'MEDIA-04',
@@ -177,7 +274,14 @@ const mediaPlaceholders = [
     title: 'Jersey- & Spized-Richtlinie',
     format: 'PDF Vektor / PSD Mockups',
     desc: 'Verbindliche Positionierung von Hauptwappen, Spieler-Nicknames und Sponsoren-Logos auf offizieller Teamkleidung.',
-    aspect: '1 / 1'
+    aspect: '1 / 1',
+    candidates: ['/assets/brandkit/jersey-guidelines.pdf', '/assets/brandkit/jersey-guidelines.zip'],
+    previewCandidates: [
+      '/assets/brandkit/jersey-guidelines.webp',
+      '/assets/brandkit/jersey-guidelines.png',
+      '/assets/brandkit/jersey-guidelines.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/jersey-guidelines.pdf'
   },
   {
     code: 'MEDIA-05',
@@ -185,7 +289,14 @@ const mediaPlaceholders = [
     title: 'Partner- & Event-Lockups',
     format: 'SVG / PNG • 16:9 Trennlinie',
     desc: 'Standardisierte „UIC × Partner“-Kombinationen mit definierter Trennlinie und ausgeglichener optischer Logogröße.',
-    aspect: '16 / 9'
+    aspect: '16 / 9',
+    candidates: ['/assets/brandkit/partner-lockups.zip'],
+    previewCandidates: [
+      '/assets/brandkit/partner-lockups.webp',
+      '/assets/brandkit/partner-lockups.png',
+      '/assets/brandkit/partner-lockups.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/partner-lockups.zip'
   },
   {
     code: 'MEDIA-06',
@@ -193,9 +304,29 @@ const mediaPlaceholders = [
     title: 'Foto- & Presse-Kit',
     format: 'JPG / WEBP • Hochauflösend',
     desc: 'Freigestellte Spieler-Porträts, Event-Eindrücke und freigegebene Team-Aufnahmen für Berichterstattung.',
-    aspect: '16 / 10'
+    aspect: '16 / 10',
+    candidates: ['/assets/brandkit/press-photos.zip'],
+    previewCandidates: [
+      '/assets/brandkit/press-photos.webp',
+      '/assets/brandkit/press-photos.png',
+      '/assets/brandkit/press-photos.jpg'
+    ],
+    slotHint: 'public/assets/brandkit/press-photos.zip'
   }
 ];
+
+const mediaPackages = mediaPlaceholders.map((mp) => {
+  const files = resolveAssetList(mp.candidates);
+  const previewAsset = resolveAssetList(mp.previewCandidates)[0] ?? null;
+  const primaryFile = files[0] ?? null;
+  return {
+    ...mp,
+    files,
+    primaryFile,
+    previewAsset,
+    isAvailable: files.length > 0
+  };
+});
 ---
 
 <Layout
@@ -243,15 +374,25 @@ const mediaPlaceholders = [
             <a href="#nutzung" class="toc-chip">08 Nutzungsrechte</a>
           </nav>
 
-          <button
-            type="button"
-            class="btn btn-outline btn-sm bundle-placeholder-btn text-mono"
-            disabled
-            aria-disabled="true"
-            title="Das gebündelte ZIP-Archiv wird ergänzt, sobald alle ausstehenden Vorlagen hochgeladen sind."
-          >
-            <span>GESAMTPAKET (.ZIP) &bull; PLATZHALTER</span>
-          </button>
+          {brandkitBundle ? (
+            <a
+              href={brandkitBundle.src}
+              download={brandkitBundle.fileName}
+              class="btn btn-primary btn-sm text-mono"
+            >
+              <span>GESAMTPAKET (.ZIP &bull; {brandkitBundle.sizeLabel}) &darr;</span>
+            </a>
+          ) : (
+            <button
+              type="button"
+              class="btn btn-outline btn-sm bundle-placeholder-btn text-mono"
+              disabled
+              aria-disabled="true"
+              title="Wird automatisch aktiv unter public/assets/downloads/uic-brandkit.zip"
+            >
+              <span>GESAMTPAKET (.ZIP) &bull; PLATZHALTER</span>
+            </button>
+          )}
         </div>
       </header>
 
@@ -381,46 +522,99 @@ const mediaPlaceholders = [
           </div>
         </div>
 
-        <!-- Secondary Lockups & Un-uploaded Placeholders -->
+        <!-- Secondary Lockups & Auto-Detected Variants -->
         <div class="lockups-grid">
-          {logoPlaceholders.map((item) => (
-            <article class="placeholder-card">
+          {logoVariants.map((item) => (
+            <article class={`placeholder-card${item.isAvailable ? ' is-available' : ''}`}>
               <div class="ph-header text-mono">
                 <span class="ph-code">{item.id}</span>
-                <span class="ph-badge">{item.badge}</span>
+                {item.isAvailable ? (
+                  <span class="ph-badge is-live">
+                    VERF&Uuml;GBAR &bull; {item.files.map((f) => f.ext).join(' / ')}
+                  </span>
+                ) : (
+                  <span class="ph-badge">{item.badge}</span>
+                )}
               </div>
 
-              <div class={`ph-stage ph-stage-${item.previewType}`} aria-hidden="true">
-                {item.previewType === 'horizontal' && (
-                  <div class="ph-mock-horizontal">
-                    <span class="ph-mock-crest-box">UIC</span>
-                    <span class="ph-mock-wordbar">ULTRA INSTINCT CREW</span>
-                  </div>
-                )}
-                {item.previewType === 'stacked' && (
-                  <div class="ph-mock-stacked">
-                    <span class="ph-mock-crest-box">UIC</span>
-                    <span class="ph-mock-wordbar short">ULTRA INSTINCT CREW</span>
-                  </div>
-                )}
-                {item.previewType === 'dark-ink' && (
-                  <div class="ph-mock-darkink">
+              {item.isAvailable ? (
+                <div
+                  class={`ph-stage ph-stage-live${item.previewType === 'dark-ink' ? ' is-light-canvas' : ''}`}
+                >
+                  {item.previewAsset ? (
                     <img
-                      src="/assets/logo/logo.svg"
-                      alt=""
-                      width="68"
-                      height="68"
-                      class="ph-dark-preview-img"
+                      src={item.previewAsset.src}
+                      alt={`${item.title} Vorschau`}
+                      class="ph-live-img"
+                      loading="lazy"
+                      decoding="async"
                     />
-                  </div>
-                )}
-                <span class="ph-overlay-label text-mono">PLATZHALTER</span>
-              </div>
+                  ) : (
+                    <div class="wf-ready-badge text-mono">
+                      <span class="wf-ready-ext">{item.files[0].ext}</span>
+                      <span class="wf-ready-name">{item.files[0].fileName}</span>
+                      <span class="wf-ready-size">{item.files[0].sizeLabel}</span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div class={`ph-stage ph-stage-${item.previewType}`} aria-hidden="true">
+                  {item.previewType === 'horizontal' && (
+                    <div class="ph-mock-horizontal">
+                      <span class="ph-mock-crest-box">UIC</span>
+                      <span class="ph-mock-wordbar">ULTRA INSTINCT CREW</span>
+                    </div>
+                  )}
+                  {item.previewType === 'stacked' && (
+                    <div class="ph-mock-stacked">
+                      <span class="ph-mock-crest-box">UIC</span>
+                      <span class="ph-mock-wordbar short">ULTRA INSTINCT CREW</span>
+                    </div>
+                  )}
+                  {item.previewType === 'dark-ink' && (
+                    <div class="ph-mock-darkink">
+                      <img
+                        src="/assets/logo/logo.svg"
+                        alt=""
+                        width="68"
+                        height="68"
+                        class="ph-dark-preview-img"
+                      />
+                    </div>
+                  )}
+                  <span class="ph-overlay-label text-mono">PLATZHALTER</span>
+                </div>
+              )}
 
               <div class="ph-body">
                 <h3 class="ph-title">{item.title}</h3>
                 <span class="ph-spec text-mono">{item.spec}</span>
                 <p class="ph-desc">{item.desc}</p>
+                {item.isAvailable ? (
+                  <div class="ph-actions">
+                    {item.files.map((file) => (
+                      <a
+                        href={file.src}
+                        download={file.fileName}
+                        class="emblem-dl text-mono"
+                        title={`${file.fileName} (${file.sizeLabel})`}
+                      >
+                        {file.ext} ({file.sizeLabel}) &darr;
+                      </a>
+                    ))}
+                    {item.svgAsset?.svgMarkup && (
+                      <button
+                        type="button"
+                        class="emblem-dl is-copy text-mono"
+                        data-copy-svg={item.svgAsset.svgMarkup}
+                      >
+                        SVG-CODE KOPIEREN
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <span class="ph-path-hint text-mono">Slot: {item.slotHint}</span>
+                )}
               </div>
             </article>
           ))}
@@ -700,13 +894,26 @@ const mediaPlaceholders = [
                 <span class="emblem-tier text-mono">{t.tier}</span>
                 <h3 class="emblem-name">{t.name}</h3>
                 {t.fileSrc ? (
-                  <a
-                    href={t.fileSrc}
-                    download={`uic-${t.key}.${t.formatLabel?.toLowerCase() || 'webp'}`}
-                    class="emblem-dl text-mono"
-                  >
-                    {t.formatLabel} HERUNTERLADEN ↓
-                  </a>
+                  <div class="emblem-links">
+                    <a
+                      href={t.fileSrc}
+                      download={`uic-${t.key}.${t.formatLabel?.toLowerCase() || 'webp'}`}
+                      class="emblem-dl text-mono"
+                    >
+                      {t.svgSrc && t.svgSrc !== t.fileSrc
+                        ? `${t.formatLabel} ↓`
+                        : `${t.formatLabel} HERUNTERLADEN ↓`}
+                    </a>
+                    {t.svgSrc && t.svgSrc !== t.fileSrc && (
+                      <a
+                        href={t.svgSrc}
+                        download={`uic-${t.key}.svg`}
+                        class="emblem-dl text-mono"
+                      >
+                        SVG ↓
+                      </a>
+                    )}
+                  </div>
                 ) : (
                   <span class="emblem-dl is-missing text-mono">DATEI FOLGT</span>
                 )}
@@ -729,23 +936,64 @@ const mediaPlaceholders = [
         </div>
 
         <div class="media-placeholders-grid">
-          {mediaPlaceholders.map((mp) => (
-            <article class="placeholder-card">
+          {mediaPackages.map((mp) => (
+            <article class={`placeholder-card${mp.isAvailable ? ' is-available' : ''}`}>
               <div class="ph-header text-mono">
                 <span class="ph-code">{mp.code} &bull; {mp.category}</span>
-                <span class="ph-badge">PLATZHALTER</span>
+                {mp.isAvailable ? (
+                  <span class="ph-badge is-live">
+                    VERF&Uuml;GBAR &bull; {mp.primaryFile!.ext} ({mp.primaryFile!.sizeLabel})
+                  </span>
+                ) : (
+                  <span class="ph-badge">PLATZHALTER</span>
+                )}
               </div>
 
-              <div class="ph-wireframe-box" aria-hidden="true">
-                <div class="wf-frame" style={`aspect-ratio: ${mp.aspect};`}>
-                  <span class="wf-dims text-mono">{mp.aspect.replace(' / ', ':')}</span>
+              {mp.previewAsset ? (
+                <div class="ph-wireframe-box has-preview">
+                  <img
+                    src={mp.previewAsset.src}
+                    alt={`${mp.title} Vorschau`}
+                    class="ph-media-preview-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-              </div>
+              ) : mp.isAvailable ? (
+                <div class="ph-wireframe-box is-ready">
+                  <div class="wf-ready-badge text-mono">
+                    <span class="wf-ready-ext">{mp.primaryFile!.ext}</span>
+                    <span class="wf-ready-name">{mp.primaryFile!.fileName}</span>
+                    <span class="wf-ready-size">{mp.primaryFile!.sizeLabel}</span>
+                  </div>
+                </div>
+              ) : (
+                <div class="ph-wireframe-box" aria-hidden="true">
+                  <div class="wf-frame" style={`aspect-ratio: ${mp.aspect};`}>
+                    <span class="wf-dims text-mono">{mp.aspect.replace(' / ', ':')}</span>
+                  </div>
+                </div>
+              )}
 
               <div class="ph-body">
                 <h3 class="ph-title">{mp.title}</h3>
                 <span class="ph-spec text-mono">{mp.format}</span>
                 <p class="ph-desc">{mp.desc}</p>
+                {mp.isAvailable ? (
+                  <div class="ph-actions">
+                    {mp.files.map((file) => (
+                      <a
+                        href={file.src}
+                        download={file.fileName}
+                        class="emblem-dl text-mono"
+                      >
+                        {file.ext} HERUNTERLADEN ({file.sizeLabel}) &darr;
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <span class="ph-path-hint text-mono">Slot: {mp.slotHint}</span>
+                )}
               </div>
             </article>
           ))}
@@ -794,19 +1042,22 @@ const mediaPlaceholders = [
     });
   });
 
-  // 2. Copy SVG Markup to Clipboard
-  const copySvgBtn = document.getElementById('copy-svg-btn');
-  copySvgBtn?.addEventListener('click', () => {
-    const svgCode = copySvgBtn.getAttribute('data-copy-svg');
-    if (!svgCode) return;
-    navigator.clipboard?.writeText(svgCode).catch(() => {});
-    const original = copySvgBtn.textContent;
-    copySvgBtn.textContent = 'SVG KOPIERT ✓';
-    copySvgBtn.classList.add('is-copied');
-    setTimeout(() => {
-      copySvgBtn.textContent = original;
-      copySvgBtn.classList.remove('is-copied');
-    }, 1800);
+  // 2. Copy SVG Markup to Clipboard (Main Emblem & Lockups)
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-svg]').forEach((btn) => {
+    const original = btn.textContent;
+    let resetTimer: ReturnType<typeof setTimeout> | undefined;
+    btn.addEventListener('click', () => {
+      const svgCode = btn.getAttribute('data-copy-svg');
+      if (!svgCode) return;
+      navigator.clipboard?.writeText(svgCode).catch(() => {});
+      btn.textContent = 'SVG KOPIERT ✓';
+      btn.classList.add('is-copied');
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    });
   });
 
   // 3. Copy HEX Color Swatches to Clipboard
@@ -1268,6 +1519,124 @@ const mediaPlaceholders = [
     border-radius: var(--radius-xs);
     font-weight: 800;
     letter-spacing: 0.06em;
+  }
+
+  .placeholder-card.is-available {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .ph-badge.is-live {
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.14);
+    border-color: rgba(16, 185, 129, 0.38);
+  }
+
+  .ph-stage-live {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, #09090b 80%);
+    padding: 18px;
+  }
+
+  .ph-stage-live.is-light-canvas {
+    background: #f4f4f5;
+  }
+
+  .ph-live-img {
+    max-width: 86%;
+    max-height: 78%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ph-wireframe-box.has-preview {
+    padding: 0;
+    overflow: hidden;
+    background: #09090b;
+  }
+
+  .ph-media-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ph-wireframe-box.is-ready {
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.09) 0%, rgba(9, 9, 11, 0.96) 75%);
+  }
+
+  .wf-ready-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .wf-ready-ext {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #34d399;
+    letter-spacing: 0.08em;
+  }
+
+  .wf-ready-name {
+    font-size: 0.75rem;
+    color: #e4e4e7;
+    word-break: break-all;
+  }
+
+  .wf-ready-size {
+    font-size: 0.6875rem;
+    color: #71717a;
+  }
+
+  .ph-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .ph-actions .emblem-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 11px;
+    border-radius: var(--radius-xs);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f4f4f5;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .ph-actions .emblem-dl:hover {
+    border-color: rgba(255, 255, 255, 0.36);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .ph-actions .emblem-dl.is-copied {
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.12);
+  }
+
+  .ph-path-hint {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.6875rem;
+    color: #71717a;
+    letter-spacing: 0.02em;
+    word-break: break-all;
   }
 
   .ph-stage {
@@ -1935,6 +2304,13 @@ const mediaPlaceholders = [
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .emblem-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: center;
   }
 
   /* Responsive */
