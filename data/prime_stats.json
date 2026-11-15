@@ -109,7 +109,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165678",
-        "updated_at": "2026-11-15T12:25:42.752769+01:00",
+        "updated_at": "2026-11-15T18:55:32.288488+01:00",
         "enemy_team": {
           "id": 204880,
           "name": "Feather Storm",
@@ -138,6 +138,13 @@
         },
         "team_lineup": [
           {
+            "id": 751249,
+            "summoner_name": "UIC Speedy#EUW",
+            "name": "HGG SPEEDY",
+            "is_leader": true,
+            "updated_at": "2026-11-08T03:20:41.663804+01:00"
+          },
+          {
             "id": 1012229,
             "summoner_name": "UIC Baguetto#R3kt",
             "name": "R3ktByBaguette",
@@ -152,25 +159,18 @@
             "updated_at": "2026-11-08T03:20:41.661067+01:00"
           },
           {
-            "id": 2029061,
-            "summoner_name": "UIC Baumi#123",
-            "name": "Baumi123",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:18:38.377329+01:00"
-          },
-          {
-            "id": 751249,
-            "summoner_name": "UIC Speedy#EUW",
-            "name": "HGG SPEEDY",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.663804+01:00"
-          },
-          {
             "id": 1674876,
             "summoner_name": "UIC Giani#999",
             "name": "GianiMoski",
             "is_leader": false,
             "updated_at": "2026-11-07T19:18:38.380849+01:00"
+          },
+          {
+            "id": 2029061,
+            "summoner_name": "UIC Baumi#123",
+            "name": "Baumi123",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:18:38.377329+01:00"
           }
         ]
       },
@@ -193,18 +193,11 @@
         },
         "team_lineup": [
           {
-            "id": 2029061,
-            "summoner_name": "UIC Baumi#123",
-            "name": "Baumi123",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:18:38.377329+01:00"
-          },
-          {
-            "id": 1406501,
-            "summoner_name": "UIC Niki#AMB",
-            "name": "NikiLothra",
+            "id": 751249,
+            "summoner_name": "UIC Speedy#EUW",
+            "name": "HGG SPEEDY",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.661067+01:00"
+            "updated_at": "2026-11-08T03:20:41.663804+01:00"
           },
           {
             "id": 1012229,
@@ -214,11 +207,11 @@
             "updated_at": "2026-11-07T19:18:38.390301+01:00"
           },
           {
-            "id": 751249,
-            "summoner_name": "UIC Speedy#EUW",
-            "name": "HGG SPEEDY",
+            "id": 1406501,
+            "summoner_name": "UIC Niki#AMB",
+            "name": "NikiLothra",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.663804+01:00"
+            "updated_at": "2026-11-08T03:20:41.661067+01:00"
           },
           {
             "id": 1674876,
@@ -226,6 +219,13 @@
             "name": "GianiMoski",
             "is_leader": false,
             "updated_at": "2026-11-07T19:18:38.380849+01:00"
+          },
+          {
+            "id": 2029061,
+            "summoner_name": "UIC Baumi#123",
+            "name": "Baumi123",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:18:38.377329+01:00"
           }
         ]
       },
@@ -248,18 +248,11 @@
         },
         "team_lineup": [
           {
-            "id": 2029061,
-            "summoner_name": "UIC Baumi#123",
-            "name": "Baumi123",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:18:38.377329+01:00"
-          },
-          {
-            "id": 1406501,
-            "summoner_name": "UIC Niki#AMB",
-            "name": "NikiLothra",
+            "id": 751249,
+            "summoner_name": "UIC Speedy#EUW",
+            "name": "HGG SPEEDY",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.661067+01:00"
+            "updated_at": "2026-11-08T03:20:41.663804+01:00"
           },
           {
             "id": 1012229,
@@ -269,11 +262,11 @@
             "updated_at": "2026-11-07T19:18:38.390301+01:00"
           },
           {
-            "id": 751249,
-            "summoner_name": "UIC Speedy#EUW",
-            "name": "HGG SPEEDY",
+            "id": 1406501,
+            "summoner_name": "UIC Niki#AMB",
+            "name": "NikiLothra",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.663804+01:00"
+            "updated_at": "2026-11-08T03:20:41.661067+01:00"
           },
           {
             "id": 1674876,
@@ -281,6 +274,13 @@
             "name": "GianiMoski",
             "is_leader": false,
             "updated_at": "2026-11-07T19:18:38.380849+01:00"
+          },
+          {
+            "id": 2029061,
+            "summoner_name": "UIC Baumi#123",
+            "name": "Baumi123",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:18:38.377329+01:00"
           }
         ]
       },
@@ -303,18 +303,11 @@
         },
         "team_lineup": [
           {
-            "id": 2029061,
-            "summoner_name": "UIC Baumi#123",
-            "name": "Baumi123",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:18:38.377329+01:00"
-          },
-          {
-            "id": 1406501,
-            "summoner_name": "UIC Niki#AMB",
-            "name": "NikiLothra",
+            "id": 751249,
+            "summoner_name": "UIC Speedy#EUW",
+            "name": "HGG SPEEDY",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.661067+01:00"
+            "updated_at": "2026-11-08T03:20:41.663804+01:00"
           },
           {
             "id": 1012229,
@@ -324,11 +317,11 @@
             "updated_at": "2026-11-07T19:18:38.390301+01:00"
           },
           {
-            "id": 751249,
-            "summoner_name": "UIC Speedy#EUW",
-            "name": "HGG SPEEDY",
+            "id": 1406501,
+            "summoner_name": "UIC Niki#AMB",
+            "name": "NikiLothra",
             "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.663804+01:00"
+            "updated_at": "2026-11-08T03:20:41.661067+01:00"
           },
           {
             "id": 1674876,
@@ -336,6 +329,13 @@
             "name": "GianiMoski",
             "is_leader": false,
             "updated_at": "2026-11-07T19:18:38.380849+01:00"
+          },
+          {
+            "id": 2029061,
+            "summoner_name": "UIC Baumi#123",
+            "name": "Baumi123",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:18:38.377329+01:00"
           }
         ]
       },
@@ -358,6 +358,13 @@
         },
         "team_lineup": [
           {
+            "id": 751249,
+            "summoner_name": "UIC Speedy#EUW",
+            "name": "HGG SPEEDY",
+            "is_leader": true,
+            "updated_at": "2026-11-08T03:20:41.663804+01:00"
+          },
+          {
             "id": 1012229,
             "summoner_name": "UIC Baguetto#R3kt",
             "name": "R3ktByBaguette",
@@ -372,25 +379,18 @@
             "updated_at": "2026-11-08T03:20:41.661067+01:00"
           },
           {
-            "id": 2029061,
-            "summoner_name": "UIC Baumi#123",
-            "name": "Baumi123",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:18:38.377329+01:00"
-          },
-          {
-            "id": 751249,
-            "summoner_name": "UIC Speedy#EUW",
-            "name": "HGG SPEEDY",
-            "is_leader": true,
-            "updated_at": "2026-11-08T03:20:41.663804+01:00"
-          },
-          {
             "id": 1674876,
             "summoner_name": "UIC Giani#999",
             "name": "GianiMoski",
             "is_leader": false,
             "updated_at": "2026-11-07T19:18:38.380849+01:00"
+          },
+          {
+            "id": 2029061,
+            "summoner_name": "UIC Baumi#123",
+            "name": "Baumi123",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:18:38.377329+01:00"
           }
         ]
       }
@@ -410,7 +410,7 @@
         "trackStats": true,
         "discordId": "222373796147888133",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 1579882,
         "api_name": "Valorant Key",
@@ -425,7 +425,7 @@
         "trackStats": true,
         "discordId": "343841540411752459",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 1539464,
         "api_name": "Panger Lenis",
@@ -440,7 +440,7 @@
         "trackStats": true,
         "discordId": "622381409981693953",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 1406345,
         "api_name": "DerFranzmann123",
@@ -490,6 +490,16 @@
         "api_id": 2270604,
         "api_name": "MakZkovich",
         "in_api_roster": true
+      },
+      {
+        "playerId": "UNKNOWN_LOCAL",
+        "gameName": "Hayu#5FDP",
+        "role": "UNKNOWN",
+        "rosterStatus": "api_only",
+        "isCaptain": false,
+        "api_id": 2053274,
+        "in_api_roster": true,
+        "missing_in_local": true
       }
     ],
     "api_meta": {
@@ -508,10 +518,10 @@
         "match_type": "league",
         "match_day": 7,
         "begin": "2026-11-15T17:00:00+01:00",
-        "confirmed": false,
+        "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165575",
-        "updated_at": "2026-11-15T12:25:27.615241+01:00",
+        "updated_at": "2026-11-15T18:55:18.110875+01:00",
         "enemy_team": {
           "id": 192610,
           "name": "eSports Cologne Senioren",
@@ -521,25 +531,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1851501,
@@ -549,11 +559,11 @@
             "updated_at": "2026-11-07T19:23:56.865327+01:00"
           },
           {
-            "id": 1643322,
-            "summoner_name": "UIC Voracity#0711",
-            "name": "Voracity",
+            "id": 2053274,
+            "summoner_name": "Hayu#5FDP",
+            "name": "Hayu",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.857119+01:00"
+            "updated_at": "2026-11-15T13:25:21.797001+01:00"
           }
         ]
       },
@@ -576,32 +586,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
-          },
-          {
-            "id": 1851501,
-            "summoner_name": "UIC PeaPuffer#PUFFY",
-            "name": "PeaPuffer",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.865327+01:00"
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1643322,
@@ -609,6 +612,13 @@
             "name": "Voracity",
             "is_leader": false,
             "updated_at": "2026-11-07T19:23:56.857119+01:00"
+          },
+          {
+            "id": 1851501,
+            "summoner_name": "UIC PeaPuffer#PUFFY",
+            "name": "PeaPuffer",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:23:56.865327+01:00"
           }
         ]
       },
@@ -631,32 +641,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
-          },
-          {
-            "id": 1851501,
-            "summoner_name": "UIC PeaPuffer#PUFFY",
-            "name": "PeaPuffer",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.865327+01:00"
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1643322,
@@ -664,6 +667,13 @@
             "name": "Voracity",
             "is_leader": false,
             "updated_at": "2026-11-07T19:23:56.857119+01:00"
+          },
+          {
+            "id": 1851501,
+            "summoner_name": "UIC PeaPuffer#PUFFY",
+            "name": "PeaPuffer",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:23:56.865327+01:00"
           }
         ]
       },
@@ -686,32 +696,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
-          },
-          {
-            "id": 1851501,
-            "summoner_name": "UIC PeaPuffer#PUFFY",
-            "name": "PeaPuffer",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.865327+01:00"
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1643322,
@@ -719,6 +722,13 @@
             "name": "Voracity",
             "is_leader": false,
             "updated_at": "2026-11-07T19:23:56.857119+01:00"
+          },
+          {
+            "id": 1851501,
+            "summoner_name": "UIC PeaPuffer#PUFFY",
+            "name": "PeaPuffer",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:23:56.865327+01:00"
           }
         ]
       },
@@ -741,32 +751,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
-          },
-          {
-            "id": 1851501,
-            "summoner_name": "UIC PeaPuffer#PUFFY",
-            "name": "PeaPuffer",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.865327+01:00"
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1643322,
@@ -774,6 +777,13 @@
             "name": "Voracity",
             "is_leader": false,
             "updated_at": "2026-11-07T19:23:56.857119+01:00"
+          },
+          {
+            "id": 1851501,
+            "summoner_name": "UIC PeaPuffer#PUFFY",
+            "name": "PeaPuffer",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:23:56.865327+01:00"
           }
         ]
       },
@@ -796,32 +806,25 @@
         },
         "team_lineup": [
           {
-            "id": 1539464,
-            "summoner_name": "UIC Panger#JGA",
-            "name": "Panger Lenis",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.349502+01:00"
-          },
-          {
             "id": 1406345,
             "summoner_name": "UIC Lanzus#AEGIS",
             "name": "DerFranzmann123",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.343874+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.792742+01:00"
+          },
+          {
+            "id": 1539464,
+            "summoner_name": "UIC Panger#JGA",
+            "name": "Panger Lenis",
+            "is_leader": false,
+            "updated_at": "2026-11-15T13:25:21.789930+01:00"
           },
           {
             "id": 1579882,
             "summoner_name": "UIC Nutty#Biggu",
             "name": "Valorant Key",
-            "is_leader": true,
-            "updated_at": "2026-11-12T14:50:37.346870+01:00"
-          },
-          {
-            "id": 1851501,
-            "summoner_name": "UIC PeaPuffer#PUFFY",
-            "name": "PeaPuffer",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:23:56.865327+01:00"
+            "updated_at": "2026-11-15T13:25:21.786721+01:00"
           },
           {
             "id": 1643322,
@@ -829,6 +832,13 @@
             "name": "Voracity",
             "is_leader": false,
             "updated_at": "2026-11-07T19:23:56.857119+01:00"
+          },
+          {
+            "id": 1851501,
+            "summoner_name": "UIC PeaPuffer#PUFFY",
+            "name": "PeaPuffer",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:23:56.865327+01:00"
           }
         ]
       }
@@ -848,7 +858,7 @@
         "trackStats": true,
         "discordId": "855126257859821579",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2286224,
         "api_name": "GLT Rayando07",
@@ -863,7 +873,7 @@
         "trackStats": true,
         "discordId": "415606674120900628",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 925501,
         "api_name": "Davyjgl",
@@ -878,7 +888,7 @@
         "trackStats": true,
         "discordId": "315184207594782730",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 1432161,
         "api_name": "IPM Flow",
@@ -949,7 +959,7 @@
         "gameName": "UIC xd2#LISA",
         "role": "UNKNOWN",
         "rosterStatus": "api_only",
-        "isCaptain": true,
+        "isCaptain": false,
         "api_id": 2228388,
         "in_api_roster": true,
         "missing_in_local": true
@@ -1014,18 +1024,11 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
-          },
-          {
-            "id": 2069062,
-            "summoner_name": "UIC Xaverseltsam#TTV",
-            "name": "xaverseltsam",
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1815406,
@@ -1035,18 +1038,25 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2069062,
+            "summoner_name": "UIC Xaverseltsam#TTV",
+            "name": "xaverseltsam",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1069,18 +1079,11 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
-          },
-          {
-            "id": 2069062,
-            "summoner_name": "UIC Xaverseltsam#TTV",
-            "name": "xaverseltsam",
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1815406,
@@ -1090,18 +1093,25 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2069062,
+            "summoner_name": "UIC Xaverseltsam#TTV",
+            "name": "xaverseltsam",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1124,18 +1134,11 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
-          },
-          {
-            "id": 2069062,
-            "summoner_name": "UIC Xaverseltsam#TTV",
-            "name": "xaverseltsam",
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1815406,
@@ -1145,18 +1148,25 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2069062,
+            "summoner_name": "UIC Xaverseltsam#TTV",
+            "name": "xaverseltsam",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1179,18 +1189,11 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
-          },
-          {
-            "id": 2069062,
-            "summoner_name": "UIC Xaverseltsam#TTV",
-            "name": "xaverseltsam",
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1815406,
@@ -1200,18 +1203,25 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2069062,
+            "summoner_name": "UIC Xaverseltsam#TTV",
+            "name": "xaverseltsam",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.202340+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1234,11 +1244,18 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "id": 1101771,
+            "summoner_name": "LNC FrozenHands#MID",
+            "name": "TiT BrokenHands",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:28:37.986891+01:00"
+          },
+          {
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 2069062,
@@ -1248,25 +1265,18 @@
             "updated_at": "2026-11-10T04:11:23.202340+01:00"
           },
           {
-            "id": 1101771,
-            "summoner_name": "LNC FrozenHands#MID",
-            "name": "TiT BrokenHands",
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:28:37.986891+01:00"
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
           },
           {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1289,11 +1299,18 @@
         },
         "team_lineup": [
           {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "id": 1101771,
+            "summoner_name": "LNC FrozenHands#MID",
+            "name": "TiT BrokenHands",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:28:37.986891+01:00"
+          },
+          {
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 2069062,
@@ -1303,25 +1320,18 @@
             "updated_at": "2026-11-10T04:11:23.202340+01:00"
           },
           {
-            "id": 1101771,
-            "summoner_name": "LNC FrozenHands#MID",
-            "name": "TiT BrokenHands",
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:28:37.986891+01:00"
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
           },
           {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
             "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1363,18 +1373,18 @@
         },
         "team_lineup": [
           {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
             "id": 1432161,
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
-          },
-          {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
           },
           {
             "id": 1815406,
@@ -1384,18 +1394,18 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1418,18 +1428,18 @@
         },
         "team_lineup": [
           {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
             "id": 1432161,
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
-          },
-          {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
           },
           {
             "id": 1815406,
@@ -1439,18 +1449,18 @@
             "updated_at": "2026-11-10T04:11:23.190924+01:00"
           },
           {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1473,39 +1483,39 @@
         },
         "team_lineup": [
           {
-            "id": 1432161,
-            "summoner_name": "UIC BL4CKPINKFAN#FLOW",
-            "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
-          },
-          {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
-          },
-          {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
-          },
-          {
-            "id": 2286224,
-            "summoner_name": "UIC Rayando07#Help",
-            "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
             "id": 657213,
             "summoner_name": "UIC Qvy#rusty",
             "name": "Qvy",
             "is_leader": true,
             "updated_at": "2026-11-10T04:11:23.185408+01:00"
+          },
+          {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
+            "id": 1432161,
+            "summoner_name": "UIC BL4CKPINKFAN#FLOW",
+            "name": "IPM Flow",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
+            "id": 2286224,
+            "summoner_name": "UIC Rayando07#Help",
+            "name": "GLT Rayando07",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1528,25 +1538,18 @@
         },
         "team_lineup": [
           {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
             "id": 1432161,
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
-          },
-          {
-            "id": 2330276,
-            "summoner_name": "Hannaneko#EUW",
-            "name": "Prowly",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:28:52.673040+01:00"
-          },
-          {
-            "id": 2291693,
-            "summoner_name": "Zephyr#Janna",
-            "name": "jannaeuw",
-            "is_leader": false,
-            "updated_at": "2026-11-10T04:11:23.199397+01:00"
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
           },
           {
             "id": 2167118,
@@ -1556,11 +1559,18 @@
             "updated_at": "2026-11-10T04:11:23.196570+01:00"
           },
           {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
+            "id": 2291693,
+            "summoner_name": "Zephyr#Janna",
+            "name": "jannaeuw",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.199397+01:00"
+          },
+          {
+            "id": 2330276,
+            "summoner_name": "Hannaneko#EUW",
+            "name": "Prowly",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:28:52.673040+01:00"
           }
         ]
       },
@@ -1583,18 +1593,18 @@
         },
         "team_lineup": [
           {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
             "id": 1432161,
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
-          },
-          {
-            "id": 2228388,
-            "summoner_name": "UIC xd2#LISA",
-            "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
           },
           {
             "id": 2167118,
@@ -1604,18 +1614,18 @@
             "updated_at": "2026-11-10T04:11:23.196570+01:00"
           },
           {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
             "id": 2286224,
             "summoner_name": "UIC Rayando07#Help",
             "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           }
         ]
       },
@@ -1638,18 +1648,32 @@
         },
         "team_lineup": [
           {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
             "id": 1432161,
             "summoner_name": "UIC BL4CKPINKFAN#FLOW",
             "name": "IPM Flow",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:56:27.733489+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
           },
           {
             "id": 2228388,
             "summoner_name": "UIC xd2#LISA",
             "name": "stev7",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.193795+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
+            "id": 2286224,
+            "summoner_name": "UIC Rayando07#Help",
+            "name": "GLT Rayando07",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
           },
           {
             "id": 2291693,
@@ -1657,20 +1681,6 @@
             "name": "jannaeuw",
             "is_leader": false,
             "updated_at": "2026-11-10T04:11:23.199397+01:00"
-          },
-          {
-            "id": 2286224,
-            "summoner_name": "UIC Rayando07#Help",
-            "name": "GLT Rayando07",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.188205+01:00"
-          },
-          {
-            "id": 925501,
-            "summoner_name": "UIC Davy#JGL",
-            "name": "Davyjgl",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.179662+01:00"
           }
         ]
       },
@@ -1683,7 +1693,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1169961",
-        "updated_at": "2026-11-15T12:24:51.352929+01:00",
+        "updated_at": "2026-11-15T18:54:41.923935+01:00",
         "enemy_team": {
           "id": 213089,
           "name": "Ghost Impact Gaming Goats",
@@ -1691,7 +1701,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/213089",
           "logo_url": "https://cdn0.heartbase.gg/league_team_logos/213000/213089.jpg?1790004706"
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 925501,
+            "summoner_name": "UIC Davy#JGL",
+            "name": "Davyjgl",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.815371+01:00"
+          },
+          {
+            "id": 1432161,
+            "summoner_name": "UIC BL4CKPINKFAN#FLOW",
+            "name": "IPM Flow",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.818244+01:00"
+          },
+          {
+            "id": 2228388,
+            "summoner_name": "UIC xd2#LISA",
+            "name": "stev7",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.821079+01:00"
+          },
+          {
+            "id": 2286224,
+            "summoner_name": "UIC Rayando07#Help",
+            "name": "GLT Rayando07",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:54:23.811832+01:00"
+          },
+          {
+            "id": 2291693,
+            "summoner_name": "Zephyr#Janna",
+            "name": "jannaeuw",
+            "is_leader": false,
+            "updated_at": "2026-11-10T04:11:23.199397+01:00"
+          }
+        ]
       }
     ]
   },
@@ -1838,7 +1884,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/208000/208606.jpg?1786906544",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/208606",
-      "updated_at": "2026-11-15T12:20:59.765471+01:00"
+      "updated_at": "2026-11-15T18:50:56.113612+01:00"
     },
     "matches": [
       {
@@ -1860,6 +1906,13 @@
         },
         "team_lineup": [
           {
+            "id": 1425432,
+            "summoner_name": "UIC Ballas#Wisp",
+            "name": "6lil",
+            "is_leader": true,
+            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+          },
+          {
             "id": 1518245,
             "summoner_name": "UIC Lightning#Uzi",
             "name": "Retired Uzi",
@@ -1874,25 +1927,18 @@
             "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
-            "id": 2023541,
-            "summoner_name": "UIC fiderum#274",
-            "name": "fiderum",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:55:15.725374+01:00"
-          },
-          {
-            "id": 1425432,
-            "summoner_name": "UIC Ballas#Wisp",
-            "name": "6lil",
-            "is_leader": true,
-            "updated_at": "2026-11-07T17:51:06.300525+01:00"
-          },
-          {
             "id": 1949531,
             "summoner_name": "UIC Phântox#ATN",
             "name": "xPhantox",
             "is_leader": false,
             "updated_at": "2026-11-15T04:55:15.736089+01:00"
+          },
+          {
+            "id": 2023541,
+            "summoner_name": "UIC fiderum#274",
+            "name": "fiderum",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:55:15.725374+01:00"
           }
         ]
       },
@@ -1915,18 +1961,18 @@
         },
         "team_lineup": [
           {
+            "id": 1425432,
+            "summoner_name": "UIC Ballas#Wisp",
+            "name": "6lil",
+            "is_leader": true,
+            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+          },
+          {
             "id": 1518245,
             "summoner_name": "UIC Lightning#Uzi",
             "name": "Retired Uzi",
             "is_leader": false,
             "updated_at": "2026-09-24T15:02:26.411287+02:00"
-          },
-          {
-            "id": 1916010,
-            "summoner_name": "UIC Levin2Go#ATN",
-            "name": "Levin2Go",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1568882,
@@ -1936,11 +1982,11 @@
             "updated_at": "2026-10-30T12:06:10.428571+01:00"
           },
           {
-            "id": 1425432,
-            "summoner_name": "UIC Ballas#Wisp",
-            "name": "6lil",
-            "is_leader": true,
-            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+            "id": 1916010,
+            "summoner_name": "UIC Levin2Go#ATN",
+            "name": "Levin2Go",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1949531,
@@ -1970,18 +2016,18 @@
         },
         "team_lineup": [
           {
+            "id": 1425432,
+            "summoner_name": "UIC Ballas#Wisp",
+            "name": "6lil",
+            "is_leader": true,
+            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+          },
+          {
             "id": 1518245,
             "summoner_name": "UIC Lightning#Uzi",
             "name": "Retired Uzi",
             "is_leader": false,
             "updated_at": "2026-09-24T15:02:26.411287+02:00"
-          },
-          {
-            "id": 1916010,
-            "summoner_name": "UIC Levin2Go#ATN",
-            "name": "Levin2Go",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1568882,
@@ -1991,11 +2037,11 @@
             "updated_at": "2026-10-30T12:06:10.428571+01:00"
           },
           {
-            "id": 1425432,
-            "summoner_name": "UIC Ballas#Wisp",
-            "name": "6lil",
-            "is_leader": true,
-            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+            "id": 1916010,
+            "summoner_name": "UIC Levin2Go#ATN",
+            "name": "Levin2Go",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1949531,
@@ -2034,7 +2080,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166377",
-        "updated_at": "2026-11-15T12:22:17.936323+01:00",
+        "updated_at": "2026-11-15T18:52:11.933125+01:00",
         "enemy_team": {
           "id": 179487,
           "name": "Hamburger Wale",
@@ -2063,18 +2109,18 @@
         },
         "team_lineup": [
           {
+            "id": 1425432,
+            "summoner_name": "UIC Ballas#Wisp",
+            "name": "6lil",
+            "is_leader": true,
+            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+          },
+          {
             "id": 1518245,
             "summoner_name": "UIC Lightning#Uzi",
             "name": "Retired Uzi",
             "is_leader": false,
             "updated_at": "2026-09-24T15:02:26.411287+02:00"
-          },
-          {
-            "id": 1916010,
-            "summoner_name": "UIC Levin2Go#ATN",
-            "name": "Levin2Go",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1568882,
@@ -2084,11 +2130,11 @@
             "updated_at": "2026-10-30T12:06:10.428571+01:00"
           },
           {
-            "id": 1425432,
-            "summoner_name": "UIC Ballas#Wisp",
-            "name": "6lil",
-            "is_leader": true,
-            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+            "id": 1916010,
+            "summoner_name": "UIC Levin2Go#ATN",
+            "name": "Levin2Go",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1949531,
@@ -2118,18 +2164,18 @@
         },
         "team_lineup": [
           {
+            "id": 1425432,
+            "summoner_name": "UIC Ballas#Wisp",
+            "name": "6lil",
+            "is_leader": true,
+            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+          },
+          {
             "id": 1518245,
             "summoner_name": "UIC Lightning#Uzi",
             "name": "Retired Uzi",
             "is_leader": false,
             "updated_at": "2026-09-24T15:02:26.411287+02:00"
-          },
-          {
-            "id": 1916010,
-            "summoner_name": "UIC Levin2Go#ATN",
-            "name": "Levin2Go",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1568882,
@@ -2139,11 +2185,11 @@
             "updated_at": "2026-10-30T12:06:10.428571+01:00"
           },
           {
-            "id": 1425432,
-            "summoner_name": "UIC Ballas#Wisp",
-            "name": "6lil",
-            "is_leader": true,
-            "updated_at": "2026-11-07T17:51:06.300525+01:00"
+            "id": 1916010,
+            "summoner_name": "UIC Levin2Go#ATN",
+            "name": "Levin2Go",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:55:15.742022+01:00"
           },
           {
             "id": 1949531,
@@ -2291,25 +2337,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
-          },
-          {
-            "id": 2266710,
-            "summoner_name": "UIC ATALANTA#ADC",
-            "name": "Wrizzler",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
             "id": 2153146,
@@ -2319,11 +2358,18 @@
             "updated_at": "2026-11-14T03:10:41.420418+01:00"
           },
           {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
+            "id": 2266710,
+            "summoner_name": "UIC ATALANTA#ADC",
+            "name": "Wrizzler",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+            "updated_at": "2026-11-07T19:51:28.183773+01:00"
+          },
+          {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           }
         ]
       },
@@ -2346,25 +2392,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
-          },
-          {
-            "id": 2266710,
-            "summoner_name": "UIC ATALANTA#ADC",
-            "name": "Wrizzler",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
             "id": 2153146,
@@ -2374,11 +2413,18 @@
             "updated_at": "2026-11-14T03:10:41.420418+01:00"
           },
           {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
+            "id": 2266710,
+            "summoner_name": "UIC ATALANTA#ADC",
+            "name": "Wrizzler",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+            "updated_at": "2026-11-07T19:51:28.183773+01:00"
+          },
+          {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           }
         ]
       },
@@ -2401,25 +2447,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
-          },
-          {
-            "id": 2266710,
-            "summoner_name": "UIC ATALANTA#ADC",
-            "name": "Wrizzler",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
             "id": 2153146,
@@ -2429,11 +2468,18 @@
             "updated_at": "2026-11-14T03:10:41.420418+01:00"
           },
           {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
+            "id": 2266710,
+            "summoner_name": "UIC ATALANTA#ADC",
+            "name": "Wrizzler",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+            "updated_at": "2026-11-07T19:51:28.183773+01:00"
+          },
+          {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           }
         ]
       },
@@ -2456,18 +2502,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           },
           {
             "id": 2266710,
@@ -2477,18 +2523,18 @@
             "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
+          },
+          {
             "id": 2281143,
             "summoner_name": "INT Kubizza#3631",
             "name": "kubizza",
             "is_leader": false,
             "updated_at": "2026-11-09T03:20:11.711435+01:00"
-          },
-          {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
           }
         ]
       },
@@ -2511,25 +2557,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
-          },
-          {
-            "id": 2266710,
-            "summoner_name": "UIC ATALANTA#ADC",
-            "name": "Wrizzler",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
             "id": 2153146,
@@ -2539,11 +2578,18 @@
             "updated_at": "2026-11-14T03:10:41.420418+01:00"
           },
           {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
+            "id": 2266710,
+            "summoner_name": "UIC ATALANTA#ADC",
+            "name": "Wrizzler",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+            "updated_at": "2026-11-07T19:51:28.183773+01:00"
+          },
+          {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           }
         ]
       },
@@ -2556,7 +2602,7 @@
         "confirmed": true,
         "result": "0:2",
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165704",
-        "updated_at": "2026-11-15T12:24:00.909412+01:00",
+        "updated_at": "2026-11-15T18:53:51.615418+01:00",
         "enemy_team": {
           "id": 181155,
           "name": "TSV Hamelspringe Wels",
@@ -2566,25 +2612,18 @@
         },
         "team_lineup": [
           {
+            "id": 1547741,
+            "summoner_name": "UIC Kyzero#UIC",
+            "name": "Kiqu",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+          },
+          {
             "id": 2037862,
             "summoner_name": "UIC Leeks#LoL",
             "name": "legend of leeks",
             "is_leader": false,
             "updated_at": "2026-11-07T19:51:28.176155+01:00"
-          },
-          {
-            "id": 2268437,
-            "summoner_name": "hi itskostas UIC#RRRRR",
-            "name": "helloitskostas",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.181277+01:00"
-          },
-          {
-            "id": 2266710,
-            "summoner_name": "UIC ATALANTA#ADC",
-            "name": "Wrizzler",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.183773+01:00"
           },
           {
             "id": 2153146,
@@ -2594,11 +2633,18 @@
             "updated_at": "2026-11-14T03:10:41.420418+01:00"
           },
           {
-            "id": 1547741,
-            "summoner_name": "UIC Kyzero#UIC",
-            "name": "Kiqu",
+            "id": 2266710,
+            "summoner_name": "UIC ATALANTA#ADC",
+            "name": "Wrizzler",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:51:28.178763+01:00"
+            "updated_at": "2026-11-07T19:51:28.183773+01:00"
+          },
+          {
+            "id": 2268437,
+            "summoner_name": "hi itskostas UIC#RRRRR",
+            "name": "helloitskostas",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:51:28.181277+01:00"
           }
         ]
       },
@@ -2611,7 +2657,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165708",
-        "updated_at": "2026-11-15T12:24:02.916242+01:00",
+        "updated_at": "2026-11-15T18:53:53.610653+01:00",
         "enemy_team": {
           "id": 200762,
           "name": "SSP Overdrive",
@@ -2705,16 +2751,6 @@
       },
       {
         "playerId": "UNKNOWN_LOCAL",
-        "gameName": "Nick Halden#1977",
-        "role": "UNKNOWN",
-        "rosterStatus": "api_only",
-        "isCaptain": false,
-        "api_id": 2298658,
-        "in_api_roster": true,
-        "missing_in_local": true
-      },
-      {
-        "playerId": "UNKNOWN_LOCAL",
         "gameName": "Cedy7#111",
         "role": "UNKNOWN",
         "rosterStatus": "api_only",
@@ -2783,7 +2819,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167429",
-        "updated_at": "2026-11-15T12:25:23.638875+01:00",
+        "updated_at": "2026-11-15T18:55:14.114552+01:00",
         "enemy_team": {
           "id": 178531,
           "name": "Friendly Fire",
@@ -2812,13 +2848,6 @@
         },
         "team_lineup": [
           {
-            "id": 1641314,
-            "summoner_name": "UIC Pferdemilch#Milch",
-            "name": "Pferdemilch",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.206995+01:00"
-          },
-          {
             "id": 1545098,
             "summoner_name": "UIC Stafferl#FNC",
             "name": "Stafferl",
@@ -2826,11 +2855,18 @@
             "updated_at": "2026-11-10T03:09:13.399805+01:00"
           },
           {
-            "id": 2290766,
-            "summoner_name": "UIC NairadAwsm#UIC",
-            "name": "NairadAwesome",
+            "id": 1641314,
+            "summoner_name": "UIC Pferdemilch#Milch",
+            "name": "Pferdemilch",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.201556+01:00"
+            "updated_at": "2026-11-07T19:25:33.206995+01:00"
+          },
+          {
+            "id": 1697596,
+            "summoner_name": "UIC Shenycrane#Vugel",
+            "name": "Shenycrane",
+            "is_leader": false,
+            "updated_at": "2026-11-10T03:06:06.646962+01:00"
           },
           {
             "id": 1879959,
@@ -2840,11 +2876,11 @@
             "updated_at": "2026-11-07T19:25:33.198603+01:00"
           },
           {
-            "id": 1697596,
-            "summoner_name": "UIC Shenycrane#Vugel",
-            "name": "Shenycrane",
+            "id": 2290766,
+            "summoner_name": "UIC NairadAwsm#UIC",
+            "name": "NairadAwesome",
             "is_leader": false,
-            "updated_at": "2026-11-10T03:06:06.646962+01:00"
+            "updated_at": "2026-11-07T19:25:33.201556+01:00"
           }
         ]
       },
@@ -2867,13 +2903,6 @@
         },
         "team_lineup": [
           {
-            "id": 1641314,
-            "summoner_name": "UIC Pferdemilch#Milch",
-            "name": "Pferdemilch",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.206995+01:00"
-          },
-          {
             "id": 999782,
             "summoner_name": "UIC Prellik#CYS",
             "name": "Super_Skunk",
@@ -2888,11 +2917,11 @@
             "updated_at": "2026-11-10T03:09:13.399805+01:00"
           },
           {
-            "id": 2290766,
-            "summoner_name": "UIC NairadAwsm#UIC",
-            "name": "NairadAwesome",
+            "id": 1641314,
+            "summoner_name": "UIC Pferdemilch#Milch",
+            "name": "Pferdemilch",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.201556+01:00"
+            "updated_at": "2026-11-07T19:25:33.206995+01:00"
           },
           {
             "id": 1879959,
@@ -2900,6 +2929,13 @@
             "name": "Undergrinder",
             "is_leader": false,
             "updated_at": "2026-11-07T19:25:33.198603+01:00"
+          },
+          {
+            "id": 2290766,
+            "summoner_name": "UIC NairadAwsm#UIC",
+            "name": "NairadAwesome",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:25:33.201556+01:00"
           }
         ]
       },
@@ -2922,13 +2958,6 @@
         },
         "team_lineup": [
           {
-            "id": 1641314,
-            "summoner_name": "UIC Pferdemilch#Milch",
-            "name": "Pferdemilch",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.206995+01:00"
-          },
-          {
             "id": 999782,
             "summoner_name": "UIC Prellik#CYS",
             "name": "Super_Skunk",
@@ -2943,11 +2972,11 @@
             "updated_at": "2026-11-10T03:09:13.399805+01:00"
           },
           {
-            "id": 2290766,
-            "summoner_name": "UIC NairadAwsm#UIC",
-            "name": "NairadAwesome",
+            "id": 1641314,
+            "summoner_name": "UIC Pferdemilch#Milch",
+            "name": "Pferdemilch",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.201556+01:00"
+            "updated_at": "2026-11-07T19:25:33.206995+01:00"
           },
           {
             "id": 1879959,
@@ -2955,6 +2984,13 @@
             "name": "Undergrinder",
             "is_leader": false,
             "updated_at": "2026-11-07T19:25:33.198603+01:00"
+          },
+          {
+            "id": 2290766,
+            "summoner_name": "UIC NairadAwsm#UIC",
+            "name": "NairadAwesome",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:25:33.201556+01:00"
           }
         ]
       },
@@ -2977,13 +3013,6 @@
         },
         "team_lineup": [
           {
-            "id": 1641314,
-            "summoner_name": "UIC Pferdemilch#Milch",
-            "name": "Pferdemilch",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.206995+01:00"
-          },
-          {
             "id": 999782,
             "summoner_name": "UIC Prellik#CYS",
             "name": "Super_Skunk",
@@ -2998,11 +3027,11 @@
             "updated_at": "2026-11-10T03:09:13.399805+01:00"
           },
           {
-            "id": 2290766,
-            "summoner_name": "UIC NairadAwsm#UIC",
-            "name": "NairadAwesome",
+            "id": 1641314,
+            "summoner_name": "UIC Pferdemilch#Milch",
+            "name": "Pferdemilch",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.201556+01:00"
+            "updated_at": "2026-11-07T19:25:33.206995+01:00"
           },
           {
             "id": 1879959,
@@ -3010,6 +3039,13 @@
             "name": "Undergrinder",
             "is_leader": false,
             "updated_at": "2026-11-07T19:25:33.198603+01:00"
+          },
+          {
+            "id": 2290766,
+            "summoner_name": "UIC NairadAwsm#UIC",
+            "name": "NairadAwesome",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:25:33.201556+01:00"
           }
         ]
       },
@@ -3032,6 +3068,13 @@
         },
         "team_lineup": [
           {
+            "id": 999782,
+            "summoner_name": "UIC Prellik#CYS",
+            "name": "Super_Skunk",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:25:33.204332+01:00"
+          },
+          {
             "id": 1641314,
             "summoner_name": "UIC Pferdemilch#Milch",
             "name": "Pferdemilch",
@@ -3039,18 +3082,11 @@
             "updated_at": "2026-11-07T19:25:33.206995+01:00"
           },
           {
-            "id": 2329157,
-            "summoner_name": "KITe King#UncD",
-            "name": "GierigerHeld",
+            "id": 1879959,
+            "summoner_name": "UIC Undergrinder#TOP",
+            "name": "Undergrinder",
             "is_leader": false,
-            "updated_at": "2026-11-08T03:10:25.568306+01:00"
-          },
-          {
-            "id": 999782,
-            "summoner_name": "UIC Prellik#CYS",
-            "name": "Super_Skunk",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.204332+01:00"
+            "updated_at": "2026-11-07T19:25:33.198603+01:00"
           },
           {
             "id": 2290766,
@@ -3060,11 +3096,11 @@
             "updated_at": "2026-11-07T19:25:33.201556+01:00"
           },
           {
-            "id": 1879959,
-            "summoner_name": "UIC Undergrinder#TOP",
-            "name": "Undergrinder",
+            "id": 2329157,
+            "summoner_name": "KITe King#UncD",
+            "name": "GierigerHeld",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.198603+01:00"
+            "updated_at": "2026-11-08T03:10:25.568306+01:00"
           }
         ]
       },
@@ -3087,13 +3123,6 @@
         },
         "team_lineup": [
           {
-            "id": 1641314,
-            "summoner_name": "UIC Pferdemilch#Milch",
-            "name": "Pferdemilch",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.206995+01:00"
-          },
-          {
             "id": 999782,
             "summoner_name": "UIC Prellik#CYS",
             "name": "Super_Skunk",
@@ -3108,11 +3137,11 @@
             "updated_at": "2026-11-10T03:09:13.399805+01:00"
           },
           {
-            "id": 2290766,
-            "summoner_name": "UIC NairadAwsm#UIC",
-            "name": "NairadAwesome",
+            "id": 1641314,
+            "summoner_name": "UIC Pferdemilch#Milch",
+            "name": "Pferdemilch",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:25:33.201556+01:00"
+            "updated_at": "2026-11-07T19:25:33.206995+01:00"
           },
           {
             "id": 1879959,
@@ -3120,6 +3149,13 @@
             "name": "Undergrinder",
             "is_leader": false,
             "updated_at": "2026-11-07T19:25:33.198603+01:00"
+          },
+          {
+            "id": 2290766,
+            "summoner_name": "UIC NairadAwsm#UIC",
+            "name": "NairadAwesome",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:25:33.201556+01:00"
           }
         ]
       }
@@ -3154,7 +3190,7 @@
         "trackStats": true,
         "discordId": "313229078838902785",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2088630,
         "api_name": "Infernomann",
@@ -3169,7 +3205,7 @@
         "trackStats": true,
         "discordId": "270257228378931201",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2263806,
         "api_name": "Kaoxz",
@@ -3250,27 +3286,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3278,11 +3293,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3305,27 +3341,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3333,11 +3348,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3360,27 +3396,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3388,11 +3403,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3415,27 +3451,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3443,11 +3458,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3470,27 +3506,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3498,11 +3513,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3525,27 +3561,6 @@
         },
         "team_lineup": [
           {
-            "id": 2264014,
-            "summoner_name": "UIC VTennic#UIC",
-            "name": "VTennic",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.963894+01:00"
-          },
-          {
-            "id": 2088630,
-            "summoner_name": "UIC Inferno#CLOWN",
-            "name": "Infernomann",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.948370+01:00"
-          },
-          {
-            "id": 2298296,
-            "summoner_name": "UIC FirstBlo#Whack",
-            "name": "UnderToast",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:57.955771+01:00"
-          },
-          {
             "id": 1917754,
             "summoner_name": "UIC Hunter#UIC",
             "name": "Kampfdrache",
@@ -3553,11 +3568,32 @@
             "updated_at": "2026-11-07T19:21:57.960263+01:00"
           },
           {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
             "id": 2263806,
             "summoner_name": "UIC Kaoxz#CRNGE",
             "name": "Kaoxz",
-            "is_leader": true,
-            "updated_at": "2026-11-07T19:21:57.945185+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
           }
         ]
       },
@@ -3570,7 +3606,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167065",
-        "updated_at": "2026-11-15T12:23:40.616666+01:00",
+        "updated_at": "2026-11-15T18:53:30.470315+01:00",
         "enemy_team": {
           "id": 212015,
           "name": "POA Lumi",
@@ -3578,7 +3614,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212015",
           "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212015.jpg?1790357608"
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 1917754,
+            "summoner_name": "UIC Hunter#UIC",
+            "name": "Kampfdrache",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.960263+01:00"
+          },
+          {
+            "id": 2088630,
+            "summoner_name": "UIC Inferno#CLOWN",
+            "name": "Infernomann",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.114926+01:00"
+          },
+          {
+            "id": 2263806,
+            "summoner_name": "UIC Kaoxz#CRNGE",
+            "name": "Kaoxz",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:08:41.121046+01:00"
+          },
+          {
+            "id": 2264014,
+            "summoner_name": "UIC VTennic#UIC",
+            "name": "VTennic",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.963894+01:00"
+          },
+          {
+            "id": 2298296,
+            "summoner_name": "UIC FirstBlo#Whack",
+            "name": "UnderToast",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:57.955771+01:00"
+          }
+        ]
       }
     ]
   },
@@ -3712,13 +3784,6 @@
         },
         "team_lineup": [
           {
-            "id": 2276033,
-            "summoner_name": "UIC Moonlxght#16396",
-            "name": "Moonlxght",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.923617+01:00"
-          },
-          {
             "id": 830563,
             "summoner_name": "UIC BissiBoy#UIC",
             "name": "UIC BissiBoy",
@@ -3726,18 +3791,25 @@
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
           },
           {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
-          },
-          {
             "id": 2191184,
             "summoner_name": "UIC Pray#UIC",
             "name": "UIC Pray",
             "is_leader": false,
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
+          },
+          {
+            "id": 2276033,
+            "summoner_name": "UIC Moonlxght#16396",
+            "name": "Moonlxght",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.923617+01:00"
+          },
+          {
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -3767,13 +3839,6 @@
         },
         "team_lineup": [
           {
-            "id": 2276033,
-            "summoner_name": "UIC Moonlxght#16396",
-            "name": "Moonlxght",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.923617+01:00"
-          },
-          {
             "id": 830563,
             "summoner_name": "UIC BissiBoy#UIC",
             "name": "UIC BissiBoy",
@@ -3781,18 +3846,25 @@
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
           },
           {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
-          },
-          {
             "id": 2191184,
             "summoner_name": "UIC Pray#UIC",
             "name": "UIC Pray",
             "is_leader": false,
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
+          },
+          {
+            "id": 2276033,
+            "summoner_name": "UIC Moonlxght#16396",
+            "name": "Moonlxght",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.923617+01:00"
+          },
+          {
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -3822,13 +3894,6 @@
         },
         "team_lineup": [
           {
-            "id": 2276033,
-            "summoner_name": "UIC Moonlxght#16396",
-            "name": "Moonlxght",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.923617+01:00"
-          },
-          {
             "id": 830563,
             "summoner_name": "UIC BissiBoy#UIC",
             "name": "UIC BissiBoy",
@@ -3836,18 +3901,25 @@
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
           },
           {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
-          },
-          {
             "id": 2191184,
             "summoner_name": "UIC Pray#UIC",
             "name": "UIC Pray",
             "is_leader": false,
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
+          },
+          {
+            "id": 2276033,
+            "summoner_name": "UIC Moonlxght#16396",
+            "name": "Moonlxght",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.923617+01:00"
+          },
+          {
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -3877,18 +3949,18 @@
         },
         "team_lineup": [
           {
+            "id": 657213,
+            "summoner_name": "UIC Qvy#rusty",
+            "name": "Qvy",
+            "is_leader": true,
+            "updated_at": "2026-11-10T04:11:23.185408+01:00"
+          },
+          {
             "id": 830563,
             "summoner_name": "UIC BissiBoy#UIC",
             "name": "UIC BissiBoy",
             "is_leader": true,
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
-          },
-          {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2191184,
@@ -3898,11 +3970,11 @@
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
           },
           {
-            "id": 657213,
-            "summoner_name": "UIC Qvy#rusty",
-            "name": "Qvy",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.185408+01:00"
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -3932,18 +4004,18 @@
         },
         "team_lineup": [
           {
+            "id": 657213,
+            "summoner_name": "UIC Qvy#rusty",
+            "name": "Qvy",
+            "is_leader": true,
+            "updated_at": "2026-11-10T04:11:23.185408+01:00"
+          },
+          {
             "id": 830563,
             "summoner_name": "UIC BissiBoy#UIC",
             "name": "UIC BissiBoy",
             "is_leader": true,
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
-          },
-          {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2191184,
@@ -3953,11 +4025,11 @@
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
           },
           {
-            "id": 657213,
-            "summoner_name": "UIC Qvy#rusty",
-            "name": "Qvy",
-            "is_leader": true,
-            "updated_at": "2026-11-10T04:11:23.185408+01:00"
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -3994,11 +4066,11 @@
             "updated_at": "2026-11-09T03:25:50.136469+01:00"
           },
           {
-            "id": 2293231,
-            "summoner_name": "UIC SméagoI#LOL",
-            "name": "UIC Chesco",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:25:56.926414+01:00"
+            "id": 1582963,
+            "summoner_name": "UIC Goku#UIC",
+            "name": "DiamondGoku",
+            "is_leader": true,
+            "updated_at": "2026-11-15T04:55:57.317105+01:00"
           },
           {
             "id": 2191184,
@@ -4008,11 +4080,11 @@
             "updated_at": "2026-11-08T03:25:56.920644+01:00"
           },
           {
-            "id": 1582963,
-            "summoner_name": "UIC Goku#UIC",
-            "name": "DiamondGoku",
-            "is_leader": true,
-            "updated_at": "2026-11-15T04:55:57.317105+01:00"
+            "id": 2293231,
+            "summoner_name": "UIC SméagoI#LOL",
+            "name": "UIC Chesco",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:25:56.926414+01:00"
           },
           {
             "id": 2300895,
@@ -4032,7 +4104,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1166055",
-        "updated_at": "2026-11-15T12:24:06.940474+01:00",
+        "updated_at": "2026-11-15T18:53:57.618365+01:00",
         "enemy_team": {
           "id": 207904,
           "name": "Feather Stanka",
@@ -4184,11 +4256,25 @@
         },
         "team_lineup": [
           {
+            "id": 65134,
+            "summoner_name": "UIC Exi#QUAK",
+            "name": "FT Exi",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:24:39.965624+01:00"
+          },
+          {
             "id": 1387013,
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
             "updated_at": "2026-11-10T19:37:05.972261+01:00"
+          },
+          {
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1865835,
@@ -4203,20 +4289,6 @@
             "name": "Skorpa",
             "is_leader": true,
             "updated_at": "2026-11-10T19:37:05.975070+01:00"
-          },
-          {
-            "id": 65134,
-            "summoner_name": "UIC Exi#QUAK",
-            "name": "FT Exi",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:24:39.965624+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
-            "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           }
         ]
       },
@@ -4239,20 +4311,6 @@
         },
         "team_lineup": [
           {
-            "id": 1387013,
-            "summoner_name": "UIC Ryu Copeland#117",
-            "name": "Ryu Copeland",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
-          },
-          {
-            "id": 1865835,
-            "summoner_name": "UIC AutumnLeaf#Moo",
-            "name": "L0rdMo",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
-          },
-          {
             "id": 65134,
             "summoner_name": "UIC Exi#QUAK",
             "name": "FT Exi",
@@ -4260,11 +4318,25 @@
             "updated_at": "2026-11-08T03:24:39.965624+01:00"
           },
           {
+            "id": 1387013,
+            "summoner_name": "UIC Ryu Copeland#117",
+            "name": "Ryu Copeland",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+          },
+          {
             "id": 1401242,
             "summoner_name": "UIC Ace#ACE",
             "name": "FT Ace",
             "is_leader": false,
             "updated_at": "2026-11-14T03:24:32.555034+01:00"
+          },
+          {
+            "id": 1865835,
+            "summoner_name": "UIC AutumnLeaf#Moo",
+            "name": "L0rdMo",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.977830+01:00"
           },
           {
             "id": 2275674,
@@ -4294,20 +4366,6 @@
         },
         "team_lineup": [
           {
-            "id": 1387013,
-            "summoner_name": "UIC Ryu Copeland#117",
-            "name": "Ryu Copeland",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
-          },
-          {
-            "id": 1865835,
-            "summoner_name": "UIC AutumnLeaf#Moo",
-            "name": "L0rdMo",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
-          },
-          {
             "id": 65134,
             "summoner_name": "UIC Exi#QUAK",
             "name": "FT Exi",
@@ -4315,11 +4373,25 @@
             "updated_at": "2026-11-08T03:24:39.965624+01:00"
           },
           {
+            "id": 1387013,
+            "summoner_name": "UIC Ryu Copeland#117",
+            "name": "Ryu Copeland",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+          },
+          {
             "id": 1664270,
             "summoner_name": "UIC Loonz#Coach",
             "name": "LoonzInLove",
             "is_leader": true,
             "updated_at": "2026-11-08T03:24:39.949143+01:00"
+          },
+          {
+            "id": 1865835,
+            "summoner_name": "UIC AutumnLeaf#Moo",
+            "name": "L0rdMo",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.977830+01:00"
           },
           {
             "id": 2275674,
@@ -4349,11 +4421,25 @@
         },
         "team_lineup": [
           {
+            "id": 65134,
+            "summoner_name": "UIC Exi#QUAK",
+            "name": "FT Exi",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:24:39.965624+01:00"
+          },
+          {
             "id": 1387013,
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
             "updated_at": "2026-11-10T19:37:05.972261+01:00"
+          },
+          {
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1865835,
@@ -4368,20 +4454,6 @@
             "name": "Skorpa",
             "is_leader": true,
             "updated_at": "2026-11-10T19:37:05.975070+01:00"
-          },
-          {
-            "id": 65134,
-            "summoner_name": "UIC Exi#QUAK",
-            "name": "FT Exi",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:24:39.965624+01:00"
-          },
-          {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
-            "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           }
         ]
       },
@@ -4411,11 +4483,11 @@
             "updated_at": "2026-11-10T19:37:05.972261+01:00"
           },
           {
-            "id": 1865835,
-            "summoner_name": "UIC AutumnLeaf#Moo",
-            "name": "L0rdMo",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
           },
           {
             "id": 1664270,
@@ -4425,11 +4497,11 @@
             "updated_at": "2026-11-08T03:24:39.949143+01:00"
           },
           {
-            "id": 1401242,
-            "summoner_name": "UIC Ace#ACE",
-            "name": "FT Ace",
-            "is_leader": false,
-            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+            "id": 1865835,
+            "summoner_name": "UIC AutumnLeaf#Moo",
+            "name": "L0rdMo",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.977830+01:00"
           },
           {
             "id": 2275674,
@@ -4459,20 +4531,6 @@
         },
         "team_lineup": [
           {
-            "id": 1387013,
-            "summoner_name": "UIC Ryu Copeland#117",
-            "name": "Ryu Copeland",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
-          },
-          {
-            "id": 1865835,
-            "summoner_name": "UIC AutumnLeaf#Moo",
-            "name": "L0rdMo",
-            "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
-          },
-          {
             "id": 65134,
             "summoner_name": "UIC Exi#QUAK",
             "name": "FT Exi",
@@ -4480,11 +4538,25 @@
             "updated_at": "2026-11-08T03:24:39.965624+01:00"
           },
           {
+            "id": 1387013,
+            "summoner_name": "UIC Ryu Copeland#117",
+            "name": "Ryu Copeland",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+          },
+          {
             "id": 1401242,
             "summoner_name": "UIC Ace#ACE",
             "name": "FT Ace",
             "is_leader": false,
             "updated_at": "2026-11-14T03:24:32.555034+01:00"
+          },
+          {
+            "id": 1865835,
+            "summoner_name": "UIC AutumnLeaf#Moo",
+            "name": "L0rdMo",
+            "is_leader": true,
+            "updated_at": "2026-11-10T19:37:05.977830+01:00"
           },
           {
             "id": 2275674,
@@ -4504,7 +4576,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165885",
-        "updated_at": "2026-11-15T12:24:15.000054+01:00",
+        "updated_at": "2026-11-15T18:54:05.671442+01:00",
         "enemy_team": {
           "id": 211953,
           "name": "Team SpieltEinfach",
@@ -4666,18 +4738,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -4687,11 +4752,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -4721,18 +4793,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -4742,11 +4807,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -4776,18 +4848,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -4797,11 +4862,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -4831,6 +4903,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -4843,20 +4929,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -4886,6 +4958,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -4898,20 +4984,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -4941,18 +5013,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -4962,11 +5027,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -4996,6 +5068,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -5008,20 +5094,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -5051,18 +5123,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -5072,11 +5137,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -5106,6 +5178,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -5118,20 +5204,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -5161,18 +5233,11 @@
         },
         "team_lineup": [
           {
-            "id": 1601827,
-            "summoner_name": "xauberdave#dlmd",
-            "name": "xauberdave",
-            "is_leader": false,
-            "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -5182,11 +5247,18 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+          },
+          {
+            "id": 1601827,
+            "summoner_name": "xauberdave#dlmd",
+            "name": "xauberdave",
+            "is_leader": false,
+            "updated_at": "2026-10-26T18:21:38.441199+01:00"
           },
           {
             "id": 2160510,
@@ -5216,6 +5288,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -5228,20 +5314,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -5278,9 +5350,9 @@
         "match_day": 7,
         "begin": "2026-11-15T17:00:00+01:00",
         "confirmed": true,
-        "result": null,
+        "result": "2:0",
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167343",
-        "updated_at": "2026-11-15T12:24:21.062693+01:00",
+        "updated_at": "2026-11-15T18:54:11.782127+01:00",
         "enemy_team": {
           "id": 189490,
           "name": "Baltic eSports Kiel e.V. Flötenfische",
@@ -5289,6 +5361,20 @@
           "logo_url": "https://cdn0.heartbase.gg/league_team_logos/189000/189490.jpg?1676666618"
         },
         "team_lineup": [
+          {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
           {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
@@ -5302,20 +5388,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -5345,6 +5417,20 @@
         },
         "team_lineup": [
           {
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+          },
+          {
+            "id": 1508753,
+            "summoner_name": "UIC Ðărkø#SAI",
+            "name": "Xhayn",
+            "is_leader": false,
+            "updated_at": "2026-09-24T14:35:49.141916+02:00"
+          },
+          {
             "id": 1511267,
             "summoner_name": "DANY#RFA40",
             "name": "osdgesperrt",
@@ -5357,20 +5443,6 @@
             "name": "xauberdave",
             "is_leader": false,
             "updated_at": "2026-10-26T18:21:38.441199+01:00"
-          },
-          {
-            "id": 1508753,
-            "summoner_name": "UIC Ðărkø#SAI",
-            "name": "Xhayn",
-            "is_leader": false,
-            "updated_at": "2026-09-24T14:35:49.141916+02:00"
-          },
-          {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 2160510,
@@ -5400,11 +5472,11 @@
         },
         "team_lineup": [
           {
-            "id": 1511267,
-            "summoner_name": "DANY#RFA40",
-            "name": "osdgesperrt",
-            "is_leader": false,
-            "updated_at": "2026-11-10T19:21:35.212622+01:00"
+            "id": 700985,
+            "summoner_name": "UIC Pjure#CYS",
+            "name": "Pjure",
+            "is_leader": true,
+            "updated_at": "2026-11-06T03:25:54.107323+01:00"
           },
           {
             "id": 1508753,
@@ -5414,11 +5486,11 @@
             "updated_at": "2026-09-24T14:35:49.141916+02:00"
           },
           {
-            "id": 700985,
-            "summoner_name": "UIC Pjure#CYS",
-            "name": "Pjure",
-            "is_leader": true,
-            "updated_at": "2026-11-06T03:25:54.107323+01:00"
+            "id": 1511267,
+            "summoner_name": "DANY#RFA40",
+            "name": "osdgesperrt",
+            "is_leader": false,
+            "updated_at": "2026-11-10T19:21:35.212622+01:00"
           },
           {
             "id": 1648954,
@@ -5514,9 +5586,9 @@
         "rosterStatus": "starter",
         "isCaptain": false,
         "honored": false,
-        "api_id": 1486717,
-        "api_name": "UIC Lynx",
-        "in_api_roster": true
+        "api_id": null,
+        "api_name": null,
+        "in_api_roster": false
       },
       {
         "playerId": "0099",
@@ -5613,18 +5685,25 @@
         },
         "team_lineup": [
           {
-            "id": 1881159,
-            "summoner_name": "UIC Schlnken#UIC",
-            "name": "Schinkenowo",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:22:00.497260+01:00"
-          },
-          {
             "id": 810479,
             "summoner_name": "UIC Keygasza#1337",
             "name": "Keygasza",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.489004+01:00"
+          },
+          {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
+            "id": 1881159,
+            "summoner_name": "UIC Schlnken#UIC",
+            "name": "Schinkenowo",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:22:00.497260+01:00"
           },
           {
             "id": 2315892,
@@ -5639,13 +5718,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       },
@@ -5668,18 +5740,25 @@
         },
         "team_lineup": [
           {
-            "id": 1881159,
-            "summoner_name": "UIC Schlnken#UIC",
-            "name": "Schinkenowo",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:22:00.497260+01:00"
-          },
-          {
             "id": 810479,
             "summoner_name": "UIC Keygasza#1337",
             "name": "Keygasza",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.489004+01:00"
+          },
+          {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
+            "id": 1881159,
+            "summoner_name": "UIC Schlnken#UIC",
+            "name": "Schinkenowo",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:22:00.497260+01:00"
           },
           {
             "id": 2315892,
@@ -5694,13 +5773,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       },
@@ -5723,11 +5795,25 @@
         },
         "team_lineup": [
           {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
             "id": 1881159,
             "summoner_name": "UIC Schlnken#UIC",
             "name": "Schinkenowo",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.497260+01:00"
+          },
+          {
+            "id": 2192699,
+            "summoner_name": "UIC trance#zzxo",
+            "name": "trancegodzx",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:52:28.077739+01:00"
           },
           {
             "id": 2315892,
@@ -5742,20 +5828,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 2192699,
-            "summoner_name": "UIC trance#zzxo",
-            "name": "trancegodzx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.077739+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       },
@@ -5768,7 +5840,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168071",
-        "updated_at": "2026-11-15T12:24:13.919985+01:00",
+        "updated_at": "2026-11-15T18:54:04.725979+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
@@ -5797,11 +5869,25 @@
         },
         "team_lineup": [
           {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
             "id": 1881159,
             "summoner_name": "UIC Schlnken#UIC",
             "name": "Schinkenowo",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.497260+01:00"
+          },
+          {
+            "id": 2192699,
+            "summoner_name": "UIC trance#zzxo",
+            "name": "trancegodzx",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:52:28.077739+01:00"
           },
           {
             "id": 2315892,
@@ -5816,20 +5902,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 2192699,
-            "summoner_name": "UIC trance#zzxo",
-            "name": "trancegodzx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.077739+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       },
@@ -5852,11 +5924,25 @@
         },
         "team_lineup": [
           {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
             "id": 1881159,
             "summoner_name": "UIC Schlnken#UIC",
             "name": "Schinkenowo",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.497260+01:00"
+          },
+          {
+            "id": 2192699,
+            "summoner_name": "UIC trance#zzxo",
+            "name": "trancegodzx",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:52:28.077739+01:00"
           },
           {
             "id": 2315892,
@@ -5871,20 +5957,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 2192699,
-            "summoner_name": "UIC trance#zzxo",
-            "name": "trancegodzx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.077739+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       },
@@ -5907,11 +5979,25 @@
         },
         "team_lineup": [
           {
+            "id": 1486717,
+            "summoner_name": "UIC Lynx#XIV",
+            "name": "UIC Lynx",
+            "is_leader": true,
+            "updated_at": "2026-11-15T15:36:36.014970+01:00"
+          },
+          {
             "id": 1881159,
             "summoner_name": "UIC Schlnken#UIC",
             "name": "Schinkenowo",
             "is_leader": false,
             "updated_at": "2026-11-08T03:22:00.497260+01:00"
+          },
+          {
+            "id": 2192699,
+            "summoner_name": "UIC trance#zzxo",
+            "name": "trancegodzx",
+            "is_leader": false,
+            "updated_at": "2026-11-15T04:52:28.077739+01:00"
           },
           {
             "id": 2315892,
@@ -5926,20 +6012,6 @@
             "name": "Angie6875",
             "is_leader": true,
             "updated_at": "2026-11-09T03:21:42.622916+01:00"
-          },
-          {
-            "id": 2192699,
-            "summoner_name": "UIC trance#zzxo",
-            "name": "trancegodzx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.077739+01:00"
-          },
-          {
-            "id": 1486717,
-            "summoner_name": "UIC Lynx#XIV",
-            "name": "UIC Lynx",
-            "is_leader": false,
-            "updated_at": "2026-11-15T04:52:28.070594+01:00"
           }
         ]
       }
@@ -6135,6 +6207,20 @@
         },
         "team_lineup": [
           {
+            "id": 698495,
+            "summoner_name": "UIC Excellent C#1997",
+            "name": "Excellent C",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.536650+01:00"
+          },
+          {
+            "id": 1846073,
+            "summoner_name": "UIC adedier#EUWE",
+            "name": "JacksonE",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.540114+01:00"
+          },
+          {
             "id": 2198864,
             "summoner_name": "UIC Kaetaya#XwX",
             "name": "WLK Kaetaya",
@@ -6149,25 +6235,11 @@
             "updated_at": "2026-11-08T03:21:36.243107+01:00"
           },
           {
-            "id": 1846073,
-            "summoner_name": "UIC adedier#EUWE",
-            "name": "JacksonE",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.540114+01:00"
-          },
-          {
             "id": 2281915,
             "summoner_name": "UIC Namorii#Nova",
             "name": "Namorii",
             "is_leader": false,
             "updated_at": "2026-11-07T19:19:50.932470+01:00"
-          },
-          {
-            "id": 698495,
-            "summoner_name": "UIC Excellent C#1997",
-            "name": "Excellent C",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.536650+01:00"
           }
         ]
       },
@@ -6180,7 +6252,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167007",
-        "updated_at": "2026-11-15T12:24:56.411878+01:00",
+        "updated_at": "2026-11-15T18:54:47.099839+01:00",
         "enemy_team": {
           "id": 211214,
           "name": "Exhaustion Gaming",
@@ -6209,13 +6281,6 @@
         },
         "team_lineup": [
           {
-            "id": 1843297,
-            "summoner_name": "UIC Sadrik#UIC",
-            "name": "Sadrik0",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.941032+01:00"
-          },
-          {
             "id": 1602274,
             "summoner_name": "UIC DemiGodly#1010",
             "name": "Demigodly",
@@ -6223,11 +6288,18 @@
             "updated_at": "2026-11-08T03:21:36.246629+01:00"
           },
           {
-            "id": 2325347,
-            "summoner_name": "UIC GroßATuin#842",
-            "name": "Togpflanze",
+            "id": 1843297,
+            "summoner_name": "UIC Sadrik#UIC",
+            "name": "Sadrik0",
             "is_leader": false,
-            "updated_at": "2026-11-10T03:08:26.092354+01:00"
+            "updated_at": "2026-11-07T19:19:50.941032+01:00"
+          },
+          {
+            "id": 2281915,
+            "summoner_name": "UIC Namorii#Nova",
+            "name": "Namorii",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:19:50.932470+01:00"
           },
           {
             "id": 2320013,
@@ -6237,11 +6309,11 @@
             "updated_at": "2026-11-07T19:19:50.938244+01:00"
           },
           {
-            "id": 2281915,
-            "summoner_name": "UIC Namorii#Nova",
-            "name": "Namorii",
+            "id": 2325347,
+            "summoner_name": "UIC GroßATuin#842",
+            "name": "Togpflanze",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.932470+01:00"
+            "updated_at": "2026-11-10T03:08:26.092354+01:00"
           }
         ]
       },
@@ -6264,6 +6336,20 @@
         },
         "team_lineup": [
           {
+            "id": 698495,
+            "summoner_name": "UIC Excellent C#1997",
+            "name": "Excellent C",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.536650+01:00"
+          },
+          {
+            "id": 1846073,
+            "summoner_name": "UIC adedier#EUWE",
+            "name": "JacksonE",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.540114+01:00"
+          },
+          {
             "id": 2198864,
             "summoner_name": "UIC Kaetaya#XwX",
             "name": "WLK Kaetaya",
@@ -6278,25 +6364,11 @@
             "updated_at": "2026-11-08T03:21:36.243107+01:00"
           },
           {
-            "id": 1846073,
-            "summoner_name": "UIC adedier#EUWE",
-            "name": "JacksonE",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.540114+01:00"
-          },
-          {
             "id": 2281915,
             "summoner_name": "UIC Namorii#Nova",
             "name": "Namorii",
             "is_leader": false,
             "updated_at": "2026-11-07T19:19:50.932470+01:00"
-          },
-          {
-            "id": 698495,
-            "summoner_name": "UIC Excellent C#1997",
-            "name": "Excellent C",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.536650+01:00"
           }
         ]
       },
@@ -6319,13 +6391,6 @@
         },
         "team_lineup": [
           {
-            "id": 1843297,
-            "summoner_name": "UIC Sadrik#UIC",
-            "name": "Sadrik0",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.941032+01:00"
-          },
-          {
             "id": 1602274,
             "summoner_name": "UIC DemiGodly#1010",
             "name": "Demigodly",
@@ -6333,11 +6398,18 @@
             "updated_at": "2026-11-08T03:21:36.246629+01:00"
           },
           {
-            "id": 2325347,
-            "summoner_name": "UIC GroßATuin#842",
-            "name": "Togpflanze",
+            "id": 1843297,
+            "summoner_name": "UIC Sadrik#UIC",
+            "name": "Sadrik0",
             "is_leader": false,
-            "updated_at": "2026-11-10T03:08:26.092354+01:00"
+            "updated_at": "2026-11-07T19:19:50.941032+01:00"
+          },
+          {
+            "id": 2281915,
+            "summoner_name": "UIC Namorii#Nova",
+            "name": "Namorii",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:19:50.932470+01:00"
           },
           {
             "id": 2320013,
@@ -6347,11 +6419,11 @@
             "updated_at": "2026-11-07T19:19:50.938244+01:00"
           },
           {
-            "id": 2281915,
-            "summoner_name": "UIC Namorii#Nova",
-            "name": "Namorii",
+            "id": 2325347,
+            "summoner_name": "UIC GroßATuin#842",
+            "name": "Togpflanze",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.932470+01:00"
+            "updated_at": "2026-11-10T03:08:26.092354+01:00"
           }
         ]
       },
@@ -6374,18 +6446,11 @@
         },
         "team_lineup": [
           {
-            "id": 2320013,
-            "summoner_name": "UIC Muh#KATZE",
-            "name": "MuhMiau",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.938244+01:00"
-          },
-          {
-            "id": 2263127,
-            "summoner_name": "UIC Tiki#pure",
-            "name": "Tikiii",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:21:36.243107+01:00"
+            "id": 698495,
+            "summoner_name": "UIC Excellent C#1997",
+            "name": "Excellent C",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.536650+01:00"
           },
           {
             "id": 1846073,
@@ -6395,6 +6460,13 @@
             "updated_at": "2026-11-10T20:05:42.540114+01:00"
           },
           {
+            "id": 2263127,
+            "summoner_name": "UIC Tiki#pure",
+            "name": "Tikiii",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:21:36.243107+01:00"
+          },
+          {
             "id": 2281915,
             "summoner_name": "UIC Namorii#Nova",
             "name": "Namorii",
@@ -6402,11 +6474,11 @@
             "updated_at": "2026-11-07T19:19:50.932470+01:00"
           },
           {
-            "id": 698495,
-            "summoner_name": "UIC Excellent C#1997",
-            "name": "Excellent C",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.536650+01:00"
+            "id": 2320013,
+            "summoner_name": "UIC Muh#KATZE",
+            "name": "MuhMiau",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:19:50.938244+01:00"
           }
         ]
       },
@@ -6429,25 +6501,18 @@
         },
         "team_lineup": [
           {
+            "id": 698495,
+            "summoner_name": "UIC Excellent C#1997",
+            "name": "Excellent C",
+            "is_leader": true,
+            "updated_at": "2026-11-10T20:05:42.536650+01:00"
+          },
+          {
             "id": 1843297,
             "summoner_name": "UIC Sadrik#UIC",
             "name": "Sadrik0",
             "is_leader": false,
             "updated_at": "2026-11-07T19:19:50.941032+01:00"
-          },
-          {
-            "id": 2325347,
-            "summoner_name": "UIC GroßATuin#842",
-            "name": "Togpflanze",
-            "is_leader": false,
-            "updated_at": "2026-11-10T03:08:26.092354+01:00"
-          },
-          {
-            "id": 2320013,
-            "summoner_name": "UIC Muh#KATZE",
-            "name": "MuhMiau",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:19:50.938244+01:00"
           },
           {
             "id": 2281915,
@@ -6457,11 +6522,18 @@
             "updated_at": "2026-11-07T19:19:50.932470+01:00"
           },
           {
-            "id": 698495,
-            "summoner_name": "UIC Excellent C#1997",
-            "name": "Excellent C",
-            "is_leader": true,
-            "updated_at": "2026-11-10T20:05:42.536650+01:00"
+            "id": 2320013,
+            "summoner_name": "UIC Muh#KATZE",
+            "name": "MuhMiau",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:19:50.938244+01:00"
+          },
+          {
+            "id": 2325347,
+            "summoner_name": "UIC GroßATuin#842",
+            "name": "Togpflanze",
+            "is_leader": false,
+            "updated_at": "2026-11-10T03:08:26.092354+01:00"
           }
         ]
       }
@@ -6481,7 +6553,7 @@
         "trackStats": true,
         "discordId": "503183783395065856",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2299832,
         "api_name": "SimplySideStep",
@@ -6541,7 +6613,7 @@
         "trackStats": true,
         "discordId": "858153409735688203",
         "rosterStatus": "starter",
-        "isCaptain": true,
+        "isCaptain": false,
         "honored": false,
         "api_id": 2299082,
         "api_name": "Dankaban",
@@ -6564,6 +6636,16 @@
         "rosterStatus": "api_only",
         "isCaptain": false,
         "api_id": 1829794,
+        "in_api_roster": true,
+        "missing_in_local": true
+      },
+      {
+        "playerId": "UNKNOWN_LOCAL",
+        "gameName": "OUTFARTED#EUW",
+        "role": "UNKNOWN",
+        "rosterStatus": "api_only",
+        "isCaptain": false,
+        "api_id": 2112310,
         "in_api_roster": true,
         "missing_in_local": true
       },
@@ -6617,11 +6699,11 @@
         },
         "team_lineup": [
           {
-            "id": 2329452,
-            "summoner_name": "TwTv PERYZ#000",
-            "name": "peryz",
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:21:33.884751+01:00"
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
           },
           {
             "id": 2300367,
@@ -6631,13 +6713,6 @@
             "updated_at": "2026-11-08T03:20:50.758579+01:00"
           },
           {
-            "id": 2329648,
-            "summoner_name": "UIC Devo#ACE",
-            "name": "Mr. Steal Your Girl",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:21:42.257086+01:00"
-          },
-          {
             "id": 2317905,
             "summoner_name": "UIC Readem#SFO",
             "name": "Readem SFO",
@@ -6645,11 +6720,18 @@
             "updated_at": "2026-11-08T03:20:50.761517+01:00"
           },
           {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
+            "id": 2329452,
+            "summoner_name": "TwTv PERYZ#000",
+            "name": "peryz",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:33.884751+01:00"
+          },
+          {
+            "id": 2329648,
+            "summoner_name": "UIC Devo#ACE",
+            "name": "Mr. Steal Your Girl",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:42.257086+01:00"
           }
         ]
       },
@@ -6675,8 +6757,22 @@
             "id": 2299082,
             "summoner_name": "UIC Envy#UIC",
             "name": "Dankaban",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.042851+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
+          },
+          {
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
+          },
+          {
+            "id": 2317905,
+            "summoner_name": "UIC Readem#SFO",
+            "name": "Readem SFO",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:20:50.761517+01:00"
           },
           {
             "id": 2329452,
@@ -6691,20 +6787,6 @@
             "name": "Mr. Steal Your Girl",
             "is_leader": false,
             "updated_at": "2026-11-07T19:21:42.257086+01:00"
-          },
-          {
-            "id": 2317905,
-            "summoner_name": "UIC Readem#SFO",
-            "name": "Readem SFO",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:20:50.761517+01:00"
-          },
-          {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
           }
         ]
       },
@@ -6730,8 +6812,22 @@
             "id": 2299082,
             "summoner_name": "UIC Envy#UIC",
             "name": "Dankaban",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.042851+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
+          },
+          {
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
+          },
+          {
+            "id": 2317905,
+            "summoner_name": "UIC Readem#SFO",
+            "name": "Readem SFO",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:20:50.761517+01:00"
           },
           {
             "id": 2329648,
@@ -6746,20 +6842,6 @@
             "name": "corrusin",
             "is_leader": false,
             "updated_at": "2026-11-08T03:20:50.755758+01:00"
-          },
-          {
-            "id": 2317905,
-            "summoner_name": "UIC Readem#SFO",
-            "name": "Readem SFO",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:20:50.761517+01:00"
-          },
-          {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
           }
         ]
       },
@@ -6785,8 +6867,22 @@
             "id": 2299082,
             "summoner_name": "UIC Envy#UIC",
             "name": "Dankaban",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.042851+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
+          },
+          {
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
+          },
+          {
+            "id": 2317905,
+            "summoner_name": "UIC Readem#SFO",
+            "name": "Readem SFO",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:20:50.761517+01:00"
           },
           {
             "id": 2329648,
@@ -6801,20 +6897,6 @@
             "name": "corrusin",
             "is_leader": false,
             "updated_at": "2026-11-08T03:20:50.755758+01:00"
-          },
-          {
-            "id": 2317905,
-            "summoner_name": "UIC Readem#SFO",
-            "name": "Readem SFO",
-            "is_leader": false,
-            "updated_at": "2026-11-08T03:20:50.761517+01:00"
-          },
-          {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
           }
         ]
       },
@@ -6840,15 +6922,15 @@
             "id": 2299082,
             "summoner_name": "UIC Envy#UIC",
             "name": "Dankaban",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.042851+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
           },
           {
-            "id": 2329648,
-            "summoner_name": "UIC Devo#ACE",
-            "name": "Mr. Steal Your Girl",
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
             "is_leader": false,
-            "updated_at": "2026-11-07T19:21:42.257086+01:00"
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
           },
           {
             "id": 2317905,
@@ -6858,18 +6940,18 @@
             "updated_at": "2026-11-08T03:20:50.761517+01:00"
           },
           {
+            "id": 2329648,
+            "summoner_name": "UIC Devo#ACE",
+            "name": "Mr. Steal Your Girl",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:21:42.257086+01:00"
+          },
+          {
             "id": 2330384,
             "summoner_name": "Ares#SFO",
             "name": "Ares_ed",
             "is_leader": false,
             "updated_at": "2026-11-08T03:20:50.752642+01:00"
-          },
-          {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
           }
         ]
       },
@@ -6895,8 +6977,77 @@
             "id": 2299082,
             "summoner_name": "UIC Envy#UIC",
             "name": "Dankaban",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.042851+01:00"
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
+          },
+          {
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
+          },
+          {
+            "id": 2317905,
+            "summoner_name": "UIC Readem#SFO",
+            "name": "Readem SFO",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:20:50.761517+01:00"
+          },
+          {
+            "id": 2329278,
+            "summoner_name": "Engelsblut#777",
+            "name": "Roman1",
+            "is_leader": false,
+            "updated_at": "2026-11-09T03:06:54.039671+01:00"
+          },
+          {
+            "id": 2330161,
+            "summoner_name": "UIC C0RRUS1N#TWTV",
+            "name": "corrusin",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:20:50.755758+01:00"
+          }
+        ]
+      },
+      {
+        "id": 44714,
+        "match_id": 1167371,
+        "match_type": "league",
+        "match_day": 7,
+        "begin": "2026-11-15T19:00:00+01:00",
+        "confirmed": false,
+        "result": null,
+        "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167371",
+        "updated_at": "2026-11-15T18:53:33.494819+01:00",
+        "enemy_team": {
+          "id": 211174,
+          "name": "dRift Arcade",
+          "team_tag": "DRA",
+          "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211174",
+          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211174.jpg?1791581467"
+        },
+        "team_lineup": [
+          {
+            "id": 2112310,
+            "summoner_name": "OUTFARTED#EUW",
+            "name": "OUTFARTED",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.491765+01:00"
+          },
+          {
+            "id": 2299082,
+            "summoner_name": "UIC Envy#UIC",
+            "name": "Dankaban",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.489011+01:00"
+          },
+          {
+            "id": 2299832,
+            "summoner_name": "UIC Simply#666",
+            "name": "SimplySideStep",
+            "is_leader": false,
+            "updated_at": "2026-11-15T18:53:33.483793+01:00"
           },
           {
             "id": 2317905,
@@ -6911,41 +7062,8 @@
             "name": "corrusin",
             "is_leader": false,
             "updated_at": "2026-11-08T03:20:50.755758+01:00"
-          },
-          {
-            "id": 2299832,
-            "summoner_name": "UIC Simply#666",
-            "name": "SimplySideStep",
-            "is_leader": true,
-            "updated_at": "2026-11-09T03:06:54.045570+01:00"
-          },
-          {
-            "id": 2329278,
-            "summoner_name": "Engelsblut#777",
-            "name": "Roman1",
-            "is_leader": false,
-            "updated_at": "2026-11-09T03:06:54.039671+01:00"
           }
         ]
-      },
-      {
-        "id": 44714,
-        "match_id": 1167371,
-        "match_type": "league",
-        "match_day": 7,
-        "begin": "2026-11-15T19:00:00+01:00",
-        "confirmed": false,
-        "result": null,
-        "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167371",
-        "updated_at": "2026-11-15T12:23:42.628206+01:00",
-        "enemy_team": {
-          "id": 211174,
-          "name": "dRift Arcade",
-          "team_tag": "DRA",
-          "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211174",
-          "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211174.jpg?1791581467"
-        },
-        "team_lineup": []
       }
     ]
   },
@@ -7047,7 +7165,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212432.jpg?1789934435",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212432",
-      "updated_at": "2026-11-15T12:21:52.410122+01:00"
+      "updated_at": "2026-11-15T18:51:46.641254+01:00"
     },
     "matches": [
       {
@@ -7069,13 +7187,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7087,14 +7198,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7124,13 +7242,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7142,14 +7253,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7179,13 +7297,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7197,14 +7308,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7234,13 +7352,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7252,14 +7363,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7289,13 +7407,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7307,14 +7418,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7344,13 +7462,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7362,14 +7473,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7399,13 +7517,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7417,14 +7528,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7454,13 +7572,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7472,14 +7583,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7509,13 +7627,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7527,14 +7638,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7564,13 +7682,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7582,14 +7693,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7619,13 +7737,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7637,14 +7748,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7674,13 +7792,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7692,14 +7803,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7729,13 +7847,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7747,14 +7858,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
@@ -7774,7 +7892,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167038",
-        "updated_at": "2026-11-15T12:23:53.822924+01:00",
+        "updated_at": "2026-11-15T18:53:45.519582+01:00",
         "enemy_team": {
           "id": 212978,
           "name": "Elysion Flora Fatalis",
@@ -7782,7 +7900,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212978",
           "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212978.jpg?1788735260"
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 1392458,
+            "summoner_name": "UIC SwissBack#MID",
+            "name": "LK SwissBack",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.858081+01:00"
+          },
+          {
+            "id": 1674832,
+            "summoner_name": "UIC Californium#098",
+            "name": "AI Cherry",
+            "is_leader": true,
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
+          },
+          {
+            "id": 2325521,
+            "summoner_name": "UIC CrintyPlay#UIC",
+            "name": "CrintyPlay",
+            "is_leader": true,
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
+          },
+          {
+            "id": 2327350,
+            "summoner_name": "UIC BigSchuetze#DINO",
+            "name": "BigSchuetze2",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.854535+01:00"
+          }
+        ]
       },
       {
         "id": 44728,
@@ -7803,13 +7957,6 @@
         },
         "team_lineup": [
           {
-            "id": 2020449,
-            "summoner_name": "UIC DontMethWith#AMB",
-            "name": "DontMethWithMe",
-            "is_leader": false,
-            "updated_at": "2026-11-07T19:37:44.862067+01:00"
-          },
-          {
             "id": 1392458,
             "summoner_name": "UIC SwissBack#MID",
             "name": "LK SwissBack",
@@ -7821,14 +7968,21 @@
             "summoner_name": "UIC Californium#098",
             "name": "AI Cherry",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.847912+01:00"
+            "updated_at": "2026-11-15T14:51:43.055942+01:00"
+          },
+          {
+            "id": 2020449,
+            "summoner_name": "UIC DontMethWith#AMB",
+            "name": "DontMethWithMe",
+            "is_leader": false,
+            "updated_at": "2026-11-07T19:37:44.862067+01:00"
           },
           {
             "id": 2325521,
             "summoner_name": "UIC CrintyPlay#UIC",
             "name": "CrintyPlay",
             "is_leader": true,
-            "updated_at": "2026-11-07T19:37:44.844907+01:00"
+            "updated_at": "2026-11-15T14:51:43.052426+01:00"
           },
           {
             "id": 2327350,
