@@ -7,10 +7,15 @@ import Layout from '../layouts/Layout.astro';
   title="Datenschutzbestimmungen | Ultra Instinct Crew"
   description="Datenschutzerklärung und Hinweise zur DSGVO-konformen Datenverarbeitung der Ultra Instinct Crew."
 >
-  <div class="legal-page section-pad">
+  <div class="legal-page subpage-pad section-pad">
     <div class="container legal-container">
       
-      <a href="/" class="back-link">&larr; Zurück zur Startseite</a>
+      <div class="subpage-topbar">
+        <a href="/" class="subpage-back-btn text-mono">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>ZURÜCK ZUR STARTSEITE</span>
+        </a>
+      </div>
 
       <div class="section-tag"># RECHTLICHES</div>
       <h1 class="legal-title text-gradient">DATENSCHUTZ</h1>
@@ -87,20 +92,6 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .legal-container {
     max-width: 900px;
-  }
-
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-xl);
-    font-weight: 600;
-  }
-
-  .back-link:hover {
-    color: var(--text-white);
   }
 
   .legal-title {

@@ -85,14 +85,16 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
   title="OBS Spieltags-Overlay | Ultra Instinct Crew"
   description="1080p OBS Broadcast-Overlay der Ultra Instinct Crew mit 5 Szenen (1. Start, 2. Pregame, 3. Break, 4. Replay, 5. End), automatischer Spieltags-Erkennung pro Team, Streamlabs-Integration, RiftOPS-Replay-Bühne und reservierter BlueBottle-Draft-Zone."
 >
-  <div class="obs-page section-pad">
+  <div class="obs-page subpage-pad section-pad">
     <div class="container obs-container">
       
       <!-- Top Back Navigation -->
-      <a href="/#medien" class="back-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        <span>ZURÜCK ZU MEDIEN &amp; VORLAGEN</span>
-      </a>
+      <div class="subpage-topbar">
+        <a href="/#medien" class="subpage-back-btn text-mono">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>ZURÜCK ZU MEDIEN &amp; VORLAGEN</span>
+        </a>
+      </div>
 
       <!-- Header Section -->
       <header class="obs-header">
@@ -969,22 +971,6 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
     max-width: var(--container-max);
     margin-inline: auto;
     padding-inline: var(--container-pad);
-  }
-
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-xl);
-    transition: color var(--transition-fast);
-  }
-  .back-link:hover {
-    color: var(--text-white);
   }
 
   .obs-header {
