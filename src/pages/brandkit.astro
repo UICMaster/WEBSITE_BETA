@@ -47,7 +47,13 @@ const resolveAssetList = (candidates: string[]): ResolvedAsset[] =>
     .map((candidate) => resolvePublicAsset(candidate))
     .filter((asset): asset is ResolvedAsset => asset !== null);
 
-const rawLogoSvg = resolvePublicAsset('/assets/logo/logo.svg')?.svgMarkup ?? '';
+const logoSvgAsset = resolvePublicAsset('/assets/logo/logo.svg');
+const logoPngAsset = resolvePublicAsset('/assets/logo/logo.png');
+const rawLogoSvg = logoSvgAsset?.svgMarkup ?? '';
+const viewBoxMatch = rawLogoSvg.match(/viewBox=["'][\d.\-]+\s+[\d.\-]+\s+([\d.]+)\s+([\d.]+)["']/i);
+const logoViewBoxLabel = viewBoxMatch
+  ? `${Math.round(Number(viewBoxMatch[1]))} × ${Math.round(Number(viewBoxMatch[2]))}`
+  : '1000 × 1000';
 const brandkitBundle = resolvePublicAsset('/assets/downloads/uic-brandkit.zip');
 
 const teamsMap = (rawTeams || {}) as Record<string, any>;
@@ -316,13 +322,13 @@ const logoVariants = logoPlaceholders.map((item) => {
               />
             </div>
 
-            <span class="lm-dim-caption text-mono">VIEWBOX 1000 &times; 1000 &bull; SYMMETRISCHER VEKTORPFAD</span>
+            <span class="lm-dim-caption text-mono">VIEWBOX {logoViewBoxLabel} &bull; REINZEICHNUNG VEKTORPFAD</span>
           </div>
 
           <div class="lm-details">
             <div class="asset-meta-row text-mono">
               <span class="meta-type">PRIMÄRMARKE &bull; SYMBOL</span>
-              <span class="meta-spec">1:1 QUADRATISCH</span>
+              <span class="meta-spec">WAPPEN-ZEICHEN</span>
             </div>
             <h3 class="lm-title">UIC WAPPEN (SYMBOL)</h3>
             <p class="lm-desc">
@@ -332,15 +338,15 @@ const logoVariants = logoPlaceholders.map((item) => {
             <div class="lm-specs-grid text-mono">
               <div class="spec-mini">
                 <span class="sm-lbl">VEKTOR</span>
-                <span class="sm-val">SVG (1000&times;1000)</span>
+                <span class="sm-val">SVG ({logoViewBoxLabel})</span>
               </div>
               <div class="spec-mini">
                 <span class="sm-lbl">RASTER</span>
-                <span class="sm-val">PNG Hochauflösend</span>
+                <span class="sm-val">{logoPngAsset ? `PNG (${logoPngAsset.sizeLabel})` : 'PNG Hochauflösend'}</span>
               </div>
               <div class="spec-mini">
-                <span class="sm-lbl">SEITENVERHÄLTNIS</span>
-                <span class="sm-val">1 : 1</span>
+                <span class="sm-lbl">FORMAT</span>
+                <span class="sm-val">1 : 1 Safe-Canvas</span>
               </div>
               <div class="spec-mini">
                 <span class="sm-lbl">FARBE</span>
@@ -350,10 +356,10 @@ const logoVariants = logoPlaceholders.map((item) => {
 
             <div class="lm-actions">
               <a href="/assets/logo/logo.svg" download="uic-logo.svg" class="btn btn-primary btn-sm">
-                SVG HERUNTERLADEN ↓
+                {logoSvgAsset ? `SVG (${logoSvgAsset.sizeLabel}) ↓` : 'SVG HERUNTERLADEN ↓'}
               </a>
               <a href="/assets/logo/logo.png" download="uic-logo.png" class="btn btn-outline btn-sm">
-                PNG HERUNTERLADEN ↓
+                {logoPngAsset ? `PNG (${logoPngAsset.sizeLabel}) ↓` : 'PNG HERUNTERLADEN ↓'}
               </a>
               {rawLogoSvg && (
                 <button
@@ -1290,10 +1296,10 @@ const logoVariants = logoPlaceholders.map((item) => {
   }
 
   .ph-live-img {
+    width: 100%;
+    height: 100%;
     max-width: 86%;
     max-height: 78%;
-    width: auto;
-    height: auto;
     object-fit: contain;
     display: block;
   }
