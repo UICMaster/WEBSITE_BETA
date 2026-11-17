@@ -78,120 +78,86 @@ const activeTeamEmblems = Object.entries(teamsMap)
     };
   });
 
-const primaryColors = [
+const brandColors = [
   {
-    name: 'Tiefschwarz (Void)',
+    name: 'Tiefschwarz',
     hex: '#000000',
     rgb: '0, 0, 0',
-    token: '--bg-void',
-    role: 'Primärer Seitenhintergrund & Canvas',
+    cmyk: '60 / 40 / 40 / 100',
+    role: 'Primärer Markenhintergrund sowie Reinzeichnung für die Dunkel-Variante des Logos auf hellen Trägermedien und im Print.',
     contrast: '21:1 mit #FFFFFF',
     border: 'rgba(255, 255, 255, 0.32)',
     darkInk: false
   },
   {
-    name: 'Karbon Obsidian',
-    hex: '#08080A',
-    rgb: '8, 8, 10',
-    token: '--bg-surface',
-    role: 'Abgesetzte Flächen & Footer-Ebene',
-    contrast: '19.8:1 mit #FFFFFF',
-    border: 'rgba(255, 255, 255, 0.24)',
-    darkInk: false
-  },
-  {
-    name: 'Karten-Schiefer',
-    hex: '#0D0D10',
-    rgb: '13, 13, 16',
-    token: '--bg-card',
-    role: 'Bento-Module, Karten & Boxen',
-    contrast: '18.9:1 mit #FFFFFF',
-    border: 'rgba(255, 255, 255, 0.22)',
-    darkInk: false
-  },
-  {
-    name: 'Reines Weiß (Primary)',
+    name: 'Reinweiß',
     hex: '#FFFFFF',
     rgb: '255, 255, 255',
-    token: '--text-white',
-    role: 'Wappen, Überschriften & Primär-CTAs',
+    cmyk: '0 / 0 / 0 / 0',
+    role: 'Primäre Logofarbe für das Wappen, Wortmarken, Lockups und Hauptüberschriften auf dunklen Hintergründen.',
     contrast: '21:1 auf #000000',
     border: 'rgba(255, 255, 255, 0.45)',
     darkInk: true
   },
   {
-    name: 'Sekundärgrau',
+    name: 'Silbergrau',
     hex: '#D4D4D8',
     rgb: '212, 212, 216',
-    token: '--text-secondary',
-    role: 'Fließtext, Beschreibungen & Listen',
+    cmyk: '16 / 12 / 11 / 0',
+    role: 'Sekundärer Grauton für Fließtext, Begleittexte und untergeordnete grafische Elemente auf dunklem Grund.',
     contrast: '14.3:1 auf #000000',
     border: 'rgba(255, 255, 255, 0.25)',
     darkInk: true
   },
   {
-    name: 'Stahl-Grau (Muted)',
+    name: 'Graphitgrau',
     hex: '#A1A1AA',
     rgb: '161, 161, 170',
-    token: '--text-muted',
-    role: 'Metadaten, Kategorien & Captions',
+    cmyk: '37 / 30 / 26 / 1',
+    role: 'Neutraler Akzentton für feine Trennlinien, Bildunterschriften, Labels und technische Beschriftungen.',
     contrast: '8.2:1 auf #000000',
     border: 'rgba(255, 255, 255, 0.2)',
     darkInk: true
   }
 ];
 
-const statusColors = [
-  {
-    name: 'Bestätigt / Sieg',
-    hex: '#10B981',
-    rgb: '16, 185, 129',
-    token: '--state-win',
-    usage: 'Ausschließlich für bestätigte Spieltermine und gewonnene Serien.'
-  },
-  {
-    name: 'Offen / Unentschieden',
-    hex: '#F59E0B',
-    rgb: '245, 158, 11',
-    token: '--state-draw',
-    usage: 'Ausschließlich für unbestätigte Termine, Unentschieden & Ruhmeshalle-Siegel.'
-  },
-  {
-    name: 'Niederlage / Warnung',
-    hex: '#F43F5E',
-    rgb: '244, 63, 94',
-    token: '--state-loss',
-    usage: 'Ausschließlich für Niederlagen, Live-Statuspunkte und Fehlerhinweise.'
-  }
-];
-
 const logoPlaceholders = [
   {
-    id: 'LOC-01',
+    id: 'VAR-01',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
-    title: 'Wortmarke / Horizontal Lockup',
+    title: 'Wortmarke (Wordmark)',
+    spec: 'SVG & PNG • Freistehender Schriftzug • Transparent',
+    desc: 'Reine Wortmarke „ULTRA INSTINCT CREW“ ohne Wappen-Symbol. Optimal für Typo-Header, Trikot-Rücken, Banderolen und eigenständige Schriftzüge.',
+    previewType: 'wordmark',
+    candidates: ['/assets/logo/logo-wordmark.svg', '/assets/logo/logo-wordmark.png'],
+    slotHint: 'public/assets/logo/logo-wordmark.svg'
+  },
+  {
+    id: 'VAR-02',
+    badge: 'PLATZHALTER • UPLOAD FOLGT',
+    title: 'Horizontales Lockup',
     spec: 'SVG & PNG • Empfohlen 1600 × 400 px • Transparent',
-    desc: 'Kombination aus UIC Wappen links und „ULTRA INSTINCT CREW“ Schriftzug rechts für Web-Header, Stream-Banderolen und Sponsoren-Leisten.',
+    desc: 'Kombination aus UIC Wappen links und Wortmarke rechts mit festem Abstand. Standard für Bereiche mit begrenzter Höhe.',
     previewType: 'horizontal',
     candidates: ['/assets/logo/logo-horizontal.svg', '/assets/logo/logo-horizontal.png'],
     slotHint: 'public/assets/logo/logo-horizontal.svg'
   },
   {
-    id: 'LOC-02',
+    id: 'VAR-03',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Vertikales Lockup (Stacked)',
     spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Transparent',
-    desc: 'Zentriertes Wappen über zweizeiliger Wortmarke für Poster, Pokale, Turnier-Kacheln und Print-Materialien.',
+    desc: 'Zentriertes UIC Wappen über gestapelter Wortmarke. Gedacht für Formate mit begrenzter Breite wie Poster, Pokale und Kacheln.',
     previewType: 'stacked',
     candidates: ['/assets/logo/logo-stacked.svg', '/assets/logo/logo-stacked.png'],
     slotHint: 'public/assets/logo/logo-stacked.svg'
   },
   {
-    id: 'LOC-03',
+    id: 'VAR-04',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
-    title: 'Print-Wappen (Dunkel auf Hell)',
-    spec: 'SVG & EPS • #000000 Vollton • CMYK-tauglich',
-    desc: 'Dedizierte tiefschwarze Reinzeichnungs-Datei für weiße Trikots, Verträge, Briefbögen und helle Partner-Hintergründe.',
+    title: 'Dunkel-Variante (Schwarz auf Hell)',
+    spec: 'SVG, PNG & EPS • #000000 Vollton • CMYK-tauglich',
+    desc: 'Monochrome schwarze Reinzeichnung aller Marken-Elemente für weiße Trikots, Verträge, Briefbögen und helle Hintergründe.',
     previewType: 'dark-ink',
     candidates: [
       '/assets/logo/logo-dark.svg',
@@ -217,121 +183,11 @@ const logoVariants = logoPlaceholders.map((item) => {
     isAvailable: files.length > 0
   };
 });
-
-const mediaPlaceholders = [
-  {
-    code: 'MEDIA-01',
-    category: 'SOCIAL MEDIA AVATARE',
-    title: 'Profilbilder-Set (1:1)',
-    format: '1000 × 1000 px • PNG / WEBP',
-    desc: 'Zentrierte Profilbilder mit vorkalibrierter Safe-Zone für runde Zuschnitte auf Discord, Twitch, X, YouTube und Instagram.',
-    aspect: '1 / 1',
-    candidates: ['/assets/brandkit/social-avatars.zip'],
-    previewCandidates: [
-      '/assets/brandkit/social-avatars.webp',
-      '/assets/brandkit/social-avatars.png',
-      '/assets/brandkit/social-avatars.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/social-avatars.zip'
-  },
-  {
-    code: 'MEDIA-02',
-    category: 'KANAL-BANNER',
-    title: 'Header & Offline-Screens',
-    format: '1500 × 500 px / 2560 × 1440 px',
-    desc: 'Einheitliche Kopfzeilen-Grafiken für Twitch-Panels, X-Header, YouTube-Kanalbanner und Prime-League-Teamseiten.',
-    aspect: '16 / 9',
-    candidates: ['/assets/brandkit/channel-banners.zip'],
-    previewCandidates: [
-      '/assets/brandkit/channel-banners.webp',
-      '/assets/brandkit/channel-banners.png',
-      '/assets/brandkit/channel-banners.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/channel-banners.zip'
-  },
-  {
-    code: 'MEDIA-03',
-    category: 'SPIELTAG & ERGEBNISSE',
-    title: 'Matchday- & Score-Templates',
-    format: '1080 × 1350 px / 1920 × 1080 px',
-    desc: 'Bearbeitbare Figma- & PSD-Vorlagen für Aufstellungs-Ankündigungen, Endergebnisse und Split-Rückblicke.',
-    aspect: '4 / 5',
-    candidates: [
-      '/assets/brandkit/matchday-templates.zip',
-      '/assets/brandkit/matchday-templates.fig',
-      '/assets/brandkit/matchday-templates.psd'
-    ],
-    previewCandidates: [
-      '/assets/brandkit/matchday-templates.webp',
-      '/assets/brandkit/matchday-templates.png',
-      '/assets/brandkit/matchday-templates.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/matchday-templates.zip'
-  },
-  {
-    code: 'MEDIA-04',
-    category: 'TRIKOTS & MERCH',
-    title: 'Jersey- & Spized-Richtlinie',
-    format: 'PDF Vektor / PSD Mockups',
-    desc: 'Verbindliche Positionierung von Hauptwappen, Spieler-Nicknames und Sponsoren-Logos auf offizieller Teamkleidung.',
-    aspect: '1 / 1',
-    candidates: ['/assets/brandkit/jersey-guidelines.pdf', '/assets/brandkit/jersey-guidelines.zip'],
-    previewCandidates: [
-      '/assets/brandkit/jersey-guidelines.webp',
-      '/assets/brandkit/jersey-guidelines.png',
-      '/assets/brandkit/jersey-guidelines.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/jersey-guidelines.pdf'
-  },
-  {
-    code: 'MEDIA-05',
-    category: 'CO-BRANDING',
-    title: 'Partner- & Event-Lockups',
-    format: 'SVG / PNG • 16:9 Trennlinie',
-    desc: 'Standardisierte „UIC × Partner“-Kombinationen mit definierter Trennlinie und ausgeglichener optischer Logogröße.',
-    aspect: '16 / 9',
-    candidates: ['/assets/brandkit/partner-lockups.zip'],
-    previewCandidates: [
-      '/assets/brandkit/partner-lockups.webp',
-      '/assets/brandkit/partner-lockups.png',
-      '/assets/brandkit/partner-lockups.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/partner-lockups.zip'
-  },
-  {
-    code: 'MEDIA-06',
-    category: 'PRESSE & MEDIA',
-    title: 'Foto- & Presse-Kit',
-    format: 'JPG / WEBP • Hochauflösend',
-    desc: 'Freigestellte Spieler-Porträts, Event-Eindrücke und freigegebene Team-Aufnahmen für Berichterstattung.',
-    aspect: '16 / 10',
-    candidates: ['/assets/brandkit/press-photos.zip'],
-    previewCandidates: [
-      '/assets/brandkit/press-photos.webp',
-      '/assets/brandkit/press-photos.png',
-      '/assets/brandkit/press-photos.jpg'
-    ],
-    slotHint: 'public/assets/brandkit/press-photos.zip'
-  }
-];
-
-const mediaPackages = mediaPlaceholders.map((mp) => {
-  const files = resolveAssetList(mp.candidates);
-  const previewAsset = resolveAssetList(mp.previewCandidates)[0] ?? null;
-  const primaryFile = files[0] ?? null;
-  return {
-    ...mp,
-    files,
-    primaryFile,
-    previewAsset,
-    isAvailable: files.length > 0
-  };
-});
 ---
 
 <Layout
   title="Brandkit & Markenrichtlinien | Ultra Instinct Crew"
-  description="Offizielles Brandkit und Corporate Design Richtlinien der Ultra Instinct Crew (UIC): Logos, Schutzzonen, Monochrom-Farbsystem, Typografie, Team-Wappen und Medien-Vorlagen."
+  description="Offizielles Brandkit und Markenrichtlinien der Ultra Instinct Crew (UIC): Wappen, Wortmarke, Lockups, Schutzzonen, Farbpalette, Typografie und Team-Embleme."
 >
   <div class="brandkit-page section-pad">
     <div class="container bk-container">
@@ -353,25 +209,24 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
 
       <!-- Page Header -->
       <header class="bk-header">
-        <div class="section-badge-pill">CORPORATE DESIGN &amp; RICHTLINIEN</div>
+        <div class="section-badge-pill">MARKENRICHTLINIEN &amp; LOGO-ARCHIVE</div>
         <h1 class="bk-title">
           UIC MARKE &amp; <span class="text-gradient">BRANDKIT</span>
         </h1>
         <p class="bk-lead">
-          Verbindlicher Leitfaden für die visuelle Identität der Ultra Instinct Crew. Entwickelt für Partner, Turnierveranstalter, Caster, Medienschaffende und alle Teams innerhalb unserer Organisation.
+          Verbindlicher Leitfaden für die visuelle Identität der Ultra Instinct Crew. Entwickelt für Partner, Turnierveranstalter, Caster, Presse und alle Teams unserer Organisation.
         </p>
 
         <!-- Action Strip & Anchor Navigation -->
         <div class="bk-controls-row">
           <nav class="bk-toc text-mono" aria-label="Brandkit-Bereiche">
-            <a href="#markenkern" class="toc-chip">01 Markenkern</a>
+            <a href="#markenkern" class="toc-chip">01 Markenidentität</a>
             <a href="#logos" class="toc-chip">02 Logo-System</a>
             <a href="#regeln" class="toc-chip">03 Schutzzone &amp; Regeln</a>
-            <a href="#farben" class="toc-chip">04 Farbsystem</a>
+            <a href="#farben" class="toc-chip">04 Farbpalette</a>
             <a href="#typografie" class="toc-chip">05 Typografie</a>
             <a href="#teams-wappen" class="toc-chip">06 Team-Wappen</a>
-            <a href="#platzhalter" class="toc-chip">07 Vorlagen</a>
-            <a href="#nutzung" class="toc-chip">08 Nutzungsrechte</a>
+            <a href="#nutzung" class="toc-chip">07 Nutzungsrechte</a>
           </nav>
 
           {brandkitBundle ? (
@@ -397,53 +252,45 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
       </header>
 
       <!-- =================================================================
-           01. MARKENKERN & SCHREIBWEISE
+           01. MARKENIDENTITÄT & SCHREIBWEISE
            ================================================================= -->
       <section id="markenkern" class="bk-section">
         <div class="bk-sec-head">
           <span class="bk-num text-mono">01 / IDENTITÄT</span>
-          <h2 class="bk-sec-title">MARKENKERN &amp; SCHREIBWEISE</h2>
+          <h2 class="bk-sec-title">MARKENNAME &amp; TERMINOLOGIE</h2>
           <p class="bk-sec-desc">
-            Konsistenz beginnt bei korrekten Begriffen. So werden die Organisation, unsere Teams und die Community offiziell benannt.
+            Eine einheitliche Marke beginnt bei korrekter Schreibweise. So werden die Organisation, unsere Teams und die Community offiziell bezeichnet.
           </p>
         </div>
 
         <div class="identity-grid">
           <article class="bento-card id-card">
-            <span class="id-label text-mono">VOLLSTÄNDIGER NAME</span>
-            <h3 class="id-value">Ultra Instinct Crew</h3>
+            <span class="id-label text-mono">VOLLSTÄNDIGER NAME &amp; TAG</span>
+            <h3 class="id-value">Ultra Instinct Crew &bull; UIC</h3>
             <p class="id-note">
-              Immer ausgeschrieben in Überschriften, Rechtstexten und offiziellen Ankündigungen. Die Abkürzung <strong>UIC</strong> steht für das Kürzel in Spielplänen, Tags und Badges.
+              In Überschriften, Pressetexten und offiziellen Nennungen wird stets <strong>Ultra Instinct Crew</strong> ausgeschrieben. <strong>UIC</strong> dient als kurzes Kürzel in Spielplänen, Overlays und Team-Tags.
             </p>
           </article>
 
           <article class="bento-card id-card">
-            <span class="id-label text-mono">STRUKTUR &amp; BEGRIFFE</span>
+            <span class="id-label text-mono">OFFIZIELLE BEGRIFFE</span>
             <h3 class="id-value">Organisation &bull; Community &bull; Teams</h3>
             <p class="id-note">
               Wir bezeichnen uns ausschließlich als <strong>Organisation</strong> mit angeschlossener <strong>Community</strong> und aktiven <strong>Teams</strong>. Begriffe wie <em>„Verein“</em>, <em>„e.V.“</em> oder <em>„GbR“</em> werden nicht verwendet.
-            </p>
-          </article>
-
-          <article class="bento-card id-card">
-            <span class="id-label text-mono">GESTALTUNGSPRINZIP</span>
-            <h3 class="id-value">Scharf &bull; Monochrom &bull; Präzise</h3>
-            <p class="id-note">
-              Tiefschwarze Flächen, reines Weiß für Kernaussagen, feine Haarlinien-Rahmen und Verzicht auf verspielte Verläufe. Farbe wird ausschließlich funktional für Match- und Statusanzeigen eingesetzt.
             </p>
           </article>
         </div>
       </section>
 
       <!-- =================================================================
-           02. LOGO-SYSTEM & DOWNLOADS
+           02. LOGO-SYSTEM & VARIANTEN
            ================================================================= -->
       <section id="logos" class="bk-section">
         <div class="bk-sec-head">
           <span class="bk-num text-mono">02 / LOGOMARKEN</span>
           <h2 class="bk-sec-title">PRIMÄRLOGO &amp; VARIANTEN</h2>
           <p class="bk-sec-desc">
-            Das UIC-Wappen ist das zentrale Erkennungszeichen der Organisation. Für digitale Medien steht die verlustfreie SVG-Vektordatei im Vordergrund.
+            Das UIC-Markensystem umfasst vier Grundformen: das freistehende <strong>Wappen (Symbol)</strong>, die reine <strong>Wortmarke</strong>, das <strong>horizontale Lockup</strong> und das <strong>vertikale Lockup</strong> sowie eine schwarze Print-Variante für helle Flächen.
           </p>
         </div>
 
@@ -451,10 +298,10 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
         <div class="bento-card logo-master-card">
           <div class="lm-stage" id="master-logo-stage" data-bg="dark">
             <div class="lm-stage-controls text-mono">
-              <span class="lm-status-pill is-live">VERFÜGBAR &bull; MASTER</span>
+              <span class="lm-status-pill is-live">VERFÜGBAR &bull; WAPPEN</span>
               <div class="stage-bg-switch" role="group" aria-label="Hintergrund-Vorschau wechseln">
                 <button type="button" class="bg-sw-btn is-active" data-stage-bg="dark">SCHWARZ</button>
-                <button type="button" class="bg-sw-btn" data-stage-bg="slate">KARBON</button>
+                <button type="button" class="bg-sw-btn" data-stage-bg="slate">DUNKELGRAU</button>
                 <button type="button" class="bg-sw-btn" data-stage-bg="grid">RASTER</button>
               </div>
             </div>
@@ -474,12 +321,12 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
 
           <div class="lm-details">
             <div class="asset-meta-row text-mono">
-              <span class="meta-type">PRIMÄRMARKE (WEISS)</span>
+              <span class="meta-type">PRIMÄRMARKE &bull; SYMBOL</span>
               <span class="meta-spec">1:1 QUADRATISCH</span>
             </div>
-            <h3 class="lm-title">UIC ORGANISATIONS-WAPPEN</h3>
+            <h3 class="lm-title">UIC WAPPEN (SYMBOL)</h3>
             <p class="lm-desc">
-              Standard-Logo in reinem Weiß (<code>#FFFFFF</code>) auf transparentem Hintergrund. Optimal für dunkle UI-Flächen, Twitch-Overlays, Turnier-Brackets und Social Media.
+              Das freistehende Symbol-Logo in Reinweiß (<code>#FFFFFF</code>) auf transparentem Hintergrund. Optimal für Profilbilder, Broadcast-Badges, Stickereien und kompakte Markierungen ohne Textzusatz.
             </p>
 
             <div class="lm-specs-grid text-mono">
@@ -522,7 +369,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
           </div>
         </div>
 
-        <!-- Secondary Lockups & Auto-Detected Variants -->
+        <!-- Secondary Logo Variants (Wordmark, Horizontal Lockup, Stacked Lockup, Dark Ink) -->
         <div class="lockups-grid">
           {logoVariants.map((item) => (
             <article class={`placeholder-card${item.isAvailable ? ' is-available' : ''}`}>
@@ -559,6 +406,11 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
                 </div>
               ) : (
                 <div class={`ph-stage ph-stage-${item.previewType}`} aria-hidden="true">
+                  {item.previewType === 'wordmark' && (
+                    <div class="ph-mock-wordonly">
+                      <span class="ph-mock-wordbar is-wordmark">ULTRA INSTINCT CREW</span>
+                    </div>
+                  )}
                   {item.previewType === 'horizontal' && (
                     <div class="ph-mock-horizontal">
                       <span class="ph-mock-crest-box">UIC</span>
@@ -629,7 +481,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
           <span class="bk-num text-mono">03 / ANWENDUNGSREGELN</span>
           <h2 class="bk-sec-title">SCHUTZZONE, MINDESTGRÖSSEN &amp; DO / DON'T</h2>
           <p class="bk-sec-desc">
-            Klare Abstands- und Kontrastregeln sichern die Lesbarkeit unseres Wappens auf kleinen Handy-Displays ebenso wie auf großen Turnier-Bühnen.
+            Klare Abstands- und Kontrastregeln sichern die Erkennbarkeit aller Logo-Varianten auf kompakten Avataren ebenso wie auf großen Turnier-Bühnen und Print-Medien.
           </p>
         </div>
 
@@ -741,19 +593,19 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
       </section>
 
       <!-- =================================================================
-           04. FARBSYSTEM & KONTRAST-TOKENS
+           04. FARBPALETTE & KONTRASTE
            ================================================================= -->
       <section id="farben" class="bk-section">
         <div class="bk-sec-head">
           <span class="bk-num text-mono">04 / FARBSYSTEM</span>
-          <h2 class="bk-sec-title">MONOCHROME PALETTE &amp; FUNKTIONSFARBEN</h2>
+          <h2 class="bk-sec-title">MONOCHROME FARBPALETTE</h2>
           <p class="bk-sec-desc">
-            Klick auf eine Farbkarte kopiert den HEX-Code direkt in die Zwischenablage. Statusfarben sind streng für Liga-Telemetrie reserviert.
+            Die visuelle Identität der Ultra Instinct Crew basiert konsequent auf einer klaren Monochrom-Palette aus Schwarz, Weiß und neutralen Grautönen. Klick auf eine Farbkarte kopiert den HEX-Wert in die Zwischenablage.
           </p>
         </div>
 
         <div class="swatches-grid">
-          {primaryColors.map((col) => (
+          {brandColors.map((col) => (
             <button
               type="button"
               class="swatch-card"
@@ -773,40 +625,13 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
                 <div class="swatch-codes text-mono">
                   <span>RGB {col.rgb}</span>
                   <span>&bull;</span>
-                  <span>{col.token}</span>
+                  <span>CMYK {col.cmyk}</span>
                 </div>
                 <p class="swatch-role">{col.role}</p>
                 <span class="swatch-wcag text-mono">KONTRAST: {col.contrast}</span>
               </div>
             </button>
           ))}
-        </div>
-
-        <div class="status-colors-bar bento-card">
-          <div class="scb-header">
-            <span class="meta-num text-mono">FUNKTIONALE STATUSFARBEN</span>
-            <span class="meta-tag text-mono">NUR FÜR SPIELSTÄNDE &amp; LIVE-TELEMETRIE</span>
-          </div>
-          <div class="scb-grid">
-            {statusColors.map((st) => (
-              <button
-                type="button"
-                class="status-pill-card"
-                data-copy-color={st.hex}
-                title={`Status-HEX ${st.hex} kopieren`}
-              >
-                <span class="st-dot" style={`background: ${st.hex}; box-shadow: 0 0 12px ${st.hex}66;`}></span>
-                <div class="st-info">
-                  <div class="st-top">
-                    <strong class="st-name">{st.name}</strong>
-                    <span class="st-hex text-mono" data-color-status={st.hex}>{st.hex}</span>
-                  </div>
-                  <span class="st-token text-mono">{st.token} &bull; RGB {st.rgb}</span>
-                  <p class="st-usage">{st.usage}</p>
-                </div>
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -818,14 +643,14 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
           <span class="bk-num text-mono">05 / TYPOGRAFIE</span>
           <h2 class="bk-sec-title">SCHRIFTSYSTEM &amp; HIERARCHIE</h2>
           <p class="bk-sec-desc">
-            Zwei komplementäre Schriftfamilien decken alle Einsatzbereiche ab. Beide Schriften werden DSGVO-konform lokal ausgeliefert.
+            Zwei aufeinander abgestimmte Schriftfamilien prägen das Erscheinungsbild der Ultra Instinct Crew über alle digitalen und gedruckten Marken-Anwendungen hinweg.
           </p>
         </div>
 
         <div class="type-grid">
           <article class="bento-card type-card">
             <div class="card-meta">
-              <span class="meta-num">DISPLAY &amp; FLIESSTEXT</span>
+              <span class="meta-num">PRIMÄRSCHRIFT &bull; DISPLAY &amp; COPY</span>
               <span class="meta-tag text-mono">PLUS JAKARTA SANS</span>
             </div>
             <div class="type-specimen" style="font-family: var(--font-display);">
@@ -836,26 +661,26 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
               </p>
             </div>
             <div class="type-weights text-mono">
-              <span class="weight-chip"><strong>800 ExtraBold</strong> Headlines &amp; CTAs (Tracking -0.035em)</span>
-              <span class="weight-chip"><strong>500 / 400</strong> Fließtext &amp; UI (Line-Height 1.6)</span>
+              <span class="weight-chip"><strong>800 ExtraBold</strong> Headlines, Banner &amp; Wortmarken (Tracking -0.035em)</span>
+              <span class="weight-chip"><strong>500 / 400</strong> Fließtext, Pressemeldungen &amp; Richtlinien</span>
             </div>
           </article>
 
           <article class="bento-card type-card">
             <div class="card-meta">
-              <span class="meta-num">TECHNIK, ZAHLEN &amp; BADGES</span>
+              <span class="meta-num">SEKUNDÄRSCHRIFT &bull; KENNZEICHNUNG</span>
               <span class="meta-tag text-mono">SPACE GROTESK</span>
             </div>
             <div class="type-specimen" style="font-family: var(--font-mono);">
-              <span class="specimen-big">01 : 24</span>
-              <span class="specimen-headline">DIVISION 4 &bull; 68% SIEGQUOTE</span>
+              <span class="specimen-big">UIC // 2026</span>
+              <span class="specimen-headline">ORGANISATION &bull; COMMUNITY &bull; TEAMS</span>
               <p class="specimen-alphabet">
-                #FFFFFF &bull; 1920&times;1080 PX &bull; ST7 &bull; KDA 4.82 &bull; PRIME LEAGUE
+                #FFFFFF &bull; #000000 &bull; PRIME LEAGUE &bull; ESPORTS
               </p>
             </div>
             <div class="type-weights text-mono">
-              <span class="weight-chip"><strong>700 Bold</strong> Metriken, Spieltage &amp; Tabellen</span>
-              <span class="weight-chip"><strong>500 Medium</strong> Tags, Status-Badges &amp; Labels</span>
+              <span class="weight-chip"><strong>700 Bold</strong> Kürzel, Jahreszahlen &amp; Turnier-Kennzeichnungen</span>
+              <span class="weight-chip"><strong>500 Medium</strong> Kategorien, Labels &amp; Bildunterschriften</span>
             </div>
           </article>
         </div>
@@ -924,86 +749,12 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
       </section>
 
       <!-- =================================================================
-           07. PLATZHALTER FÜR AUSSTEHENDE VORLAGEN & GRAFIKEN
-           ================================================================= -->
-      <section id="platzhalter" class="bk-section">
-        <div class="bk-sec-head">
-          <span class="bk-num text-mono">07 / AUSBAUSTUFEN</span>
-          <h2 class="bk-sec-title">VORLAGEN &amp; ASSET-PLATZHALTER</h2>
-          <p class="bk-sec-desc">
-            Strukturierte Platzhalter für alle Design-Pakete, die noch nicht hochgeladen wurden. Zielformate und Proportionen sind bereits nach Industriestandard hinterlegt.
-          </p>
-        </div>
-
-        <div class="media-placeholders-grid">
-          {mediaPackages.map((mp) => (
-            <article class={`placeholder-card${mp.isAvailable ? ' is-available' : ''}`}>
-              <div class="ph-header text-mono">
-                <span class="ph-code">{mp.code} &bull; {mp.category}</span>
-                {mp.isAvailable ? (
-                  <span class="ph-badge is-live">
-                    VERF&Uuml;GBAR &bull; {mp.primaryFile!.ext} ({mp.primaryFile!.sizeLabel})
-                  </span>
-                ) : (
-                  <span class="ph-badge">PLATZHALTER</span>
-                )}
-              </div>
-
-              {mp.previewAsset ? (
-                <div class="ph-wireframe-box has-preview">
-                  <img
-                    src={mp.previewAsset.src}
-                    alt={`${mp.title} Vorschau`}
-                    class="ph-media-preview-img"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              ) : mp.isAvailable ? (
-                <div class="ph-wireframe-box is-ready">
-                  <div class="wf-ready-badge text-mono">
-                    <span class="wf-ready-ext">{mp.primaryFile!.ext}</span>
-                    <span class="wf-ready-name">{mp.primaryFile!.fileName}</span>
-                    <span class="wf-ready-size">{mp.primaryFile!.sizeLabel}</span>
-                  </div>
-                </div>
-              ) : (
-                <div class="ph-wireframe-box" aria-hidden="true">
-                  <div class="wf-frame" style={`aspect-ratio: ${mp.aspect};`}>
-                    <span class="wf-dims text-mono">{mp.aspect.replace(' / ', ':')}</span>
-                  </div>
-                </div>
-              )}
-
-              <div class="ph-body">
-                <h3 class="ph-title">{mp.title}</h3>
-                <span class="ph-spec text-mono">{mp.format}</span>
-                <p class="ph-desc">{mp.desc}</p>
-                {mp.isAvailable ? (
-                  <div class="ph-actions">
-                    {mp.files.map((file) => (
-                      <a
-                        href={file.src}
-                        download={file.fileName}
-                        class="emblem-dl text-mono"
-                      >
-                        {file.ext} HERUNTERLADEN ({file.sizeLabel}) &darr;
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <span class="ph-path-hint text-mono">Slot: {mp.slotHint}</span>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- =================================================================
-           08. NUTZUNGSRECHTE & KONTAKT
+           07. NUTZUNGSRECHTE & KONTAKT
            ================================================================= -->
       <section id="nutzung" class="bk-section">
+        <div class="bk-sec-head">
+          <span class="bk-num text-mono">07 / RECHTLICHES</span>
+        </div>
         <div class="bento-card usage-banner">
           <div class="usage-content">
             <span class="section-badge-pill">RECHTLICHES &amp; NUTZUNG</span>
@@ -1014,9 +765,6 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
             <div class="usage-actions">
               <a href="mailto:support@ultrainstinctcrew.com?subject=Brandkit%20%26%20Presseanfrage%20UIC" class="btn btn-primary btn-sm">
                 SONDERFORMATE ANFRAGEN ↗
-              </a>
-              <a href="/obs" class="btn btn-outline btn-sm">
-                OBS SPIELTAGS-OVERLAY ↗
               </a>
               <a href={discordInviteUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
                 DISCORD KONTAKT ↗
@@ -1251,7 +999,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
   /* 01 Identity Cards */
   .identity-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
   }
 
@@ -1474,11 +1222,10 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
     color: #000000;
   }
 
-  /* Placeholders Cards (Shared across Logo Variants & Media Templates) */
-  .lockups-grid,
-  .media-placeholders-grid {
+  /* Logo Variant Cards */
+  .lockups-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
   }
 
@@ -1549,23 +1296,6 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
     height: auto;
     object-fit: contain;
     display: block;
-  }
-
-  .ph-wireframe-box.has-preview {
-    padding: 0;
-    overflow: hidden;
-    background: #09090b;
-  }
-
-  .ph-media-preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .ph-wireframe-box.is-ready {
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.09) 0%, rgba(9, 9, 11, 0.96) 75%);
   }
 
   .wf-ready-badge {
@@ -1660,6 +1390,13 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
     opacity: 0.85;
   }
 
+  .ph-mock-wordonly {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.55;
+  }
+
   .ph-mock-horizontal {
     display: flex;
     align-items: center;
@@ -1702,6 +1439,12 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
 
   .ph-mock-wordbar.short {
     font-size: 0.625rem;
+  }
+
+  .ph-mock-wordbar.is-wordmark {
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    padding: 8px 16px;
   }
 
   .ph-overlay-label {
@@ -1919,7 +1662,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
   /* 04 Swatches */
   .swatches-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-lg);
   }
 
@@ -1996,94 +1739,6 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
     font-size: 0.65rem;
     color: var(--text-dim);
     margin-top: 2px;
-  }
-
-  .status-colors-bar {
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .scb-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .scb-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .status-pill-card {
-    text-align: left;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: #08080a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-sm);
-    padding: 12px;
-    transition: border-color var(--transition-fast);
-  }
-
-  .status-pill-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .status-pill-card.is-copied {
-    border-color: #10b981;
-  }
-
-  .st-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-
-  .st-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .st-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .st-name {
-    font-size: 0.9rem;
-    color: #ffffff;
-  }
-
-  .st-hex {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .st-token {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-  }
-
-  .st-usage {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.4;
   }
 
   /* 05 Typography */
@@ -2249,36 +1904,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
     color: var(--text-dim);
   }
 
-  /* 07 Media Placeholders */
-  .ph-wireframe-box {
-    height: 112px;
-    background: #040406;
-    border: 1px dashed rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-  }
-
-  .wf-frame {
-    height: 76px;
-    max-width: 100%;
-    border: 1px dashed rgba(255, 255, 255, 0.35);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.02);
-  }
-
-  .wf-dims {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
-
-  /* 08 Usage Banner */
+  /* 07 Usage Banner */
   .usage-banner {
     background: #0d0d10;
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -2321,9 +1947,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
 
     .identity-grid,
     .lockups-grid,
-    .media-placeholders-grid,
-    .swatches-grid,
-    .scb-grid {
+    .swatches-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -2337,9 +1961,7 @@ const mediaPackages = mediaPlaceholders.map((mp) => {
   @media (max-width: 640px) {
     .identity-grid,
     .lockups-grid,
-    .media-placeholders-grid,
     .swatches-grid,
-    .scb-grid,
     .dd-grid,
     .lm-specs-grid,
     .minsize-row {
