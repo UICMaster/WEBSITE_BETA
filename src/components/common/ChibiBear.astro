@@ -420,23 +420,16 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   }
 
   /* =====================================================================
-     VARIANT 3: VIBE (Mini companion on the Floating Audio Deck)
+     VARIANT 3: VIBE (Companion perched on top edge of Expanded Audio Deck)
      ===================================================================== */
   .chibi-vibe {
-    top: -36px;
-    left: 16px;
-    transition: opacity 0.2s ease, transform 0.24s ease;
-  }
-
-  :global(.audio-widget.is-expanded) .chibi-vibe {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px) scale(0.85);
+    top: -46px;
+    right: 48px;
   }
 
   .chibi-vibe .chibi-svg {
-    width: 48px;
-    height: 50px;
+    width: 58px;
+    height: 60px;
   }
 
   .chibi-vibe .chibi-peek-paws {
@@ -444,15 +437,9 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   }
 
   .chibi-vibe .chibi-bubble {
-    left: 0;
-    right: auto;
+    right: 0;
     font-size: 0.625rem;
-    padding: 3px 8px;
-  }
-
-  .chibi-vibe .chibi-bubble::after {
-    left: 16px;
-    right: auto;
+    padding: 3px 9px;
   }
 
   .chibi-vibe .chibi-trigger:hover .chibi-svg,
