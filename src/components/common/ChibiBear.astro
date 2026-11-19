@@ -1,12 +1,12 @@
 ---
 // src/components/common/ChibiBear.astro
 interface Props {
-  variant?: 'peek' | 'cheer' | 'vibe' | 'pull';
+  variant?: 'peek' | 'cheer' | 'vibe' | 'pull' | 'sleep';
 }
 
 const { variant = 'cheer' } = Astro.props;
 
-const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe' | 'pull', string[]> = {
+const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe' | 'pull' | 'sleep', string[]> = {
   peek: [
     'Matchday! ♡',
     'Go UIC! 🐾',
@@ -30,6 +30,12 @@ const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe' | 'pull', string[]> = {
     'Hau ruck!! 🐾',
     'Hilf mir ziehen! ♡',
     'Alles für die Tabelle! 💦'
+  ],
+  sleep: [
+    'Huch?! Bin wach! ♡',
+    'Stream schon live?! 🐾',
+    'Nur 5 Minuten noch... zZz',
+    'Hab nur kurz gechillt! ♡'
   ]
 };
 
@@ -262,10 +268,31 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
             <circle cx="139" cy="111" r="8.5" fill="#331E12" />
           </g>
 
+          {variant === 'sleep' && (
+            <g class="chibi-eyes-closed">
+              <!-- Peaceful Closed Sleeping Eye Arcs (︶ ︶) -->
+              <path
+                d="M67 110 C71 118, 83 118, 87 110"
+                fill="none"
+                stroke="#331E12"
+                stroke-width="5.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M129 110 C133 118, 145 118, 149 110"
+                fill="none"
+                stroke="#331E12"
+                stroke-width="5.5"
+                stroke-linecap="round"
+              />
+            </g>
+          )}
+
           <!-- Cute :3 Mouth & Pink Tongue -->
           <g class="chibi-mouth">
             <!-- Pink Tongue -->
             <path
+              class="chibi-tongue"
               d="M103 114 C103 128, 106 135, 111 135 C116 135, 118 128, 117 114 Z"
               fill="#F49390"
               stroke="#3B2314"
@@ -282,6 +309,34 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               stroke-linejoin="round"
             />
           </g>
+
+          {variant === 'sleep' && (
+            <g class="chibi-sleep-fx">
+              <!-- Cute Anime/Kawaii Breathing Sleep Bubble -->
+              <g class="chibi-sleep-bubble">
+                <circle
+                  cx="125"
+                  cy="121"
+                  r="11.5"
+                  fill="#BAE6FD"
+                  fill-opacity="0.82"
+                  stroke="#3B2314"
+                  stroke-width="3.5"
+                />
+                <circle cx="129" cy="117" r="3" fill="#FFFFFF" />
+              </g>
+              <!-- Startled Exclamation Mark (!) on Wake-Up -->
+              <g class="chibi-wake-alert">
+                <path
+                  d="M122 3 L122 17"
+                  stroke="#F67E7D"
+                  stroke-width="7.5"
+                  stroke-linecap="round"
+                />
+                <circle cx="122" cy="25" r="4" fill="#F67E7D" />
+              </g>
+            </g>
+          )}
 
           {variant === 'pull' && (
             <g class="chibi-sweat-drops">
@@ -470,6 +525,54 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               stroke-width="4"
             />
           </g>
+        </g>
+      )}
+
+      {variant === 'sleep' && (
+        <g class="chibi-zzz-group">
+          <!-- Floating Sleep Zzz Glyphs -->
+          <text
+            x="194"
+            y="72"
+            class="c-zzz c-zzz-1"
+            fill="#FFFFFF"
+            stroke="#3B2314"
+            stroke-width="3.5"
+            paint-order="stroke"
+            font-family="monospace"
+            font-size="18"
+            font-weight="900"
+          >
+            z
+          </text>
+          <text
+            x="209"
+            y="46"
+            class="c-zzz c-zzz-2"
+            fill="#BAE6FD"
+            stroke="#3B2314"
+            stroke-width="4"
+            paint-order="stroke"
+            font-family="monospace"
+            font-size="22"
+            font-weight="900"
+          >
+            Z
+          </text>
+          <text
+            x="224"
+            y="20"
+            class="c-zzz c-zzz-3"
+            fill="#FFFFFF"
+            stroke="#3B2314"
+            stroke-width="4.5"
+            paint-order="stroke"
+            font-family="monospace"
+            font-size="27"
+            font-weight="900"
+          >
+            z
+          </text>
         </g>
       )}
     </svg>
@@ -701,6 +804,142 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   }
 
   /* =====================================================================
+     VARIANT 5: SLEEP ("Die Schlafmütze" napping on Twitch Stream Rim)
+     ===================================================================== */
+  .chibi-sleep {
+    top: -54px;
+    right: clamp(20px, 4vw, 44px);
+  }
+
+  .chibi-sleep .chibi-svg {
+    width: 82px;
+    height: 84px;
+  }
+
+  /* In idle sleep state: bear rests chin on paws on the container border */
+  .chibi-sleep .chibi-character {
+    transform-origin: 120px 155px;
+    animation: chibiSleepBreathe 3.6s ease-in-out infinite;
+  }
+
+  .chibi-sleep .chibi-lower {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.26s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .chibi-sleep .chibi-peek-paws {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Hide open button eyes, tongue, and floating hearts while sleeping */
+  .chibi-sleep .chibi-eyes {
+    opacity: 0;
+    transition: opacity 0.16s ease;
+  }
+
+  .chibi-sleep .chibi-eyes-closed {
+    opacity: 1;
+    transition: opacity 0.16s ease;
+  }
+
+  .chibi-sleep .chibi-tongue {
+    opacity: 0;
+    transition: opacity 0.16s ease;
+  }
+
+  .chibi-sleep .c-heart {
+    opacity: 0;
+  }
+
+  /* Kawaii breathing sleep bubble */
+  .chibi-sleep .chibi-sleep-bubble {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: chibiSleepBubble 3.6s ease-in-out infinite;
+    transition: opacity 0.15s ease;
+  }
+
+  /* Startled (!) exclamation hidden while asleep */
+  .chibi-sleep .chibi-wake-alert {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    transform: translateY(6px) scale(0.4);
+    transition: opacity 0.18s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Rising z Z z letters while sleeping */
+  .chibi-sleep .c-zzz {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: zzzFloat 3.4s ease-in-out infinite;
+    transition: opacity 0.15s ease;
+  }
+
+  .chibi-sleep .c-zzz-2 {
+    animation-delay: 0.55s;
+  }
+
+  .chibi-sleep .c-zzz-3 {
+    animation-delay: 1.1s;
+  }
+
+  /* WAKE-UP STATE (On Hover or Click / Poke for 4s) */
+  .chibi-sleep .chibi-trigger:hover .chibi-svg,
+  .chibi-sleep.is-talking .chibi-svg {
+    transform: translateY(-20px) scale(1.06);
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-character,
+  .chibi-sleep.is-talking .chibi-character {
+    animation: chibiBreathe 2.4s ease-in-out infinite;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-lower,
+  .chibi-sleep.is-talking .chibi-lower {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-peek-paws,
+  .chibi-sleep.is-talking .chibi-peek-paws {
+    opacity: 0;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-eyes,
+  .chibi-sleep.is-talking .chibi-eyes {
+    opacity: 1;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-eyes-closed,
+  .chibi-sleep.is-talking .chibi-eyes-closed,
+  .chibi-sleep .chibi-trigger:hover .chibi-sleep-bubble,
+  .chibi-sleep.is-talking .chibi-sleep-bubble,
+  .chibi-sleep .chibi-trigger:hover .chibi-zzz-group,
+  .chibi-sleep.is-talking .chibi-zzz-group {
+    opacity: 0;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-tongue,
+  .chibi-sleep.is-talking .chibi-tongue {
+    opacity: 1;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-wake-alert,
+  .chibi-sleep.is-talking .chibi-wake-alert {
+    opacity: 1;
+    transform: translateY(-2px) scale(1);
+  }
+
+  /* Left paw rubs eye while right paw waves shyly on wake-up */
+  .chibi-sleep .chibi-trigger:hover .chibi-arm-left,
+  .chibi-sleep.is-talking .chibi-arm-left {
+    animation: rubLeftEye 0.55s ease-in-out infinite alternate;
+  }
+
+  /* =====================================================================
      SUBTLE IDLE & HOVER MICRO-ANIMATIONS
      ===================================================================== */
   .chibi-character {
@@ -844,6 +1083,48 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     }
   }
 
+  @keyframes chibiSleepBreathe {
+    0%, 100% {
+      transform: translateY(3px) rotate(4deg) scale(1, 0.95);
+    }
+    50% {
+      transform: translateY(0px) rotate(2deg) scale(0.99, 0.99);
+    }
+  }
+
+  @keyframes chibiSleepBubble {
+    0%, 100% {
+      transform: scale(0.68);
+    }
+    50% {
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes zzzFloat {
+    0% {
+      opacity: 0;
+      transform: translate(-4px, 6px) scale(0.75);
+    }
+    35%, 65% {
+      opacity: 1;
+      transform: translate(0px, -3px) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(5px, -11px) scale(1.1);
+    }
+  }
+
+  @keyframes rubLeftEye {
+    from {
+      transform: translate(10px, -14px) rotate(36deg);
+    }
+    to {
+      transform: translate(12px, -18px) rotate(48deg);
+    }
+  }
+
   @media (max-width: 640px) {
     .chibi-peek {
       top: -44px;
@@ -874,6 +1155,16 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
       width: 82px;
       height: 97px;
     }
+
+    .chibi-sleep {
+      top: -45px;
+      right: 16px;
+    }
+
+    .chibi-sleep .chibi-svg {
+      width: 68px;
+      height: 70px;
+    }
   }
 </style>
 
@@ -889,6 +1180,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
 
     let idx = 0;
     let talkTimer: ReturnType<typeof setTimeout> | undefined;
+    const isSleepVariant = spot.classList.contains('chibi-sleep');
 
     btn?.addEventListener('click', () => {
       if (phrases.length > 0 && bubble) {
@@ -899,7 +1191,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
       if (talkTimer) clearTimeout(talkTimer);
       talkTimer = setTimeout(() => {
         spot.classList.remove('is-talking');
-      }, 2400);
+      }, isSleepVariant ? 4000 : 2400);
     });
   });
 </script>

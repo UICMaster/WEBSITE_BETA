@@ -1,5 +1,6 @@
 ---
 // src/components/home/Stream.astro
+import ChibiBear from '../common/ChibiBear.astro';
 ---
 
 <section id="stream" class="section-pad stream-section">
@@ -26,6 +27,7 @@
 
       <!-- Video Player Frame with 2-Click Consent -->
       <div class="stream-frame-wrap card-monochrome">
+        <ChibiBear variant="sleep" />
         <div id="twitch-stage" class="twitch-stage">
           
           <div id="twitch-consent-gate" class="consent-overlay">
@@ -82,18 +84,21 @@
   }
 
   .stream-frame-wrap {
+    position: relative;
     padding: 0;
     aspect-ratio: 16 / 9;
     border-radius: var(--radius-md);
     background-color: #070709;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .twitch-stage {
     position: relative;
     width: 100%;
     height: 100%;
+    border-radius: calc(var(--radius-md) - 1px);
+    overflow: hidden;
   }
 
   .consent-overlay {
@@ -170,6 +175,7 @@
   if (activateBtn && consentGate && embedTarget) {
     activateBtn.addEventListener('click', () => {
       consentGate.style.display = 'none';
+      document.querySelector<HTMLButtonElement>('.stream-frame-wrap .chibi-trigger')?.click();
 
       const hostname = window.location.hostname || 'localhost';
       const iframe = document.createElement('iframe');
