@@ -2,6 +2,7 @@
 // src/components/home/Stats.astro
 import rawPrimeStats from '../../../data/prime_stats.json';
 import rawTeams from '../../../data/teams.json';
+import ChibiBear from '../common/ChibiBear.astro';
 
 interface Match {
   begin?: string;
@@ -200,6 +201,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
     <!-- Telemetry Master Deck -->
     <div class="war-room-deck">
+      <ChibiBear variant="pull" />
       <div class="deck-cell">
         <span class="d-sub text-mono">GESPIELTE SERIEN</span>
         <span class="d-big text-mono">{totalGlobalMatches}</span>
@@ -479,6 +481,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
   /* Telemetry Master Deck */
   .war-room-deck {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;

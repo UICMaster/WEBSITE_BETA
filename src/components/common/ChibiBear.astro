@@ -1,12 +1,12 @@
 ---
 // src/components/common/ChibiBear.astro
 interface Props {
-  variant?: 'peek' | 'cheer' | 'vibe';
+  variant?: 'peek' | 'cheer' | 'vibe' | 'pull';
 }
 
 const { variant = 'cheer' } = Astro.props;
 
-const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe', string[]> = {
+const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe' | 'pull', string[]> = {
   peek: [
     'Matchday! ♡',
     'Go UIC! 🐾',
@@ -24,6 +24,12 @@ const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe', string[]> = {
     'UIC Hymne! ♪',
     'Banger Track! ♡',
     'Vibing... ♫'
+  ],
+  pull: [
+    'Uff... schwere LP! 💦',
+    'Hau ruck!! 🐾',
+    'Hilf mir ziehen! ♡',
+    'Alles für die Tabelle! 💦'
   ]
 };
 
@@ -50,7 +56,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     <!-- Kawaii Chibi Bear SVG (Faithful to Reference Illustration) -->
     <svg
       class="chibi-svg"
-      viewBox="0 0 240 245"
+      viewBox={variant === 'pull' ? '0 0 280 330' : '0 0 240 245'}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
@@ -276,7 +282,78 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               stroke-linejoin="round"
             />
           </g>
+
+          {variant === 'pull' && (
+            <g class="chibi-sweat-drops">
+              <!-- Effort Sweat Drops (Pulse during heave-ho pull) -->
+              <path
+                class="c-sweat c-sweat-1"
+                d="M36 56 C31 64, 27 71, 31 76 C35 80, 42 78, 43 72 C44 67, 40 61, 36 56 Z"
+                fill="#7DD3FC"
+                stroke="#3B2314"
+                stroke-width="3.5"
+                stroke-linejoin="round"
+              />
+              <path
+                class="c-sweat c-sweat-2"
+                d="M22 82 C18 88, 15 93, 18 97 C21 100, 27 98, 28 94 C29 90, 25 86, 22 82 Z"
+                fill="#7DD3FC"
+                stroke="#3B2314"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+            </g>
+          )}
         </g>
+
+        {variant === 'pull' && (
+          <g class="chibi-rope-grip">
+            <!-- Taut Diagonal Rope Held in Bear's Right Paw down to Edge Pulley -->
+            <!-- Loose rope tail behind paw -->
+            <path
+              d="M174 152 C166 147, 161 151, 158 158"
+              fill="none"
+              stroke="#3B2314"
+              stroke-width="9"
+              stroke-linecap="round"
+            />
+            <path
+              d="M174 152 C166 147, 161 151, 158 158"
+              fill="none"
+              stroke="#E7C382"
+              stroke-width="4.5"
+              stroke-linecap="round"
+            />
+            <!-- Taut diagonal rope segment from paw (190, 160) to pulley wheel (228, 212) -->
+            <line
+              x1="188"
+              y1="159"
+              x2="228"
+              y2="212"
+              stroke="#3B2314"
+              stroke-width="10"
+              stroke-linecap="round"
+            />
+            <line
+              x1="188"
+              y1="159"
+              x2="228"
+              y2="212"
+              stroke="#E7C382"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+            <!-- Cute gripping paw overlapping the rope knot -->
+            <circle
+              cx="195"
+              cy="161"
+              r="10"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="5.5"
+            />
+          </g>
+        )}
 
         <!-- Peeking Paws (Only visible in 'peek' mode when resting on container border) -->
         <g class="chibi-peek-paws">
@@ -284,6 +361,117 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
           <ellipse cx="164" cy="153" rx="13" ry="9" fill="#D5A787" stroke="#3B2314" stroke-width="5.5" />
         </g>
       </g>
+
+      {variant === 'pull' && (
+        <g class="chibi-pull-rig">
+          <!-- Edge Pulley & Hanging +LP Badge (Hangs over the top border of the container) -->
+          <!-- Moving Hoist Payload (Vertical Rope + Hanging Sign) -->
+          <g class="chibi-hoist-payload">
+            <!-- Vertical Rope feeding down from behind pulley (Y=208..256) -->
+            <line
+              x1="228"
+              y1="208"
+              x2="228"
+              y2="256"
+              stroke="#3B2314"
+              stroke-width="9.5"
+              stroke-linecap="round"
+            />
+            <line
+              x1="228"
+              y1="208"
+              x2="228"
+              y2="256"
+              stroke="#E7C382"
+              stroke-width="4.8"
+              stroke-linecap="round"
+            />
+
+            <!-- Metal Hitch Ring on Top of Sign -->
+            <circle
+              cx="228"
+              cy="255"
+              r="5.5"
+              fill="#18181B"
+              stroke="#FFFFFF"
+              stroke-width="3"
+            />
+
+            <!-- Hanging Monochrome + Coral Telemetry Sign -->
+            <rect
+              x="174"
+              y="258"
+              width="102"
+              height="52"
+              rx="11"
+              fill="#111115"
+              stroke="#FFFFFF"
+              stroke-width="3.5"
+            />
+            <!-- Top Accent Bar inside Sign -->
+            <line
+              x1="188"
+              y1="267"
+              x2="262"
+              y2="267"
+              stroke="#F67E7D"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <!-- Micro Label -->
+            <text
+              x="225"
+              y="282"
+              text-anchor="middle"
+              fill="#A1A1AA"
+              font-family="monospace"
+              font-size="10"
+              font-weight="700"
+              letter-spacing="1.2"
+            >
+              PRIME LEAGUE
+            </text>
+            <!-- Main +LP Hoist Readout -->
+            <text
+              x="225"
+              y="299"
+              text-anchor="middle"
+              fill="#FFFFFF"
+              font-family="monospace"
+              font-size="15.5"
+              font-weight="900"
+              letter-spacing="0.5"
+            >
+              +100 LP▲
+            </text>
+          </g>
+
+          <!-- Fixed Pulley Wheel & Container-Rim Clamp at Y=222 -->
+          <g class="chibi-pulley-anchor">
+            <!-- Pulley Wheel -->
+            <circle
+              cx="228"
+              cy="212"
+              r="11.5"
+              fill="#E4E4E7"
+              stroke="#3B2314"
+              stroke-width="4.5"
+            />
+            <circle cx="228" cy="212" r="4" fill="#3B2314" />
+            <!-- Container Border Clamp Base -->
+            <rect
+              x="213"
+              y="219"
+              width="30"
+              height="8"
+              rx="4"
+              fill="#27272A"
+              stroke="#3B2314"
+              stroke-width="4"
+            />
+          </g>
+        </g>
+      )}
     </svg>
   </button>
 </div>
@@ -458,6 +646,61 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   }
 
   /* =====================================================================
+     VARIANT 4: PULL ("Der Seil-Zieher" hoisting +LP on Telemetry Deck)
+     ===================================================================== */
+  .chibi-pull {
+    top: -78px;
+    right: clamp(14px, 2.5vw, 32px);
+  }
+
+  .chibi-pull .chibi-svg {
+    width: 100px;
+    height: 118px;
+  }
+
+  .chibi-pull .chibi-peek-paws {
+    display: none;
+  }
+
+  .chibi-pull .chibi-bubble {
+    right: 18px;
+  }
+
+  /* Pivot around braced front foot near pulley so rope stays aligned */
+  .chibi-pull .chibi-character {
+    transform-origin: 185px 215px;
+    animation: chibiPullHeave 2.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  .chibi-pull .chibi-hoist-payload {
+    animation: chibiHoistLift 2.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  .chibi-pull .c-sweat {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: chibiSweatPop 2.8s ease-in-out infinite;
+  }
+
+  .chibi-pull .c-sweat-2 {
+    animation-delay: 0.12s;
+  }
+
+  /* On click / poke (.is-talking), the heavy LP sign briefly slips and bear frantically pulls it back up! */
+  .chibi-pull.is-talking .chibi-character {
+    animation: chibiPullSlip 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  }
+
+  .chibi-pull.is-talking .chibi-hoist-payload {
+    animation: chibiHoistSlip 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  }
+
+  .chibi-pull:hover .c-sweat,
+  .chibi-pull.is-talking .c-sweat {
+    opacity: 1;
+  }
+
+  /* =====================================================================
      SUBTLE IDLE & HOVER MICRO-ANIMATIONS
      ===================================================================== */
   .chibi-character {
@@ -542,6 +785,65 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     50% { transform: translateY(-6px) scale(1.12); }
   }
 
+  @keyframes chibiPullHeave {
+    0%, 100% {
+      transform: rotate(-3deg) translateX(0);
+    }
+    45%, 65% {
+      transform: rotate(-13deg) translateX(-4px);
+    }
+  }
+
+  @keyframes chibiHoistLift {
+    0%, 100% {
+      transform: translateY(6px);
+    }
+    45%, 65% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @keyframes chibiSweatPop {
+    0%, 28%, 85%, 100% {
+      opacity: 0;
+      transform: translate(4px, 3px) scale(0.55);
+    }
+    46%, 68% {
+      opacity: 1;
+      transform: translate(-2px, -2px) scale(1);
+    }
+  }
+
+  @keyframes chibiPullSlip {
+    0% {
+      transform: rotate(-8deg);
+    }
+    20% {
+      transform: rotate(6deg) translateX(5px);
+    }
+    55%, 78% {
+      transform: rotate(-17deg) translateX(-6px);
+    }
+    100% {
+      transform: rotate(-8deg);
+    }
+  }
+
+  @keyframes chibiHoistSlip {
+    0% {
+      transform: translateY(0);
+    }
+    20% {
+      transform: translateY(15px);
+    }
+    55%, 78% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 640px) {
     .chibi-peek {
       top: -44px;
@@ -561,6 +863,16 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     .chibi-cheer .chibi-svg {
       width: 72px;
       height: 74px;
+    }
+
+    .chibi-pull {
+      top: -64px;
+      right: 10px;
+    }
+
+    .chibi-pull .chibi-svg {
+      width: 82px;
+      height: 97px;
     }
   }
 </style>
