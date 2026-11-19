@@ -127,13 +127,53 @@ const brandColors = [
   }
 ];
 
+const boilerplates = [
+  {
+    id: 'BP-SHORT',
+    label: 'KURZFORM (1 SATZ • BROADCAST, OVERLAYS & ANKÜNDIGUNGEN)',
+    text: 'Die Ultra Instinct Crew (UIC) ist eine deutschsprachige League of Legends E-Sports-Organisation mit einer aktiven Community und mehreren kompetitiven Teams in der Prime League.'
+  },
+  {
+    id: 'BP-PRESS',
+    label: 'STANDARD-BOILERPLATE (PRESSE, PARTNER & TURNIERVERANSTALTER)',
+    text: 'Die Ultra Instinct Crew (kurz UIC) ist eine im deutschsprachigen Raum verwurzelte E-Sports-Organisation. Mit einer engagierten Community und zahlreichen aktiven Teams über mehrere Divisionen der Prime League hinweg verbindet UIC strukturierten Wettkampf mit langfristiger Team-Entwicklung.'
+  }
+];
+
+const logoUsageMatrix = [
+  {
+    context: '1:1 & KOMPAKT (< 100 PX)',
+    use: 'UIC Wappen (Symbol)',
+    avoid: 'Kein Lockup mit Text in runde Avatare oder kleine Icons setzen.',
+    examples: 'Discord, Twitch, X, Scoreboards, Favicons'
+  },
+  {
+    context: 'BREITFORMAT & HEADER',
+    use: 'Horizontales Lockup',
+    avoid: 'Nicht unter 140 px Breite (digital) bzw. 35 mm (Print) skalieren.',
+    examples: 'Stream-Overlays, Sponsorenleisten, Banner'
+  },
+  {
+    context: 'TYPO-FOKUS & MERCH',
+    use: 'Wortmarke (Wordmark)',
+    avoid: 'Nicht direkt neben ein zweites, unverbundenes Wappen quetschen.',
+    examples: 'Trikot-Rücken, Editorial-Header, Schriftzüge'
+  },
+  {
+    context: 'HELLE FLÄCHEN & PRINT',
+    use: 'Dunkel-Variante (#000000)',
+    avoid: 'Niemals weißes Logo auf Hintergründen über 70 % Helligkeit nutzen.',
+    examples: 'Verträge, Briefbögen, helle Trikots & Partner-Decks'
+  }
+];
+
 const logoPlaceholders = [
   {
     id: 'VAR-01',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Wortmarke (Wordmark)',
-    spec: 'SVG & PNG • Freistehender Schriftzug • Transparent',
-    desc: 'Reine Wortmarke „ULTRA INSTINCT CREW“ ohne Wappen-Symbol. Optimal für Typo-Header, Trikot-Rücken, Banderolen und eigenständige Schriftzüge.',
+    spec: 'SVG & PNG • ViewBox 356 × 25 (ca. 14:1) • Mindestbreite 120 px / 30 mm',
+    desc: 'Reine Wortmarke „ULTRA INSTINCT CREW“ in #FFFFFF ohne Wappen-Symbol. Optimal für Typo-Header, Trikot-Rücken, Banderolen und Layouts, in denen das Wappen bereits separat steht.',
     previewType: 'wordmark',
     candidates: ['/assets/logo/logo-wordmark.svg', '/assets/logo/logo-wordmark.png'],
     slotHint: 'public/assets/logo/logo-wordmark.svg'
@@ -142,8 +182,8 @@ const logoPlaceholders = [
     id: 'VAR-02',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Horizontales Lockup',
-    spec: 'SVG & PNG • Empfohlen 1600 × 400 px • Transparent',
-    desc: 'Kombination aus UIC Wappen links und Wortmarke rechts mit festem Abstand. Standard für Bereiche mit begrenzter Höhe.',
+    spec: 'SVG & PNG • ViewBox 919 × 485 (ca. 1.9:1) • Mindestbreite 140 px / 35 mm',
+    desc: 'Kombination aus freigestelltem UIC Wappen links und dreizeiliger Wortmarke rechts mit fest definiertem Abstand. Standard für Header, Broadcasts und Partner-Einbindungen.',
     previewType: 'horizontal',
     candidates: ['/assets/logo/logo-horizontal.svg', '/assets/logo/logo-horizontal.png'],
     slotHint: 'public/assets/logo/logo-horizontal.svg'
@@ -152,8 +192,8 @@ const logoPlaceholders = [
     id: 'VAR-03',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Vertikales Lockup (Stacked)',
-    spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Transparent',
-    desc: 'Zentriertes UIC Wappen über gestapelter Wortmarke. Gedacht für Formate mit begrenzter Breite wie Poster, Pokale und Kacheln.',
+    spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Mindestbreite 80 px / 22 mm',
+    desc: 'Zentriertes UIC Wappen über gestapelter Wortmarke. Gedacht für Formate mit begrenzter Breite wie Poster, Roll-Ups, Pokale und Hochformat-Kacheln.',
     previewType: 'stacked',
     candidates: ['/assets/logo/logo-stacked.svg', '/assets/logo/logo-stacked.png'],
     slotHint: 'public/assets/logo/logo-stacked.svg'
@@ -162,8 +202,8 @@ const logoPlaceholders = [
     id: 'VAR-04',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Dunkel-Variante (Schwarz auf Hell)',
-    spec: 'SVG, PNG & EPS • #000000 Vollton • CMYK-tauglich',
-    desc: 'Monochrome schwarze Reinzeichnung aller Marken-Elemente für weiße Trikots, Verträge, Briefbögen und helle Hintergründe.',
+    spec: 'SVG, PNG & EPS • #000000 Vollton • Echt-Transparenter Knockout-Pfad',
+    desc: 'Monochrome tiefschwarze Reinzeichnung (#000000) ohne Hintergrundfüllung für weiße Trikots, Verträge, Briefbögen und helle Partner-Hintergründe.',
     previewType: 'dark-ink',
     candidates: [
       '/assets/logo/logo-dark.svg',
@@ -285,6 +325,31 @@ const logoVariants = logoPlaceholders.map((item) => {
               Wir bezeichnen uns ausschließlich als <strong>Organisation</strong> mit angeschlossener <strong>Community</strong> und aktiven <strong>Teams</strong>. Begriffe wie <em>„Verein“</em>, <em>„e.V.“</em> oder <em>„GbR“</em> werden nicht verwendet.
             </p>
           </article>
+        </div>
+
+        <!-- Copyable Official Press Boilerplate -->
+        <div class="bento-card boilerplate-card">
+          <div class="card-meta">
+            <span class="meta-num">OFFIZIELLE KURZBESCHREIBUNG (BOILERPLATE)</span>
+            <span class="meta-tag text-mono">FÜR PRESSE, CASTER &amp; TURNIER-TEXTE</span>
+          </div>
+          <div class="bp-grid">
+            {boilerplates.map((bp) => (
+              <div class="bp-box">
+                <div class="bp-top">
+                  <span class="bp-label text-mono">{bp.label}</span>
+                  <button
+                    type="button"
+                    class="bp-copy-btn text-mono"
+                    data-copy-text={bp.text}
+                  >
+                    TEXT KOPIEREN
+                  </button>
+                </div>
+                <p class="bp-text">„{bp.text}“</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -477,6 +542,24 @@ const logoVariants = logoPlaceholders.map((item) => {
             </article>
           ))}
         </div>
+
+        <!-- Variant Selection & Context Matrix -->
+        <div class="bento-card usage-matrix-card">
+          <div class="card-meta">
+            <span class="meta-num">EINSATZ-MATRIX NACH VARIANTE</span>
+            <span class="meta-tag text-mono">WELCHE LOGOMARKE FÜR WELCHES FORMAT?</span>
+          </div>
+          <div class="usage-matrix-grid">
+            {logoUsageMatrix.map((m) => (
+              <div class="um-box">
+                <span class="um-context text-mono">{m.context}</span>
+                <strong class="um-use">{m.use}</strong>
+                <p class="um-avoid">{m.avoid}</p>
+                <span class="um-examples text-mono">{m.examples}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <!-- =================================================================
@@ -485,9 +568,9 @@ const logoVariants = logoPlaceholders.map((item) => {
       <section id="regeln" class="bk-section">
         <div class="bk-sec-head">
           <span class="bk-num text-mono">03 / ANWENDUNGSREGELN</span>
-          <h2 class="bk-sec-title">SCHUTZZONE, MINDESTGRÖSSEN &amp; DO / DON'T</h2>
+          <h2 class="bk-sec-title">SCHUTZZONE, MINDESTGRÖSSEN &amp; CO-BRANDING</h2>
           <p class="bk-sec-desc">
-            Klare Abstands- und Kontrastregeln sichern die Erkennbarkeit aller Logo-Varianten auf kompakten Avataren ebenso wie auf großen Turnier-Bühnen und Print-Medien.
+            Klare Abstands-, Größen- und Kontrastregeln sichern die Erkennbarkeit aller Logo-Varianten auf kompakten Avataren ebenso wie auf großen Turnier-Bühnen und Print-Medien.
           </p>
         </div>
 
@@ -495,8 +578,8 @@ const logoVariants = logoPlaceholders.map((item) => {
           <!-- Clearspace Diagram -->
           <div class="bento-card clearspace-card">
             <div class="card-meta">
-              <span class="meta-num">SCHUTZZONE</span>
-              <span class="meta-tag text-mono">PROPORTIONAL: X = 25% LOGOBREITE</span>
+              <span class="meta-num">SCHUTZZONE (ISOLATION)</span>
+              <span class="meta-tag text-mono">FREIRAUM: X = 25% WAPPENBREITE</span>
             </div>
 
             <div class="clearspace-diagram" aria-label="Schematische Darstellung der Logoschutzzone">
@@ -511,16 +594,37 @@ const logoVariants = logoPlaceholders.map((item) => {
               </div>
             </div>
 
+            <div class="cs-rules-list text-mono">
+              <div class="csr-item">
+                <strong>WAPPEN &amp; LOCKUPS:</strong>
+                <span>Ringsum mindestens <code>x = 25 %</code> der Wappenbreite frei von Text, Rahmen und Schnittkanten halten.</span>
+              </div>
+              <div class="csr-item">
+                <strong>WORTMARKE SOLO:</strong>
+                <span>Ringsum mindestens <code>100 %</code> der Buchstabenhöhe (Versalhöhe) als freien Isolationsraum einhalten.</span>
+              </div>
+            </div>
+
             <div class="minsize-row">
               <div class="ms-box">
-                <span class="ms-lbl text-mono">DIGITAL MINIMUM</span>
+                <span class="ms-lbl text-mono">WAPPEN DIGITAL</span>
                 <strong class="ms-val text-mono">32 &times; 32 px</strong>
                 <span class="ms-sub">Favicon-Ausnahme: 16 px</span>
               </div>
               <div class="ms-box">
-                <span class="ms-lbl text-mono">DRUCK &amp; STICKEREI</span>
+                <span class="ms-lbl text-mono">WAPPEN PRINT / STICK</span>
                 <strong class="ms-val text-mono">15 &times; 15 mm</strong>
                 <span class="ms-sub">Darunter Feindetails prüfen</span>
+              </div>
+              <div class="ms-box">
+                <span class="ms-lbl text-mono">HORIZONTALES LOCKUP</span>
+                <strong class="ms-val text-mono">140 px / 35 mm</strong>
+                <span class="ms-sub">Mindestbreite über alles</span>
+              </div>
+              <div class="ms-box">
+                <span class="ms-lbl text-mono">WORTMARKE SOLO</span>
+                <strong class="ms-val text-mono">120 px / 30 mm</strong>
+                <span class="ms-sub">Mindestbreite für Lesbarkeit</span>
               </div>
             </div>
           </div>
@@ -592,6 +696,42 @@ const logoVariants = logoPlaceholders.map((item) => {
                   <span class="dd-badge is-dont text-mono">✕ FALSCH</span>
                   <p>Nicht auf hellen oder unruhigen Fotos ohne ausreichenden Kontrast einsetzen.</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Co-Branding & Matchup Lockup Specification -->
+        <div class="bento-card cobrand-card">
+          <div class="card-meta">
+            <span class="meta-num">CO-BRANDING &amp; MATCHUP-PAARUNG</span>
+            <span class="meta-tag text-mono">UIC &times; PARTNER / UIC VS. GEGNER</span>
+          </div>
+
+          <div class="cobrand-split">
+            <div class="cobrand-stage" aria-label="Schematische Darstellung für Co-Branding und Matchup-Paarungen">
+              <div class="cb-lockup">
+                <img src="/assets/logo/logo.svg" alt="UIC Wappen" width="58" height="58" class="cb-logo" />
+                <span class="cb-gap text-mono">x</span>
+                <span class="cb-divider" aria-hidden="true"></span>
+                <span class="cb-gap text-mono">x</span>
+                <div class="cb-partner-mark text-mono">PARTNER / TEAM</div>
+              </div>
+              <span class="cb-caption text-mono">ABSTAND JE SEITE: MIND. X = 25% WAPPENBREITE &bull; TRENNLINIE: 1 PX</span>
+            </div>
+
+            <div class="cobrand-rules">
+              <div class="cbr-rule">
+                <span class="cbr-num text-mono">01 / OPTISCHE BALANCE</span>
+                <p>Partner- und Gegner-Logos werden nach <strong>visuellem Flächengewicht</strong> (optischer Größe) an das UIC-Wappen angeglichen – nicht starr nach gleicher Pixelbreite.</p>
+              </div>
+              <div class="cbr-rule">
+                <span class="cbr-num text-mono">02 / TRENNUNG &amp; FREIRAUM</span>
+                <p>Zwischen beiden Marken steht entweder eine vertikale <code>1 px</code> Haarlinie oder ein zentriertes <code>&times;</code> / <code>VS</code> mit beidseitig mindestens <code>x = 25 %</code> Wappenbreite Abstand.</p>
+              </div>
+              <div class="cbr-rule">
+                <span class="cbr-num text-mono">03 / KONTRAST-EINHEIT</span>
+                <p>Beide Marken in einer Paarung folgen derselben Kontrast-Logik (beide hell auf dunklem Grund oder beide monochrom dunkel auf hellem Grund).</p>
               </div>
             </div>
           </div>
@@ -829,6 +969,24 @@ const logoVariants = logoPlaceholders.map((item) => {
       }, 1500);
     });
   });
+
+  // 4. Copy Official Press Boilerplate Text to Clipboard
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-text]').forEach((btn) => {
+    const original = btn.textContent;
+    let resetTimer: ReturnType<typeof setTimeout> | undefined;
+    btn.addEventListener('click', () => {
+      const text = btn.getAttribute('data-copy-text');
+      if (!text) return;
+      navigator.clipboard?.writeText(text).catch(() => {});
+      btn.textContent = 'KOPIERT ✓';
+      btn.classList.add('is-copied');
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    });
+  });
 </script>
 
 <style>
@@ -1040,6 +1198,77 @@ const logoVariants = logoPlaceholders.map((item) => {
 
   .id-note strong {
     color: #ffffff;
+  }
+
+  .boilerplate-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .bp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .bp-box {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bp-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .bp-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .bp-copy-btn {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #f4f4f5;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-xs);
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .bp-copy-btn:hover {
+    border-color: rgba(255, 255, 255, 0.36);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .bp-copy-btn.is-copied {
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.12);
+  }
+
+  .bp-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
   /* 02 Master Logo Card */
@@ -1945,6 +2174,209 @@ const logoVariants = logoPlaceholders.map((item) => {
     align-items: center;
   }
 
+  /* 02 Usage Matrix */
+  .usage-matrix-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .usage-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .um-box {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .um-context {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .um-use {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .um-avoid {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .um-examples {
+    margin-top: auto;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+
+  /* 03 Clearspace Variant Rules & Co-Branding */
+  .cs-rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .csr-item {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xs);
+    padding: 9px 12px;
+  }
+
+  .csr-item strong {
+    color: #ffffff;
+    margin-right: 4px;
+  }
+
+  .csr-item code {
+    font-family: var(--font-mono);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .cobrand-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .cobrand-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .cobrand-stage {
+    background: #050507;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .cb-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .cb-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  .cb-gap {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    padding: 2px 6px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+  }
+
+  .cb-divider {
+    width: 1px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.26);
+  }
+
+  .cb-partner-mark {
+    height: 52px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: var(--radius-xs);
+    background: rgba(255, 255, 255, 0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+  }
+
+  .cb-caption {
+    font-size: 0.625rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .cobrand-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cbr-rule {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cbr-num {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+  }
+
+  .cbr-rule p {
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .cbr-rule strong,
+  .cbr-rule code {
+    color: #ffffff;
+  }
+
+  .cbr-rule code {
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
   /* Responsive */
   @media (max-width: 1100px) {
     .brandkit-page {
@@ -1953,12 +2385,15 @@ const logoVariants = logoPlaceholders.map((item) => {
 
     .identity-grid,
     .lockups-grid,
-    .swatches-grid {
+    .swatches-grid,
+    .usage-matrix-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .logo-master-card,
     .rules-split,
+    .cobrand-split,
+    .bp-grid,
     .type-grid {
       grid-template-columns: 1fr;
     }
@@ -1968,6 +2403,7 @@ const logoVariants = logoPlaceholders.map((item) => {
     .identity-grid,
     .lockups-grid,
     .swatches-grid,
+    .usage-matrix-grid,
     .dd-grid,
     .lm-specs-grid,
     .minsize-row {
