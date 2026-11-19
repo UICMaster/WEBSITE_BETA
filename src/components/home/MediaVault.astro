@@ -1,6 +1,7 @@
 ---
 // src/components/home/MediaVault.astro
 import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData';
+import ChibiBear from '../common/ChibiBear.astro';
 ---
 
 <section id="medien" class="section-pad media-vault-section">
@@ -177,6 +178,7 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
 
     <!-- 9. Statement CTA Box -->
     <div id="bewerbung" class="statement-cta-section">
+      <ChibiBear variant="cheer" />
       <div class="cta-content-inner">
         <div class="cta-badge-pill">MITGLIEDSCHAFT & BEWERBUNG</div>
         
@@ -443,7 +445,7 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
   /* 9. High-Impact Statement CTA Box (With Sleek Glare Detail) */
   .statement-cta-section {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%), #0d0d10;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-lg);

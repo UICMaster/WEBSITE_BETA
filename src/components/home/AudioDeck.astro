@@ -1,5 +1,7 @@
 ---
 // src/components/home/AudioDeck.astro
+import ChibiBear from '../common/ChibiBear.astro';
+
 const tracks = [
   {
     title: "UIC HYMNE • 2026 Q4",
@@ -84,6 +86,7 @@ const teamCount = tracks.filter((t) => t.category === "team").length;
 
   <!-- Floating Docked Pill (Always Visible) -->
   <div class="pill-bar">
+    <ChibiBear variant="vibe" />
     <button
       type="button"
       id="audio-pill-toggle"
@@ -292,6 +295,7 @@ const teamCount = tracks.filter((t) => t.category === "team").length;
 
   /* Docked Monochrome Pill Bar */
   .pill-bar {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;

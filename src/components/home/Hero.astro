@@ -1,6 +1,7 @@
 ---
 // src/components/home/Hero.astro
 import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, discordInviteUrl } from '../../utils/uicData';
+import ChibiBear from '../common/ChibiBear.astro';
 ---
 
 <section id="start" class="hero-section">
@@ -68,6 +69,7 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
 
     <!-- Right Side: Matchup Card -->
     <div class="hero-matchup-col">
+      <ChibiBear variant="peek" />
       <div class="matchup-bento-card">
         
         <div>

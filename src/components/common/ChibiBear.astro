@@ -1,0 +1,606 @@
+---
+// src/components/common/ChibiBear.astro
+interface Props {
+  variant?: 'peek' | 'cheer' | 'vibe';
+}
+
+const { variant = 'cheer' } = Astro.props;
+
+const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe', string[]> = {
+  peek: [
+    'Matchday! ♡',
+    'Go UIC! 🐾',
+    'Retalia Neva Woulda!',
+    'Da hab ich richtig Huddle!',
+    'GG EZ ♡'
+  ],
+  cheer: [
+    'Komm in die Crew! ♡',
+    'UIC Family! 🐾',
+    'Wir haben LP & Liebe!',
+    'Das ist doch insane ned!'
+  ],
+  vibe: [
+    'UIC Hymne! ♪',
+    'Banger Track! ♡',
+    'Vibing... ♫'
+  ]
+};
+
+const defaultPhrase = phrasesByVariant[variant][0];
+const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
+---
+
+<div
+  class={`chibi-spot chibi-${variant}`}
+  data-chibi-widget
+  data-chibi-phrases={phrasesJson}
+>
+  <button
+    type="button"
+    class="chibi-trigger"
+    aria-label="UIC Chibi-Maskottchen anstupsen"
+    title="Stups mich an! ♡"
+  >
+    <!-- Tiny Speech Bubble on Hover / Click -->
+    <span class="chibi-bubble text-mono" data-chibi-bubble aria-hidden="true">
+      {defaultPhrase}
+    </span>
+
+    <!-- Kawaii Chibi Bear SVG (Faithful to Reference Illustration) -->
+    <svg
+      class="chibi-svg"
+      viewBox="0 0 240 245"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <!-- Floating Pastel Hearts -->
+      <g class="chibi-hearts">
+        <!-- Top-Left Heart -->
+        <path
+          class="c-heart c-heart-1"
+          d="M36 74 C36 67, 25 63, 21 70 C17 63, 6 67, 6 74 C6 83, 21 91, 21 95 C21 91, 36 83, 36 74 Z"
+          fill="#F4A4A8"
+        />
+        <!-- Bottom-Left Heart -->
+        <path
+          class="c-heart c-heart-2"
+          d="M30 184 C30 179, 22 176, 19 181 C16 176, 8 179, 8 184 C8 191, 19 197, 19 200 C19 197, 30 191, 30 184 Z"
+          fill="#F4A4A8"
+        />
+        <!-- Right Heart -->
+        <path
+          class="c-heart c-heart-3"
+          d="M226 164 C226 158, 216 154, 212 160 C208 154, 198 158, 198 164 C198 172, 212 179, 212 183 C212 179, 226 172, 226 164 Z"
+          fill="#F4A4A8"
+        />
+      </g>
+
+      <g class="chibi-character">
+        <!-- Lower Body / Feet (tucked under oversized shirt) -->
+        <g class="chibi-lower">
+          <!-- Left Foot -->
+          <path
+            d="M80 202 C74 214, 77 228, 89 229 C100 230, 111 221, 117 215"
+            fill="#D5A787"
+            stroke="#3B2314"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <!-- Bottom Belly Under-Curve -->
+          <path
+            d="M114 215 C129 218, 145 218, 157 214"
+            fill="#D5A787"
+            stroke="#3B2314"
+            stroke-width="6"
+            stroke-linecap="round"
+          />
+          <!-- Right Foot -->
+          <path
+            d="M154 214 C163 221, 175 224, 181 218 C186 213, 185 204, 181 198"
+            fill="#D5A787"
+            stroke="#3B2314"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <!-- Stubby Left Arm -->
+          <g class="chibi-arm-left">
+            <path
+              d="M69 149 C53 147, 45 153, 46 163 C47 171, 56 175, 68 173"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+
+          <!-- Stubby Right Arm -->
+          <g class="chibi-arm-right">
+            <path
+              d="M180 147 C198 145, 208 151, 207 162 C206 171, 195 175, 180 174"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+
+          <!-- Oversized Coral-Red T-Shirt -->
+          <path
+            d="M66 146
+               C62 153, 62 167, 66 174
+               C73 177, 77 183, 77 195
+               C76 203, 76 207, 82 208
+               C100 209, 114 218, 134 217
+               C154 216, 171 213, 184 212
+               C190 211, 189 203, 184 194
+               C179 185, 180 177, 184 174
+               C186 164, 186 152, 183 144
+               C169 144, 152 149, 125 149
+               C98 149, 79 145, 66 146 Z"
+            fill="#F67E7D"
+            stroke="#E45C5D"
+            stroke-width="4.5"
+            stroke-linejoin="round"
+          />
+
+          <!-- Shirt Collar Ribbing -->
+          <path
+            d="M95 149 C108 161, 136 161, 148 149"
+            stroke="#E45C5D"
+            stroke-width="4"
+            stroke-linecap="round"
+            fill="none"
+          />
+          <path
+            d="M101 148 C112 156, 132 156, 142 148"
+            stroke="#E45C5D"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"
+          />
+
+          <!-- Left & Right Sleeve Trim Lines -->
+          <path d="M68 147 C65 156, 65 166, 68 173" stroke="#E45C5D" stroke-width="4" stroke-linecap="round" />
+          <path d="M181 145 C183 155, 183 165, 181 173" stroke="#E45C5D" stroke-width="4" stroke-linecap="round" />
+
+          <!-- Shirt Bottom Double Hem Line -->
+          <path
+            d="M78 201 C98 201, 115 211, 136 210 C156 209, 172 206, 185 206"
+            stroke="#E45C5D"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            fill="none"
+          />
+
+          <!-- Cute Chest Heart on T-Shirt -->
+          <path
+            class="shirt-heart"
+            d="M127 177 C127 171, 118 168, 115 174 C112 168, 103 171, 103 177 C103 185, 115 191, 115 195 C115 191, 127 185, 127 177 Z"
+            fill="#E45C5D"
+          />
+        </g>
+
+        <!-- Big Chubby Bear Head & Ears -->
+        <g class="chibi-head">
+          <!-- Left Ear -->
+          <g class="chibi-ear-left">
+            <path
+              d="M57 62 C49 43, 64 26, 83 34 C90 37, 94 42, 96 46"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M64 56 C60 45, 69 36, 80 41 C84 43, 86 46, 87 49"
+              fill="#3B2314"
+            />
+          </g>
+
+          <!-- Right Ear -->
+          <g class="chibi-ear-right">
+            <path
+              d="M159 44 C164 32, 182 28, 193 40 C202 50, 198 66, 188 72"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M166 48 C170 39, 181 37, 187 45 C192 52, 189 61, 182 65"
+              fill="#3B2314"
+            />
+          </g>
+
+          <!-- Main Squircle Chubby Head Shape -->
+          <path
+            d="M123 33
+               C83 33, 56 53, 50 88
+               C44 120, 44 139, 68 148
+               C86 155, 105 153, 124 153
+               C145 153, 169 152, 183 142
+               C201 129, 199 101, 191 74
+               C181 44, 158 33, 123 33 Z"
+            fill="#D5A787"
+            stroke="#3B2314"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <!-- Rosy Yellow-Peach Cheeks -->
+          <circle cx="62" cy="128" r="16" fill="#F8CE82" />
+          <circle cx="154" cy="131" r="18" fill="#F8CE82" />
+
+          <!-- Re-stroke Cheek Left Edge so outline stays crisp over left cheek -->
+          <path
+            d="M48 105 C44 125, 47 140, 68 148"
+            fill="none"
+            stroke="#3B2314"
+            stroke-width="6"
+            stroke-linecap="round"
+          />
+
+          <!-- Dark Dot Eyes (With Blink Animation) -->
+          <g class="chibi-eyes">
+            <circle cx="77" cy="111" r="8.5" fill="#331E12" />
+            <circle cx="139" cy="111" r="8.5" fill="#331E12" />
+          </g>
+
+          <!-- Cute :3 Mouth & Pink Tongue -->
+          <g class="chibi-mouth">
+            <!-- Pink Tongue -->
+            <path
+              d="M103 114 C103 128, 106 135, 111 135 C116 135, 118 128, 117 114 Z"
+              fill="#F49390"
+              stroke="#3B2314"
+              stroke-width="4.5"
+              stroke-linejoin="round"
+            />
+            <!-- :3 Upper Lip W-Curve -->
+            <path
+              d="M99 112 C101 118, 107 118, 109 112 C111 118, 117 118, 119 112"
+              fill="none"
+              stroke="#3B2314"
+              stroke-width="4.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+        </g>
+
+        <!-- Peeking Paws (Only visible in 'peek' mode when resting on container border) -->
+        <g class="chibi-peek-paws">
+          <ellipse cx="74" cy="153" rx="13" ry="9" fill="#D5A787" stroke="#3B2314" stroke-width="5.5" />
+          <ellipse cx="164" cy="153" rx="13" ry="9" fill="#D5A787" stroke="#3B2314" stroke-width="5.5" />
+        </g>
+      </g>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .chibi-spot {
+    position: absolute;
+    z-index: 15;
+    pointer-events: auto;
+    user-select: none;
+  }
+
+  .chibi-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .chibi-svg {
+    display: block;
+    overflow: visible;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.65));
+    transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Speech Bubble */
+  .chibi-bubble {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    right: 6px;
+    background: #ffffff;
+    color: #000000;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transform: translateY(8px) scale(0.88);
+    pointer-events: none;
+    transition:
+      opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 20;
+  }
+
+  .chibi-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 22px;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #ffffff transparent transparent;
+  }
+
+  .chibi-trigger:hover .chibi-bubble,
+  .chibi-spot.is-talking .chibi-bubble {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* =====================================================================
+     VARIANT 1: PEEK (Perched on top-right rim of Hero Matchup Card)
+     ===================================================================== */
+  .chibi-peek {
+    top: -54px;
+    right: 26px;
+  }
+
+  .chibi-peek .chibi-svg {
+    width: 78px;
+    height: 80px;
+  }
+
+  /* In peek idle state, hide lower body and show cute paws holding the card edge */
+  .chibi-peek .chibi-lower {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .chibi-peek .chibi-peek-paws {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  /* On hover or click, the bear pops up above the card rim with arms open! */
+  .chibi-peek .chibi-trigger:hover .chibi-svg,
+  .chibi-peek.is-talking .chibi-svg {
+    transform: translateY(-20px) scale(1.06);
+  }
+
+  .chibi-peek .chibi-trigger:hover .chibi-lower,
+  .chibi-peek.is-talking .chibi-lower {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .chibi-peek .chibi-trigger:hover .chibi-peek-paws,
+  .chibi-peek.is-talking .chibi-peek-paws {
+    opacity: 0;
+  }
+
+  /* =====================================================================
+     VARIANT 2: CHEER (Full pose perched on Join / Bewerbung CTA box)
+     ===================================================================== */
+  .chibi-cheer {
+    top: -64px;
+    right: clamp(18px, 5vw, 56px);
+  }
+
+  .chibi-cheer .chibi-svg {
+    width: 86px;
+    height: 88px;
+  }
+
+  .chibi-cheer .chibi-peek-paws {
+    display: none;
+  }
+
+  .chibi-cheer .chibi-trigger:hover .chibi-svg,
+  .chibi-cheer.is-talking .chibi-svg {
+    transform: translateY(-8px) scale(1.08) rotate(-3deg);
+  }
+
+  /* =====================================================================
+     VARIANT 3: VIBE (Mini companion on the Floating Audio Deck)
+     ===================================================================== */
+  .chibi-vibe {
+    top: -36px;
+    left: 16px;
+    transition: opacity 0.2s ease, transform 0.24s ease;
+  }
+
+  :global(.audio-widget.is-expanded) .chibi-vibe {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px) scale(0.85);
+  }
+
+  .chibi-vibe .chibi-svg {
+    width: 48px;
+    height: 50px;
+  }
+
+  .chibi-vibe .chibi-peek-paws {
+    display: none;
+  }
+
+  .chibi-vibe .chibi-bubble {
+    left: 0;
+    right: auto;
+    font-size: 0.625rem;
+    padding: 3px 8px;
+  }
+
+  .chibi-vibe .chibi-bubble::after {
+    left: 16px;
+    right: auto;
+  }
+
+  .chibi-vibe .chibi-trigger:hover .chibi-svg,
+  .chibi-vibe.is-talking .chibi-svg {
+    transform: translateY(-6px) scale(1.1);
+  }
+
+  /* When parent AudioDeck has .is-playing, the mini bear sways happily to the beat! */
+  :global(.audio-widget.is-playing) .chibi-vibe .chibi-character {
+    animation: chibiGroove 0.9s ease-in-out infinite alternate;
+  }
+
+  :global(.audio-widget.is-playing) .chibi-vibe .c-heart {
+    opacity: 1;
+    animation: heartFloat 1.6s ease-in-out infinite;
+  }
+
+  /* =====================================================================
+     SUBTLE IDLE & HOVER MICRO-ANIMATIONS
+     ===================================================================== */
+  .chibi-character {
+    transform-origin: 120px 190px;
+    animation: chibiBreathe 4.8s ease-in-out infinite;
+  }
+
+  .chibi-eyes {
+    transform-origin: 108px 111px;
+    animation: chibiBlink 6.5s infinite;
+  }
+
+  .chibi-arm-left {
+    transform-origin: 68px 160px;
+    transition: transform 0.3s ease;
+  }
+
+  .chibi-arm-right {
+    transform-origin: 180px 160px;
+    transition: transform 0.3s ease;
+  }
+
+  .chibi-trigger:hover .chibi-arm-left,
+  .chibi-spot.is-talking .chibi-arm-left {
+    animation: waveLeftArm 0.45s ease-in-out infinite alternate;
+  }
+
+  .chibi-trigger:hover .chibi-arm-right,
+  .chibi-spot.is-talking .chibi-arm-right {
+    animation: waveRightArm 0.45s ease-in-out infinite alternate;
+  }
+
+  /* Floating Hearts (Subtle in idle, pop on hover/click) */
+  .c-heart {
+    opacity: 0.35;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.25s ease, transform 0.3s ease;
+  }
+
+  .chibi-trigger:hover .c-heart,
+  .chibi-spot.is-talking .c-heart {
+    opacity: 1;
+    animation: heartFloat 1.4s ease-in-out infinite;
+  }
+
+  .c-heart-2 {
+    animation-delay: 0.25s !important;
+  }
+
+  .c-heart-3 {
+    animation-delay: 0.5s !important;
+  }
+
+  @keyframes chibiBreathe {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-2.5px) rotate(0.8deg); }
+  }
+
+  @keyframes chibiGroove {
+    0% { transform: translateY(0) rotate(-6deg) scale(1); }
+    100% { transform: translateY(-4px) rotate(6deg) scale(1.04); }
+  }
+
+  @keyframes chibiBlink {
+    0%, 92%, 96%, 100% { transform: scaleY(1); }
+    94% { transform: scaleY(0.12); }
+  }
+
+  @keyframes waveLeftArm {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(16deg); }
+  }
+
+  @keyframes waveRightArm {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-16deg); }
+  }
+
+  @keyframes heartFloat {
+    0%, 100% { transform: translateY(0) scale(0.95); }
+    50% { transform: translateY(-6px) scale(1.12); }
+  }
+
+  @media (max-width: 640px) {
+    .chibi-peek {
+      top: -44px;
+      right: 14px;
+    }
+
+    .chibi-peek .chibi-svg {
+      width: 64px;
+      height: 66px;
+    }
+
+    .chibi-cheer {
+      top: -52px;
+      right: 16px;
+    }
+
+    .chibi-cheer .chibi-svg {
+      width: 72px;
+      height: 74px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-chibi-widget]').forEach((spot) => {
+    const btn = spot.querySelector<HTMLButtonElement>('.chibi-trigger');
+    const bubble = spot.querySelector<HTMLElement>('[data-chibi-bubble]');
+    const rawPhrases = spot.getAttribute('data-chibi-phrases');
+    let phrases: string[] = [];
+    try {
+      phrases = rawPhrases ? JSON.parse(rawPhrases) : [];
+    } catch {}
+
+    let idx = 0;
+    let talkTimer: ReturnType<typeof setTimeout> | undefined;
+
+    btn?.addEventListener('click', () => {
+      if (phrases.length > 0 && bubble) {
+        idx = (idx + 1) % phrases.length;
+        bubble.textContent = phrases[idx];
+      }
+      spot.classList.add('is-talking');
+      if (talkTimer) clearTimeout(talkTimer);
+      talkTimer = setTimeout(() => {
+        spot.classList.remove('is-talking');
+      }, 2400);
+    });
+  });
+</script>
