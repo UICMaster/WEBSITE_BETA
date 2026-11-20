@@ -1,380 +1,98 @@
 ---
 // src/components/home/Partners.astro
-import fs from 'node:fs';
-import path from 'node:path';
-import rawPartners from '../../../data/partners.json';
-import { totalTeams } from '../../utils/uicData';
-
-interface PartnerLink {
-  label: string;
-  url: string | null;
-  external?: boolean;
-  icon?: 'broadcast' | 'trophy' | 'discord' | 'globe';
-}
-
-interface PartnerItem {
-  id: string;
-  name: string;
-  logo: string;
-  accentColor: string;
-  accentGlow: string;
-  role: string;
-  since: string;
-  tagline: string;
-  description: string;
-  connectionTitle: string;
-  connectionText: string;
-  quote?: {
-    text: string;
-    author: string;
-  };
-  keyFacts: { label: string; value: string }[];
-  features: string[];
-  previewImage?: string | null;
-  previewPlaceholderPath?: string;
-  previewCaption: string;
-  mockType: 'riftops' | 'genesiz';
-  primaryCta: {
-    label: string;
-    url: string;
-  };
-  secondaryLinks?: PartnerLink[];
-}
-
-const publicRoot = path.resolve(process.cwd(), 'public');
-
-function resolveExistingPublicImage(candidate?: string | null): string | null {
-  if (!candidate) return null;
-  const rel = candidate.replace(/^public[\\/]/i, '').replace(/^\/+/, '');
-  const abs = path.join(publicRoot, ...rel.split(/[\\/]/));
-  return fs.existsSync(abs) ? `/${rel.replace(/\\/g, '/')}` : null;
-}
-
-const partners = (rawPartners as PartnerItem[]).map((partner) => {
-  const autoDetectedImage =
-    resolveExistingPublicImage(partner.previewImage) ||
-    resolveExistingPublicImage(partner.previewPlaceholderPath);
-
-  return {
-    ...partner,
-    resolvedPreviewImage: autoDetectedImage,
-    keyFacts: partner.keyFacts.map((fact) => ({
-      ...fact,
-      value: fact.value.replace('{totalTeams}', String(totalTeams))
-    }))
-  };
-});
 ---
 
 <section id="partner" class="section-pad partners-section">
   <div class="container">
     <!-- Section Header -->
     <div class="section-header text-center">
-      <div class="section-badge-pill">NETZWERK &amp; KOOPERATIONEN</div>
+      <div class="section-badge-pill">NETZWERK & KOOPERATIONEN</div>
       <h2 class="section-title">
         UNSERE <span class="text-gradient">PARTNER</span>
       </h2>
       <p class="section-desc centered">
-        Handverlesene Partnerschaften auf Augenhöhe: Wir arbeiten eng mit Menschen und Projekten zusammen, die mit echter Leidenschaft starke Produkte für den eSport entwickeln.
+        Gemeinsam im eSport. Wir arbeiten eng mit Partnern aus den Bereichen Team-Organisation, Spielanalyse und Turnierbetrieb zusammen.
       </p>
     </div>
 
-    <!-- Editorial Split Partner Showcase -->
-    <div class="partners-editorial-stack">
-      {partners.map((partner, index) => (
-        <article
-          class={`partner-feature-card ${index % 2 === 1 ? 'is-reversed' : ''}`}
-          style={`--partner-accent: ${partner.accentColor}; --partner-glow: ${partner.accentGlow};`}
-        >
-          <div class="partner-top-accent" aria-hidden="true"></div>
+    <!-- Active Partner Showcase: Minimalist Open Layout with Clear Descriptions -->
+    <div class="sponsors-showcase">
+      
+      <!-- Partner 1: RiftOPS -->
+      <a 
+        href="https://boellerbande.fp-labs.net/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="sponsor-item"
+        aria-label="RiftOPS Partnerseite öffnen"
+      >
+        <img 
+          src="/assets/logo/riftops-horizontal-dark.svg" 
+          alt="RiftOPS Logo" 
+          class="sponsor-logo"
+          loading="lazy" 
+        />
+        <span class="sponsor-label text-mono">ORGANISATION & TEAM-MANAGEMENT</span>
+        <p class="sponsor-desc">
+          Plattform für Organisation und Teams: Verwaltet unsere Prime League Spiele und nächsten Gegner, liefert Spielanalysen und bietet Kalender-Funktionen, Events sowie Prep-Rooms für die Spieltagsvorbereitung.
+        </p>
+        <div class="sponsor-tags text-mono" aria-label="RiftOPS Funktionen">
+          <span class="sponsor-tag">PRIME LEAGUE</span>
+          <span class="sponsor-tag">ANALYSEN & GEGNER</span>
+          <span class="sponsor-tag">PREP-ROOMS</span>
+          <span class="sponsor-tag">KALENDER & EVENTS</span>
+        </div>
+      </a>
 
-          <!-- Editorial Info Column -->
-          <div class="partner-body">
-            <!-- Meta Badges -->
-            <div class="partner-meta-row text-mono">
-              <span class="partner-role-pill">
-                <span class="role-dot" aria-hidden="true"></span>
-                {partner.role}
-              </span>
-              <span class="partner-since-pill">{partner.since}</span>
-            </div>
+      <div class="sponsor-sep" aria-hidden="true"></div>
 
-            <!-- Original Full-Color Partner Brand Logo -->
-            <div class="partner-brand-header">
-              <a
-                href={partner.primaryCta.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="partner-logo-link"
-                aria-label={`${partner.name} Website öffnen`}
-              >
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} Logo`}
-                  class="partner-logo-img"
-                  loading="lazy"
-                />
-              </a>
-              <h3 class="partner-tagline">{partner.tagline}</h3>
-            </div>
+      <!-- Partner 2: Esport GenesiZ -->
+      <a 
+        href="https://esport-genesiz.de/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="sponsor-item"
+        aria-label="Esport GenesiZ Partnerseite öffnen"
+      >
+        <img 
+          src="/assets/logo/GenesiZ_horizontal_tranz_V1.svg" 
+          alt="Esport GenesiZ Logo" 
+          class="sponsor-logo"
+          loading="lazy" 
+        />
+        <span class="sponsor-label text-mono">TURNIERE & EVENT-SYSTEME</span>
+        <p class="sponsor-desc">
+          Spezialisiert auf kompetitive Turniere und Community-Events mit vielseitigen Turniersystemen wie Multi-Bracket, Round Robin, Swiss-System, Double K.O. und weiteren Wettkampfformaten.
+        </p>
+        <div class="sponsor-tags text-mono" aria-label="Esport GenesiZ Turniersysteme">
+          <span class="sponsor-tag">MULTI-BRACKET</span>
+          <span class="sponsor-tag">ROUND ROBIN</span>
+          <span class="sponsor-tag">SWISS-SYSTEM</span>
+          <span class="sponsor-tag">DOUBLE K.O.</span>
+        </div>
+      </a>
 
-            <p class="partner-desc">{partner.description}</p>
-
-            <!-- 3 Scannable Key Facts -->
-            <div class="partner-facts-grid">
-              {partner.keyFacts.map((fact) => (
-                <div class="partner-fact-cell">
-                  <span class="fact-label text-mono">{fact.label}</span>
-                  <span class="fact-value">{fact.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <!-- UIC x Partner Connection & Personal Statement -->
-            <div class="partner-connection-box">
-              <span class="conn-kicker text-mono">{partner.connectionTitle}</span>
-              <p class="conn-text">{partner.connectionText}</p>
-              {partner.quote && (
-                <blockquote class="conn-quote">
-                  <p>&bdquo;{partner.quote.text}&ldquo;</p>
-                  <footer class="conn-quote-author text-mono">&mdash; {partner.quote.author}</footer>
-                </blockquote>
-              )}
-            </div>
-
-            <!-- Feature Tags -->
-            <div class="partner-tags text-mono" aria-label={`${partner.name} Schwerpunkte`}>
-              {partner.features.map((tag) => (
-                <span class="partner-tag">{tag}</span>
-              ))}
-            </div>
-
-            <!-- Multi-Action Footer -->
-            <div class="partner-actions">
-              <a
-                href={partner.primaryCta.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary partner-cta-primary"
-              >
-                <span>{partner.primaryCta.label}</span>
-                <svg class="icon-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </a>
-
-              {partner.secondaryLinks && partner.secondaryLinks.map((link) => (
-                link.url ? (
-                  <a
-                    href={link.url}
-                    target={link.external ? '_blank' : undefined}
-                    rel={link.external ? 'noopener noreferrer' : undefined}
-                    class="partner-sec-link text-mono"
-                  >
-                    {link.icon === 'broadcast' && (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                        <path d="M8 21h8M12 17v4"/>
-                      </svg>
-                    )}
-                    {link.icon === 'trophy' && (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
-                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
-                        <path d="M4 22h16"/>
-                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
-                      </svg>
-                    )}
-                    {link.icon === 'discord' && (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/>
-                      </svg>
-                    )}
-                    <span>{link.label}</span>
-                    {link.external ? (
-                      <svg class="icon-ext-sm" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
-                    ) : (
-                      <span aria-hidden="true">&rarr;</span>
-                    )}
-                  </a>
-                ) : (
-                  <span
-                    class="partner-sec-placeholder text-mono"
-                    title="Optionaler Link – kann jederzeit in data/partners.json ergänzt werden"
-                  >
-                    {link.label}
-                  </span>
-                )
-              ))}
-            </div>
-          </div>
-
-          <!-- Visual Product / Project Stage Column -->
-          <div class="partner-stage">
-            <div class="stage-ambient-glow" aria-hidden="true"></div>
-
-            <div class="stage-window">
-              <!-- Minimal Studio App-Window Header -->
-              <div class="stage-chrome">
-                <div class="chrome-dots" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                </div>
-                <span class="chrome-label text-mono">{partner.previewCaption}</span>
-                <span class="chrome-status text-mono">
-                  <span class="chrome-live-dot" aria-hidden="true"></span>
-                  {partner.resolvedPreviewImage ? 'LIVE' : 'PREVIEW'}
-                </span>
-              </div>
-
-              {partner.resolvedPreviewImage ? (
-                <div class="stage-media-wrap">
-                  <img
-                    src={partner.resolvedPreviewImage}
-                    alt={`${partner.name} Produkt- und Projektvorschau`}
-                    class="stage-real-img"
-                    loading="lazy"
-                  />
-                </div>
-              ) : partner.mockType === 'riftops' ? (
-                <div class="stage-mock mock-riftops" aria-label="Stilisierte Vorschau der RiftOPS Plattform">
-                  <!-- Stylized Thematic Preview Placeholder for RiftOPS -->
-                  <div class="mock-top-row">
-                    <div class="mock-match-pill">
-                      <span class="m-tag text-mono">PREP-ROOM</span>
-                      <span class="m-vs">UIC PRIME <span class="m-muted">vs.</span> NEXT OPPONENT</span>
-                    </div>
-                    <span class="m-badge text-mono">SCOUTING AKTIV</span>
-                  </div>
-
-                  <div class="mock-stats-row">
-                    <div class="mock-stat-box">
-                      <span class="ms-label text-mono">DRAFT PRIORITY</span>
-                      <div class="ms-bars">
-                        <span style="width: 84%"></span>
-                        <span style="width: 62%"></span>
-                        <span style="width: 48%"></span>
-                      </div>
-                    </div>
-                    <div class="mock-stat-box">
-                      <span class="ms-label text-mono">MATCH TIMELINE</span>
-                      <div class="ms-timeline">
-                        <i class="is-done"></i>
-                        <i class="is-done"></i>
-                        <i class="is-active"></i>
-                        <i></i>
-                      </div>
-                      <span class="ms-sub text-mono">SPIELTAG VORBEREITET</span>
-                    </div>
-                  </div>
-
-                  <div class="mock-modules-grid text-mono">
-                    <div class="mock-mod">
-                      <strong>GEGNER-SCOUT</strong>
-                      <span>Champions &amp; Winrates</span>
-                    </div>
-                    <div class="mock-mod">
-                      <strong>TEAM-KALENDER</strong>
-                      <span>Scrims &amp; Spieltage</span>
-                    </div>
-                    <div class="mock-mod">
-                      <strong>REPLAY-HUB</strong>
-                      <span>OBS Broadcast Ready</span>
-                    </div>
-                  </div>
-
-                  <div class="mock-placeholder-note text-mono">
-                    PLATZHALTER-VORSCHAU &bull; Screenshot via <code>{partner.previewPlaceholderPath}</code>
-                  </div>
-                </div>
-              ) : (
-                <div class="stage-mock mock-genesiz" aria-label="Stilisierte Vorschau der Esport GenesiZ Turnier-Engine">
-                  <!-- Stylized Thematic Preview Placeholder for Esport GenesiZ -->
-                  <div class="mock-top-row">
-                    <div class="mock-match-pill">
-                      <span class="m-tag text-mono">MULTI-BRACKET</span>
-                      <span class="m-vs">GENESIZ CUP <span class="m-muted">&bull;</span> FINALS</span>
-                    </div>
-                    <span class="m-badge text-mono">SWISS &amp; K.O.</span>
-                  </div>
-
-                  <!-- Clean Vector Tournament Bracket Graphic -->
-                  <div class="bracket-visual">
-                    <div class="bracket-col">
-                      <div class="b-slot is-win"><span>TEAM A</span><strong>2</strong></div>
-                      <div class="b-slot"><span>TEAM B</span><strong>0</strong></div>
-                      <div class="b-slot"><span>TEAM C</span><strong>1</strong></div>
-                      <div class="b-slot is-win"><span>TEAM D</span><strong>2</strong></div>
-                    </div>
-                    <div class="bracket-connectors" aria-hidden="true">
-                      <svg viewBox="0 0 40 124" fill="none">
-                        <path d="M0 18 H20 V46 H0 M20 32 H40" stroke="rgba(255,255,255,0.2)" stroke-width="1.6"/>
-                        <path d="M0 18 H20 V32 H40" stroke="var(--partner-accent)" stroke-width="1.8"/>
-                        <path d="M0 78 H20 V106 H0 M20 92 H40" stroke="rgba(255,255,255,0.2)" stroke-width="1.6"/>
-                        <path d="M0 106 H20 V92 H40" stroke="var(--partner-accent)" stroke-width="1.8"/>
-                      </svg>
-                    </div>
-                    <div class="bracket-col bracket-mid">
-                      <div class="b-slot is-win"><span>TEAM A</span><strong>2</strong></div>
-                      <div class="b-slot"><span>TEAM D</span><strong>1</strong></div>
-                    </div>
-                    <div class="bracket-connectors" aria-hidden="true">
-                      <svg viewBox="0 0 36 124" fill="none">
-                        <path d="M0 32 H18 V92 H0 M18 62 H36" stroke="rgba(255,255,255,0.2)" stroke-width="1.6"/>
-                        <path d="M0 32 H18 V62 H36" stroke="var(--partner-accent)" stroke-width="2"/>
-                      </svg>
-                    </div>
-                    <div class="bracket-col bracket-final">
-                      <div class="b-champ">
-                        <span class="b-crown text-mono">CHAMPION</span>
-                        <strong>GRAND FINAL</strong>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mock-formats-strip text-mono">
-                    <span>ROUND ROBIN</span>
-                    <span>&bull;</span>
-                    <span>SWISS-SYSTEM</span>
-                    <span>&bull;</span>
-                    <span>DOUBLE K.O.</span>
-                  </div>
-
-                  <div class="mock-placeholder-note text-mono">
-                    PLATZHALTER-VORSCHAU &bull; Screenshot via <code>{partner.previewPlaceholderPath}</code>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </article>
-      ))}
     </div>
 
-    <!-- Contact & Become Partner CTA: Aligned to Authentic Partnership Philosophy -->
+    <!-- Contact & Become Partner CTA: Centered Underneath -->
     <div class="partner-contact-wrap">
       <div class="partner-contact-card">
         <div class="contact-text-block">
-          <span class="contact-tag text-mono">KOOPERATIONEN &amp; HERZENSPROJEKTE</span>
-          <h3 class="contact-title">DU ENTWICKELST EIN PROJEKT FÜR DEN ESPORT?</h3>
+          <span class="contact-tag text-mono">PARTNERSCHAFT & SPONSORING</span>
+          <h3 class="contact-title">WERDE PARTNER DER ULTRA INSTINCT CREW</h3>
           <p class="contact-desc">
-            Wir suchen keine beliebigen Banner, sondern echte Verbindungen zu Entwicklern, Turnier-Machern und Projekten mit Leidenschaft. Lass uns gemeinsam etwas Starkes für die Community aufbauen.
+            Präsentiere deine Marke im Umfeld der Prime League, in unseren Live-Übertragungen und vor einer aktiven Gaming-Community.
           </p>
         </div>
-        <a
-          href="mailto:support@ultrainstinctcrew.com?subject=Partnerschaftsanfrage%20UIC"
+        <a 
+          href="mailto:support@ultrainstinctcrew.com?subject=Partnerschaftsanfrage%20UIC" 
           class="btn btn-primary btn-partner-contact"
         >
-          <span>INS GESPRÄCH KOMMEN</span>
-          <span aria-hidden="true">&rarr;</span>
+          KONTAKT AUFNEHMEN &rarr;
         </a>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -392,667 +110,93 @@ const partners = (rawPartners as PartnerItem[]).map((partner) => {
     margin-inline: auto;
   }
 
-  /* Editorial Split Stack */
-  .partners-editorial-stack {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.75rem, 3vw, 2.5rem);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .partner-feature-card {
-    position: relative;
+  /* Active Partners: Minimalist Showcase */
+  .sponsors-showcase {
     display: grid;
-    grid-template-columns: 1.08fr 0.92fr;
-    gap: clamp(1.75rem, 3.5vw, 3rem);
-    align-items: center;
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-    background-color: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    max-width: 980px;
+    margin: 0 auto var(--space-xl);
+    padding: var(--space-sm) 0;
   }
 
-  .partner-feature-card:hover {
-    border-color: rgba(255, 255, 255, 0.24);
-  }
-
-  .partner-feature-card.is-reversed {
-    grid-template-columns: 0.92fr 1.08fr;
-  }
-
-  .partner-feature-card.is-reversed .partner-stage {
-    order: -1;
-  }
-
-  /* Signature Partner Accent Rim on Top Edge */
-  .partner-top-accent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 5%, var(--partner-accent) 50%, transparent 95%);
-    opacity: 0.65;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .partner-feature-card:hover .partner-top-accent {
-    opacity: 1;
-  }
-
-  /* Left / Editorial Body */
-  .partner-body {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-
-  .partner-meta-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .partner-role-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    padding: 4px 10px;
-    border-radius: var(--radius-full);
-  }
-
-  .role-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--partner-accent);
-    box-shadow: 0 0 10px var(--partner-accent);
-  }
-
-  .partner-since-pill {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    padding: 4px 9px;
-    border-radius: var(--radius-full);
-  }
-
-  .partner-brand-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .partner-logo-link {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  .partner-logo-img {
-    height: 46px;
-    width: auto;
-    max-width: 240px;
-    object-fit: contain;
-    transition: transform 0.25s ease;
-  }
-
-  .partner-logo-link:hover .partner-logo-img {
-    transform: scale(1.03);
-  }
-
-  .partner-tagline {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.55vw, 1.32rem);
-    font-weight: 800;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    margin: 0;
-  }
-
-  .partner-desc {
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* 3 Scannable Key-Fact Cells */
-  .partner-facts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .partner-fact-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 0.72rem 0.85rem;
-    background: #08080b;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-sm);
-  }
-
-  .fact-label {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-  }
-
-  .fact-value {
-    font-size: 0.84rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.25;
-  }
-
-  /* UIC x Partner Connection Box */
-  .partner-connection-box {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 0.9rem 1.05rem;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 2px solid var(--partner-accent);
-    border-radius: var(--radius-sm);
-  }
-
-  .conn-kicker {
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #ffffff;
-  }
-
-  .conn-text {
-    font-size: 0.86rem;
-    line-height: 1.55;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .conn-quote {
-    margin: 6px 0 0;
-    padding-top: 8px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-  }
-
-  .conn-quote p {
-    font-size: 0.8125rem;
-    font-style: italic;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin: 0 0 4px;
-  }
-
-  .conn-quote-author {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.55);
-  }
-
-  /* Feature Tags */
-  .partner-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .partner-tag {
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.72);
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-xs);
-    padding: 4px 8px;
-  }
-
-  /* Actions Bar */
-  .partner-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-top: 4px;
-  }
-
-  .partner-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.72rem 1.35rem;
-    font-size: 0.8125rem;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-    border-radius: var(--radius-full);
-  }
-
-  .partner-cta-primary:hover .icon-ext,
-  .partner-sec-link:hover .icon-ext-sm {
-    transform: translate(1.5px, -1.5px);
-  }
-
-  .icon-ext,
-  .icon-ext-sm {
-    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .partner-sec-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #e4e4e7;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: var(--radius-full);
-    padding: 0.62rem 1rem;
-    text-decoration: none;
-    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
-  }
-
-  .partner-sec-link:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .partner-sec-placeholder {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    border: 1px dashed rgba(255, 255, 255, 0.14);
-    border-radius: var(--radius-full);
-    padding: 0.58rem 0.9rem;
-    cursor: default;
-  }
-
-  /* Right / Visual Stage Column */
-  .partner-stage {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .stage-ambient-glow {
-    position: absolute;
-    inset: -12%;
-    background: radial-gradient(circle at 50% 45%, var(--partner-glow), transparent 68%);
-    filter: blur(24px);
-    opacity: 0.7;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-
-  .partner-feature-card:hover .stage-ambient-glow {
-    opacity: 1;
-  }
-
-  .stage-window {
-    position: relative;
-    width: 100%;
-    background: #07070a;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 22px 54px rgba(0, 0, 0, 0.75);
-  }
-
-  .stage-chrome {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 14px;
-    background: #0c0c10;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .chrome-dots {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .chrome-dots span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18);
-  }
-
-  .chrome-label {
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .chrome-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.78);
-    flex-shrink: 0;
-  }
-
-  .chrome-live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--partner-accent);
-    box-shadow: 0 0 8px var(--partner-accent);
-  }
-
-  .stage-media-wrap {
-    aspect-ratio: 16 / 10;
-    width: 100%;
-    overflow: hidden;
-    background: #050507;
-  }
-
-  .stage-real-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .partner-feature-card:hover .stage-real-img {
-    transform: scale(1.03);
-  }
-
-  /* Stylized Product Preview Placeholders */
-  .stage-mock {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 18px;
-    min-height: 280px;
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-      #060609;
-    background-size: 24px 24px;
-  }
-
-  .mock-top-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .mock-match-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-xs);
-    padding: 5px 10px;
-  }
-
-  .m-tag {
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: var(--partner-accent);
-  }
-
-  .m-vs {
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #ffffff;
-  }
-
-  .m-muted {
-    color: var(--text-muted);
-    font-weight: 600;
-  }
-
-  .m-badge {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #000000;
-    background: var(--partner-accent);
-    padding: 4px 8px;
-    border-radius: var(--radius-xs);
-  }
-
-  /* RiftOPS Mock Internals */
-  .mock-stats-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .mock-stat-box {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    background: rgba(13, 13, 18, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-sm);
-  }
-
-  .ms-label {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-  }
-
-  .ms-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .ms-bars span {
-    display: block;
-    height: 6px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--partner-accent), rgba(255, 255, 255, 0.35));
-  }
-
-  .ms-timeline {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 2px;
-  }
-
-  .ms-timeline i {
-    flex: 1;
-    height: 5px;
-    border-radius: 999px;
+  .sponsor-sep {
+    width: 1px;
+    height: 120px;
+    align-self: center;
     background: rgba(255, 255, 255, 0.12);
   }
 
-  .ms-timeline i.is-done {
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .ms-timeline i.is-active {
-    background: var(--partner-accent);
-    box-shadow: 0 0 10px var(--partner-accent);
-  }
-
-  .ms-sub {
-    font-size: 0.6rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.06em;
-  }
-
-  .mock-modules-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  .mock-mod {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-xs);
-  }
-
-  .mock-mod strong {
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    color: #ffffff;
-  }
-
-  .mock-mod span {
-    font-size: 0.62rem;
-    color: var(--text-muted);
-    font-family: var(--font-body);
-  }
-
-  /* GenesiZ Bracket Mock Internals */
-  .bracket-visual {
-    display: grid;
-    grid-template-columns: 1fr 32px 0.9fr 28px 0.95fr;
-    align-items: center;
-    padding: 8px 4px;
-  }
-
-  .bracket-col {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .bracket-mid {
-    gap: 34px;
-  }
-
-  .bracket-connectors svg {
-    width: 100%;
-    height: 124px;
-    display: block;
-  }
-
-  .b-slot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 9px;
-    background: rgba(13, 13, 18, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--text-muted);
-  }
-
-  .b-slot.is-win {
-    border-color: rgba(0, 255, 230, 0.35);
-    color: #ffffff;
-  }
-
-  .b-slot.is-win strong {
-    color: var(--partner-accent);
-  }
-
-  .b-champ {
+  .sponsor-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 4px;
-    padding: 12px 8px;
-    background: rgba(0, 255, 230, 0.06);
-    border: 1px solid rgba(0, 255, 230, 0.42);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 0 24px rgba(0, 255, 230, 0.12);
+    text-decoration: none;
+    padding: 1rem 0.5rem;
+    transition: transform var(--transition-smooth);
   }
 
-  .b-crown {
-    font-size: 0.56rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--partner-accent);
+  .sponsor-item:hover {
+    transform: translateY(-3px);
   }
 
-  .b-champ strong {
-    font-family: var(--font-display);
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #ffffff;
+  .sponsor-logo {
+    height: 62px;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+    margin-bottom: 1.25rem;
+    filter: grayscale(1) brightness(0.95);
+    opacity: 0.82;
+    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
   }
 
-  .mock-formats-strip {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 0.62rem;
+  .sponsor-item:hover .sponsor-logo,
+  .sponsor-item:focus-visible .sponsor-logo {
+    filter: grayscale(0) brightness(1);
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  .sponsor-label {
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--text-secondary);
-    padding: 7px 10px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: var(--radius-xs);
+    margin-bottom: 0.6rem;
+    transition: color var(--transition-fast);
   }
 
-  .mock-placeholder-note {
+  .sponsor-item:hover .sponsor-label {
+    color: #ffffff;
+  }
+
+  .sponsor-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 42ch;
+    margin: 0 0 1.1rem;
+  }
+
+  /* Minimalist Feature Pills */
+  .sponsor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
     margin-top: auto;
-    font-size: 0.6rem;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.42);
-    text-align: center;
-    padding-top: 8px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
   }
 
-  .mock-placeholder-note code {
-    color: rgba(255, 255, 255, 0.68);
-    font-size: 0.6rem;
+  .sponsor-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.24rem 0.55rem;
+    background: rgba(255, 255, 255, 0.015);
   }
 
   /* Centered Contact Underneath (Dashed Frame) */
@@ -1068,7 +212,7 @@ const partners = (rawPartners as PartnerItem[]).map((partner) => {
     justify-content: space-between;
     gap: var(--space-xl);
     width: 100%;
-    max-width: 920px;
+    max-width: 820px;
     padding: var(--space-xl) var(--space-2xl);
     background: #0d0d10;
     border: 1px dashed rgba(255, 255, 255, 0.18);
@@ -1084,7 +228,7 @@ const partners = (rawPartners as PartnerItem[]).map((partner) => {
   .contact-text-block {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     text-align: left;
   }
 
@@ -1107,57 +251,36 @@ const partners = (rawPartners as PartnerItem[]).map((partner) => {
   .contact-desc {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    line-height: 1.55;
+    line-height: 1.5;
     margin: 0;
-    max-width: 60ch;
   }
 
   .btn-partner-contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     white-space: nowrap;
-    padding: 0.8rem 1.55rem;
+    padding: 0.75rem 1.5rem;
     border-radius: var(--radius-full);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 0.8125rem;
     letter-spacing: 0.04em;
     flex-shrink: 0;
   }
 
   /* Responsive */
-  @media (max-width: 980px) {
-    .partner-feature-card,
-    .partner-feature-card.is-reversed {
+  @media (max-width: 820px) {
+    .sponsors-showcase {
       grid-template-columns: 1fr;
+      gap: 2.25rem;
     }
 
-    .partner-feature-card.is-reversed .partner-stage {
-      order: 0;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .partner-facts-grid,
-    .mock-stats-row,
-    .mock-modules-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .bracket-visual {
-      grid-template-columns: 1fr 18px 0.85fr 16px 0.9fr;
-    }
-
-    .b-slot {
-      padding: 5px 6px;
-      font-size: 0.56rem;
+    .sponsor-sep {
+      width: 80px;
+      height: 1px;
     }
 
     .partner-contact-card {
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: var(--space-lg);
     }
 
     .contact-text-block {
@@ -1168,6 +291,7 @@ const partners = (rawPartners as PartnerItem[]).map((partner) => {
     .btn-partner-contact {
       width: 100%;
       max-width: 280px;
+      text-align: center;
       justify-content: center;
     }
   }
