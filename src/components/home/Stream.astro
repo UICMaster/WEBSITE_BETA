@@ -9,9 +9,12 @@ import ChibiBear from '../common/ChibiBear.astro';
     <div class="stream-layout">
       <!-- Text details -->
       <div class="stream-intro">
-        <div class="section-badge-pill">LIVE-ÜBERTRAGUNG</div>
-        <h2 class="section-title">
+        <div>
+          <div class="section-badge-pill">LIVE-ÜBERTRAGUNG</div>
+        </div>
+        <h2 class="section-title stream-title">
           SPIELTAGE <span class="text-gradient">LIVE</span>
+          <ChibiBear variant="sleep" />
         </h2>
         <p class="stream-desc">
           Verfolge die Spiele unserer Teams live auf Twitch. Erlebe spannende Spieltage mit Live-Kommentar, Spielanalysen und gemeinsame Abende direkt im Chat.
@@ -27,7 +30,6 @@ import ChibiBear from '../common/ChibiBear.astro';
 
       <!-- Video Player Frame with 2-Click Consent -->
       <div class="stream-frame-wrap card-monochrome">
-        <ChibiBear variant="sleep" />
         <div id="twitch-stage" class="twitch-stage">
           
           <div id="twitch-consent-gate" class="consent-overlay">
@@ -73,6 +75,14 @@ import ChibiBear from '../common/ChibiBear.astro';
     grid-template-columns: 1fr 1.6fr;
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
+  }
+
+  .stream-title {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(1.85rem, 3.2vw, 3.15rem);
+    white-space: nowrap;
+    margin-top: 0.35rem;
   }
 
   .stream-desc {
@@ -175,7 +185,7 @@ import ChibiBear from '../common/ChibiBear.astro';
   if (activateBtn && consentGate && embedTarget) {
     activateBtn.addEventListener('click', () => {
       consentGate.style.display = 'none';
-      document.querySelector<HTMLButtonElement>('.stream-frame-wrap .chibi-trigger')?.click();
+      document.querySelector<HTMLButtonElement>('.stream-title .chibi-trigger')?.click();
 
       const hostname = window.location.hostname || 'localhost';
       const iframe = document.createElement('iframe');

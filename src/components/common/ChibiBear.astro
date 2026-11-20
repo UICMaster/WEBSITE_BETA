@@ -35,7 +35,7 @@ const phrasesByVariant: Record<'peek' | 'cheer' | 'vibe' | 'pull' | 'sleep', str
     'Huch?! Bin wach! ♡',
     'Stream schon live?! 🐾',
     'Nur 5 Minuten noch... zZz',
-    'Hab nur kurz gechillt! ♡'
+    'So gemütlich hier oben! ♡'
   ]
 };
 
@@ -62,7 +62,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     <!-- Kawaii Chibi Bear SVG (Faithful to Reference Illustration) -->
     <svg
       class="chibi-svg"
-      viewBox={variant === 'pull' ? '0 0 280 330' : '0 0 240 245'}
+      viewBox={variant === 'pull' ? '0 0 280 330' : variant === 'sleep' ? '0 0 285 168' : '0 0 240 245'}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
@@ -72,26 +72,118 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
         <!-- Top-Left Heart -->
         <path
           class="c-heart c-heart-1"
-          d="M36 74 C36 67, 25 63, 21 70 C17 63, 6 67, 6 74 C6 83, 21 91, 21 95 C21 91, 36 83, 36 74 Z"
+          d={variant === 'sleep'
+            ? 'M42 46 C42 39, 31 35, 27 42 C23 35, 12 39, 12 46 C12 55, 27 63, 27 67 C27 63, 42 55, 42 46 Z'
+            : 'M36 74 C36 67, 25 63, 21 70 C17 63, 6 67, 6 74 C6 83, 21 91, 21 95 C21 91, 36 83, 36 74 Z'}
           fill="#F4A4A8"
         />
-        <!-- Bottom-Left Heart -->
+        <!-- Second Heart -->
         <path
           class="c-heart c-heart-2"
-          d="M30 184 C30 179, 22 176, 19 181 C16 176, 8 179, 8 184 C8 191, 19 197, 19 200 C19 197, 30 191, 30 184 Z"
+          d={variant === 'sleep'
+            ? 'M182 36 C182 31, 174 28, 171 33 C168 28, 160 31, 160 36 C160 43, 171 49, 171 52 C171 49, 182 43, 182 36 Z'
+            : 'M30 184 C30 179, 22 176, 19 181 C16 176, 8 179, 8 184 C8 191, 19 197, 19 200 C19 197, 30 191, 30 184 Z'}
           fill="#F4A4A8"
         />
         <!-- Right Heart -->
         <path
           class="c-heart c-heart-3"
-          d="M226 164 C226 158, 216 154, 212 160 C208 154, 198 158, 198 164 C198 172, 212 179, 212 183 C212 179, 226 172, 226 164 Z"
+          d={variant === 'sleep'
+            ? 'M272 78 C272 72, 262 68, 258 74 C254 68, 244 72, 244 78 C244 86, 258 93, 258 97 C258 93, 272 86, 272 78 Z'
+            : 'M226 164 C226 158, 216 154, 212 160 C208 154, 198 158, 198 164 C198 172, 212 179, 212 183 C212 179, 226 172, 226 164 Z'}
           fill="#F4A4A8"
         />
       </g>
 
       <g class="chibi-character">
-        <!-- Lower Body / Feet (tucked under oversized shirt) -->
+        {variant === 'sleep' ? (
+          <g class="chibi-supine-lower">
+            <!-- Belly-Up Supine Body (Lying horizontally on its back on top of letters at Y=157) -->
+            <!-- Soft contact shadow along top of letters -->
+            <ellipse cx="156" cy="160" rx="108" ry="5.5" fill="rgba(0, 0, 0, 0.42)" />
+
+            <!-- Back Arm tucked comfortably behind head like a pillow -->
+            <g class="chibi-supine-arm-back">
+              <path
+                d="M58 134 C40 130, 30 138, 33 149 C36 157, 48 159, 64 155"
+                fill="#D5A787"
+                stroke="#3B2314"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+
+            <!-- Propped-Up Left Foot (Kicks playfully when woken up) -->
+            <g class="chibi-supine-foot-up">
+              <path
+                d="M226 126 C242 110, 262 108, 269 119 C275 129, 261 141, 240 142"
+                fill="#D5A787"
+                stroke="#3B2314"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+
+            <!-- Resting Right Foot on the Letters -->
+            <path
+              d="M226 141 C246 139, 264 143, 266 152 C267 159, 248 159, 222 157"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <!-- Rising & Falling Belly-Up Oversized Coral-Red T-Shirt -->
+            <g class="chibi-supine-torso">
+              <path
+                d="M138 112
+                   C148 93, 176 86, 204 92
+                   C226 97, 237 109, 240 126
+                   C243 140, 241 153, 234 157
+                   C208 158, 168 158, 138 156
+                   C132 144, 132 125, 138 112 Z"
+                fill="#F67E7D"
+                stroke="#E45C5D"
+                stroke-width="4.5"
+                stroke-linejoin="round"
+              />
+              <!-- Shirt Collar Ribbing -->
+              <path
+                d="M144 108 C154 120, 154 144, 142 154"
+                stroke="#E45C5D"
+                stroke-width="4"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M139 113 C147 123, 147 141, 139 150"
+                stroke="#E45C5D"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Shirt Bottom Double Hem Line -->
+              <path
+                d="M228 104 C235 120, 235 142, 227 156"
+                stroke="#E45C5D"
+                stroke-width="3.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Cute Heart on Belly of T-Shirt -->
+              <path
+                class="shirt-heart"
+                d="M202 120 C202 114, 193 111, 190 117 C187 111, 178 114, 178 120 C178 128, 190 134, 190 138 C190 134, 202 128, 202 120 Z"
+                fill="#E45C5D"
+              />
+            </g>
+          </g>
+        ) : (
         <g class="chibi-lower">
+          <!-- Lower Body / Feet (tucked under oversized shirt) -->
           <!-- Left Foot -->
           <path
             d="M80 202 C74 214, 77 228, 89 229 C100 230, 111 221, 117 215"
@@ -198,9 +290,13 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
             fill="#E45C5D"
           />
         </g>
+        )}
 
         <!-- Big Chubby Bear Head & Ears -->
-        <g class="chibi-head">
+        <g
+          class="chibi-head"
+          transform={variant === 'sleep' ? 'translate(-24, 6) rotate(-20 120 105)' : undefined}
+        >
           <!-- Left Ear -->
           <g class="chibi-ear-left">
             <path
@@ -360,6 +456,27 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
             </g>
           )}
         </g>
+
+        {variant === 'sleep' && (
+          <g class="chibi-supine-arm-front">
+            <!-- Front Arm resting on Belly in Sleep, Waving / Rubbing when Awake -->
+            <path
+              d="M162 126 C176 120, 192 124, 192 135 C192 144, 177 147, 161 142"
+              fill="#D5A787"
+              stroke="#3B2314"
+              stroke-width="5.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M146 126 C156 121, 167 126, 167 143 C159 147, 149 146, 144 140 Z"
+              fill="#F67E7D"
+              stroke="#E45C5D"
+              stroke-width="4"
+              stroke-linejoin="round"
+            />
+          </g>
+        )}
 
         {variant === 'pull' && (
           <g class="chibi-rope-grip">
@@ -530,10 +647,10 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
 
       {variant === 'sleep' && (
         <g class="chibi-zzz-group">
-          <!-- Floating Sleep Zzz Glyphs -->
+          <!-- Floating Sleep Zzz Glyphs above Supine Bear -->
           <text
-            x="194"
-            y="72"
+            x="150"
+            y="64"
             class="c-zzz c-zzz-1"
             fill="#FFFFFF"
             stroke="#3B2314"
@@ -546,8 +663,8 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
             z
           </text>
           <text
-            x="209"
-            y="46"
+            x="170"
+            y="42"
             class="c-zzz c-zzz-2"
             fill="#BAE6FD"
             stroke="#3B2314"
@@ -560,7 +677,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
             Z
           </text>
           <text
-            x="224"
+            x="192"
             y="20"
             class="c-zzz c-zzz-3"
             fill="#FFFFFF"
@@ -804,33 +921,45 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   }
 
   /* =====================================================================
-     VARIANT 5: SLEEP ("Die Schlafmütze" napping on Twitch Stream Rim)
+     VARIANT 5: SLEEP ("Die Schlafmütze" lying on its back on SPIELTAGE LIVE)
      ===================================================================== */
   .chibi-sleep {
-    top: -54px;
-    right: clamp(20px, 4vw, 44px);
+    bottom: calc(85% - 6px);
+    top: auto;
+    right: clamp(0px, 1vw, 12px);
+    line-height: 1.2;
+    letter-spacing: normal;
   }
 
   .chibi-sleep .chibi-svg {
-    width: 82px;
-    height: 84px;
+    width: 120px;
+    height: 71px;
   }
 
-  /* In idle sleep state: bear rests chin on paws on the container border */
-  .chibi-sleep .chibi-character {
-    transform-origin: 120px 155px;
-    animation: chibiSleepBreathe 3.6s ease-in-out infinite;
-  }
-
-  .chibi-sleep .chibi-lower {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.26s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .chibi-sleep .chibi-bubble {
+    right: 12px;
+    bottom: calc(100% + 2px);
   }
 
   .chibi-sleep .chibi-peek-paws {
-    opacity: 1;
-    transition: opacity 0.2s ease;
+    display: none;
+  }
+
+  .chibi-sleep .chibi-character {
+    animation: none;
+  }
+
+  /* Cozy rising & falling belly while lying on back */
+  .chibi-sleep .chibi-supine-torso,
+  .chibi-sleep .chibi-supine-arm-front {
+    transform-origin: 188px 157px;
+    animation: supineBellyBreathe 3.4s ease-in-out infinite;
+  }
+
+  /* Propped-up foot gently twitches in sleep */
+  .chibi-sleep .chibi-supine-foot-up {
+    transform-origin: 232px 136px;
+    animation: supineFootDream 3.4s ease-in-out infinite;
   }
 
   /* Hide open button eyes, tongue, and floating hearts while sleeping */
@@ -857,7 +986,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
   .chibi-sleep .chibi-sleep-bubble {
     transform-box: fill-box;
     transform-origin: left center;
-    animation: chibiSleepBubble 3.6s ease-in-out infinite;
+    animation: chibiSleepBubble 3.4s ease-in-out infinite;
     transition: opacity 0.15s ease;
   }
 
@@ -886,26 +1015,10 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     animation-delay: 1.1s;
   }
 
-  /* WAKE-UP STATE (On Hover or Click / Poke for 4s) */
+  /* WAKE-UP STATE (On Hover or Click / Poke for 4s while lying on its back) */
   .chibi-sleep .chibi-trigger:hover .chibi-svg,
   .chibi-sleep.is-talking .chibi-svg {
-    transform: translateY(-20px) scale(1.06);
-  }
-
-  .chibi-sleep .chibi-trigger:hover .chibi-character,
-  .chibi-sleep.is-talking .chibi-character {
-    animation: chibiBreathe 2.4s ease-in-out infinite;
-  }
-
-  .chibi-sleep .chibi-trigger:hover .chibi-lower,
-  .chibi-sleep.is-talking .chibi-lower {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .chibi-sleep .chibi-trigger:hover .chibi-peek-paws,
-  .chibi-sleep.is-talking .chibi-peek-paws {
-    opacity: 0;
+    transform: translateY(-4px) scale(1.05);
   }
 
   .chibi-sleep .chibi-trigger:hover .chibi-eyes,
@@ -933,10 +1046,16 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     transform: translateY(-2px) scale(1);
   }
 
-  /* Left paw rubs eye while right paw waves shyly on wake-up */
-  .chibi-sleep .chibi-trigger:hover .chibi-arm-left,
-  .chibi-sleep.is-talking .chibi-arm-left {
-    animation: rubLeftEye 0.55s ease-in-out infinite alternate;
+  /* Front paw waves / rubs eye & propped foot kicks happily on wake-up */
+  .chibi-sleep .chibi-trigger:hover .chibi-supine-arm-front,
+  .chibi-sleep.is-talking .chibi-supine-arm-front {
+    transform-origin: 156px 136px;
+    animation: supineWaveArm 0.45s ease-in-out infinite alternate;
+  }
+
+  .chibi-sleep .chibi-trigger:hover .chibi-supine-foot-up,
+  .chibi-sleep.is-talking .chibi-supine-foot-up {
+    animation: supineKickFoot 0.4s ease-in-out infinite alternate;
   }
 
   /* =====================================================================
@@ -1083,12 +1202,21 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     }
   }
 
-  @keyframes chibiSleepBreathe {
+  @keyframes supineBellyBreathe {
     0%, 100% {
-      transform: translateY(3px) rotate(4deg) scale(1, 0.95);
+      transform: scaleY(0.96);
     }
     50% {
-      transform: translateY(0px) rotate(2deg) scale(0.99, 0.99);
+      transform: scaleY(1.04);
+    }
+  }
+
+  @keyframes supineFootDream {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-4deg);
     }
   }
 
@@ -1116,12 +1244,21 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     }
   }
 
-  @keyframes rubLeftEye {
+  @keyframes supineWaveArm {
     from {
-      transform: translate(10px, -14px) rotate(36deg);
+      transform: translate(-6px, -6px) rotate(-18deg);
     }
     to {
-      transform: translate(12px, -18px) rotate(48deg);
+      transform: translate(-10px, -12px) rotate(-38deg);
+    }
+  }
+
+  @keyframes supineKickFoot {
+    from {
+      transform: rotate(-14deg);
+    }
+    to {
+      transform: rotate(8deg);
     }
   }
 
@@ -1157,13 +1294,14 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
     }
 
     .chibi-sleep {
-      top: -45px;
-      right: 16px;
+      bottom: calc(85% - 5px);
+      top: auto;
+      right: 0;
     }
 
     .chibi-sleep .chibi-svg {
-      width: 68px;
-      height: 70px;
+      width: 96px;
+      height: 57px;
     }
   }
 </style>
