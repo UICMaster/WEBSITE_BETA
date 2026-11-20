@@ -29,6 +29,9 @@ const waveformHeights = [
 <Layout
   title={`${player.name} – Ruhmeshalle | Ultra Instinct Crew`}
   description={`Ruhmeshalle der Ultra Instinct Crew: Werdegang, Biografie, Sprachaufnahmen und gespielte Splits von ${player.name}.`}
+  ogType="profile"
+  image={player.photoSrc || '/og-image.png'}
+  imageAlt={`Porträt von ${player.name} – Ruhmeshalle der Ultra Instinct Crew`}
 >
   <!-- Schema.org ProfilePage & Person Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify({

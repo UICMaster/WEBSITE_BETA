@@ -12,20 +12,46 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  ogType?: 'website' | 'profile' | 'article';
   canonical?: string;
 }
 
 const siteUrl = "https://ultrainstinctcrew.com";
+const basePath = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+const originUrl = (Astro.site ? Astro.site.origin : siteUrl).replace(/\/+$/, '');
 const defaultCanonical = new URL(Astro.url.pathname, Astro.site || siteUrl).href;
 
 const {
   title = "Ultra Instinct Crew | League of Legends eSport Organisation & Community",
   description = "Die Ultra Instinct Crew (UIC) ist deine League of Legends eSport Organisation und Gaming Community aus Deutschland. Erlebe Prime League Action, professionelles LoL Coaching und Events.",
-  image = "/icon512_maskable.png",
+  image = "/og-image.png",
+  imageAlt = "Ultra Instinct Crew – Deutsche League of Legends eSport Organisation in der Prime League",
+  imageWidth,
+  imageHeight,
+  ogType = "website",
   canonical = defaultCanonical
 } = Astro.props;
 
-const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const isDefaultOg = image === "/og-image.png";
+const resolvedImageWidth = imageWidth ?? (isDefaultOg ? 1200 : undefined);
+const resolvedImageHeight = imageHeight ?? (isDefaultOg ? 630 : undefined);
+
+const fullImageUrl = image.startsWith('http')
+  ? image
+  : `${originUrl}${basePath}${image.startsWith('/') ? image : `/${image}`}`;
+
+const imageExt = fullImageUrl.split('?')[0].split('.').pop()?.toLowerCase();
+const imageMimeType =
+  imageExt === 'webp'
+    ? 'image/webp'
+    : imageExt === 'jpg' || imageExt === 'jpeg'
+      ? 'image/jpeg'
+      : 'image/png';
+
+const swUrl = `${basePath}/service-worker.js`;
 ---
 
 <!DOCTYPE html>
@@ -33,44 +59,53 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Ultra Instinct Crew" />
     <link rel="canonical" href={canonical} />
 
-    <!-- Mobile Web App & Theme -->
-    <meta name="theme-color" content="#06080c" />
+    <!-- PWA & Theme -->
+    <meta name="theme-color" content="#000000" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="UIC" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <!-- Modern Minimalist Favicons (Adaptive Vector SVG + Multi-Size ICO + Apple Touch) -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Preload Critical Above-the-Fold Fonts (LCP / FCP Optimization) -->
     <link rel="preload" href={fontJakarta800} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={fontJakarta400} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={fontSpace700} as="font" type="font/woff2" crossorigin />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <!-- Open Graph / Discord / WhatsApp / Facebook / LinkedIn -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Ultra Instinct Crew" />
+    <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:secure_url" content={fullImageUrl} />
+    <meta property="og:image:type" content={imageMimeType} />
+    {resolvedImageWidth && <meta property="og:image:width" content={String(resolvedImageWidth)} />}
+    {resolvedImageHeight && <meta property="og:image:height" content={String(resolvedImageHeight)} />}
+    <meta property="og:image:alt" content={imageAlt} />
 
-    <!-- Twitter -->
+    <!-- X / Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@uic_gaming" />
     <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImageUrl} />
-    <meta name="twitter:site" content="@uic_gaming" />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <!-- Schema.org SportsOrganization (DSGVO Safe / Inline) -->
     <script type="application/ld+json">
@@ -81,7 +116,7 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
         "name": "Ultra Instinct Crew",
         "alternateName": "UIC",
         "url": "https://ultrainstinctcrew.com/",
-        "logo": "https://ultrainstinctcrew.com/assets/logo/logo.png",
+        "logo": "https://ultrainstinctcrew.com/android-chrome-512x512.png",
         "description": "Deutsche League of Legends eSports Organisation in der Prime League.",
         "sameAs": [
           "https://www.twitch.tv/ultrainstinctcrew",
@@ -127,10 +162,10 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
         top: var(--space-md);
       }
     </style>
-    <script is:inline>
+    <script is:inline define:vars={{ swUrl }}>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+          navigator.serviceWorker.register(swUrl).catch(() => {});
         });
       }
 
