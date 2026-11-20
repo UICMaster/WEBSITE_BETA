@@ -4,25 +4,75 @@ import path from 'node:path';
 // --- PATHS & HEADERS ---
 const INPUT_PATH = path.resolve(process.cwd(), 'data', 'teams.json');
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data', 'prime_stats.json');
-const HEADERS = { 'User-Agent': 'UIC-Data-Warehouse/1.0' };
+const HEADERS = {
+    'User-Agent': 'UIC-Data-Warehouse/1.0',
+    'Accept': 'application/json'
+};
+
+const FETCH_TIMEOUT_MS = 15_000;
+const MAX_RETRIES = 3;
+const RETRY_BASE_DELAY_MS = 750;
 
 // --- HELPERS ---
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Resilient JSON fetch with timeout and exponential backoff on transient failures
+async function fetchJsonWithRetry(url, { retries = MAX_RETRIES, timeoutMs = FETCH_TIMEOUT_MS } = {}) {
+    let lastError;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+        try {
+            const response = await fetch(url, {
+                headers: HEADERS,
+                signal: AbortSignal.timeout(timeoutMs)
+            });
+
+            if (response.ok) {
+                return await response.json();
+            }
+
+            const isRetryable = response.status === 429 || response.status >= 500;
+            lastError = new Error(`HTTP ${response.status} ${response.statusText || ''}`.trim());
+
+            if (!isRetryable || attempt === retries) {
+                throw lastError;
+            }
+
+            const retryAfterSec = Number(response.headers.get('retry-after'));
+            const delayMs =
+                Number.isFinite(retryAfterSec) && retryAfterSec > 0
+                    ? Math.min(retryAfterSec * 1000, 10_000)
+                    : RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
+
+            console.warn(`⏳ Retry ${attempt}/${retries - 1} for ${url} after ${lastError.message} (${delayMs}ms)...`);
+            await sleep(delayMs);
+        } catch (err) {
+            lastError = err;
+            if (attempt === retries) {
+                throw lastError;
+            }
+            const delayMs = RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
+            console.warn(`⏳ Retry ${attempt}/${retries - 1} for ${url} after error "${err.message}" (${delayMs}ms)...`);
+            await sleep(delayMs);
+        }
+    }
+    throw lastError;
+}
+
 // Helper to safely match Riot IDs between API and Local JSON
 function isSamePlayer(apiSummonerName, localPlayer) {
     if (!apiSummonerName || !localPlayer || !localPlayer.gameName) return false;
-    
+
     const apiClean = apiSummonerName.toLowerCase().trim();
     const localNameClean = localPlayer.gameName.toLowerCase().trim();
-    
-    // Fix: Safely construct tag combinations
+
     const hasTag = !!localPlayer.tagLine;
-    const localCombined = hasTag 
+    const localCombined = hasTag
         ? `${localPlayer.gameName}#${localPlayer.tagLine}`.toLowerCase().trim()
         : localNameClean;
 
     // 1. Exact match with full Riot ID (e.g. "uic speedy#euw" === "uic speedy#euw")
     if (apiClean === localCombined) return true;
-    
+
     // 2. Exact match with just gameName (e.g. "uic speedy" === "uic speedy")
     if (apiClean === localNameClean) return true;
 
@@ -32,16 +82,37 @@ function isSamePlayer(apiSummonerName, localPlayer) {
     return false;
 }
 
+function mergeRosterWithFallback(localRoster, prevRoster) {
+    const prevList = Array.isArray(prevRoster) ? prevRoster : [];
+    return (localRoster || []).map((localPlayer) => {
+        const prevMatch = prevList.find(
+            (p) =>
+                (localPlayer.playerId && p.playerId === localPlayer.playerId) ||
+                isSamePlayer(p.gameName, localPlayer)
+        );
+        return {
+            ...localPlayer,
+            api_id: prevMatch?.api_id ?? null,
+            isCaptain: prevMatch?.isCaptain ?? localPlayer.isCaptain,
+            api_name: prevMatch?.api_name ?? null,
+            in_api_roster: prevMatch?.in_api_roster ?? false
+        };
+    });
+}
+
 async function buildGoldenJSON() {
     console.log("🚀 Starting Golden Prime League Sync...");
     const localTeamsData = JSON.parse(fs.readFileSync(INPUT_PATH, 'utf8'));
     const goldenDatabase = {};
 
-    // Seed cache of known enemy team logos from existing prime_stats.json to minimize API calls
+    // Load previous prime_stats.json for per-team error fallback & enemy logo caching
+    let existingData = {};
     const enemyLogoCache = new Map();
+    const prevMatchMetaCache = new Map();
+
     if (fs.existsSync(OUTPUT_PATH)) {
         try {
-            const existingData = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
+            existingData = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8')) || {};
             for (const teamObj of Object.values(existingData)) {
                 for (const match of (teamObj?.matches || [])) {
                     const eId = match?.enemy_team?.id;
@@ -49,38 +120,60 @@ async function buildGoldenJSON() {
                     if (eId && eLogo) {
                         enemyLogoCache.set(eId, eLogo);
                     }
+                    if (match?.id != null) {
+                        prevMatchMetaCache.set(match.id, {
+                            confirmed: Boolean(match.confirmed),
+                            enemyLogoUrl: eLogo || null
+                        });
+                    }
                 }
             }
         } catch {
-            // Ignore malformed existing file
+            existingData = {};
         }
     }
 
-    for (const [teamKey, localTeamInfo] of Object.entries(localTeamsData)) {
-        const teamId = localTeamInfo.primeLeagueId;
-
-        // Only include teams with a valid Prime League ID
+    // Track active teams strictly from data/teams.json (removed teams are automatically purged)
+    const activeEntries = Object.entries(localTeamsData).filter(([teamKey, info]) => {
+        const teamId = info?.primeLeagueId;
         if (!teamId || String(teamId).trim() === "") {
             console.log(`⚠️ Skipping ${teamKey} (No Prime League ID).`);
-            continue;
+            return false;
         }
+        return true;
+    });
 
-        console.log(`📡 Fetching data for: ${localTeamInfo.teamDisplay || teamKey}...`);
-        
-        // Initialize the base structure inheriting your local data
+    const activeKeys = new Set(activeEntries.map(([k]) => k));
+    const removedKeys = Object.keys(existingData).filter((k) => !activeKeys.has(k));
+    if (removedKeys.length > 0) {
+        console.log(`🧹 Removing teams no longer present in teams.json: ${removedKeys.join(', ')}`);
+    }
+
+    let succeededCount = 0;
+    let failedCount = 0;
+
+    for (const [teamKey, localTeamInfo] of activeEntries) {
+        const teamId = String(localTeamInfo.primeLeagueId).trim();
+        const prevTeam = existingData[teamKey];
+        const hasValidPrevForSameId =
+            prevTeam &&
+            String(prevTeam.primeLeagueId || '').trim() === teamId &&
+            prevTeam.api_meta !== null;
+
+        console.log(`📡 Fetching data for: ${localTeamInfo.teamDisplay || teamKey} (ID: ${teamId})...`);
+
+        // Base structure inheriting local teams.json metadata
         goldenDatabase[teamKey] = {
             ...localTeamInfo,
             api_meta: null,
-            roster: [...localTeamInfo.roster], // Clone to safely mutate
+            roster: [...(localTeamInfo.roster || [])],
             matches: []
         };
 
         try {
-            const response = await fetch(`https://primebot.me/api/v1/teams/${teamId}/`, { headers: HEADERS });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const apiData = await response.json();
+            const apiData = await fetchJsonWithRetry(`https://primebot.me/api/v1/teams/${teamId}/`);
 
-            // 1. INHERIT API META DATA
+            // 1. INHERIT LATEST API META DATA
             goldenDatabase[teamKey].api_meta = {
                 id: apiData.id,
                 name: apiData.name,
@@ -91,24 +184,24 @@ async function buildGoldenJSON() {
                 updated_at: apiData.updated_at
             };
 
-            // 2. MERGE ROSTERS (Local Data + API Data) using the Riot ID Helper
+            // 2. MERGE ROSTERS (Local Data + API Data)
             const apiPlayers = apiData.players || [];
-            
-            // Update local roster with API specifics
-            goldenDatabase[teamKey].roster = goldenDatabase[teamKey].roster.map(localPlayer => {
-                const apiMatch = apiPlayers.find(p => isSamePlayer(p.summoner_name, localPlayer));
+
+            goldenDatabase[teamKey].roster = goldenDatabase[teamKey].roster.map((localPlayer) => {
+                const apiMatch = apiPlayers.find((p) => isSamePlayer(p.summoner_name, localPlayer));
                 return {
                     ...localPlayer,
                     api_id: apiMatch ? apiMatch.id : null,
                     isCaptain: apiMatch ? apiMatch.is_leader : localPlayer.isCaptain,
-                    api_name: apiMatch ? apiMatch.name : null, // The real name if provided to the API
+                    api_name: apiMatch ? apiMatch.name : null,
                     in_api_roster: !!apiMatch
                 };
             });
 
-            // Append players found in API but missing in your local teams.json (Edge Case Safety)
-            apiPlayers.forEach(apiPlayer => {
-                const existsLocally = goldenDatabase[teamKey].roster.find(localPlayer => isSamePlayer(apiPlayer.summoner_name, localPlayer));
+            apiPlayers.forEach((apiPlayer) => {
+                const existsLocally = goldenDatabase[teamKey].roster.find((localPlayer) =>
+                    isSamePlayer(apiPlayer.summoner_name, localPlayer)
+                );
                 if (!existsLocally) {
                     goldenDatabase[teamKey].roster.push({
                         playerId: "UNKNOWN_LOCAL",
@@ -123,50 +216,51 @@ async function buildGoldenJSON() {
                 }
             });
 
-            // 3. INHERIT AND FORMAT ALL MATCHES
-            if (apiData.matches) {
+            // 3. INHERIT AND FORMAT ALL LATEST MATCHES
+            if (Array.isArray(apiData.matches)) {
                 const enrichedMatches = [];
-                
-                // Fix: Switch to async for...of loop to fetch missing 'match_begin_confirmed' flags & enemy team logos
-                for (const m of apiData.matches) {
-                    let isConfirmed = false;
-                    const enemyId = m.enemy_team?.id ?? null;
-                    let enemyLogoUrl = m.enemy_team?.logo_url || (enemyId ? enemyLogoCache.get(enemyId) : null) || null;
 
-                    // If the match has a result, it happened in the past and is inherently confirmed
+                for (const m of apiData.matches) {
+                    const prevMeta = prevMatchMetaCache.get(m.id);
+                    let isConfirmed = prevMeta?.confirmed ?? false;
+                    const enemyId = m.enemy_team?.id ?? null;
+                    let enemyLogoUrl =
+                        m.enemy_team?.logo_url ||
+                        (enemyId ? enemyLogoCache.get(enemyId) : null) ||
+                        prevMeta?.enemyLogoUrl ||
+                        null;
+
                     if (m.result) {
                         isConfirmed = true;
-                        // Fetch enemy logo once per unique enemy team if not yet cached
                         if (enemyId && !enemyLogoCache.has(enemyId)) {
                             try {
-                                const matchResponse = await fetch(`https://primebot.me/api/v1/matches/${m.id}/`, { headers: HEADERS });
-                                if (matchResponse.ok) {
-                                    const matchDetail = await matchResponse.json();
-                                    enemyLogoUrl = matchDetail.enemy_team?.logo_url || null;
+                                const matchDetail = await fetchJsonWithRetry(
+                                    `https://primebot.me/api/v1/matches/${m.id}/`,
+                                    { retries: 2, timeoutMs: 10_000 }
+                                );
+                                enemyLogoUrl = matchDetail.enemy_team?.logo_url || enemyLogoUrl || null;
+                                if (enemyLogoUrl) {
                                     enemyLogoCache.set(enemyId, enemyLogoUrl);
                                 }
-                                await new Promise(r => setTimeout(r, 150));
+                                await sleep(150);
                             } catch (err) {
-                                console.error(`⚠️ Could not fetch enemy logo for match ${m.id}`);
+                                console.warn(`⚠️ Could not fetch enemy logo for match ${m.id}: ${err.message}`);
                             }
                         }
-                    } 
-                    // If it has NO result, it's upcoming. Fetch the match detail endpoint to get the confirmed flag & enemy logo.
-                    else {
+                    } else {
                         try {
-                            const matchResponse = await fetch(`https://primebot.me/api/v1/matches/${m.id}/`, { headers: HEADERS });
-                            if (matchResponse.ok) {
-                                const matchDetail = await matchResponse.json();
-                                isConfirmed = matchDetail.match_begin_confirmed === true;
-                                enemyLogoUrl = matchDetail.enemy_team?.logo_url || enemyLogoUrl || null;
-                                if (enemyId) {
-                                    enemyLogoCache.set(enemyId, enemyLogoUrl);
-                                }
+                            const matchDetail = await fetchJsonWithRetry(
+                                `https://primebot.me/api/v1/matches/${m.id}/`,
+                                { retries: 2, timeoutMs: 10_000 }
+                            );
+                            isConfirmed = matchDetail.match_begin_confirmed === true;
+                            enemyLogoUrl = matchDetail.enemy_team?.logo_url || enemyLogoUrl || null;
+                            if (enemyId && enemyLogoUrl) {
+                                enemyLogoCache.set(enemyId, enemyLogoUrl);
                             }
-                            // Respect API rate limits on these secondary calls
-                            await new Promise(r => setTimeout(r, 200));
+                            await sleep(200);
                         } catch (err) {
-                            console.error(`⚠️ Could not fetch confirmation status for match ${m.id}`);
+                            console.warn(`⚠️ Could not fetch confirmation status for match ${m.id}: ${err.message}`);
                         }
                     }
 
@@ -176,39 +270,77 @@ async function buildGoldenJSON() {
                         match_type: m.match_type,
                         match_day: m.match_day,
                         begin: m.begin,
-                        confirmed: isConfirmed, // Pulled correctly via the detail endpoint
+                        confirmed: isConfirmed,
                         result: m.result || null,
                         prime_league_link: m.prime_league_link,
                         updated_at: m.updated_at,
-                        enemy_team: m.enemy_team ? {
-                            id: m.enemy_team.id,
-                            name: m.enemy_team.name,
-                            team_tag: m.enemy_team.team_tag,
-                            prime_league_link: m.enemy_team.prime_league_link,
-                            logo_url: enemyLogoUrl
-                        } : null,
+                        enemy_team: m.enemy_team
+                            ? {
+                                  id: m.enemy_team.id,
+                                  name: m.enemy_team.name,
+                                  team_tag: m.enemy_team.team_tag,
+                                  prime_league_link: m.enemy_team.prime_league_link,
+                                  logo_url: enemyLogoUrl
+                              }
+                            : null,
                         team_lineup: m.team_lineup || []
                     });
                 }
-                
+
                 goldenDatabase[teamKey].matches = enrichedMatches;
             }
 
+            succeededCount++;
+            console.log(`✅ ${teamKey}: synced (${goldenDatabase[teamKey].matches.length} matches)`);
         } catch (e) {
+            failedCount++;
             console.error(`❌ Error fetching data for ${teamKey}:`, e.message);
+
+            // Fail-safe: retain previous valid API data for this team instead of wiping it
+            if (hasValidPrevForSameId) {
+                goldenDatabase[teamKey] = {
+                    ...localTeamInfo,
+                    api_meta: prevTeam.api_meta,
+                    roster: mergeRosterWithFallback(localTeamInfo.roster, prevTeam.roster),
+                    matches: Array.isArray(prevTeam.matches) ? prevTeam.matches : []
+                };
+                console.warn(
+                    `🛡️ Preserved previous cached Prime League data for ${teamKey} (${goldenDatabase[teamKey].matches.length} matches).`
+                );
+            }
         }
 
         // Respect API rate limits between team calls
-        await new Promise(r => setTimeout(r, 250));
+        await sleep(250);
     }
 
-    // Write the Golden JSON
+    const totalAttempted = activeEntries.length;
+
+    // Global Outage Guard: if PrimeBot API is completely unreachable or >50% of calls failed,
+    // do not overwrite an intact prime_stats.json unless teams were removed from teams.json.
+    if (totalAttempted > 0 && failedCount > totalAttempted / 2) {
+        if (removedKeys.length > 0 && Object.keys(existingData).length > 0) {
+            // Still prune removed teams while preserving all remaining cached teams
+            fs.writeFileSync(OUTPUT_PATH, JSON.stringify(goldenDatabase, null, 2));
+            console.error(
+                `⛔ PrimeBot API outage detected (${failedCount}/${totalAttempted} failed). Pruned removed teams while preserving remaining cached data.`
+            );
+            process.exit(1);
+        }
+        console.error(
+            `⛔ Aborting write: PrimeBot API outage detected (${failedCount}/${totalAttempted} teams failed). Existing prime_stats.json left untouched.`
+        );
+        process.exit(1);
+    }
+
+    // Write the Golden JSON (strictly containing only active teams from teams.json)
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(goldenDatabase, null, 2));
-    console.log(`✅ Golden Data successfully built: ${OUTPUT_PATH}`);
+    console.log(
+        `✅ Golden Data successfully built (${succeededCount}/${totalAttempted} fresh, ${failedCount} preserved from cache): ${OUTPUT_PATH}`
+    );
 }
 
-// Fix: Execute with error catching to prevent Unhandled Promise Rejections
-buildGoldenJSON().catch(err => {
+buildGoldenJSON().catch((err) => {
     console.error("💥 Fatal Error:", err);
     process.exit(1);
 });
