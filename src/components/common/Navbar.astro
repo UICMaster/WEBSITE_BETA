@@ -26,13 +26,23 @@
         <li><a href="/#medien" class="nav-item" data-nav-section="medien">Medien</a></li>
         <li class="nav-divider" aria-hidden="true"></li>
         <li>
-          <a href="https://teams.spized.com/ultrainstinctcrew" target="_blank" rel="noopener noreferrer" class="nav-item nav-ext">
-            Shop <span class="arrow-ext">↗</span>
+          <a href="https://teams.spized.com/ultrainstinctcrew" target="_blank" rel="noopener noreferrer" class="nav-item nav-ext" title="Offiziellen UIC Team-Shop in neuem Tab öffnen">
+            <span>Shop</span>
+            <svg class="icon-ext-launch" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
           </a>
         </li>
         <li>
-          <a href="https://turnier.ultrainstinctcrew.com/" target="_blank" rel="noopener noreferrer" class="nav-item nav-ext">
-            Turnier <span class="arrow-ext">↗</span>
+          <a href="https://turnier.ultrainstinctcrew.com/" target="_blank" rel="noopener noreferrer" class="nav-item nav-ext" title="UIC Turnier-Plattform in neuem Tab öffnen">
+            <span>Turnier</span>
+            <svg class="icon-ext-launch" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
           </a>
         </li>
       </ul>
@@ -252,7 +262,13 @@
         </svg>
         <span>Offizieller Shop</span>
       </span>
-      <span class="arrow-ext" aria-hidden="true">↗</span>
+      <span class="sheet-ext-launch" aria-hidden="true">
+        <svg class="icon-ext-launch" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
     </a>
 
     <a
@@ -273,7 +289,13 @@
         </svg>
         <span>UIC Turnier</span>
       </span>
-      <span class="arrow-ext" aria-hidden="true">↗</span>
+      <span class="sheet-ext-launch" aria-hidden="true">
+        <svg class="icon-ext-launch" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
     </a>
   </div>
 
@@ -346,7 +368,7 @@
 
   /* Scrolled Pill Pop State */
   .floating-nav-wrapper.is-scrolled .pill-shell {
-    max-width: 1120px;
+    max-width: 1180px;
     gap: 1rem;
     padding: 7px 10px 7px 18px;
     background: rgba(13, 13, 16, 0.93);
@@ -473,12 +495,50 @@
   }
 
   .nav-ext {
-    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #e4e4e7;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 0.56rem clamp(0.72rem, 0.92vw, 1rem);
+    transition:
+      padding 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      font-size 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      color var(--transition-fast),
+      background var(--transition-fast),
+      border-color var(--transition-fast);
   }
 
-  .arrow-ext {
-    font-size: 0.7em;
-    opacity: 0.7;
+  .floating-nav-wrapper.is-scrolled .nav-ext {
+    padding: 0.38rem 0.76rem;
+  }
+
+  .nav-ext:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.32);
+  }
+
+  .icon-ext-launch {
+    flex-shrink: 0;
+    opacity: 0.82;
+    transition:
+      transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity var(--transition-fast),
+      width 0.32s ease,
+      height 0.32s ease;
+  }
+
+  .floating-nav-wrapper.is-scrolled .nav-ext .icon-ext-launch {
+    width: 12.5px;
+    height: 12.5px;
+  }
+
+  .nav-ext:hover .icon-ext-launch,
+  .sheet-ext-pill:hover .icon-ext-launch {
+    opacity: 1;
+    transform: translate(1.5px, -1.5px);
   }
 
   /* Right Action */
@@ -870,6 +930,26 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .sheet-ext-launch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-xs);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      flex-shrink: 0;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .sheet-ext-pill:hover .sheet-ext-launch {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.32);
+      color: #ffffff;
     }
 
     .sheet-footer {
