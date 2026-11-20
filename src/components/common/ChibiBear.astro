@@ -98,14 +98,14 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
       <g class="chibi-character">
         {variant === 'sleep' ? (
           <g class="chibi-supine-lower">
-            <!-- Belly-Up Supine Body (Lying horizontally on its back on top of letters at Y=157) -->
+            <!-- Lounging-on-Back Body resting on top of SPIELTAGE LIVE letters at Y=158 -->
             <!-- Soft contact shadow along top of letters -->
-            <ellipse cx="156" cy="160" rx="108" ry="5.5" fill="rgba(0, 0, 0, 0.42)" />
+            <ellipse cx="156" cy="160" rx="104" ry="5" fill="rgba(0, 0, 0, 0.45)" />
 
-            <!-- Back Arm tucked comfortably behind head like a pillow -->
+            <!-- Left Arm bent behind head like a cozy pillow -->
             <g class="chibi-supine-arm-back">
               <path
-                d="M58 134 C40 130, 30 138, 33 149 C36 157, 48 159, 64 155"
+                d="M64 136 C40 134, 26 118, 32 104 C37 92, 52 94, 62 108"
                 fill="#D5A787"
                 stroke="#3B2314"
                 stroke-width="6"
@@ -114,10 +114,10 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               />
             </g>
 
-            <!-- Propped-Up Left Foot (Kicks playfully when woken up) -->
+            <!-- Propped-Up Foot on the Right (Kicks playfully when woken up) -->
             <g class="chibi-supine-foot-up">
               <path
-                d="M226 126 C242 110, 262 108, 269 119 C275 129, 261 141, 240 142"
+                d="M214 132 C228 114, 247 112, 254 122 C260 131, 246 144, 222 145"
                 fill="#D5A787"
                 stroke="#3B2314"
                 stroke-width="6"
@@ -126,9 +126,9 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               />
             </g>
 
-            <!-- Resting Right Foot on the Letters -->
+            <!-- Resting Foot on the Letters -->
             <path
-              d="M226 141 C246 139, 264 143, 266 152 C267 159, 248 159, 222 157"
+              d="M212 144 C232 142, 250 146, 252 154 C253 160, 235 160, 208 159"
               fill="#D5A787"
               stroke="#3B2314"
               stroke-width="6"
@@ -136,49 +136,52 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               stroke-linejoin="round"
             />
 
-            <!-- Rising & Falling Belly-Up Oversized Coral-Red T-Shirt -->
+            <!-- Horizontal Belly-Up Coral-Red T-Shirt (Directly under chin, back resting on Y=159) -->
             <g class="chibi-supine-torso">
               <path
-                d="M138 112
-                   C148 93, 176 86, 204 92
-                   C226 97, 237 109, 240 126
-                   C243 140, 241 153, 234 157
-                   C208 158, 168 158, 138 156
-                   C132 144, 132 125, 138 112 Z"
+                d="M78 136
+                   C72 146, 76 159, 92 159
+                   L208 159
+                   C222 159, 226 147, 222 133
+                   C218 119, 200 112, 178 114
+                   C162 115, 152 120, 144 126
+                   C126 136, 98 139, 78 136 Z"
                 fill="#F67E7D"
                 stroke="#E45C5D"
                 stroke-width="4.5"
                 stroke-linejoin="round"
               />
-              <!-- Shirt Collar Ribbing -->
+              <!-- Shirt Collar Ribbing Hugging Directly Under the Chin -->
               <path
-                d="M144 108 C154 120, 154 144, 142 154"
+                d="M84 146 C112 152, 140 146, 160 134"
                 stroke="#E45C5D"
                 stroke-width="4"
                 stroke-linecap="round"
                 fill="none"
               />
               <path
-                d="M139 113 C147 123, 147 141, 139 150"
+                d="M90 143 C114 148, 138 143, 155 132"
                 stroke="#E45C5D"
                 stroke-width="3"
                 stroke-linecap="round"
                 fill="none"
               />
-              <!-- Shirt Bottom Double Hem Line -->
+              <!-- Shirt Bottom Double Hem Line near Feet -->
               <path
-                d="M228 104 C235 120, 235 142, 227 156"
+                d="M208 118 C217 130, 217 147, 206 158"
                 stroke="#E45C5D"
                 stroke-width="3.5"
                 stroke-linecap="round"
                 fill="none"
               />
-              <!-- Cute Heart on Belly of T-Shirt -->
-              <path
-                class="shirt-heart"
-                d="M202 120 C202 114, 193 111, 190 117 C187 111, 178 114, 178 120 C178 128, 190 134, 190 138 C190 134, 202 128, 202 120 Z"
-                fill="#E45C5D"
-              />
+              <!-- Cute Heart on Upward-Facing Belly of T-Shirt -->
+              <g transform="rotate(-8 174 137)">
+                <path
+                  class="shirt-heart"
+                  d="M185 134 C185 128, 176 125, 173 131 C170 125, 161 128, 161 134 C161 142, 173 148, 173 152 C173 148, 185 142, 185 134 Z"
+                  fill="#E45C5D"
+                />
+              </g>
             </g>
           </g>
         ) : (
@@ -295,7 +298,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
         <!-- Big Chubby Bear Head & Ears -->
         <g
           class="chibi-head"
-          transform={variant === 'sleep' ? 'translate(-24, 6) rotate(-20 120 105)' : undefined}
+          transform={variant === 'sleep' ? 'translate(-12, -10) rotate(-6 120 115)' : undefined}
         >
           <!-- Left Ear -->
           <g class="chibi-ear-left">
@@ -366,19 +369,33 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
 
           {variant === 'sleep' && (
             <g class="chibi-eyes-closed">
-              <!-- Peaceful Closed Sleeping Eye Arcs (︶ ︶) -->
+              <!-- Bold Peaceful Closed Sleeping Eye Arcs (︶ ︶) with Outer Lashes -->
               <path
-                d="M67 110 C71 118, 83 118, 87 110"
+                d="M64 109 C70 119, 84 119, 89 109"
                 fill="none"
                 stroke="#331E12"
-                stroke-width="5.5"
+                stroke-width="6.5"
                 stroke-linecap="round"
               />
               <path
-                d="M129 110 C133 118, 145 118, 149 110"
+                d="M61 112 L66 110"
                 fill="none"
                 stroke="#331E12"
-                stroke-width="5.5"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M127 109 C132 119, 146 119, 152 109"
+                fill="none"
+                stroke="#331E12"
+                stroke-width="6.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M150 110 L155 112"
+                fill="none"
+                stroke="#331E12"
+                stroke-width="5"
                 stroke-linecap="round"
               />
             </g>
@@ -411,15 +428,15 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               <!-- Cute Anime/Kawaii Breathing Sleep Bubble -->
               <g class="chibi-sleep-bubble">
                 <circle
-                  cx="125"
-                  cy="121"
-                  r="11.5"
+                  cx="122"
+                  cy="122"
+                  r="8.5"
                   fill="#BAE6FD"
                   fill-opacity="0.82"
                   stroke="#3B2314"
-                  stroke-width="3.5"
+                  stroke-width="3.2"
                 />
-                <circle cx="129" cy="117" r="3" fill="#FFFFFF" />
+                <circle cx="125" cy="119" r="2.4" fill="#FFFFFF" />
               </g>
               <!-- Startled Exclamation Mark (!) on Wake-Up -->
               <g class="chibi-wake-alert">
@@ -461,7 +478,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
           <g class="chibi-supine-arm-front">
             <!-- Front Arm resting on Belly in Sleep, Waving / Rubbing when Awake -->
             <path
-              d="M162 126 C176 120, 192 124, 192 135 C192 144, 177 147, 161 142"
+              d="M168 118 C182 114, 196 119, 195 129 C194 138, 179 140, 164 134"
               fill="#D5A787"
               stroke="#3B2314"
               stroke-width="5.5"
@@ -469,7 +486,7 @@ const phrasesJson = JSON.stringify(phrasesByVariant[variant]);
               stroke-linejoin="round"
             />
             <path
-              d="M146 126 C156 121, 167 126, 167 143 C159 147, 149 146, 144 140 Z"
+              d="M152 121 C162 116, 173 120, 172 136 C164 139, 155 138, 150 132 Z"
               fill="#F67E7D"
               stroke="#E45C5D"
               stroke-width="4"
