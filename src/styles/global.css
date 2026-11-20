@@ -245,7 +245,8 @@ h1, h2, h3, h4, h5, h6 {
 .event-bento-card,
 .asset-card,
 .brandkit-card,
-.team-fixture-card {
+.team-fixture-card,
+.partner-feature-card {
   position: relative;
   background-image: radial-gradient(
     420px circle at var(--spot-x, -999px) var(--spot-y, -999px),
@@ -260,7 +261,8 @@ h1, h2, h3, h4, h5, h6 {
 .event-bento-card::after,
 .asset-card::after,
 .brandkit-card::after,
-.team-fixture-card::after {
+.team-fixture-card::after,
+.partner-feature-card::after {
   content: '';
   position: absolute;
   inset: 0;
