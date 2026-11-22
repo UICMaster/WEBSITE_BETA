@@ -587,6 +587,16 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         return { label: dayStr + " " + timeStr, isToday: isToday, isTomorrow: isTomorrow };
       }
 
+      function isPlayoffMatch(m) {
+        return /playoff|tiebreaker|relegation|promotion|final/i.test(String((m && m.match_type) || ""));
+      }
+
+      function formatMatchDayShort(m, prefix) {
+        if (!m) return (prefix || "T") + "\u2013";
+        if (isPlayoffMatch(m)) return "PO" + (m.match_day ? m.match_day : "");
+        return (prefix || "T") + (m.match_day || "\u2013");
+      }
+
       // 8. Compute Team State & Automatically Select Next Match of the Given Team
       function computeTeamState(teamKey) {
         var fallbackLogo = "/assets/logo/logo.svg";
@@ -602,9 +612,19 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var formArr = [];
         var nextMatch = null;
         var cutoff = new Date(new Date().getTime() - (6 * 3600 * 1000));
+        var activeMatches = [];
 
         if (teamStats && teamStats.matches && Array.isArray(teamStats.matches)) {
-          var played = teamStats.matches.filter(function(m) { return m.result; })
+          var hasMainStage = teamStats.matches.some(function(m) {
+            return String(m.match_type || "").toLowerCase() !== "group";
+          });
+          activeMatches = hasMainStage
+            ? teamStats.matches.filter(function(m) {
+                return String(m.match_type || "").toLowerCase() !== "group";
+              })
+            : teamStats.matches.slice();
+
+          var played = activeMatches.filter(function(m) { return m.result; })
             .sort(function(a, b) { return new Date(a.begin) - new Date(b.begin); });
 
           for (var pIdx = 0; pIdx < played.length; pIdx++) {
@@ -619,7 +639,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
           // Optional explicit matchday/match selection (?matchday=4 or ?match=1165669)
           var explicitMatch = null;
           if (matchDayParam) {
-            var candidates = teamStats.matches.filter(function(m) {
+            var candidates = activeMatches.filter(function(m) {
               return String(m.id) === matchDayParam || String(m.match_day) === matchDayParam;
             });
             if (candidates.length > 0) {
@@ -631,11 +651,11 @@ import EndingScene from '../components/overlay/EndingScene.astro';
           }
 
           // Chronologically next upcoming match of this team; fallback to latest unplayed or last played
-          var upcomingFuture = teamStats.matches.filter(function(m) {
+          var upcomingFuture = activeMatches.filter(function(m) {
             return !m.result && (!m.begin || new Date(m.begin) >= cutoff);
           }).sort(function(a, b) { return new Date(a.begin) - new Date(b.begin); });
 
-          var anyUnplayed = teamStats.matches.filter(function(m) {
+          var anyUnplayed = activeMatches.filter(function(m) {
             return !m.result;
           }).sort(function(a, b) { return new Date(b.begin || 0) - new Date(a.begin || 0); });
 
@@ -647,8 +667,11 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var matchTimeStr = "TERMIN OFFEN";
         var isConfirmed = false;
         var matchDayNum = null;
+        var isPlayoff = false;
+        var matchStageTitle = null;
 
         if (nextMatch) {
+          isPlayoff = isPlayoffMatch(nextMatch);
           if (nextMatch.enemy_team) {
             enemyName = nextMatch.enemy_team.name || nextMatch.enemy_team.team_tag || "Gegner";
             if (nextMatch.enemy_team.logo_url) enemyLogo = nextMatch.enemy_team.logo_url;
@@ -659,6 +682,9 @@ import EndingScene from '../components/overlay/EndingScene.astro';
           }
           isConfirmed = nextMatch.confirmed === true;
           if (nextMatch.match_day) matchDayNum = nextMatch.match_day;
+          matchStageTitle = isPlayoff
+            ? (matchDayNum ? ("PLAYOFFS RUNDE " + matchDayNum) : "PLAYOFFS")
+            : (matchDayNum ? ("SPIELTAG " + matchDayNum) : null);
         }
 
         var totalMatches = wins + losses + draws;
@@ -666,12 +692,23 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var tierUpper = tierName.toUpperCase();
 
         var seriesLabel = "";
-        if (teamStats && Array.isArray(teamStats.matches)) {
-          var finished = teamStats.matches.filter(function(m) { return m.result && /^\d+:\d+$/.test(m.result); });
-          if (finished.length > 0 && finished.every(function(m) {
+        if (nextMatch && nextMatch.result && /^\d+:\d+$/.test(nextMatch.result)) {
+          var nSc = nextMatch.result.split(":").map(Number);
+          if (Math.max(nSc[0], nSc[1]) === 3) seriesLabel = "BO5";
+          else if (Math.max(nSc[0], nSc[1]) === 2) seriesLabel = "BO3";
+        } else if (activeMatches.length > 0) {
+          var finished = activeMatches.filter(function(m) { return m.result && /^\d+:\d+$/.test(m.result); });
+          if (finished.some(function(m) {
             var sc = m.result.split(":").map(Number);
-            return Math.max(sc[0], sc[1]) === 2;
-          })) seriesLabel = "BO3";
+            return Math.max(sc[0], sc[1]) === 3;
+          }) && isPlayoff) {
+            seriesLabel = "BO5";
+          } else if (finished.length > 0 && finished.every(function(m) {
+            var sc = m.result.split(":").map(Number);
+            return Math.max(sc[0], sc[1]) >= 2;
+          })) {
+            seriesLabel = "BO3";
+          }
         }
 
         var seasonLabel = "";
@@ -749,7 +786,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         if (has(ts.kp)) metricsData.push({ label: "\u00d8 KILL-BETEILIGUNG", uicVal: Math.round(ts.kp) + "%", pct: clampPct(ts.kp) });
         if (has(ts.gd15)) metricsData.push({ label: "\u00d8 GOLD-DIFF @ 15", uicVal: (ts.gd15 > 0 ? "+" : "") + Math.round(ts.gd15), pct: clampPct(50 + ts.gd15 / 20) });
 
-        var schedule = (teamStats && Array.isArray(teamStats.matches) ? teamStats.matches.slice() : [])
+        var schedule = activeMatches.slice()
           .sort(function(a, b) {
             if (!a.begin) return 1;
             if (!b.begin) return -1;
@@ -781,6 +818,8 @@ import EndingScene from '../components/overlay/EndingScene.astro';
           matchTimeStr: matchTimeStr,
           isConfirmed: isConfirmed,
           matchDayNum: matchDayNum,
+          isPlayoff: isPlayoff,
+          matchStageTitle: matchStageTitle,
           seriesLabel: seriesLabel,
           seasonLabel: seasonLabel,
           wrPercent: wrPercent,
@@ -825,7 +864,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var hudMetaDay = document.getElementById("hud-meta-day");
         if (hudMetaDay) {
           var metaParts = [];
-          if (state.matchDayNum) metaParts.push("SPIELTAG " + state.matchDayNum);
+          if (state.matchStageTitle) metaParts.push(state.matchStageTitle);
           if (state.seriesLabel) metaParts.push(state.seriesLabel);
           hudMetaDay.textContent = metaParts.join(" \u2022 ");
         }
@@ -879,7 +918,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
               resultHtml = '<span class="res-chip ' + outcome + '">' + sc[0] + ' : ' + sc[1] + '</span>';
             }
             tableHtml += '<tr class="standings-row' + (isNext ? ' is-next' : '') + '">' +
-              '<td class="td-rank text-mono">' + esc(sm.match_day || "\u2013") + '</td>' +
+              '<td class="td-rank text-mono">' + esc(isPlayoffMatch(sm) ? ("PO" + (sm.match_day || "")) : (sm.match_day || "\u2013")) + '</td>' +
               '<td class="td-team">' +
                 '<img src="' + esc(enemy.logo_url || state.fallbackLogo) + '" alt="' + esc(enemy.name || "") + '" class="td-team-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
                 '<span class="td-team-name">' + esc(enemy.name || "Gegner") + '</span>' +
@@ -981,7 +1020,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var preMatchMeta = document.getElementById("pregame-match-meta");
         if (preMatchMeta) {
           var mParts = [];
-          if (state.matchDayNum) mParts.push("SPIELTAG " + state.matchDayNum);
+          if (state.matchStageTitle) mParts.push(state.matchStageTitle);
           if (state.seriesLabel) mParts.push(state.seriesLabel);
           preMatchMeta.textContent = mParts.length > 0 ? mParts.join(" \u2022 ") : "PRIME LEAGUE";
         }
@@ -1041,7 +1080,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
             }
             ncHtml += '<div class="nocam-match-row' + (isNext ? ' is-next' : '') + '">' +
               '<div class="nocam-m-left">' +
-                '<span class="nocam-m-day text-mono">T' + esc(nm.match_day || "\u2013") + '</span>' +
+                '<span class="nocam-m-day text-mono">' + esc(formatMatchDayShort(nm, "T")) + '</span>' +
                 '<img src="' + esc(nEnemy.logo_url || state.fallbackLogo) + '" alt="" class="nocam-m-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
                 '<span class="nocam-m-enemy">' + esc(nEnemy.name || "Gegner") + '</span>' +
               '</div>' +
@@ -1070,7 +1109,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 
         var pauseMatchdayBadge = document.getElementById("pause-matchday-badge");
         if (pauseMatchdayBadge) {
-          pauseMatchdayBadge.textContent = state.matchDayNum ? ("SPIELTAG " + state.matchDayNum) : "PRIME LEAGUE";
+          pauseMatchdayBadge.textContent = state.matchStageTitle || "PRIME LEAGUE";
         }
 
         var pauseMatchTime = document.getElementById("pause-match-time");
@@ -1112,7 +1151,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
             var isNext = state.nextMatch && sm === state.nextMatch;
             var rightTxt = sm.result ? sm.result : formatSlotDate(sm.begin);
             scHtml += '<div class="ps-sched-row' + (isNext ? ' is-next' : '') + '">' +
-              '<span class="ps-sch-day text-mono">T' + esc(sm.match_day || "\u2013") + '</span>' +
+              '<span class="ps-sch-day text-mono">' + esc(formatMatchDayShort(sm, "T")) + '</span>' +
               '<span class="ps-sch-enemy">' + esc(enemy.name || "Gegner") + '</span>' +
               '<span class="ps-sch-res text-mono">' + esc(rightTxt) + '</span>' +
             '</div>';
@@ -1168,7 +1207,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
               resCell = '<span class="pg-status-chip">N\u00c4CHSTES</span>';
             }
             eHtml += '<div class="et-sched-row' + (isNext ? ' is-next' : '') + '">' +
-              '<span class="et-sch-day text-mono">TAG ' + esc(sm.match_day || "\u2013") + '</span>' +
+              '<span class="et-sch-day text-mono">' + esc(isPlayoffMatch(sm) ? ("PO " + (sm.match_day || "\u2013")) : ("TAG " + (sm.match_day || "\u2013"))) + '</span>' +
               '<div class="et-sch-opp">' +
                 '<img src="' + esc(enemy.logo_url || state.fallbackLogo) + '" alt="" class="et-sch-logo" onerror="this.src=\'' + state.fallbackLogo + '\';">' +
                 '<span class="et-sch-name">' + esc(enemy.name || "Gegner") + '</span>' +
@@ -1186,7 +1225,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var rpKicker = document.getElementById("replay-meta-kicker");
         if (rpKicker) {
           var kParts = [state.displayName.toUpperCase()];
-          if (state.matchDayNum) kParts.push("SPIELTAG " + state.matchDayNum);
+          if (state.matchStageTitle) kParts.push(state.matchStageTitle);
           else kParts.push("WIEDERHOLUNG");
           rpKicker.textContent = kParts.join(" \u2022 ");
         }

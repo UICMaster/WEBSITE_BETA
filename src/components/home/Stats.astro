@@ -71,7 +71,14 @@ const hasPrimeLeagueId = (key: string): boolean => {
 const teamsStatsList: TeamStatsComputed[] = Object.entries(rawPrimeStats as Record<string, any>)
   .filter(([key, team]) => team && Array.isArray(team.matches) && hasPrimeLeagueId(key))
   .map(([key, team]) => {
-    const matches: Match[] = team.matches || [];
+    const rawMatches: Match[] = team.matches || [];
+    const hasMainStage = rawMatches.some(
+      (m) => String((m as any).match_type || '').toLowerCase() !== 'group'
+    );
+    const matches: Match[] = hasMainStage
+      ? rawMatches.filter((m) => String((m as any).match_type || '').toLowerCase() !== 'group')
+      : rawMatches;
+
     let mapWins = 0, mapLosses = 0, points = 0, sWins = 0, sLosses = 0;
     let form: string[] = [];
     let recentMatches: TeamStatsComputed['recentMatches'] = [];
@@ -85,17 +92,25 @@ const teamsStatsList: TeamStatsComputed[] = Object.entries(rawPrimeStats as Reco
 
     sortedMatches.forEach((m) => {
       const mDate = m.begin ? new Date(m.begin) : null;
-      if (m.result && mDate && mDate < now) {
+      const isPlayoff = /playoff|tiebreaker|relegation|promotion|final/i.test(
+        String((m as any).match_type || '')
+      );
+
+      if (m.result && (!mDate || mDate < now)) {
         const parts = m.result.split(':').map(Number);
         if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
           const [us, them] = parts;
           mapWins += us;
           mapLosses += them;
 
-          if (us === 2 && them === 0) points += 3;
-          else if (us === 2 && them === 1) points += 2;
-          else if (us === 1 && them === 1) points += 1;
-          else if (us === 1 && them === 2) points += 1;
+          // Regular group stage points (Playoffs are knockout series and don't add league table points)
+          if (!isPlayoff) {
+            if (us === 2 && them === 0) points += 3;
+            else if (us === 2 && them === 1) points += 2;
+            else if (us === 1 && them === 1) points += 1;
+            else if (us === 1 && them === 2) points += 1;
+            else if (us > them) points += 2;
+          }
 
           const isWin = us > them;
           const isDraw = us === them;
@@ -110,14 +125,17 @@ const teamsStatsList: TeamStatsComputed[] = Object.entries(rawPrimeStats as Reco
             sLosses++;
           }
 
+          const baseEnemy = m.enemy_team?.team_tag || m.enemy_team?.name || "Gegner";
           recentMatches.push({
             resultText: isWin ? "SIEG" : isDraw ? "UNENTSCHIEDEN" : "NIEDERLAGE",
             score: `${us} : ${them}`,
-            enemy: m.enemy_team?.team_tag || m.enemy_team?.name || "Gegner",
+            enemy: isPlayoff ? `[PO] ${baseEnemy}` : baseEnemy,
             enemyLogo: m.enemy_team?.logo_url || null,
-            date: mDate.toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit' }),
+            date: mDate
+              ? mDate.toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit' })
+              : 'Gespielt',
             confirmed: true,
-            confirmedLabel: "Bestätigt",
+            confirmedLabel: isPlayoff ? "Playoffs" : "Bestätigt",
             link: m.prime_league_link || null
           });
         }
@@ -125,8 +143,9 @@ const teamsStatsList: TeamStatsComputed[] = Object.entries(rawPrimeStats as Reco
 
       if (!m.result) {
         const isConfirmed = m.confirmed === true;
+        const baseEnemy = m.enemy_team?.team_tag || m.enemy_team?.name || "TBD";
         upcomingMatches.push({
-          enemy: m.enemy_team?.team_tag || m.enemy_team?.name || "TBD",
+          enemy: isPlayoff ? `[PO] ${baseEnemy}` : baseEnemy,
           enemyLogo: m.enemy_team?.logo_url || null,
           matchDay: m.match_day ?? null,
           dateFormatted: mDate 

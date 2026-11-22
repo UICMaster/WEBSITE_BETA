@@ -76,18 +76,23 @@ import ChibiBear from '../common/ChibiBear.astro';
         <div>
           <div class="card-meta">
             <span class="meta-num text-mono">
-              {nextMatch.matchDay ? `SPIELTAG ${nextMatch.matchDay}` : 'SPIELTAG'}
+              {nextMatch.stageLabel}
             </span>
             <span class="meta-tag text-mono">PRIME LEAGUE &bull; {nextMatch.teamTier.toUpperCase()}</span>
-            {nextMatch.isScheduled && (
+            {nextMatch.mode === 'upcoming' && (
               <span class={`match-status-badge ${nextMatch.confirmed ? 'is-confirmed' : 'is-unconfirmed'}`}>
                 {nextMatch.confirmedLabel}
+              </span>
+            )}
+            {nextMatch.mode === 'recent' && nextMatch.resultBadgeLabel && (
+              <span class={`match-status-badge is-${nextMatch.resultOutcome}`}>
+                {nextMatch.resultBadgeLabel}
               </span>
             )}
           </div>
 
           <h2 class="card-title name-with-link">
-            <span>NÄCHSTES SPIEL</span>
+            <span>{nextMatch.headingLabel}</span>
             {nextMatch.matchLink && (
               <a
                 href={nextMatch.matchLink}
@@ -136,10 +141,20 @@ import ChibiBear from '../common/ChibiBear.astro';
 
             <!-- VS Clash Badge -->
             <div class="m-clash-badge">
-              <span class="m-vs text-mono">VS</span>
-              <span class="m-time text-mono">{nextMatch.dateFormatted}</span>
-              {nextMatch.isScheduled && (
-                <span class="m-clock text-mono">{nextMatch.timeFormatted} UHR</span>
+              {nextMatch.mode === 'recent' && nextMatch.result ? (
+                <>
+                  <span class={`m-vs m-score-pill is-${nextMatch.resultOutcome} text-mono`}>{nextMatch.result}</span>
+                  <span class="m-time text-mono">{nextMatch.dateFormatted}</span>
+                  <span class="m-clock text-mono">ENDSTAND</span>
+                </>
+              ) : (
+                <>
+                  <span class="m-vs text-mono">VS</span>
+                  <span class="m-time text-mono">{nextMatch.dateFormatted}</span>
+                  {nextMatch.isScheduled && (
+                    <span class="m-clock text-mono">{nextMatch.timeFormatted} UHR</span>
+                  )}
+                </>
               )}
             </div>
 
@@ -538,6 +553,38 @@ import ChibiBear from '../common/ChibiBear.astro';
     font-weight: 900;
     color: var(--text-muted);
     letter-spacing: 0.1em;
+  }
+
+  .m-score-pill {
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+  }
+
+  .m-score-pill.is-win {
+    color: #34d399;
+  }
+
+  .m-score-pill.is-loss {
+    color: #f87171;
+  }
+
+  .match-status-badge.is-win {
+    background: rgba(16, 185, 129, 0.14);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+
+  .match-status-badge.is-loss {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .match-status-badge.is-draw {
+    background: rgba(255, 255, 255, 0.08);
+    color: #d4d4d8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .m-time {

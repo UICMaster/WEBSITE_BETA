@@ -29,7 +29,8 @@ function formatMatchSlot(iso?: string): string {
   return `${datePart}. ${timePart}`;
 }
 
-const splitCutoff = new Date('2026-09-25T00:00:00Z');
+const isPlayoffMatch = (m: any): boolean =>
+  /playoff|tiebreaker|relegation|promotion|final/i.test(String(m?.match_type || ''));
 
 const upcomingMatchdayOptions: { value: string; label: string; beginMs: number }[] = [];
 const teamMatchdayGroups: { teamKey: string; teamName: string; tier: string; matches: { value: string; label: string; day: number }[] }[] = [];
@@ -37,34 +38,57 @@ const teamMatchdayGroups: { teamKey: string; teamName: string; tier: string; mat
 for (const t of teamOptions) {
   const pTeam = primeStatsMap[t.key];
   const rawMatches = Array.isArray(pTeam?.matches) ? pTeam.matches : [];
-  const hasGroupStage = rawMatches.some((m: any) => m.begin && new Date(m.begin) >= splitCutoff);
-  const splitMatches = hasGroupStage
-    ? rawMatches.filter((m: any) => !m.begin || new Date(m.begin) >= splitCutoff)
+  const hasMainStage = rawMatches.some(
+    (m: any) => String(m.match_type || '').toLowerCase() !== 'group'
+  );
+  const splitMatches = hasMainStage
+    ? rawMatches.filter((m: any) => String(m.match_type || '').toLowerCase() !== 'group')
     : rawMatches;
 
-  const byDay = new Map<number, any>();
-  const sortedByDate = [...splitMatches].sort((a, b) => new Date(a.begin || 0).getTime() - new Date(b.begin || 0).getTime());
+  const byStageKey = new Map<string, any>();
+  const sortedByDate = [...splitMatches].sort(
+    (a, b) => new Date(a.begin || 0).getTime() - new Date(b.begin || 0).getTime()
+  );
   for (const m of sortedByDate) {
-    if (m.match_day) byDay.set(Number(m.match_day), m);
+    const po = isPlayoffMatch(m);
+    const stageKey = `${po ? 'po' : 'lg'}-${m.match_day ?? m.id}`;
+    byStageKey.set(stageKey, m);
   }
 
-  const groupMatches = [...byDay.values()]
-    .sort((a, b) => (Number(a.match_day) || 99) - (Number(b.match_day) || 99))
+  const groupMatches = [...byStageKey.values()]
+    .sort((a, b) => {
+      const poA = isPlayoffMatch(a) ? 1 : 0;
+      const poB = isPlayoffMatch(b) ? 1 : 0;
+      if (poA !== poB) return poA - poB;
+      return (Number(a.match_day) || 99) - (Number(b.match_day) || 99);
+    })
     .map((m: any) => {
+      const po = isPlayoffMatch(m);
       const enemyName = m.enemy_team?.name || m.enemy_team?.team_tag || 'Gegner';
       const statusStr = m.result ? m.result : formatMatchSlot(m.begin);
-      const val = `${t.key}:${m.match_day}`;
+      const val = `${t.key}:${po ? m.id : (m.match_day ?? m.id)}`;
+      const dayTitle = po
+        ? m.match_day
+          ? `Playoffs R${m.match_day}`
+          : 'Playoffs'
+        : `Spieltag ${m.match_day ?? '–'}`;
+      const shortDayTitle = po
+        ? m.match_day
+          ? `PO R${m.match_day}`
+          : 'Playoffs'
+        : `Tag ${m.match_day ?? '–'}`;
+
       if (!m.result) {
         upcomingMatchdayOptions.push({
           value: val,
-          label: `[Tag ${m.match_day} • ${formatMatchSlot(m.begin)}] ${t.name} vs. ${enemyName}`,
+          label: `[${shortDayTitle} • ${formatMatchSlot(m.begin)}] ${t.name} vs. ${enemyName}`,
           beginMs: m.begin ? new Date(m.begin).getTime() : Number.MAX_SAFE_INTEGER
         });
       }
       return {
         value: val,
-        day: Number(m.match_day),
-        label: `${t.name} • Spieltag ${m.match_day} vs. ${enemyName} (${statusStr})`
+        day: Number(m.match_day) || 0,
+        label: `${t.name} • ${dayTitle} vs. ${enemyName} (${statusStr})`
       };
     });
 
