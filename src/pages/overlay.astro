@@ -112,7 +112,7 @@ for (const [key, pTeam] of Object.entries(primeMeta as Record<string, any>)) {
       enemy_team: m.enemy_team ? {
         name: m.enemy_team.name || m.enemy_team.team_tag || "Gegner",
         team_tag: m.enemy_team.team_tag || "OPP",
-        logo_url: m.enemy_team.logo_url || "/assets/logo/logo.png"
+        logo_url: m.enemy_team.logo_url || "/assets/logo/logo.svg"
       } : null
     }))
   };
@@ -132,6 +132,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>UIC OBS Broadcast Overlay</title>
 </head>
 
@@ -588,7 +589,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 
       // 8. Compute Team State & Automatically Select Next Match of the Given Team
       function computeTeamState(teamKey) {
-        var fallbackLogo = "/assets/logo/logo.png";
+        var fallbackLogo = "/assets/logo/logo.svg";
         var teamStats = (primeStatsData && primeStatsData[teamKey]) ? primeStatsData[teamKey] : null;
         var enrichedTeam = enrichedTeamsMap[teamKey] || {};
         var teamPlayers = enrichedTeam.players || [];
@@ -1262,7 +1263,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
       var lastTimestamp = null;
       var TICKER_SPEED_PX_PER_SEC = 55;
       var lastDataHash = "";
-      var fallbackLogo = "/assets/logo/logo.png";
+      var fallbackLogo = "/assets/logo/logo.svg";
 
       function startContinuousScroll() {
         if (animFrameId) cancelAnimationFrame(animFrameId);

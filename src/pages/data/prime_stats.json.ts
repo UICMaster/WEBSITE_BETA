@@ -33,7 +33,7 @@ for (const [key, pTeam] of Object.entries(rawMap)) {
         ? {
             name: m.enemy_team.name || m.enemy_team.team_tag || 'Gegner',
             team_tag: m.enemy_team.team_tag || 'OPP',
-            logo_url: m.enemy_team.logo_url || '/assets/logo/logo.png'
+            logo_url: m.enemy_team.logo_url || '/assets/logo/logo.svg'
           }
         : null
     }))

@@ -7,6 +7,9 @@
   "scope": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
   "orientation": "any",
   "theme_color": "#000000",
   "background_color": "#000000",
@@ -39,6 +42,22 @@
       "purpose": "maskable"
     }
   ],
+  "screenshots": [
+    {
+      "src": "./pwa-screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ultra Instinct Crew – Startseite & Prime League Match Center"
+    },
+    {
+      "src": "./pwa-screenshot-narrow.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ultra Instinct Crew – Mobile Ansicht & Live-Statistiken"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Liga-Tabelle",
@@ -65,7 +84,7 @@
       "name": "Ruhmeshalle",
       "short_name": "Ruhmeshalle",
       "description": "Ehrenmitglieder der Ultra Instinct Crew",
-      "url": "./ruhmeshalle",
+      "url": "./ruhmeshalle/",
       "icons": [{ "src": "./android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]

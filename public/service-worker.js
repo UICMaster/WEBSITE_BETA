@@ -1,10 +1,13 @@
 (() => {
-  const CACHE_NAME = 'UIC-System-v50';
+  const CACHE_NAME = 'UIC-System-v51';
+  const MAX_CACHE_ENTRIES = 90;
   const BASE = new URL('./', self.location.href).pathname;
   const withBase = (rel) => `${BASE}${rel.replace(/^\/+/, '')}`;
 
   const PRECACHE_URLS = [
     BASE,
+    withBase('ruhmeshalle/'),
+    withBase('brandkit/'),
     withBase('manifest.json'),
     withBase('favicon.svg'),
     withBase('favicon.ico'),
@@ -12,10 +15,25 @@
     withBase('assets/logo/logo.svg')
   ];
 
-  // 1. INSTALL: Pre-cache core app shell relative to current scope
+  async function trimCache(cacheName, maxItems = MAX_CACHE_ENTRIES) {
+    try {
+      const cache = await caches.open(cacheName);
+      const keys = await cache.keys();
+      if (keys.length > maxItems) {
+        const excess = keys.slice(0, keys.length - maxItems);
+        await Promise.all(excess.map((req) => cache.delete(req)));
+      }
+    } catch {
+      // Ignore cache trim errors
+    }
+  }
+
+  // 1. INSTALL: Pre-cache core app shell & key subpages relative to current scope
   self.addEventListener('install', (event) => {
     event.waitUntil(
-      caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+      caches.open(CACHE_NAME).then((cache) =>
+        Promise.allSettled(PRECACHE_URLS.map((url) => cache.add(url)))
+      )
     );
     self.skipWaiting();
   });
@@ -106,7 +124,9 @@
             .then((networkResponse) => {
               if (networkResponse && networkResponse.ok && networkResponse.status === 200) {
                 const clone = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(event.request, clone).then(() => trimCache(CACHE_NAME));
+                });
               }
               return networkResponse;
             })

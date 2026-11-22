@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /overlay/
+Disallow: /uic_obs_overlay.html
+Disallow: /upcoming_matches.html
 
 Sitemap: https://ultrainstinctcrew.com/sitemap.xml

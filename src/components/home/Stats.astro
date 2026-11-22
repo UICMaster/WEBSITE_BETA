@@ -279,7 +279,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
                   <div class="name-with-link">
                     <img
                       src={team.logoSrc}
-                      alt=""
+                      alt={`${team.name} Logo`}
                       class="standings-team-logo"
                       width="28"
                       height="28"
@@ -340,7 +340,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
               <div class="tf-identity">
                 <img
                   src={team.logoSrc}
-                  alt=""
+                  alt={`${team.name} Logo`}
                   class="fixture-team-logo"
                   width="38"
                   height="38"
@@ -395,7 +395,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
                       <span class="mini-score">{rm.score}</span>
                       <span class="mini-enemy name-with-link">
                         {rm.enemyLogo && (
-                          <img src={rm.enemyLogo} alt="" class="mini-enemy-logo" width="16" height="16" loading="lazy" decoding="async" />
+                          <img src={rm.enemyLogo} alt={`${rm.enemy} Logo`} class="mini-enemy-logo" width="16" height="16" loading="lazy" decoding="async" />
                         )}
                         <span>gegen {rm.enemy}</span>
                         {rm.link && (
@@ -432,7 +432,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
                     <li class="upcoming-mini-item">
                       <span class="up-enemy name-with-link">
                         {up.enemyLogo && (
-                          <img src={up.enemyLogo} alt="" class="mini-enemy-logo" width="16" height="16" loading="lazy" decoding="async" />
+                          <img src={up.enemyLogo} alt={`${up.enemy} Logo`} class="mini-enemy-logo" width="16" height="16" loading="lazy" decoding="async" />
                         )}
                         <span>{up.matchDay ? `ST${up.matchDay}: ` : ''}gegen {up.enemy}</span>
                         {up.link && (
