@@ -1028,7 +1028,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212852.jpg?1792708654",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212852",
-      "updated_at": "2026-11-22T09:51:49.599464+01:00"
+      "updated_at": "2026-11-22T17:36:40.023548+01:00"
     },
     "matches": [
       {
@@ -1774,7 +1774,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1170029",
-        "updated_at": "2026-11-22T09:52:55.175671+01:00",
+        "updated_at": "2026-11-22T17:37:46.882021+01:00",
         "enemy_team": {
           "id": 213105,
           "name": "Fennec Five",
@@ -2900,7 +2900,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167429",
-        "updated_at": "2026-11-22T09:53:06.262160+01:00",
+        "updated_at": "2026-11-22T17:37:57.894599+01:00",
         "enemy_team": {
           "id": 178531,
           "name": "Friendly Fire",
@@ -4315,7 +4315,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212473.jpg?1777401024",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212473",
-      "updated_at": "2026-11-22T09:52:06.775427+01:00"
+      "updated_at": "2026-11-22T17:36:56.325389+01:00"
     },
     "matches": [
       {
@@ -4348,7 +4348,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1401242,
@@ -4362,14 +4362,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4403,7 +4403,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1401242,
@@ -4417,14 +4417,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4458,7 +4458,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1664270,
@@ -4472,14 +4472,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4513,7 +4513,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1401242,
@@ -4527,14 +4527,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4561,7 +4561,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1401242,
@@ -4582,14 +4582,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4623,7 +4623,7 @@
             "summoner_name": "UIC Ryu Copeland#117",
             "name": "Ryu Copeland",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.972261+01:00"
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
           },
           {
             "id": 1401242,
@@ -4637,14 +4637,14 @@
             "summoner_name": "UIC AutumnLeaf#Moo",
             "name": "L0rdMo",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.977830+01:00"
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
           },
           {
             "id": 2275674,
             "summoner_name": "UIC Kamo#tpt",
             "name": "Skorpa",
             "is_leader": true,
-            "updated_at": "2026-11-10T19:37:05.975070+01:00"
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
           }
         ]
       },
@@ -4657,7 +4657,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165885",
-        "updated_at": "2026-11-22T09:52:41.091768+01:00",
+        "updated_at": "2026-11-22T17:37:32.735738+01:00",
         "enemy_team": {
           "id": 211953,
           "name": "Team SpieltEinfach",
@@ -4665,7 +4665,43 @@
           "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211953",
           "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211953.jpg?1767548587"
         },
-        "team_lineup": []
+        "team_lineup": [
+          {
+            "id": 65134,
+            "summoner_name": "UIC Exi#QUAK",
+            "name": "FT Exi",
+            "is_leader": false,
+            "updated_at": "2026-11-08T03:24:39.965624+01:00"
+          },
+          {
+            "id": 1387013,
+            "summoner_name": "UIC Ryu Copeland#117",
+            "name": "Ryu Copeland",
+            "is_leader": true,
+            "updated_at": "2026-11-22T16:21:55.409217+01:00"
+          },
+          {
+            "id": 1401242,
+            "summoner_name": "UIC Ace#ACE",
+            "name": "FT Ace",
+            "is_leader": false,
+            "updated_at": "2026-11-14T03:24:32.555034+01:00"
+          },
+          {
+            "id": 1865835,
+            "summoner_name": "UIC AutumnLeaf#Moo",
+            "name": "L0rdMo",
+            "is_leader": true,
+            "updated_at": "2026-11-22T16:21:55.415932+01:00"
+          },
+          {
+            "id": 2275674,
+            "summoner_name": "UIC Kamo#tpt",
+            "name": "Skorpa",
+            "is_leader": true,
+            "updated_at": "2026-11-22T16:21:55.412628+01:00"
+          }
+        ]
       }
     ]
   },
@@ -4964,7 +5000,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211794.jpg?1790878967",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211794",
-      "updated_at": "2026-11-22T09:51:45.544215+01:00"
+      "updated_at": "2026-11-22T17:36:35.950335+01:00"
     },
     "matches": [
       {
@@ -5141,7 +5177,7 @@
         "confirmed": true,
         "result": "0:2",
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168071",
-        "updated_at": "2026-11-22T09:52:40.076820+01:00",
+        "updated_at": "2026-11-22T17:37:31.708188+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
