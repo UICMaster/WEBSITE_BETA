@@ -1028,7 +1028,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212852.jpg?1792708654",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212852",
-      "updated_at": "2026-11-21T22:06:39.300353+01:00"
+      "updated_at": "2026-11-22T02:36:50.077885+01:00"
     },
     "matches": [
       {
@@ -1774,7 +1774,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1170029",
-        "updated_at": "2026-11-21T22:07:44.960161+01:00",
+        "updated_at": "2026-11-22T02:37:55.727523+01:00",
         "enemy_team": {
           "id": 213105,
           "name": "Fennec Five",
@@ -2900,7 +2900,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1167429",
-        "updated_at": "2026-11-21T22:07:56.053020+01:00",
+        "updated_at": "2026-11-22T02:38:06.820369+01:00",
         "enemy_team": {
           "id": 178531,
           "name": "Friendly Fire",
@@ -4315,7 +4315,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212473.jpg?1777401024",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212473",
-      "updated_at": "2026-11-21T22:06:56.486753+01:00"
+      "updated_at": "2026-11-22T02:37:07.293722+01:00"
     },
     "matches": [
       {
@@ -4657,7 +4657,7 @@
         "confirmed": true,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1165885",
-        "updated_at": "2026-11-21T22:07:30.901317+01:00",
+        "updated_at": "2026-11-22T02:37:42.656361+01:00",
         "enemy_team": {
           "id": 211953,
           "name": "Team SpieltEinfach",
@@ -4964,7 +4964,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211794.jpg?1790878967",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211794",
-      "updated_at": "2026-11-21T22:06:35.263582+01:00"
+      "updated_at": "2026-11-22T02:36:46.063886+01:00"
     },
     "matches": [
       {
@@ -5141,7 +5141,7 @@
         "confirmed": true,
         "result": "0:2",
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1168071",
-        "updated_at": "2026-11-21T22:07:29.847104+01:00",
+        "updated_at": "2026-11-22T02:37:41.649543+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
