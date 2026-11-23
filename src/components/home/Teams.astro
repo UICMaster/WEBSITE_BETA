@@ -1293,27 +1293,34 @@ const playerSearchIndex = teamsList.flatMap((t) =>
 
   const updateTeamGlider = (activeTab) => {
     if (!teamGlider || !pillScroll || !activeTab) return;
-    pillScroll.classList.add('has-glider');
-    teamGlider.style.setProperty('--team-glider-x', `${activeTab.offsetLeft}px`);
-    teamGlider.style.setProperty('--team-glider-w', `${activeTab.offsetWidth}px`);
-    teamGlider.style.setProperty('--team-glider-opacity', '1');
+    const offsetX = activeTab.offsetLeft;
+    const width = activeTab.offsetWidth;
+    requestAnimationFrame(() => {
+      pillScroll.classList.add('has-glider');
+      teamGlider.style.setProperty('--team-glider-x', `${offsetX}px`);
+      teamGlider.style.setProperty('--team-glider-w', `${width}px`);
+      teamGlider.style.setProperty('--team-glider-opacity', '1');
+    });
   };
 
   const setActiveTeam = (target, focusTab = false) => {
     let matchedTab = null;
     teamTabs.forEach((t) => {
-      const isMatch = t.getAttribute('data-team-target') === target;
+      if (t.getAttribute('data-team-target') === target) matchedTab = t;
+    });
+
+    if (matchedTab) updateTeamGlider(matchedTab);
+
+    teamTabs.forEach((t) => {
+      const isMatch = t === matchedTab;
       t.classList.toggle('is-active', isMatch);
       t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
       t.setAttribute('tabindex', isMatch ? '0' : '-1');
       if (isMatch) {
-        matchedTab = t;
         if (focusTab) t.focus();
         t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     });
-
-    if (matchedTab) updateTeamGlider(matchedTab);
 
     teamPanels.forEach((p) => {
       const isMatch = p.getAttribute('data-team-panel') === target;
@@ -1335,7 +1342,7 @@ const playerSearchIndex = teamsList.flatMap((t) =>
   // Initialize glider on first active tab
   const initialActiveTab = document.querySelector('.team-nav-pill.is-active');
   if (initialActiveTab) {
-    requestAnimationFrame(() => updateTeamGlider(initialActiveTab));
+    updateTeamGlider(initialActiveTab);
     window.addEventListener('resize', () => {
       const current = document.querySelector('.team-nav-pill.is-active');
       if (current) updateTeamGlider(current);

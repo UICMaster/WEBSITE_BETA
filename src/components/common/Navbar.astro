@@ -1011,56 +1011,74 @@
   let activeDesktopNavEl: HTMLAnchorElement | null = null;
   let hoveredDesktopNavEl: HTMLAnchorElement | null = null;
 
-  const moveNavGlider = (targetEl: HTMLAnchorElement | null) => {
-    if (!navGlider || !navLinksContainer || !targetEl) {
-      if (navGlider) navGlider.style.setProperty('--glider-opacity', '0');
+  const measureNavGlider = (targetEl: HTMLAnchorElement | null) => {
+    if (!navGlider || !navLinksContainer || !targetEl) return null;
+    const menuEl = navLinksContainer.parentElement;
+    if (!menuEl) return null;
+    const width = targetEl.offsetWidth;
+    if (width === 0) return null;
+    const offsetX = targetEl.offsetLeft + navLinksContainer.offsetLeft;
+    return { offsetX, width };
+  };
+
+  const applyNavGlider = (metrics: { offsetX: number; width: number } | null) => {
+    if (!navGlider) return;
+    if (!metrics) {
+      navGlider.style.setProperty('--glider-opacity', '0');
       return;
     }
-    const menuRect = navLinksContainer.parentElement?.getBoundingClientRect();
-    const itemRect = targetEl.getBoundingClientRect();
-    if (!menuRect || itemRect.width === 0) return;
-    const offsetX = itemRect.left - menuRect.left;
-    navGlider.style.setProperty('--glider-x', `${offsetX}px`);
-    navGlider.style.setProperty('--glider-w', `${itemRect.width}px`);
+    navGlider.style.setProperty('--glider-x', `${metrics.offsetX}px`);
+    navGlider.style.setProperty('--glider-w', `${metrics.width}px`);
     navGlider.style.setProperty('--glider-opacity', '1');
   };
 
+  const moveNavGlider = (targetEl: HTMLAnchorElement | null) => {
+    const metrics = measureNavGlider(targetEl);
+    requestAnimationFrame(() => applyNavGlider(metrics));
+  };
+
   const syncActiveState = (mode: 'section' | 'path', value: string) => {
-    // 1. Desktop pill + glider
+    // 1. Find target desktop item and measure BEFORE mutating DOM classes to avoid forced reflow
     let matchedDesktop: HTMLAnchorElement | null = null;
     desktopNavItems.forEach((item) => {
       const matches = mode === 'section'
         ? item.getAttribute('data-nav-section') === value
         : item.getAttribute('data-nav-path') === value;
-      item.classList.toggle('is-active', matches);
       if (matches) matchedDesktop = item;
     });
     activeDesktopNavEl = matchedDesktop;
-    if (!hoveredDesktopNavEl) moveNavGlider(activeDesktopNavEl);
+    const gliderMetrics = !hoveredDesktopNavEl ? measureNavGlider(activeDesktopNavEl) : null;
 
-    // 2. Mobile bottom bar primary items
-    bottomNavLinks.forEach((item) => {
-      const matches = mode === 'section' && item.getAttribute('data-nav-section') === value;
-      item.classList.toggle('is-active', matches);
-      if (matches) {
-        item.setAttribute('aria-current', 'location');
-      } else {
-        item.removeAttribute('aria-current');
-      }
+    requestAnimationFrame(() => {
+      desktopNavItems.forEach((item) => {
+        item.classList.toggle('is-active', item === matchedDesktop);
+      });
+      if (!hoveredDesktopNavEl) applyNavGlider(gliderMetrics);
+
+      // 2. Mobile bottom bar primary items
+      bottomNavLinks.forEach((item) => {
+        const matches = mode === 'section' && item.getAttribute('data-nav-section') === value;
+        item.classList.toggle('is-active', matches);
+        if (matches) {
+          item.setAttribute('aria-current', 'location');
+        } else {
+          item.removeAttribute('aria-current');
+        }
+      });
+
+      // 3. Mobile "Mehr" sheet items + secondary indicator dot on "Mehr" button
+      let anySheetActive = false;
+      sheetTrackableLinks.forEach((item) => {
+        const matches = mode === 'section'
+          ? item.getAttribute('data-nav-section') === value
+          : item.getAttribute('data-nav-path') === value;
+        item.classList.toggle('is-active', matches);
+        if (matches) anySheetActive = true;
+      });
+
+      const isSecondarySection = mode === 'section' ? !PRIMARY_MOBILE_SECTIONS.has(value) : anySheetActive;
+      moreBtn?.classList.toggle('has-secondary-active', isSecondarySection);
     });
-
-    // 3. Mobile "Mehr" sheet items + secondary indicator dot on "Mehr" button
-    let anySheetActive = false;
-    sheetTrackableLinks.forEach((item) => {
-      const matches = mode === 'section'
-        ? item.getAttribute('data-nav-section') === value
-        : item.getAttribute('data-nav-path') === value;
-      item.classList.toggle('is-active', matches);
-      if (matches) anySheetActive = true;
-    });
-
-    const isSecondarySection = mode === 'section' ? !PRIMARY_MOBILE_SECTIONS.has(value) : anySheetActive;
-    moreBtn?.classList.toggle('has-secondary-active', isSecondarySection);
   };
 
   desktopNavItems.forEach((item) => {

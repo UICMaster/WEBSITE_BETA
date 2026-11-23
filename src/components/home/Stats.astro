@@ -983,15 +983,21 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
   const updateWarGlider = (activeTab: HTMLButtonElement | null) => {
     if (!warGlider || !warTabsContainer || !activeTab) return;
-    warTabsContainer.classList.add('has-glider');
-    warGlider.style.setProperty('--war-glider-x', `${activeTab.offsetLeft}px`);
-    warGlider.style.setProperty('--war-glider-w', `${activeTab.offsetWidth}px`);
-    warGlider.style.setProperty('--war-glider-opacity', '1');
+    const offsetX = activeTab.offsetLeft;
+    const width = activeTab.offsetWidth;
+    requestAnimationFrame(() => {
+      warTabsContainer.classList.add('has-glider');
+      warGlider.style.setProperty('--war-glider-x', `${offsetX}px`);
+      warGlider.style.setProperty('--war-glider-w', `${width}px`);
+      warGlider.style.setProperty('--war-glider-opacity', '1');
+    });
   };
 
   const activateWarTab = (tab: HTMLButtonElement, focusTab = false) => {
     const target = tab.getAttribute('data-war-target');
     if (!target) return;
+
+    updateWarGlider(tab);
 
     warTabs.forEach(t => {
       const isCurrent = t === tab;
@@ -999,7 +1005,6 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
       t.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
       t.setAttribute('tabindex', isCurrent ? '0' : '-1');
     });
-    updateWarGlider(tab);
 
     warPanels.forEach(p => p.classList.remove('is-active'));
 
@@ -1018,7 +1023,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
   const initialWarTab = document.querySelector<HTMLButtonElement>('.war-tab.is-active');
   if (initialWarTab) {
-    requestAnimationFrame(() => updateWarGlider(initialWarTab));
+    updateWarGlider(initialWarTab);
     window.addEventListener('resize', () => {
       const current = document.querySelector<HTMLButtonElement>('.war-tab.is-active');
       if (current) updateWarGlider(current);
