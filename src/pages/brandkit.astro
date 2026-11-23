@@ -192,8 +192,8 @@ const logoPlaceholders = [
     id: 'VAR-03',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Vertikales Lockup (Stacked)',
-    spec: 'SVG & PNG • Empfohlen 1000 × 1200 px • Mindestbreite 80 px / 22 mm',
-    desc: 'Zentriertes UIC Wappen über gestapelter Wortmarke. Gedacht für Formate mit begrenzter Breite wie Poster, Roll-Ups, Pokale und Hochformat-Kacheln.',
+    spec: 'SVG & PNG • ViewBox 1000 × 1200 (5:6) • Mindestbreite 80 px / 22 mm',
+    desc: 'Zentriertes UIC Wappen über dreizeilig gestapelter Wortmarke. Gedacht für Formate mit begrenzter Breite wie Poster, Roll-Ups, Pokale und Hochformat-Kacheln.',
     previewType: 'stacked',
     candidates: ['/assets/logo/logo-stacked.svg', '/assets/logo/logo-stacked.png'],
     slotHint: 'public/assets/logo/logo-stacked.svg'
@@ -202,13 +202,12 @@ const logoPlaceholders = [
     id: 'VAR-04',
     badge: 'PLATZHALTER • UPLOAD FOLGT',
     title: 'Dunkel-Variante (Schwarz auf Hell)',
-    spec: 'SVG, PNG & EPS • #000000 Vollton • Echt-Transparenter Knockout-Pfad',
+    spec: 'SVG & PNG • #000000 Vollton • Echt-Transparenter Knockout-Pfad',
     desc: 'Monochrome tiefschwarze Reinzeichnung (#000000) ohne Hintergrundfüllung für weiße Trikots, Verträge, Briefbögen und helle Partner-Hintergründe.',
     previewType: 'dark-ink',
     candidates: [
       '/assets/logo/logo-dark.svg',
-      '/assets/logo/logo-dark.png',
-      '/assets/logo/logo-dark.eps'
+      '/assets/logo/logo-dark.png'
     ],
     slotHint: 'public/assets/logo/logo-dark.svg'
   }
@@ -645,7 +644,7 @@ const logoVariants = logoPlaceholders.map((item) => {
 
               <div class="dd-card is-do">
                 <div class="dd-preview split">
-                  <span class="dd-badge-inline text-mono">UIC</span>
+                  <img src="/assets/logo/logo.svg" alt="UIC Wappen" width="34" height="34" />
                   <span class="dd-divider-x">&times;</span>
                   <span class="dd-partner-box text-mono">PARTNER</span>
                 </div>
