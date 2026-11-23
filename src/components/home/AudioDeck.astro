@@ -80,7 +80,7 @@ const orgaCount = tracks.filter((t) => t.category === "orga").length;
 const teamCount = tracks.filter((t) => t.category === "team").length;
 ---
 
-<div id="uic-audio-widget" class="audio-widget is-collapsed" aria-label="UIC Audio Player">
+<div id="uic-audio-widget" class="audio-widget is-collapsed" role="region" aria-label="UIC Audio Player">
   <audio id="hymn-audio-element" preload="metadata"></audio>
 
   <!-- Floating Docked Pill (Always Visible) -->
@@ -245,7 +245,7 @@ const teamCount = tracks.filter((t) => t.category === "team").length;
     <div class="deck-playlist">
       <div class="playlist-header">
         <span class="playlist-heading text-mono">TITELAUSWAHL</span>
-        <div class="playlist-filters text-mono" role="tablist" aria-label="Tracks nach Kategorie filtern">
+        <div class="playlist-filters text-mono" role="group" aria-label="Tracks nach Kategorie filtern">
           <button type="button" class="pf-chip is-active" data-audio-filter="all">ALLE ({tracks.length})</button>
           <button type="button" class="pf-chip" data-audio-filter="orga">ORGA ({orgaCount})</button>
           <button type="button" class="pf-chip" data-audio-filter="team">TEAMS ({teamCount})</button>
