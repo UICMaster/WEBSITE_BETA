@@ -81,7 +81,6 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
       <rect width="100%" height="100%" fill="url(#hero-iso-cubes)" />
       <rect width="100%" height="100%" fill="url(#hero-iso-accents)" />
     </svg>
-    <div class="hero-cube-spotlight"></div>
     <div class="hero-cube-vignette"></div>
   </div>
 
@@ -367,23 +366,6 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     opacity: 0.92;
     transform: perspective(1100px) rotateX(8deg) scale(1.03);
     transform-origin: 50% 45%;
-  }
-
-  .hero-cube-spotlight {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(
-        620px circle at var(--hero-spot-x, 68%) var(--hero-spot-y, 44%),
-        rgba(255, 255, 255, 0.075),
-        transparent 68%
-      ),
-      radial-gradient(
-        520px circle at 24% 36%,
-        rgba(255, 255, 255, 0.04),
-        transparent 65%
-      );
-    mix-blend-mode: screen;
   }
 
   .hero-cube-vignette {
@@ -1015,16 +997,4 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
       });
     }
   });
-
-  // Subtle Cursor Light Interaction over the 3D Depth Cubes
-  const heroSec = document.getElementById('start');
-  if (heroSec) {
-    heroSec.addEventListener('pointermove', (e) => {
-      const rect = heroSec.getBoundingClientRect();
-      const xPct = ((e.clientX - rect.left) / rect.width) * 100;
-      const yPct = ((e.clientY - rect.top) / rect.height) * 100;
-      heroSec.style.setProperty('--hero-spot-x', `${xPct.toFixed(1)}%`);
-      heroSec.style.setProperty('--hero-spot-y', `${yPct.toFixed(1)}%`);
-    }, { passive: true });
-  }
 </script>
