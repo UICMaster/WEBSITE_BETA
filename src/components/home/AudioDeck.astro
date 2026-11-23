@@ -1,6 +1,5 @@
 ---
 // src/components/home/AudioDeck.astro
-import ChibiBear from '../common/ChibiBear.astro';
 
 const tracks = [
   {
@@ -126,7 +125,6 @@ const teamCount = tracks.filter((t) => t.category === "team").length;
 
   <!-- Expanded Studio Deck Window -->
   <div id="expanded-audio-deck" class="expanded-deck" role="dialog" aria-label="UIC Hymnen & Team-Songs">
-    <ChibiBear variant="vibe" />
     <div class="deck-top">
       <div class="deck-top-left">
         <span class="deck-brand text-mono">UIC AUDIO DECK</span>

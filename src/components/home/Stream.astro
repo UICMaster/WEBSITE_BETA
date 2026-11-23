@@ -1,6 +1,5 @@
 ---
 // src/components/home/Stream.astro
-import ChibiBear from '../common/ChibiBear.astro';
 ---
 
 <section id="stream" class="section-pad stream-section">
@@ -14,7 +13,6 @@ import ChibiBear from '../common/ChibiBear.astro';
         </div>
         <h2 class="section-title stream-title">
           SPIELTAGE <span class="text-gradient">LIVE</span>
-          <ChibiBear variant="sleep" />
         </h2>
         <p class="stream-desc">
           Verfolge die Spiele unserer Teams live auf Twitch. Erlebe spannende Spieltage mit Live-Kommentar, Spielanalysen und gemeinsame Abende direkt im Chat.
@@ -185,7 +183,6 @@ import ChibiBear from '../common/ChibiBear.astro';
   if (activateBtn && consentGate && embedTarget) {
     activateBtn.addEventListener('click', () => {
       consentGate.style.display = 'none';
-      document.querySelector<HTMLButtonElement>('.stream-title .chibi-trigger')?.click();
 
       const hostname = window.location.hostname || 'localhost';
       const iframe = document.createElement('iframe');
