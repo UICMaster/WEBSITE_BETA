@@ -899,7 +899,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
             startFormBadges.innerHTML = "";
           } else {
             var formHtml = '<span class="form-lbl text-mono">FORM</span>' + buildFormBadgesHtml(recentForm);
-            formHtml += '<span class="form-rec text-mono">' + state.wins + 'S \u2013 ' + state.losses + 'N</span>';
+            formHtml += '<span class="form-rec text-mono">' + state.wins + 'S / ' + state.losses + 'N</span>';
             startFormBadges.innerHTML = formHtml;
           }
         }
@@ -1012,7 +1012,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         if (preUicMeta) preUicMeta.textContent = "PRIME LEAGUE" + (state.tierUpper ? " \u2022 " + state.tierUpper : "");
 
         var preRecordVal = document.getElementById("pregame-record-val");
-        if (preRecordVal) preRecordVal.textContent = state.wins + "S \u2013 " + state.losses + "N";
+        if (preRecordVal) preRecordVal.textContent = state.wins + "S / " + state.losses + "N";
 
         var preFormPills = document.getElementById("pregame-form-pills");
         if (preFormPills) preFormPills.innerHTML = buildFormBadgesHtml(state.formArr);
@@ -1115,7 +1115,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var pauseMatchTime = document.getElementById("pause-match-time");
         if (pauseMatchTime) pauseMatchTime.textContent = state.matchTimeStr;
         var pauseRecordVal = document.getElementById("pause-record-val");
-        if (pauseRecordVal) pauseRecordVal.textContent = state.wins + "S \u2013 " + state.losses + "N";
+        if (pauseRecordVal) pauseRecordVal.textContent = state.wins + "S / " + state.losses + "N";
         var pauseFormPills = document.getElementById("pause-form-pills");
         if (pauseFormPills) pauseFormPills.innerHTML = buildFormBadgesHtml(state.formArr);
 
@@ -1178,7 +1178,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         if (endDiv) endDiv.textContent = "PRIME LEAGUE" + (state.tierUpper ? " \u2022 " + state.tierUpper : "");
 
         var endRec = document.getElementById("ending-record-val");
-        if (endRec) endRec.textContent = state.wins + "S \u2013 " + state.losses + "N";
+        if (endRec) endRec.textContent = state.wins + "S / " + state.losses + "N";
         var endForm = document.getElementById("ending-form-pills");
         if (endForm) endForm.innerHTML = buildFormBadgesHtml(state.formArr);
 
@@ -1257,8 +1257,6 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 
         var ncTeam = document.getElementById("pregame-nocam-team");
         if (ncTeam) ncTeam.textContent = "ULTRA INSTINCT CREW";
-        var ncRecord = document.getElementById("pregame-nocam-record");
-        if (ncRecord) ncRecord.textContent = "ESPORT & COMMUNITY";
         var ncSched = document.getElementById("pregame-nocam-schedule");
         if (ncSched) {
           var channels = [

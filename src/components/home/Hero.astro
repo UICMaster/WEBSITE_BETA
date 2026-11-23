@@ -19,7 +19,7 @@ import ChibiBear from '../common/ChibiBear.astro';
 
       <h1 class="hero-title">
         <span class="hero-title-main">ULTRA INSTINCT CREW</span>
-        <span class="sr-only"> – Deutsche League of Legends eSport Organisation &amp; Gaming Community in der Prime League</span>
+        <span class="sr-only">: Deutsche League of Legends eSport Organisation und Gaming Community in der Prime League</span>
       </h1>
 
       <p class="hero-desc">
@@ -241,7 +241,7 @@ import ChibiBear from '../common/ChibiBear.astro';
               class="btn btn-outline matchup-ics-btn text-mono"
               data-ics-trigger
               data-ics-title={`${nextMatch.team} vs. ${nextMatch.enemy} (Prime League)`}
-              data-ics-desc={`Prime League (${nextMatch.teamTier}) — ${nextMatch.team} gegen ${nextMatch.enemy}`}
+              data-ics-desc={`Prime League (${nextMatch.teamTier}): ${nextMatch.team} gegen ${nextMatch.enemy}`}
               data-ics-loc={nextMatch.matchLink || 'https://www.primeleague.gg'}
               data-ics-begin={nextMatch.beginISO}
               title="Spieltermin als .ICS Kalenderdatei speichern"
@@ -567,24 +567,6 @@ import ChibiBear from '../common/ChibiBear.astro';
 
   .m-score-pill.is-loss {
     color: #f87171;
-  }
-
-  .match-status-badge.is-win {
-    background: rgba(16, 185, 129, 0.14);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.35);
-  }
-
-  .match-status-badge.is-loss {
-    background: rgba(239, 68, 68, 0.12);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-  }
-
-  .match-status-badge.is-draw {
-    background: rgba(255, 255, 255, 0.08);
-    color: #d4d4d8;
-    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .m-time {

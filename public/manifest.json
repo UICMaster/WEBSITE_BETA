@@ -48,14 +48,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Ultra Instinct Crew – Startseite & Prime League Match Center"
+      "label": "Ultra Instinct Crew: Startseite & Prime League Tabelle"
     },
     {
       "src": "./pwa-screenshot-narrow.png",
       "sizes": "540x960",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Ultra Instinct Crew – Mobile Ansicht & Live-Statistiken"
+      "label": "Ultra Instinct Crew: Mobile Ansicht & Team-Statistiken"
     }
   ],
   "shortcuts": [

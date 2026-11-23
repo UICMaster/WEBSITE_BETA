@@ -27,11 +27,11 @@ const waveformHeights = [
 ---
 
 <Layout
-  title={`${player.name} – Ruhmeshalle | Ultra Instinct Crew`}
+  title={`${player.name} | Ruhmeshalle | Ultra Instinct Crew`}
   description={`Ruhmeshalle der Ultra Instinct Crew: Werdegang, Biografie, Sprachaufnahmen und gespielte Splits von ${player.name}.`}
   ogType="profile"
   image={player.photoSrc || '/og-image.png'}
-  imageAlt={`Porträt von ${player.name} – Ruhmeshalle der Ultra Instinct Crew`}
+  imageAlt={`Porträt von ${player.name} in der Ruhmeshalle der Ultra Instinct Crew`}
 >
   <!-- Schema.org ProfilePage & Person Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -501,7 +501,6 @@ const waveformHeights = [
   const iconPause = document.getElementById('gad-icon-pause');
   const iconVol = document.getElementById('gad-icon-vol');
   const iconMuted = document.getElementById('gad-icon-muted');
-  const visualizer = document.getElementById('gad-visualizer');
   const timeCur = document.getElementById('gad-time-cur');
   const timeDur = document.getElementById('gad-time-dur');
   const scrub = document.getElementById('gad-scrub');
@@ -530,7 +529,6 @@ const waveformHeights = [
       const playing = !audio.paused;
       iconPlay?.classList.toggle('hidden', playing);
       iconPause?.classList.toggle('hidden', !playing);
-      visualizer?.classList.toggle('is-playing', playing);
       playBtn.classList.toggle('is-playing', playing);
       playerShell?.classList.toggle('is-playing', playing);
     };

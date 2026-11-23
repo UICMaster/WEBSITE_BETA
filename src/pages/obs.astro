@@ -126,7 +126,7 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
         <h1 class="obs-title text-gradient">SPIELTAGS-OVERLAY &amp; KONFIGURATOR</h1>
         <p class="obs-lead">
           1080p Browser-Overlay für Prime League Übertragungen der Ultra Instinct Crew. 
-          Wähle Szene und Team direkt über den Konfigurator — das Overlay lädt automatisch die nächste angesetzte Begegnung, Aufstellung und Saisonbilanz des gewählten Teams.
+          Wähle Szene und Team direkt im Konfigurator aus. Das Overlay lädt automatisch die nächste angesetzte Begegnung, die Aufstellung und die Saisonbilanz des gewählten Teams.
         </p>
 
         <!-- Quick Jump Navigation -->
@@ -410,7 +410,7 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
               <span class="detail-label text-mono">AUFBAU (VON OBEN NACH UNTEN):</span>
               <ul class="scene-features">
                 <li><strong>Scoreboard-Header:</strong> Aktuelles Team, Bilanz, Form, Spieltag und Gegner</li>
-                <li><strong>Transparente 16:9 Kamera-Cutouts:</strong> Webcams liegen in OBS hinter dem Overlay &mdash; die <code class="inline-code">DESK | CASTER</code>-Labels liegen vor dem Kamerabild</li>
+                <li><strong>Transparente 16:9 Kamera-Cutouts:</strong> Webcams liegen in OBS hinter dem Overlay, sodass die <code class="inline-code">DESK | CASTER</code>-Labels sauber vor dem Kamerabild bleiben</li>
                 <li><strong>5-Starter-Leiste:</strong> TOP, JGL, MID, BOT, SUP mit SoloQ-Rang und KDA</li>
                 <li><strong>320px BlueBottle-Zone (760–1080px):</strong> Unten komplett frei für die BlueBottle-Quelle in OBS</li>
               </ul>
@@ -647,7 +647,7 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
               </tr>
               <tr>
                 <td><code>matchday</code></td>
-                <td>Ganzzahl (z. B. <code>1</code> &ndash; <code>7</code>) oder Match-ID</td>
+                <td>Ganzzahl (z. B. <code>1</code> bis <code>7</code>) oder Match-ID</td>
                 <td>–</td>
                 <td>Optional: Wählt gezielt einen bestimmten Prime League Spieltag des angegebenen Teams aus (z. B. <code>?team=prime&amp;matchday=4</code>). Ohne diesen Parameter lädt <code>?team=</code> automatisch das nächste Spiel des Teams.</td>
               </tr>

@@ -31,7 +31,7 @@ const nextMatchStr =
         </span>
       )}
       {nextMatch.mode === 'recent' && nextMatch.resultBadgeLabel && (
-        <span class={`match-status-badge ${nextMatch.resultOutcome === 'win' ? 'is-confirmed' : 'is-unconfirmed'}`}>
+        <span class={`match-status-badge is-${nextMatch.resultOutcome}`}>
           {nextMatch.resultBadgeLabel}
         </span>
       )}
@@ -73,7 +73,7 @@ const nextMatchStr =
         </span>
       )}
       {nextMatch.mode === 'recent' && nextMatch.resultBadgeLabel && (
-        <span class={`match-status-badge ${nextMatch.resultOutcome === 'win' ? 'is-confirmed' : 'is-unconfirmed'}`}>
+        <span class={`match-status-badge is-${nextMatch.resultOutcome}`}>
           {nextMatch.resultBadgeLabel}
         </span>
       )}

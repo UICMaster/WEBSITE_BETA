@@ -5,20 +5,17 @@
  */
 
 :root {
-  /* Solid Pure Dark & Carbon Obsidian Surfaces (No muddy fades) */
+  /* Solid Pure Dark & Carbon Obsidian Surfaces */
   --bg-void: #000000;
   --bg-surface: #08080a;
   --bg-surface-elevated: #0f0f13;
   --bg-card: #0d0d10;
   --bg-card-hover: #141418;
-  --bg-card-active: #18181f;
-  --bg-glass: rgba(10, 10, 13, 0.92);
 
   /* Sharp Hairline Borders (Crisp, tactile, greyscale) */
   --border-subtle: rgba(255, 255, 255, 0.09);
   --border-medium: rgba(255, 255, 255, 0.18);
   --border-strong: rgba(255, 255, 255, 0.35);
-  --border-active: #ffffff;
 
   /* Typographic Contrast (Pure black/white & calibrated greys) */
   --text-white: #ffffff;
@@ -26,17 +23,8 @@
   --text-secondary: #d4d4d8;
   --text-muted: #a1a1aa;
   --text-dim: #71717a;
-  --text-ghost: rgba(255, 255, 255, 0.03);
 
-  /* Functional Status (Crisp & Understated) */
-  --state-win: #10b981;
-  --state-win-bg: rgba(16, 185, 129, 0.12);
-  --state-loss: #f43f5e;
-  --state-loss-bg: rgba(244, 63, 94, 0.12);
-  --state-draw: #f59e0b;
-  --state-draw-bg: rgba(245, 158, 11, 0.12);
-
-  /* Clean, Bold, Razor-Sharp Typography (Plus Jakarta Sans - NO Cursive/Eccentric Fonts) */
+  /* Clean, Bold, Razor-Sharp Typography (Plus Jakarta Sans) */
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Space Grotesk', monospace;
@@ -62,7 +50,6 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-xl: 24px;
   --radius-full: 9999px;
 
   /* Transitions */

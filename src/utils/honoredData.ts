@@ -174,65 +174,45 @@ export const honoredPlayers: HonoredPlayerDossier[] = Array.from(honoredIdSet).m
   const inductedAtRaw = cfg.inductedAt || '2026-10-28';
   const inductedAtFormatted = formatInductedDate(inductedAtRaw);
 
-  let bioSections: HonoredBioSection[] = [];
-  if (Array.isArray(cfg.bioSections) && cfg.bioSections.length > 0) {
-    bioSections = cfg.bioSections.map((sec: any) => ({
-      subtitle: sec.subtitle || undefined,
-      title: sec.title || 'Abschnitt',
-      paragraphs: Array.isArray(sec.paragraphs) ? sec.paragraphs : []
-    }));
-  } else if (Array.isArray(cfg.bio) && cfg.bio.length > 0) {
-    bioSections = [
-      {
-        subtitle: 'HINTERGRUND',
-        title: 'Biografie',
-        paragraphs: cfg.bio
-      }
-    ];
-  } else {
-    bioSections = [
-      {
-        subtitle: '[Platzhalter: Untertitel]',
-        title: '[Platzhalter: Überschrift]',
-        paragraphs: ['[Platzhalter: Biografie-Text für dieses Mitglied in data/honored.json hinterlegen.]']
-      }
-    ];
-  }
+  const bioSections: HonoredBioSection[] =
+    Array.isArray(cfg.bioSections) && cfg.bioSections.length > 0
+      ? cfg.bioSections.map((sec: any) => ({
+          subtitle: sec.subtitle || undefined,
+          title: sec.title || 'Abschnitt',
+          paragraphs: Array.isArray(sec.paragraphs) ? sec.paragraphs : []
+        }))
+      : [
+          {
+            subtitle: '[Platzhalter: Untertitel]',
+            title: '[Platzhalter: Überschrift]',
+            paragraphs: ['[Platzhalter: Biografie-Text für dieses Mitglied in data/honored.json hinterlegen.]']
+          }
+        ];
 
   const phrases: string[] = Array.isArray(cfg.phrases)
     ? cfg.phrases
-    : cfg.quote
-      ? [cfg.quote]
-      : ['[Platzhalter: Sprüche oder Zitate in data/honored.json hinterlegen.]'];
+    : ['[Platzhalter: Sprüche oder Zitate in data/honored.json hinterlegen.]'];
 
   const impact: string[] = Array.isArray(cfg.impact)
     ? cfg.impact
-    : Array.isArray(cfg.contributions)
-      ? cfg.contributions
-      : ['[Platzhalter: Einfluss auf die Organisation in data/honored.json hinterlegen.]'];
+    : ['[Platzhalter: Einfluss auf die Organisation in data/honored.json hinterlegen.]'];
 
   const manualSeasons: HonoredSeasonEntry[] = Array.isArray(cfg.seasons)
     ? cfg.seasons.map((s: any) => ({
         season: s.season || '[Platzhalter: Split]',
         team: s.team || 'UIC',
         division: s.division || undefined,
-        note: s.note || s.achievement || undefined,
+        note: s.note || undefined,
         teamLink: s.teamLink || null
       }))
     : [];
 
   const images: HonoredImageEntry[] = Array.isArray(cfg.images) ? cfg.images : [];
 
-  const voiceClips: HonoredVoiceClip[] = Array.isArray(cfg.voiceClips)
-    ? cfg.voiceClips
-    : cfg.audioTrack && cfg.audioTrack.src
-      ? [cfg.audioTrack]
-      : [];
-
   const audioTrack: HonoredVoiceClip | null =
-    cfg.audioTrack && cfg.audioTrack.src
-      ? cfg.audioTrack
-      : voiceClips[0] || null;
+    cfg.audioTrack && cfg.audioTrack.src ? cfg.audioTrack : null;
+
+  const voiceClips: HonoredVoiceClip[] = audioTrack ? [audioTrack] : [];
 
   return {
     playerId,
