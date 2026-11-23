@@ -187,14 +187,13 @@
 
       const hostname = window.location.hostname || 'localhost';
       const iframe = document.createElement('iframe');
-      iframe.src = `https://player.twitch.tv/?channel=ultrainstinctcrew&parent=${hostname}&parent=ultrainstinctcrew.com&parent=localhost&autoplay=true&muted=false`;
+      iframe.src = `https://player.twitch.tv/?channel=ultrainstinctcrew&parent=${encodeURIComponent(hostname)}&autoplay=true&muted=false`;
       iframe.width = '100%';
       iframe.height = '100%';
-      iframe.allow = 'autoplay; fullscreen';
-      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.allow = 'autoplay; fullscreen; encrypted-media';
       iframe.title = 'Ultra Instinct Crew Twitch Stream';
 
-      embedTarget.appendChild(iframe);
+      embedTarget.replaceChildren(iframe);
     });
   }
 </script>
