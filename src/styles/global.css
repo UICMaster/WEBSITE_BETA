@@ -124,8 +124,6 @@ h1, h2, h3, h4, h5, h6 {
 .section-pad {
   padding-block: clamp(2.5rem, 4.5vw, 4.25rem);
   position: relative;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
 }
 
 /* Shared Subpage Clearance & Back Navigation Pill */
