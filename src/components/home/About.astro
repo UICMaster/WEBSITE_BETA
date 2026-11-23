@@ -143,7 +143,10 @@ import { totalTeams, communityCount, discordInviteUrl } from '../../utils/uicDat
 
 <style>
   .about-section {
-    background-color: #000000;
+    background-color: #08080b;
+    background-image: radial-gradient(ellipse 75% 50% at 50% 0%, rgba(255, 255, 255, 0.028), transparent 70%);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     position: relative;
   }
 
@@ -163,18 +166,18 @@ import { totalTeams, communityCount, discordInviteUrl } from '../../utils/uicDat
   }
 
   .bento-card {
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #101015;
+    border: 1px solid rgba(255, 255, 255, 0.11);
     border-radius: var(--radius-lg);
     padding: var(--space-2xl);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: border-color var(--transition-fast), transform var(--transition-smooth);
+    transition: border-color var(--transition-fast), transform var(--transition-smooth), background-color var(--transition-fast);
   }
 
   .bento-card:hover {
-    background: #121216;
+    background: #15151c;
     border-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
   }

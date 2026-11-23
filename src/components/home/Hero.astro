@@ -4,6 +4,87 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
 ---
 
 <section id="start" class="hero-section">
+  <!-- 3D Isometric Dark Depth Cube Matrix Background -->
+  <div class="hero-depth-stage" aria-hidden="true">
+    <svg class="hero-cube-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <!-- Base Isometric 3D Cube Tessellation (96 x 166.2) -->
+        <pattern id="hero-iso-cubes" width="96" height="166.2" patternUnits="userSpaceOnUse">
+          <!-- Base Right-Shadow Fill -->
+          <rect width="96" height="166.2" fill="#020204" />
+
+          <!-- Cube A: Top Lit Face -->
+          <polygon points="48,0 96,27.7 48,55.4 0,27.7" fill="#0e0e14" />
+          <!-- Cube A: Left Mid-Shadow Face -->
+          <polygon points="0,27.7 48,55.4 48,110.8 0,83.1" fill="#07070b" />
+          <!-- Cube A: Right Deep-Shadow Face -->
+          <polygon points="48,55.4 96,27.7 96,83.1 48,110.8" fill="#020204" />
+
+          <!-- Cube B (Offset Row): Top Lit Faces -->
+          <polygon points="0,83.1 48,110.8 0,138.5" fill="#0e0e14" />
+          <polygon points="96,83.1 96,138.5 48,110.8" fill="#0e0e14" />
+
+          <!-- Cube BWrap: Left Mid-Shadow Faces -->
+          <polygon points="48,110.8 96,138.5 96,166.2 48,166.2" fill="#07070b" />
+          <polygon points="48,0 96,0 96,27.7" fill="#07070b" />
+
+          <!-- Isometric Structural Edges -->
+          <path
+            d="M48,0 L96,27.7 L48,55.4 L0,27.7 Z M48,55.4 L48,110.8 M0,83.1 L48,110.8 L96,83.1 M0,138.5 L48,110.8 L96,138.5 M0,27.7 L0,83.1 M96,27.7 L96,83.1 M48,110.8 L48,166.2"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.075)"
+            stroke-width="1"
+          />
+          <!-- Top Specular Ridge Highlights -->
+          <path
+            d="M0,27.7 L48,55.4 L96,27.7 M0,138.5 L48,110.8 L96,138.5"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.14)"
+            stroke-width="1"
+          />
+        </pattern>
+
+        <!-- Multi-Level Extruded Accent Cubes & Recessed Depth Wells (288 x 498.6) -->
+        <pattern id="hero-iso-accents" width="288" height="498.6" patternUnits="userSpaceOnUse">
+          <!-- Raised Cube 1 (Top-Left Cluster) -->
+          <g transform="translate(0, 0)">
+            <polygon points="48,0 96,27.7 48,55.4 0,27.7" fill="#171720" />
+            <polygon points="0,27.7 48,55.4 48,110.8 0,83.1" fill="#0b0b11" />
+            <polygon points="48,55.4 96,27.7 96,83.1 48,110.8" fill="#030306" />
+            <path d="M48,0 L96,27.7 L48,55.4 L0,27.7 Z M0,27.7 L48,55.4 L48,110.8" fill="none" stroke="rgba(255, 255, 255, 0.24)" stroke-width="1.2" />
+          </g>
+
+          <!-- Raised Cube 2 (Center-Right Cluster) -->
+          <g transform="translate(144, 249.3)">
+            <polygon points="48,0 96,27.7 48,55.4 0,27.7" fill="#15151d" />
+            <polygon points="0,27.7 48,55.4 48,110.8 0,83.1" fill="#0a0a10" />
+            <polygon points="48,55.4 96,27.7 96,83.1 48,110.8" fill="#030305" />
+            <path d="M48,0 L96,27.7 L48,55.4 L0,27.7 Z M0,27.7 L48,55.4 L48,110.8" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.1" />
+          </g>
+
+          <!-- Raised Cube 3 (Lower-Left Accent) -->
+          <g transform="translate(96, 332.4)">
+            <polygon points="48,0 96,27.7 48,55.4 0,27.7" fill="#13131b" />
+            <polygon points="0,27.7 48,55.4 48,110.8 0,83.1" fill="#09090e" />
+            <path d="M0,27.7 L48,55.4 L96,27.7" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+          </g>
+
+          <!-- Recessed Deep Cavity Cube (Creates Sink-In Depth Contrast) -->
+          <g transform="translate(192, 166.2)">
+            <polygon points="48,0 96,27.7 48,55.4 0,27.7" fill="#030305" />
+            <polygon points="0,27.7 48,55.4 48,110.8 0,83.1" fill="#010102" />
+            <polygon points="48,55.4 96,27.7 96,83.1 48,110.8" fill="#000000" />
+          </g>
+        </pattern>
+      </defs>
+
+      <rect width="100%" height="100%" fill="url(#hero-iso-cubes)" />
+      <rect width="100%" height="100%" fill="url(#hero-iso-accents)" />
+    </svg>
+    <div class="hero-cube-spotlight"></div>
+    <div class="hero-cube-vignette"></div>
+  </div>
+
   <div class="container hero-container">
     
     <!-- Hero Main Stage -->
@@ -266,6 +347,62 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
     display: flex;
     align-items: center;
     background: #000000;
+    overflow: hidden;
+  }
+
+  /* 3D Isometric Dark Depth Cube Background */
+  .hero-depth-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-cube-svg {
+    position: absolute;
+    inset: -4%;
+    width: 108%;
+    height: 108%;
+    opacity: 0.92;
+    transform: perspective(1100px) rotateX(8deg) scale(1.03);
+    transform-origin: 50% 45%;
+  }
+
+  .hero-cube-spotlight {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        620px circle at var(--hero-spot-x, 68%) var(--hero-spot-y, 44%),
+        rgba(255, 255, 255, 0.075),
+        transparent 68%
+      ),
+      radial-gradient(
+        520px circle at 24% 36%,
+        rgba(255, 255, 255, 0.04),
+        transparent 65%
+      );
+    mix-blend-mode: screen;
+  }
+
+  .hero-cube-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 86% 78% at 54% 46%,
+        transparent 18%,
+        rgba(0, 0, 0, 0.58) 66%,
+        #000000 98%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        transparent 22%,
+        transparent 74%,
+        #000000 100%
+      );
   }
 
   .hero-container {
@@ -878,4 +1015,16 @@ import { totalTeams, totalAthletes, primeTierShort, communityCount, nextMatch, d
       });
     }
   });
+
+  // Subtle Cursor Light Interaction over the 3D Depth Cubes
+  const heroSec = document.getElementById('start');
+  if (heroSec) {
+    heroSec.addEventListener('pointermove', (e) => {
+      const rect = heroSec.getBoundingClientRect();
+      const xPct = ((e.clientX - rect.left) / rect.width) * 100;
+      const yPct = ((e.clientY - rect.top) / rect.height) * 100;
+      heroSec.style.setProperty('--hero-spot-x', `${xPct.toFixed(1)}%`);
+      heroSec.style.setProperty('--hero-spot-y', `${yPct.toFixed(1)}%`);
+    }, { passive: true });
+  }
 </script>

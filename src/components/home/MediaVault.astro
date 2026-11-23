@@ -214,7 +214,9 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
 
 <style>
   .media-vault-section {
-    background-color: #000000;
+    background-color: #08080b;
+    background-image: radial-gradient(ellipse 75% 45% at 50% 0%, rgba(255, 255, 255, 0.026), transparent 70%);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
     position: relative;
   }
 
@@ -227,17 +229,17 @@ import { totalTeams, totalAthletes, discordInviteUrl } from '../../utils/uicData
   }
 
   .asset-card {
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #101015;
+    border: 1px solid rgba(255, 255, 255, 0.11);
     border-radius: var(--radius-md);
     padding: var(--space-xl);
     display: flex;
     flex-direction: column;
-    transition: border-color var(--transition-fast), transform var(--transition-smooth);
+    transition: border-color var(--transition-fast), transform var(--transition-smooth), background-color var(--transition-fast);
   }
 
   .asset-card:hover {
-    background: #111115;
+    background: #15151c;
     border-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
   }

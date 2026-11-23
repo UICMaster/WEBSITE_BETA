@@ -491,7 +491,11 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 <style>
   .war-room-section {
     position: relative;
-    background-color: #000000;
+    background-color: #09090d;
+    background-image:
+      radial-gradient(ellipse 70% 45% at 50% 0%, rgba(255, 255, 255, 0.03), transparent 70%),
+      radial-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+    background-size: 100% 100%, 22px 22px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
@@ -503,8 +507,8 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
     align-items: center;
     justify-content: space-around;
     padding: var(--space-xl) var(--space-2xl);
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #111117;
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: var(--radius-md);
     margin-bottom: var(--space-xl);
     flex-wrap: wrap;
