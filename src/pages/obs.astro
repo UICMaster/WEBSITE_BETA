@@ -319,6 +319,9 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
                   <div class="dock-lbl-row">
                     <label for="alert-url-input" class="dock-lbl text-mono">STREAMLABS ALERT-BOX LINK (OPTIONAL):</label>
                     <div class="dock-preset-actions">
+                      <button type="button" class="preset-link-btn text-mono" id="btn-fill-uic-alert" title="Offiziellen Streamlabs-Alert-Box-Link des Twitch-Kanals 'Ultra Instinct Crew' einfügen">
+                        + UIC Alert-Box einfügen
+                      </button>
                       <button type="button" class="preset-link-btn preset-clear text-mono" id="btn-clear-alert" style="display: none;">
                         Leeren
                       </button>
@@ -710,6 +713,7 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
 
 <script>
   const UIC_STREAMLABS_CHAT_URL = 'https://streamlabs.com/widgets/chat-box/v1/D7769C1733A92891C9DD6E97721E8C7B810F1F643040F459AA1115B9ADDF3190ED6927A02D528DEFF92F28B796E8EFC3E741421C558EF20995B6B219569ACB53E969D889639937EFF750AEE1FA6385560F583B8C487DBF1D9CB11BB3A73E2402267550313775ABB986B2556D2F2E0D3C606FC7F096BF6E887826053DEE';
+  const UIC_STREAMLABS_ALERT_URL = 'https://streamlabs.com/alert-box/v3/D7769C1733A92891C9DD6E97721E8C7B810F1F643040F459AA1115B9ADDF3190ED6927A02D528DEFF92F28B796E8EFC3E741421C558EF20995B6B219569ACB53E969D889639937EFF750AEE1FA6385560F583B8C487DBF1D9CB11BB3A73E2402267550313775ABB986B2556D2F2E0D3C606FC7F096BF6E887826053DEE';
 
   const monitorWrapper = document.getElementById('monitor-wrapper');
   const previewIframe = document.getElementById('obs-preview-iframe') as HTMLIFrameElement | null;
@@ -726,6 +730,7 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
   const alertUrlInput = document.getElementById('alert-url-input') as HTMLInputElement | null;
 
   const btnFillUicChat = document.getElementById('btn-fill-uic-chat');
+  const btnFillUicAlert = document.getElementById('btn-fill-uic-alert');
   const btnClearChat = document.getElementById('btn-clear-chat');
   const btnClearAlert = document.getElementById('btn-clear-alert');
   const chatUrlStatus = document.getElementById('chat-url-status');
@@ -932,6 +937,13 @@ upcomingMatchdayOptions.sort((a, b) => a.beginMs - b.beginMs);
   if (btnFillUicChat && chatUrlInput) {
     btnFillUicChat.addEventListener('click', () => {
       chatUrlInput.value = UIC_STREAMLABS_CHAT_URL;
+      updateGenerator();
+    });
+  }
+
+  if (btnFillUicAlert && alertUrlInput) {
+    btnFillUicAlert.addEventListener('click', () => {
+      alertUrlInput.value = UIC_STREAMLABS_ALERT_URL;
       updateGenerator();
     });
   }
