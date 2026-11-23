@@ -58,6 +58,8 @@ const logoVariants = [
     role: 'WORTMARKE (WORDMARK)',
     title: 'Wortmarke Einzeilig',
     dimensions: '356 × 25 px (14:1)',
+    imgWidth: 356,
+    imgHeight: 25,
     minSize: 'Min. 120 px Breite digital / 30 mm Print',
     desc: 'Der ausgeschriebene Markenname „ULTRA INSTINCT CREW“ in einer durchgehenden Zeile. Gedacht für flache Header, Trikot-Schriftzüge und Layouts, in denen das Wappen bereits separat sichtbar ist.',
     canvasMode: 'dark',
@@ -70,6 +72,8 @@ const logoVariants = [
     role: 'HORIZONTALES LOCKUP',
     title: 'Horizontales Logo',
     dimensions: '1200 × 260 px (4.6:1)',
+    imgWidth: 320,
+    imgHeight: 70,
     minSize: 'Min. 160 px Breite digital / 40 mm Print',
     desc: 'Kombiniert das UIC-Wappen links mit der einzeiligen Wortmarke „ULTRA INSTINCT CREW“ rechts. Unsere Standardform für Website-Header, Stream-Banner und Partner-Übersichten mit begrenzter Höhe.',
     canvasMode: 'dark',
@@ -82,6 +86,8 @@ const logoVariants = [
     role: 'VERTIKALES LOCKUP',
     title: 'Vertikales Logo',
     dimensions: '1000 × 640 px (1.56:1)',
+    imgWidth: 225,
+    imgHeight: 144,
     minSize: 'Min. 120 px Breite digital / 30 mm Print',
     desc: 'Zentriertes UIC-Wappen über der einzeiligen Wortmarke „ULTRA INSTINCT CREW“. Ideal für zentrierte Titelbilder, Poster, Turnier-Grafiken und Flächen mit begrenzter Breite.',
     canvasMode: 'dark',
@@ -94,6 +100,8 @@ const logoVariants = [
     role: 'DUNKEL-VARIANTE (PRINT & HELL)',
     title: 'Wappen Tiefschwarz',
     dimensions: '484 × 504 px (1:1 • #000000)',
+    imgWidth: 115,
+    imgHeight: 120,
     minSize: 'Min. 32 px digital / 15 mm Print',
     desc: 'Tiefschwarze Reinzeichnung (#000000) auf transparentem Grund für helle Hintergründe, Dokumente, Verträge, Briefbögen und helle Textilien.',
     canvasMode: 'light',
@@ -381,6 +389,8 @@ const activeTeamEmblems = Object.entries(teamsMap)
                     src={item.svgAsset.src}
                     alt={item.title}
                     class={`lc-img ${item.previewClass}`}
+                    width={item.imgWidth}
+                    height={item.imgHeight}
                     loading="lazy"
                     decoding="async"
                   />
