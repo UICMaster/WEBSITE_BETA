@@ -133,6 +133,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
   <title>UIC OBS Broadcast Overlay</title>
 </head>
 
@@ -154,7 +155,8 @@ import EndingScene from '../components/overlay/EndingScene.astro';
       id="alert-widget-iframe"
       class="alert-widget-iframe"
       title="Streamlabs Alert Widget"
-      allow="autoplay"
+      allow="autoplay; encrypted-media"
+      referrerpolicy="no-referrer"
     ></iframe>
   </div>
 
@@ -235,6 +237,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
       var chatWidgetIframe = document.getElementById("chat-widget-iframe");
       var chatChannelTag = document.getElementById("chat-channel-tag");
       if (chatWidgetIframe && validChatUrl) {
+        chatWidgetIframe.referrerPolicy = "no-referrer";
         chatWidgetIframe.src = validChatUrl;
         chatWidgetIframe.classList.add("is-loaded");
         if (chatChannelTag) {
@@ -247,6 +250,7 @@ import EndingScene from '../components/overlay/EndingScene.astro';
       var alertWidgetIframe = document.getElementById("alert-widget-iframe");
       var alertLayerEl = document.getElementById("streamlabs-alert-layer");
       if (alertWidgetIframe && alertLayerEl && validAlertUrl) {
+        alertWidgetIframe.referrerPolicy = "no-referrer";
         alertWidgetIframe.src = validAlertUrl;
         alertLayerEl.classList.add("is-active");
       }
