@@ -25,7 +25,7 @@ const events: DiscordEvent[] = ((rawEvents as DiscordEvent[]) || []).filter((e) 
 
 // Pre-render Schema.org Event & SportsEvent Structured Data for instant Search Engine Crawler detection (SSG)
 const siteUrl = "https://ultrainstinctcrew.com";
-const defaultImage = `${siteUrl}/assets/logo/logo.png`;
+const defaultImage = `${siteUrl}/og-image.png`;
 
 const eventsJsonLd = events.map((event) => {
   const isMatch = event.type === 'ESPORTS MATCH' || event.name.toLowerCase().includes('vs');

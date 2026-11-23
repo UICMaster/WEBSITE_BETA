@@ -2,9 +2,15 @@
 // src/components/common/DockedTicker.astro
 import { totalTeams, totalAthletes, communityCount, nextMatch } from '../../utils/uicData';
 
-const nextMatchStr = nextMatch.isScheduled
-  ? `${nextMatch.team.toUpperCase()} gegen ${nextMatch.enemyTag || nextMatch.enemy} (${nextMatch.dateFull} Uhr)`
-  : "DEMNÄCHST";
+const tickerMatchLabel = `${nextMatch.headingLabel}:`;
+const nextMatchStr =
+  nextMatch.mode === 'upcoming'
+    ? nextMatch.isScheduled
+      ? `${nextMatch.team.toUpperCase()} gegen ${nextMatch.enemyTag || nextMatch.enemy} (${nextMatch.dateFull} Uhr)`
+      : `${nextMatch.team.toUpperCase()} gegen ${nextMatch.enemyTag || nextMatch.enemy} (Termin offen)`
+    : nextMatch.mode === 'recent' && nextMatch.result
+      ? `${nextMatch.team.toUpperCase()} gegen ${nextMatch.enemyTag || nextMatch.enemy} (${nextMatch.result})`
+      : 'DEMNÄCHST';
 ---
 
 <div class="docked-ticker" role="region" aria-label="Live Ticker">
@@ -16,12 +22,17 @@ const nextMatchStr = nextMatch.isScheduled
       <span class="ticker-highlight">PRIME LEAGUE {nextMatch.teamTierShort}</span>
       <span class="ticker-sep">&bull;</span>
       <span class="ticker-match">
-        <span class="match-lbl">NÄCHSTES SPIEL:</span>
+        <span class="match-lbl">{tickerMatchLabel}</span>
         <strong class="match-teams">{nextMatchStr}</strong>
       </span>
-      {nextMatch.isScheduled && (
+      {nextMatch.mode === 'upcoming' && (
         <span class={`match-status-badge ${nextMatch.confirmed ? 'is-confirmed' : 'is-unconfirmed'}`}>
           {nextMatch.confirmedLabel}
+        </span>
+      )}
+      {nextMatch.mode === 'recent' && nextMatch.resultBadgeLabel && (
+        <span class={`match-status-badge ${nextMatch.resultOutcome === 'win' ? 'is-confirmed' : 'is-unconfirmed'}`}>
+          {nextMatch.resultBadgeLabel}
         </span>
       )}
       
@@ -53,12 +64,17 @@ const nextMatchStr = nextMatch.isScheduled
       <span class="ticker-highlight">PRIME LEAGUE {nextMatch.teamTierShort}</span>
       <span class="ticker-sep">&bull;</span>
       <span class="ticker-match">
-        <span class="match-lbl">NÄCHSTES SPIEL:</span>
+        <span class="match-lbl">{tickerMatchLabel}</span>
         <strong class="match-teams">{nextMatchStr}</strong>
       </span>
-      {nextMatch.isScheduled && (
+      {nextMatch.mode === 'upcoming' && (
         <span class={`match-status-badge ${nextMatch.confirmed ? 'is-confirmed' : 'is-unconfirmed'}`}>
           {nextMatch.confirmedLabel}
+        </span>
+      )}
+      {nextMatch.mode === 'recent' && nextMatch.resultBadgeLabel && (
+        <span class={`match-status-badge ${nextMatch.resultOutcome === 'win' ? 'is-confirmed' : 'is-unconfirmed'}`}>
+          {nextMatch.resultBadgeLabel}
         </span>
       )}
       
