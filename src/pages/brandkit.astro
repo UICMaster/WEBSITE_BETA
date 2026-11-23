@@ -42,66 +42,62 @@ const resolvePublicAsset = (webPath: string): ResolvedAsset | null => {
   };
 };
 
+const logoSvgAsset = resolvePublicAsset('/assets/logo/logo.svg');
+const logoPngAsset = resolvePublicAsset('/assets/logo/logo.png');
+const rawLogoSvg = logoSvgAsset?.svgMarkup ?? '';
+const viewBoxMatch = rawLogoSvg.match(/viewBox=["'][\d.\-]+\s+[\d.\-]+\s+([\d.]+)\s+([\d.]+)["']/i);
+const logoViewBoxLabel = viewBoxMatch
+  ? `${Math.round(Number(viewBoxMatch[1]))} × ${Math.round(Number(viewBoxMatch[2]))}`
+  : '484 × 504';
+
 const brandkitBundle = resolvePublicAsset('/assets/downloads/uic-brandkit.zip');
 
-// 5 Official Logo Variants (4 core white-on-dark variants + 1 black-on-light variant)
-const logoSpecs = [
+// 4 Secondary Logo Variants in symmetric 2x2 grid below the Master Logo Showcase
+const logoVariants = [
   {
-    id: '01',
-    role: 'WAPPEN (ICON)',
-    title: 'UIC Wappen',
-    dimensions: '484 × 504 px (1:1)',
-    minSize: 'Min. 32 px digital / 15 mm Print (Favicon: 16 px)',
-    desc: 'Das alleinstehende Rauten-Wappen der Ultra Instinct Crew. Wird für quadratische oder runde Profilbilder (Discord, Twitch, X, Favicons) sowie als kompaktes Team-Abzeichen in Tabellen und Overlays genutzt.',
-    canvasMode: 'dark',
-    svgPath: '/assets/logo/logo.svg',
-    pngPath: '/assets/logo/logo.png',
-    downloadPrefix: 'uic-logo-icon'
-  },
-  {
-    id: '02',
     role: 'WORTMARKE (WORDMARK)',
     title: 'Wortmarke Einzeilig',
     dimensions: '356 × 25 px (14:1)',
     minSize: 'Min. 120 px Breite digital / 30 mm Print',
-    desc: 'Der ausgeschriebene Markenname „ULTRA INSTINCT CREW“ in einer durchgehenden Zeile. Gedacht für flache Header, Trikot-Schriftzüge und Layouts, in denen das Wappen bereits an anderer Stelle sichtbar ist.',
+    desc: 'Der ausgeschriebene Markenname „ULTRA INSTINCT CREW“ in einer durchgehenden Zeile. Gedacht für flache Header, Trikot-Schriftzüge und Layouts, in denen das Wappen bereits separat sichtbar ist.',
     canvasMode: 'dark',
+    previewClass: 'is-wordmark',
     svgPath: '/assets/logo/logo-wordmark.svg',
     pngPath: '/assets/logo/logo-wordmark.png',
     downloadPrefix: 'uic-logo-wordmark'
   },
   {
-    id: '03',
     role: 'HORIZONTALES LOCKUP',
     title: 'Horizontales Logo',
     dimensions: '1200 × 260 px (4.6:1)',
     minSize: 'Min. 160 px Breite digital / 40 mm Print',
-    desc: 'Kombiniert das UIC-Wappen links mit der einzeiligen Wortmarke „ULTRA INSTINCT CREW“ rechts in fest definiertem Abstand. Unsere Standardform für Website-Header, Stream-Banner und Partner-Übersichten mit begrenzter Höhe.',
+    desc: 'Kombiniert das UIC-Wappen links mit der einzeiligen Wortmarke „ULTRA INSTINCT CREW“ rechts. Unsere Standardform für Website-Header, Stream-Banner und Partner-Übersichten mit begrenzter Höhe.',
     canvasMode: 'dark',
+    previewClass: 'is-horizontal',
     svgPath: '/assets/logo/logo-horizontal.svg',
     pngPath: '/assets/logo/logo-horizontal.png',
     downloadPrefix: 'uic-logo-horizontal'
   },
   {
-    id: '04',
     role: 'VERTIKALES LOCKUP',
     title: 'Vertikales Logo',
     dimensions: '1000 × 640 px (1.56:1)',
     minSize: 'Min. 120 px Breite digital / 30 mm Print',
     desc: 'Zentriertes UIC-Wappen über der einzeiligen Wortmarke „ULTRA INSTINCT CREW“. Ideal für zentrierte Titelbilder, Poster, Turnier-Grafiken und Flächen mit begrenzter Breite.',
     canvasMode: 'dark',
+    previewClass: 'is-stacked',
     svgPath: '/assets/logo/logo-stacked.svg',
     pngPath: '/assets/logo/logo-stacked.png',
     downloadPrefix: 'uic-logo-vertical'
   },
   {
-    id: '05',
     role: 'DUNKEL-VARIANTE (PRINT & HELL)',
     title: 'Wappen Tiefschwarz',
     dimensions: '484 × 504 px (1:1 • #000000)',
     minSize: 'Min. 32 px digital / 15 mm Print',
     desc: 'Tiefschwarze Reinzeichnung (#000000) auf transparentem Grund für helle Hintergründe, Dokumente, Verträge, Briefbögen und helle Textilien.',
     canvasMode: 'light',
+    previewClass: 'is-dark-crest',
     svgPath: '/assets/logo/logo-dark.svg',
     pngPath: '/assets/logo/logo-dark.png',
     downloadPrefix: 'uic-logo-dark'
@@ -195,7 +191,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
 
 <Layout
   title="Brandkit & Markenrichtlinien | Ultra Instinct Crew"
-  description="Offizielles Brandkit der Ultra Instinct Crew (UIC): Logos (Wappen, Wortmarke, Horizontales & Vertikales Lockup), Schutzzonen, Farben, Schriften und Team-Wappen."
+  description="Offizielles Brandkit der Ultra Instinct Crew (UIC): Logos (Wappen, Wortmarke, Horizontales & Vertikales Lockup), Anwendungsregeln, Farben, Schriften und Team-Wappen."
 >
   <div class="brandkit-page section-pad">
     <div class="container bk-container">
@@ -227,56 +223,38 @@ const activeTeamEmblems = Object.entries(teamsMap)
           UIC <span class="text-gradient">BRANDKIT</span>
         </h1>
         <p class="bk-lead">
-          Offizielle Logos, Schutzzonen, Farben und Schriften der Ultra Instinct Crew. Klar aufgebaut für Partner, Caster, Turnierveranstalter und unsere eigenen Teams.
+          Offizielle Logos, Anwendungsregeln, Farben und Schriften der Ultra Instinct Crew. Klar aufgebaut für Partner, Caster, Turnierveranstalter und unsere eigenen Teams.
         </p>
 
         <nav class="bk-toc text-mono" aria-label="Brandkit Kapitel">
-          <a href="#identitaet" class="toc-chip">01 Identität &amp; Sprache</a>
-          <a href="#logos" class="toc-chip">02 Logo-System</a>
-          <a href="#schutzzone" class="toc-chip">03 Schutzzone &amp; Regeln</a>
-          <a href="#farben" class="toc-chip">04 Farbpalette</a>
-          <a href="#typografie" class="toc-chip">05 Typografie</a>
-          <a href="#team-wappen" class="toc-chip">06 Team-Wappen</a>
+          <a href="#identitaet" class="toc-chip">Identität</a>
+          <a href="#logos" class="toc-chip">Logo-System</a>
+          <a href="#regeln" class="toc-chip">Anwendungsregeln</a>
+          <a href="#farben" class="toc-chip">Farbpalette</a>
+          <a href="#typografie" class="toc-chip">Typografie</a>
+          <a href="#team-wappen" class="toc-chip">Team-Wappen</a>
         </nav>
       </header>
 
       <!-- =================================================================
-           01. IDENTITÄT, SCHREIBWEISE & KURZBESCHREIBUNGEN
+           IDENTITÄT & KURZBESCHREIBUNGEN
            ================================================================= -->
       <section id="identitaet" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">01 / IDENTITÄT &amp; SPRACHE</span>
-          <h2 class="bk-sec-title">NAME, BEGRIFFE &amp; TONFALL</h2>
+          <span class="bk-kicker text-mono">IDENTITÄT</span>
+          <h2 class="bk-sec-title">MARKENNAME &amp; KURZTEXTE</h2>
           <p class="bk-sec-desc">
-            Wir kommunizieren direkt, verständlich und ohne künstliche Werbesprache. Hier sind die verbindlichen Schreibweisen und Kurztexte für Ankündigungen, Streams und Berichte.
+            Verbindliche Schreibweise unseres Namens sowie fertige Kurzbeschreibungen für Streams, Ankündigungen und Berichte.
           </p>
         </div>
 
-        <div class="identity-grid">
-          <article class="bento-card id-card">
-            <span class="id-label text-mono">MARKENNAME &amp; KÜRZEL</span>
-            <h3 class="id-value">Ultra Instinct Crew &bull; UIC</h3>
-            <p class="id-note">
-              Der vollständige Name lautet <strong>Ultra Instinct Crew</strong> (drei Wörter). Das Kürzel <strong>UIC</strong> wird durchgehend großgeschrieben und steht vor allen Teamnamen (z. B. <em>UIC Prime</em>, <em>UIC Hydra</em>).
-            </p>
-          </article>
-
-          <article class="bento-card id-card">
-            <span class="id-label text-mono">BEZEICHNUNG</span>
-            <h3 class="id-value">Organisation &bull; Community &bull; Teams</h3>
-            <p class="id-note">
-              Wir bezeichnen uns als <strong>eSport-Organisation</strong> mit einer aktiven <strong>Community</strong> und festen <strong>Teams</strong> in der Prime League. Begriffe wie <em>„Verein“</em>, <em>„e.V.“</em>, <em>„Clan“</em> oder <em>„GbR“</em> werden nicht verwendet.
-            </p>
-          </article>
-
-          <article class="bento-card id-card">
-            <span class="id-label text-mono">TONFALL &amp; HALTUNG</span>
-            <h3 class="id-value">Klar, ehrlich &amp; bodenständig</h3>
-            <p class="id-note">
-              Unsere Texte kommen ohne übertriebene Superlative, englische Marketing-Buzzwords oder leere Phrasen aus. Wir benennen Fakten, Spieltage und Ergebnisse so, wie sie sind.
-            </p>
-          </article>
-        </div>
+        <article class="bento-card id-card">
+          <span class="id-label text-mono">MARKENNAME &amp; KÜRZEL</span>
+          <h3 class="id-value">Ultra Instinct Crew &bull; UIC</h3>
+          <p class="id-note">
+            Der vollständige Name lautet <strong>Ultra Instinct Crew</strong> (drei Wörter). Das Kürzel <strong>UIC</strong> wird durchgehend großgeschrieben und steht vor allen Teamnamen (z. B. <em>UIC Prime</em>, <em>UIC Hydra</em>).
+          </p>
+        </article>
 
         <div class="bento-card boilerplate-card">
           <div class="bp-head">
@@ -303,22 +281,97 @@ const activeTeamEmblems = Object.entries(teamsMap)
       </section>
 
       <!-- =================================================================
-           02. LOGO-SYSTEM (4 GRUNDFORMEN + DUNKEL-VARIANTE)
+           LOGO-SYSTEM (PRIMÄRES WAPPEN + 2x2 VARIANTEN)
            ================================================================= -->
       <section id="logos" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">02 / LOGO-SYSTEM</span>
+          <span class="bk-kicker text-mono">LOGO-SYSTEM</span>
           <h2 class="bk-sec-title">LOGOMARKEN &amp; LOCKUPS</h2>
           <p class="bk-sec-desc">
-            Das UIC-Logo besteht aus zwei Elementen: dem rautenförmigen <strong>Wappen</strong> und der einzeiligen <strong>Wortmarke „ULTRA INSTINCT CREW“</strong>. Daraus ergeben sich vier Grundformen sowie eine schwarze Variante für helle Hintergründe.
+            Das UIC-Logo besteht aus dem rautenförmigen <strong>Wappen</strong> und der einzeiligen <strong>Wortmarke „ULTRA INSTINCT CREW“</strong>. Es wird ausschließlich in Reinweiß (<code>#FFFFFF</code>) oder Tiefschwarz (<code>#000000</code>) eingesetzt.
           </p>
         </div>
 
-        <div class="logos-grid">
-          {logoSpecs.map((item) => (
-            <article class={`bento-card logo-card ${item.id === '03' || item.id === '04' ? 'is-wide-lockup' : ''}`}>
+        <!-- Primary Crest Showcase (Full-Width Split Card with Background Switcher) -->
+        <div class="bento-card logo-master-card">
+          <div class="lm-stage" id="master-logo-stage" data-bg="dark">
+            <div class="lm-stage-controls text-mono">
+              <span class="lm-status-pill">PRIMÄRLOGO &bull; WAPPEN</span>
+              <div class="stage-bg-switch" role="group" aria-label="Hintergrund-Vorschau wechseln">
+                <button type="button" class="bg-sw-btn is-active" data-stage-bg="dark">SCHWARZ</button>
+                <button type="button" class="bg-sw-btn" data-stage-bg="slate">DUNKELGRAU</button>
+                <button type="button" class="bg-sw-btn" data-stage-bg="grid">RASTER</button>
+              </div>
+            </div>
+
+            <div class="lm-preview-wrap">
+              <img
+                src="/assets/logo/logo.svg"
+                alt="Offizielles Ultra Instinct Crew Vektor-Wappen"
+                class="lm-logo-img"
+                width="160"
+                height="160"
+              />
+            </div>
+
+            <span class="lm-dim-caption text-mono">VIEWBOX {logoViewBoxLabel} &bull; REINZEICHNUNG VEKTORPFAD</span>
+          </div>
+
+          <div class="lm-details">
+            <div class="asset-meta-row text-mono">
+              <span class="meta-type">PRIMÄRMARKE &bull; SYMBOL</span>
+              <span class="meta-spec">Min. 32 px digital / 15 mm Print</span>
+            </div>
+            <h3 class="lm-title">UIC WAPPEN (SYMBOL)</h3>
+            <p class="lm-desc">
+              Das alleinstehende Rauten-Wappen in Reinweiß (<code>#FFFFFF</code>) auf transparentem Hintergrund. Optimal für quadratische oder runde Profilbilder (Discord, Twitch, X, Favicons), Broadcast-Badges, Stickereien und kompakte Team-Abzeichen.
+            </p>
+
+            <div class="lm-specs-grid text-mono">
+              <div class="spec-mini">
+                <span class="sm-lbl">VEKTOR</span>
+                <span class="sm-val">SVG ({logoViewBoxLabel})</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">RASTER</span>
+                <span class="sm-val">{logoPngAsset ? `PNG (${logoPngAsset.sizeLabel})` : 'PNG Hochauflösend'}</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">FORMAT</span>
+                <span class="sm-val">1 : 1 Safe-Canvas</span>
+              </div>
+              <div class="spec-mini">
+                <span class="sm-lbl">FARBE</span>
+                <span class="sm-val">#FFFFFF</span>
+              </div>
+            </div>
+
+            <div class="lm-actions text-mono">
+              <a href="/assets/logo/logo.svg" download="uic-logo.svg" class="dl-pill is-primary">
+                {logoSvgAsset ? `SVG (${logoSvgAsset.sizeLabel}) ↓` : 'SVG ↓'}
+              </a>
+              <a href="/assets/logo/logo.png" download="uic-logo.png" class="dl-pill">
+                {logoPngAsset ? `PNG (${logoPngAsset.sizeLabel}) ↓` : 'PNG ↓'}
+              </a>
+              {rawLogoSvg && (
+                <button
+                  type="button"
+                  class="dl-pill is-copy"
+                  data-copy-svg={rawLogoSvg}
+                >
+                  SVG-CODE KOPIEREN
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Logo Variants (Symmetric 2x2 Grid) -->
+        <div class="lockups-grid">
+          {logoVariants.map((item) => (
+            <article class="bento-card logo-card">
               <div class="lc-top text-mono">
-                <span class="lc-role">{item.id} &bull; {item.role}</span>
+                <span class="lc-role">{item.role}</span>
                 <span class="lc-dim">{item.dimensions}</span>
               </div>
 
@@ -327,7 +380,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
                   <img
                     src={item.svgAsset.src}
                     alt={item.title}
-                    class={`lc-img lc-img-${item.id}`}
+                    class={`lc-img ${item.previewClass}`}
                     loading="lazy"
                     decoding="async"
                   />
@@ -377,92 +430,128 @@ const activeTeamEmblems = Object.entries(teamsMap)
       </section>
 
       <!-- =================================================================
-           03. SCHUTZZONE (ISOLATION) & ANWENDUNGSREGELN
+           ANWENDUNGSREGELN (VISUELLE DO'S & DON'TS)
            ================================================================= -->
-      <section id="schutzzone" class="bk-section">
+      <section id="regeln" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">03 / SCHUTZZONE &amp; REGELN</span>
-          <h2 class="bk-sec-title">ABSTÄNDE (ISOLATION) &amp; RICHTIGE ANWENDUNG</h2>
+          <span class="bk-kicker text-mono">ANWENDUNGSREGELN</span>
+          <h2 class="bk-sec-title">RICHTIGE &amp; FALSCHE DARSTELLUNG</h2>
           <p class="bk-sec-desc">
-            Rund um jedes Logo muss ein freier Schutzraum eingehalten werden, damit Wappen und Wortmarke klar erkennbar bleiben. In den herunterladbaren Lockup-Dateien ist dieser Abstand bereits im Format berücksichtigt.
+            Damit Wappen und Wortmarke auf allen Kanälen sauber wirken, gelten diese Grundregeln für Kontrast, Paarungen und Proportionen.
           </p>
         </div>
 
-        <!-- 3 Clearspace Diagrams (Icon, Wordmark, Horizontal Lockup) -->
-        <div class="clearspace-grid">
-          <!-- Diagram 1: Icon Clearspace -->
-          <div class="bento-card cs-card">
-            <div class="cs-card-head text-mono">
-              <span>01 &bull; WAPPEN SOLO</span>
-              <span>FREIRAUM: X = 25 % WAPPENBREITE</span>
-            </div>
-            <div class="cs-canvas">
-              <div class="cs-box cs-box-icon">
-                <span class="cs-tag cs-t text-mono">x</span>
-                <span class="cs-tag cs-b text-mono">x</span>
-                <span class="cs-tag cs-l text-mono">x</span>
-                <span class="cs-tag cs-r text-mono">x</span>
-                <div class="cs-inner">
-                  <img src="/assets/logo/logo.svg" alt="UIC Wappen Schutzzone" width="76" height="76" />
+        <!-- ERLAUBT (DO) - 2 Wide Visual Cards -->
+        <div class="rules-group">
+          <div class="rules-group-label is-do text-mono">ERLAUBT (RICHTIGE ANWENDUNG)</div>
+          <div class="rules-do-grid">
+            <!-- Do 1: Contrast -->
+            <article class="bento-card visual-rule-card is-do">
+              <div class="vr-stage vr-stage-contrast">
+                <div class="vr-half is-dark">
+                  <img src="/assets/logo/logo.svg" alt="Weißes Logo auf Schwarz" width="64" height="64" />
+                  <span class="vr-caption text-mono">#FFFFFF AUF DUNKEL</span>
+                </div>
+                <div class="vr-half is-light">
+                  <img src="/assets/logo/logo-dark.svg" alt="Schwarzes Logo auf Hell" width="64" height="64" />
+                  <span class="vr-caption is-dark-txt text-mono">#000000 AUF HELL</span>
                 </div>
               </div>
-            </div>
-            <p class="cs-note">
-              Um das alleinstehende Wappen bleibt an allen vier Seiten mindestens <strong>25 % der Wappenbreite (x)</strong> frei von Text, Rahmen und Bildkanten.
-            </p>
-          </div>
+              <div class="vr-body">
+                <span class="rule-badge is-do text-mono">✓ RICHTIG: KLARER KONTRAST</span>
+                <h3 class="vr-title">Weiß auf Dunkel, Schwarz auf Hell</h3>
+                <p class="vr-desc">
+                  Auf dunklen Hintergründen wird immer die weiße Reinzeichnung (<code>#FFFFFF</code>) eingesetzt, auf hellen Flächen und Dokumenten die schwarze Variante (<code>#000000</code>).
+                </p>
+              </div>
+            </article>
 
-          <!-- Diagram 2: Horizontal Lockup Clearspace -->
-          <div class="bento-card cs-card">
-            <div class="cs-card-head text-mono">
-              <span>02 &bull; HORIZONTALES &amp; VERTIKALES LOCKUP</span>
-              <span>ABSTAND WAPPEN ZU TEXT: 0.3 &times; WAPPEN</span>
-            </div>
-            <div class="cs-canvas">
-              <div class="cs-box cs-box-wide">
-                <span class="cs-tag cs-t text-mono">x</span>
-                <span class="cs-tag cs-b text-mono">x</span>
-                <div class="cs-inner cs-inner-wide">
-                  <img src="/assets/logo/logo-horizontal.svg" alt="UIC Horizontales Lockup Schutzzone" width="290" height="63" />
+            <!-- Do 2: Co-Branding & Matchups -->
+            <article class="bento-card visual-rule-card is-do">
+              <div class="vr-stage vr-stage-cobrand">
+                <div class="vr-cobrand-pair">
+                  <img src="/assets/logo/logo.svg" alt="UIC Wappen" width="58" height="58" />
+                  <span class="vr-cobrand-sep" aria-hidden="true"></span>
+                  <img src="/assets/logo/riftops-horizontal-dark.svg" alt="Partner Logo" width="136" height="32" />
                 </div>
+                <span class="vr-caption text-mono">OPTISCHE BALANCE &bull; KLARE TRENNUNG</span>
               </div>
-            </div>
-            <p class="cs-note">
-              Im horizontalen und vertikalen Lockup steht die einzeilige Wortmarke <strong>ULTRA INSTINCT CREW</strong> im festen Abstand von <strong>30 % der Wappengröße</strong> neben bzw. unter dem Wappen.
-            </p>
+              <div class="vr-body">
+                <span class="rule-badge is-do text-mono">✓ RICHTIG: CO-BRANDING &amp; MATCHUPS</span>
+                <h3 class="vr-title">Optisch ausgewogene Paarung</h3>
+                <p class="vr-desc">
+                  Bei Paarungen mit Partnern oder Gegner-Teams werden beide Logos nach optischer Größe angeglichen und durch eine feine Linie oder <code>&times;</code> / <code>VS</code> getrennt.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
 
-        <!-- Concise 4-Card Do's & Don'ts Strip -->
-        <div class="rules-row">
-          <div class="bento-card rule-card is-do">
-            <span class="rule-badge is-do text-mono">✓ RICHTIG: KONTRAST</span>
-            <p>Auf dunklen Flächen immer das weiße Logo (<code>#FFFFFF</code>), auf hellen Flächen über 70 % Helligkeit die schwarze Variante (<code>#000000</code>) verwenden.</p>
-          </div>
+        <!-- UNTERSAGT (DON'T) - 4 Visual Cards -->
+        <div class="rules-group">
+          <div class="rules-group-label is-dont text-mono">UNTERSAGT (FEHLERHAFTE ANWENDUNG)</div>
+          <div class="rules-dont-grid">
+            <!-- Don't 1: Stretch -->
+            <article class="bento-card visual-rule-card is-dont">
+              <div class="vr-stage vr-stage-dont">
+                <img src="/assets/logo/logo.svg" alt="" width="64" height="64" class="demo-stretch" />
+                <span class="vr-strike" aria-hidden="true"></span>
+              </div>
+              <div class="vr-body">
+                <span class="rule-badge is-dont text-mono">✕ FALSCH: VERZERREN</span>
+                <h3 class="vr-title">Nicht stauchen oder strecken</h3>
+                <p class="vr-desc">Proportionen von Wappen und Wortmarke niemals unproportional skalieren.</p>
+              </div>
+            </article>
 
-          <div class="bento-card rule-card is-do">
-            <span class="rule-badge is-do text-mono">✓ RICHTIG: CO-BRANDING</span>
-            <p>Bei Paarungen mit Partnern oder Gegnern beide Logos optisch gleich groß skalieren und durch eine feine 1-Pixel-Linie oder <code>&times;</code> / <code>VS</code> trennen.</p>
-          </div>
+            <!-- Don't 2: Recolor / Neon -->
+            <article class="bento-card visual-rule-card is-dont">
+              <div class="vr-stage vr-stage-dont">
+                <img src="/assets/logo/logo.svg" alt="" width="64" height="64" class="demo-recolor" />
+                <span class="vr-strike" aria-hidden="true"></span>
+              </div>
+              <div class="vr-body">
+                <span class="rule-badge is-dont text-mono">✕ FALSCH: FREMDFARBEN</span>
+                <h3 class="vr-title">Keine bunten Farben oder Effekte</h3>
+                <p class="vr-desc">Keine Farbverläufe, Neon-Scheine oder farbige Konturen auf das Logo anwenden.</p>
+              </div>
+            </article>
 
-          <div class="bento-card rule-card is-dont">
-            <span class="rule-badge is-dont text-mono">✕ FALSCH: VERFORMUNG &amp; UMBAU</span>
-            <p>Logos niemals stauchen, drehen, beschneiden oder das Verhältnis zwischen Wappen und der einzeiligen Wortmarke eigenmächtig verändern.</p>
-          </div>
+            <!-- Don't 3: Rotate / Crop -->
+            <article class="bento-card visual-rule-card is-dont">
+              <div class="vr-stage vr-stage-dont">
+                <img src="/assets/logo/logo.svg" alt="" width="64" height="64" class="demo-rotate" />
+                <span class="vr-strike" aria-hidden="true"></span>
+              </div>
+              <div class="vr-body">
+                <span class="rule-badge is-dont text-mono">✕ FALSCH: DREHEN &amp; UMBAUEN</span>
+                <h3 class="vr-title">Nicht kippen oder umstellen</h3>
+                <p class="vr-desc">Das Wappen nicht drehen, anschneiden oder die Lockup-Anordnung verändern.</p>
+              </div>
+            </article>
 
-          <div class="bento-card rule-card is-dont">
-            <span class="rule-badge is-dont text-mono">✕ FALSCH: FREMDFARBEN &amp; EFFEKTE</span>
-            <p>Keine bunten Verläufe, Neon-Schatten oder Konturen auf das Wappen legen und das Logo nicht auf unruhige Fotos ohne abgedunkelten Hintergrund setzen.</p>
+            <!-- Don't 4: Low Contrast -->
+            <article class="bento-card visual-rule-card is-dont">
+              <div class="vr-stage vr-stage-dont is-low-contrast">
+                <img src="/assets/logo/logo.svg" alt="" width="64" height="64" class="demo-lowcontrast" />
+                <span class="vr-strike" aria-hidden="true"></span>
+              </div>
+              <div class="vr-body">
+                <span class="rule-badge is-dont text-mono">✕ FALSCH: KONTRASTVERLUST</span>
+                <h3 class="vr-title">Nicht auf unruhigem Grund</h3>
+                <p class="vr-desc">Weißes Logo niemals auf helle oder unruhige Fotos ohne Abdunkelung setzen.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
       <!-- =================================================================
-           04. FARBPALETTE
+           FARBPALETTE
            ================================================================= -->
       <section id="farben" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">04 / FARBPALETTE</span>
+          <span class="bk-kicker text-mono">FARBPALETTE</span>
           <h2 class="bk-sec-title">MONOCHROMES FARBSYSTEM</h2>
           <p class="bk-sec-desc">
             Wir setzen bewusst auf eine reduzierte Palette aus Schwarz, Weiß und zwei neutralen Grautönen. So stehen unsere Teams, Spielerfotos und Übertragungen immer im Mittelpunkt. Ein Klick auf eine Karte kopiert den HEX-Wert.
@@ -501,11 +590,11 @@ const activeTeamEmblems = Object.entries(teamsMap)
       </section>
 
       <!-- =================================================================
-           05. TYPOGRAFIE
+           TYPOGRAFIE
            ================================================================= -->
       <section id="typografie" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">05 / TYPOGRAFIE</span>
+          <span class="bk-kicker text-mono">TYPOGRAFIE</span>
           <h2 class="bk-sec-title">SCHRIFTEN &amp; HIERARCHIE</h2>
           <p class="bk-sec-desc">
             Zwei klar lesbare Schriften prägen alle digitalen und gedruckten Medien der Ultra Instinct Crew: <strong>Plus Jakarta Sans</strong> für Überschriften und Fließtext sowie <strong>Space Grotesk</strong> für Zahlen, Spieltage und Tabellen.
@@ -526,8 +615,8 @@ const activeTeamEmblems = Object.entries(teamsMap)
               </p>
             </div>
             <div class="type-weights text-mono">
-              <span class="weight-chip"><strong>Weight 800 (ExtraBold):</strong> Hauptüberschriften, Titel und Banner in Versalien</span>
-              <span class="weight-chip"><strong>Weight 400 / 500:</strong> Fließtexte, Beschreibungen und Navigation</span>
+              <span class="weight-chip"><strong>Schnitt 800 (ExtraBold):</strong> Hauptüberschriften, Titel und Banner in Versalien</span>
+              <span class="weight-chip"><strong>Schnitt 400 &amp; 500 (Regular / Medium):</strong> Fließtexte, Beschreibungen und Navigation</span>
             </div>
           </article>
 
@@ -537,26 +626,26 @@ const activeTeamEmblems = Object.entries(teamsMap)
               <span class="tc-name">SPACE GROTESK</span>
             </div>
             <div class="type-specimen" style="font-family: var(--font-mono);">
-              <span class="specimen-big">UIC // 2026</span>
+              <span class="specimen-big">0123456789</span>
               <span class="specimen-headline">SPIELTAG 7 &bull; DIVISION 4 &bull; 2 : 1</span>
               <p class="specimen-alphabet">
-                #FFFFFF &bull; #000000 &bull; KDA &bull; DPM &bull; CS/M &bull; 0123456789
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ &bull; abcdefghijklmnopqrstuvwxyz &bull; #FFFFFF &bull; #000000
               </p>
             </div>
             <div class="type-weights text-mono">
-              <span class="weight-chip"><strong>Weight 700 (Bold):</strong> Spielstände, Tabellenwerte, Uhrzeiten und Badges</span>
-              <span class="weight-chip"><strong>Weight 500 (Medium):</strong> Metadaten, technische Labels und Abmessungen</span>
+              <span class="weight-chip"><strong>Schnitt 700 (Bold):</strong> Spielstände, Tabellenwerte, Uhrzeiten und Badges</span>
+              <span class="weight-chip"><strong>Schnitt 500 (Medium):</strong> Metadaten, technische Labels und Abmessungen</span>
             </div>
           </article>
         </div>
       </section>
 
       <!-- =================================================================
-           06. TEAM-WAPPEN & NUTZUNGSRECHTE
+           TEAM-WAPPEN & NUTZUNGSRECHTE
            ================================================================= -->
       <section id="team-wappen" class="bk-section">
         <div class="bk-sec-head">
-          <span class="bk-num text-mono">06 / TEAM-WAPPEN</span>
+          <span class="bk-kicker text-mono">TEAM-WAPPEN</span>
           <h2 class="bk-sec-title">WAPPEN UNSERER {totalTeams} PRIME LEAGUE TEAMS</h2>
           <p class="bk-sec-desc">
             Jedes aktive Team der Ultra Instinct Crew führt ein eigenes Wappen für Spieltags-Grafiken, Stream-Overlays und die Berichterstattung in der Prime League.
@@ -601,7 +690,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
             <span class="id-label text-mono">NUTZUNGSRECHTE &amp; KONTAKT</span>
             <h3 class="usage-title">FREIGABE FÜR TURNIERE, STREAM &amp; PRESSE</h3>
             <p class="usage-desc">
-              Turnierveranstalter, Caster, Gegner-Teams und Partner dürfen die hier bereitgestellten Logos und Team-Wappen für Spielankündigungen, Overlays und Berichte unter Einhaltung der Schutzzonen frei verwenden. Für kommerzielle Produkte oder Merchandising ist vorab unsere Zustimmung erforderlich.
+              Turnierveranstalter, Caster, Gegner-Teams und Partner dürfen die hier bereitgestellten Logos und Team-Wappen für Spielankündigungen, Overlays und Berichte unverändert frei verwenden. Für kommerzielle Produkte oder Merchandising ist vorab unsere Zustimmung erforderlich.
             </p>
           </div>
           <div class="usage-actions">
@@ -620,7 +709,18 @@ const activeTeamEmblems = Object.entries(teamsMap)
 </Layout>
 
 <script>
-  // 1. Copy SVG Markup to Clipboard
+  // 1. Master Logo Showcase Canvas Background Toggle
+  const masterStage = document.getElementById('master-logo-stage');
+  document.querySelectorAll<HTMLButtonElement>('[data-stage-bg]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-stage-bg');
+      if (!mode || !masterStage) return;
+      masterStage.setAttribute('data-bg', mode);
+      document.querySelectorAll('[data-stage-bg]').forEach((b) => b.classList.toggle('is-active', b === btn));
+    });
+  });
+
+  // 2. Copy SVG Markup to Clipboard
   document.querySelectorAll<HTMLButtonElement>('[data-copy-svg]').forEach((btn) => {
     const original = btn.textContent;
     let resetTimer: ReturnType<typeof setTimeout> | undefined;
@@ -638,7 +738,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     });
   });
 
-  // 2. Copy HEX Color Swatches to Clipboard
+  // 3. Copy HEX Color Swatches to Clipboard
   document.querySelectorAll<HTMLButtonElement>('[data-copy-color]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const hex = btn.getAttribute('data-copy-color');
@@ -654,7 +754,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     });
   });
 
-  // 3. Copy Official Press Boilerplate Text to Clipboard
+  // 4. Copy Official Press Boilerplate Text to Clipboard
   document.querySelectorAll<HTMLButtonElement>('[data-copy-text]').forEach((btn) => {
     const original = btn.textContent;
     let resetTimer: ReturnType<typeof setTimeout> | undefined;
@@ -778,7 +878,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     gap: 6px;
   }
 
-  .bk-num {
+  .bk-kicker {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -798,13 +898,16 @@ const activeTeamEmblems = Object.entries(teamsMap)
     line-height: 1.6;
   }
 
-  /* 01 Identity & Boilerplates */
-  .identity-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-md);
+  .bk-sec-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    color: #ffffff;
   }
 
+  /* Identity & Boilerplates */
   .id-card {
     background: #0d0d10;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -823,15 +926,15 @@ const activeTeamEmblems = Object.entries(teamsMap)
   }
 
   .id-value {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: #ffffff;
   }
 
   .id-note {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--text-secondary);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .id-note strong {
@@ -909,26 +1012,203 @@ const activeTeamEmblems = Object.entries(teamsMap)
     line-height: 1.6;
   }
 
-  /* 02 Logo System Grid */
-  .logos-grid {
+  /* Master Logo Showcase Card */
+  .logo-master-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: var(--space-lg);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+    gap: var(--space-2xl);
+    align-items: center;
   }
 
-  .logo-card {
-    grid-column: span 2;
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .lm-stage {
+    position: relative;
+    min-height: 290px;
     border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: var(--space-lg);
+    transition: background-color var(--transition-fast);
+    overflow: hidden;
+  }
+
+  .lm-stage[data-bg="dark"] {
+    background-color: #000000;
+  }
+
+  .lm-stage[data-bg="slate"] {
+    background-color: #141418;
+  }
+
+  .lm-stage[data-bg="grid"] {
+    background-color: #050507;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .lm-stage-controls {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .lm-status-pill {
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .stage-bg-switch {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-xs);
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .bg-sw-btn {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 3px 8px;
+    border-radius: 3px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .bg-sw-btn.is-active,
+  .bg-sw-btn:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .lm-preview-wrap {
+    padding: 2.25rem 0 1.25rem;
+  }
+
+  .lm-logo-img {
+    width: clamp(110px, 14vw, 155px);
+    height: auto;
+    filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.12));
+  }
+
+  .lm-dim-caption {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .lm-details {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
   }
 
-  .logo-card.is-wide-lockup {
-    grid-column: span 3;
+  .asset-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .meta-type {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: var(--radius-xs);
+    font-weight: 700;
+  }
+
+  .lm-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .lm-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .lm-desc code {
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: var(--radius-xs);
+    color: #ffffff;
+  }
+
+  .lm-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .spec-mini {
+    background: #08080a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sm-lbl {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .sm-val {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .lm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 4px;
+  }
+
+  /* Symmetric 2x2 Lockups Grid */
+  .lockups-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .logo-card {
+    background: #0d0d10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
   }
 
   .lc-top {
@@ -948,13 +1228,13 @@ const activeTeamEmblems = Object.entries(teamsMap)
   }
 
   .lc-stage {
-    height: 190px;
+    height: 200px;
     border-radius: var(--radius-sm);
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 1.75rem;
     overflow: hidden;
   }
 
@@ -971,29 +1251,28 @@ const activeTeamEmblems = Object.entries(teamsMap)
 
   .lc-img {
     max-width: 100%;
-    max-height: 130px;
     width: auto;
     height: auto;
     object-fit: contain;
   }
 
-  .lc-img-01,
-  .lc-img-05 {
-    max-height: 112px;
+  .lc-img.is-wordmark {
+    max-width: 88%;
+    max-height: 34px;
   }
 
-  .lc-img-02 {
-    max-width: 90%;
-    max-height: 36px;
-  }
-
-  .lc-img-03 {
+  .lc-img.is-horizontal {
     max-width: 92%;
-    max-height: 86px;
+    max-height: 78px;
   }
 
-  .lc-img-04 {
-    max-height: 142px;
+  .lc-img.is-stacked {
+    max-width: 86%;
+    max-height: 146px;
+  }
+
+  .lc-img.is-dark-crest {
+    max-height: 118px;
   }
 
   .lc-body {
@@ -1012,7 +1291,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
   }
 
   .lc-title {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: #ffffff;
   }
@@ -1033,7 +1312,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding-top: 6px;
+    padding-top: 8px;
     border-top: 1px solid rgba(255, 255, 255, 0.07);
   }
 
@@ -1045,7 +1324,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: var(--radius-xs);
-    padding: 5px 10px;
+    padding: 6px 12px;
     text-decoration: none;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -1073,111 +1352,173 @@ const activeTeamEmblems = Object.entries(teamsMap)
     background: rgba(16, 185, 129, 0.12);
   }
 
-  /* 03 Clearspace & Rules */
-  .clearspace-grid {
+  /* Visual Application Rules (Do's & Don'ts) */
+  .rules-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .rules-group-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .rules-group-label.is-do {
+    color: #34d399;
+  }
+
+  .rules-group-label.is-dont {
+    color: #f87171;
+  }
+
+  .rules-do-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
   }
 
-  .cs-card {
-    background: #0d0d10;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .cs-card-head {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    flex-wrap: wrap;
-  }
-
-  .cs-canvas {
-    background: #050507;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-sm);
-    min-height: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-  }
-
-  .cs-box {
-    position: relative;
-    padding: 24px;
-    border: 1px dashed rgba(255, 255, 255, 0.32);
-    background: rgba(255, 255, 255, 0.02);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cs-inner {
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cs-inner-wide {
-    padding: 10px 14px;
-  }
-
-  .cs-tag {
-    position: absolute;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
-
-  .cs-t { top: 4px; left: 50%; transform: translateX(-50%); }
-  .cs-b { bottom: 4px; left: 50%; transform: translateX(-50%); }
-  .cs-l { left: 7px; top: 50%; transform: translateY(-50%); }
-  .cs-r { right: 7px; top: 50%; transform: translateY(-50%); }
-
-  .cs-note {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  .cs-note strong {
-    color: #ffffff;
-  }
-
-  .rules-row {
+  .rules-dont-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-md);
   }
 
-  .rule-card {
+  .visual-rule-card {
     background: #0d0d10;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .visual-rule-card.is-do {
+    border-color: rgba(16, 185, 129, 0.25);
+  }
+
+  .visual-rule-card.is-dont {
+    border-color: rgba(239, 68, 68, 0.22);
+  }
+
+  .vr-stage {
+    position: relative;
+    height: 156px;
+    background: #050507;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .vr-stage-contrast {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vr-half {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 1rem;
+  }
+
+  .vr-half.is-dark {
+    background: #000000;
+  }
+
+  .vr-half.is-light {
+    background: #f4f4f5;
+  }
+
+  .vr-caption {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .vr-caption.is-dark-txt {
+    color: #3f3f46;
+  }
+
+  .vr-stage-cobrand {
+    flex-direction: column;
+    gap: 14px;
+    padding: 1.25rem;
+  }
+
+  .vr-cobrand-pair {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .vr-cobrand-sep {
+    width: 1px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .vr-stage-dont {
+    height: 136px;
+  }
+
+  .vr-stage-dont.is-low-contrast {
+    background: linear-gradient(135deg, #d4d4d8 0%, #f4f4f5 50%, #a1a1aa 100%);
+  }
+
+  .vr-strike {
+    position: absolute;
+    width: 140%;
+    height: 2px;
+    background: rgba(239, 68, 68, 0.55);
+    transform: rotate(-22deg);
+    pointer-events: none;
+  }
+
+  .demo-stretch {
+    transform: scale(1.48, 0.58);
+  }
+
+  .demo-recolor {
+    filter: sepia(1) saturate(7) hue-rotate(275deg) drop-shadow(0 0 12px #ec4899);
+  }
+
+  .demo-rotate {
+    transform: rotate(-28deg) scale(1.1);
+  }
+
+  .demo-lowcontrast {
+    opacity: 0.72;
+  }
+
+  .vr-body {
     padding: var(--space-lg);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    flex: 1;
   }
 
-  .rule-card p {
+  .vr-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .vr-desc {
     font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.55;
   }
 
-  .rule-card code {
+  .vr-desc code {
     font-family: var(--font-mono);
     font-size: 0.82em;
     color: #ffffff;
@@ -1189,7 +1530,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
   .rule-badge {
     display: inline-flex;
     align-self: flex-start;
-    font-size: 0.65rem;
+    font-size: 0.625rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     padding: 3px 8px;
@@ -1208,7 +1549,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     border: 1px solid rgba(239, 68, 68, 0.32);
   }
 
-  /* 04 Color Palette */
+  /* Color Palette */
   .swatches-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1292,7 +1633,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     margin-top: 2px;
   }
 
-  /* 05 Typography */
+  /* Typography */
   .type-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1366,7 +1707,7 @@ const activeTeamEmblems = Object.entries(teamsMap)
     color: #ffffff;
   }
 
-  /* 06 Team Emblems Grid & Usage Footer */
+  /* Team Emblems Grid & Usage Footer */
   .team-emblems-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -1479,20 +1820,11 @@ const activeTeamEmblems = Object.entries(teamsMap)
       padding-top: 2rem;
     }
 
-    .identity-grid {
+    .logo-master-card {
       grid-template-columns: 1fr;
     }
 
-    .logos-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .logo-card,
-    .logo-card.is-wide-lockup {
-      grid-column: span 1;
-    }
-
-    .rules-row,
+    .rules-dont-grid,
     .swatches-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1500,9 +1832,9 @@ const activeTeamEmblems = Object.entries(teamsMap)
 
   @media (max-width: 720px) {
     .bp-grid,
-    .logos-grid,
-    .clearspace-grid,
-    .rules-row,
+    .lockups-grid,
+    .rules-do-grid,
+    .rules-dont-grid,
     .swatches-grid,
     .type-grid {
       grid-template-columns: 1fr;
