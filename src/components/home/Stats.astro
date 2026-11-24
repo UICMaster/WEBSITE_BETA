@@ -253,6 +253,25 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
 
     <!-- Tab 1: Comprehensive Standings Table -->
     <div id="panel-standings" class="war-panel is-active" role="tabpanel" aria-labelledby="btn-tab-standings">
+      <!-- Mobile Quick-Sort Bar (Visible on <= 768px) -->
+      <div class="mobile-sort-bar text-mono" aria-label="Tabelle sortieren">
+        <span class="m-sort-label">SORTIERUNG:</span>
+        <div class="m-sort-pills">
+          <button type="button" class="m-sort-pill is-sorted" data-mobile-sort="points">
+            PUNKTE <span class="m-sort-ind">↓</span>
+          </button>
+          <button type="button" class="m-sort-pill" data-mobile-sort="maps">
+            SPIELE <span class="m-sort-ind">↕</span>
+          </button>
+          <button type="button" class="m-sort-pill" data-mobile-sort="series">
+            SERIEN <span class="m-sort-ind">↕</span>
+          </button>
+          <button type="button" class="m-sort-pill" data-mobile-sort="division">
+            DIV <span class="m-sort-ind">↕</span>
+          </button>
+        </div>
+      </div>
+
       <div class="table-wrap">
         <table class="standings-table" id="uic-standings-table">
           <caption class="sr-only">Prime League Rangliste und Serienbilanzen der UIC Teams</caption>
@@ -303,33 +322,48 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
                       loading="lazy"
                       decoding="async"
                     />
-                    <button
-                      type="button"
-                      class="team-brand-name team-jump-btn"
-                      data-jump-fixture={team.key}
-                      title={`Spielplan & Ergebnisse von ${team.name} anzeigen`}
-                    >
-                      {team.name}
-                    </button>
-                    {team.primeLeagueLink && (
-                      <a
-                        href={team.primeLeagueLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-forward-arrow"
-                        title={`${team.name} auf Prime League öffnen`}
-                        aria-label={`${team.name} auf Prime League öffnen`}
-                      >
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </a>
-                    )}
+                    <div class="team-name-stack">
+                      <div class="team-name-row">
+                        <button
+                          type="button"
+                          class="team-brand-name team-jump-btn"
+                          data-jump-fixture={team.key}
+                          title={`Spielplan & Ergebnisse von ${team.name} anzeigen`}
+                        >
+                          {team.name}
+                        </button>
+                        {team.primeLeagueLink && (
+                          <a
+                            href={team.primeLeagueLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-forward-arrow"
+                            title={`${team.name} auf Prime League öffnen`}
+                            aria-label={`${team.name} auf Prime League öffnen`}
+                          >
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                          </a>
+                        )}
+                      </div>
+                      <span class="mobile-team-div text-mono">{team.division}</span>
+                    </div>
                   </div>
                 </td>
                 <td class="td-div text-mono">{team.division}</td>
-                <td class="td-center text-mono">{team.playedGames}</td>
-                <td class="td-center text-mono">{team.seriesWins} / {team.draws} / {team.seriesLosses}</td>
-                <td class="td-center text-mono">{team.mapWins}:{team.mapLosses}</td>
-                <td class="td-center">
+                <td class="td-center text-mono td-stat-cell td-series">
+                  <span class="m-stat-lbl">SERIEN</span>
+                  <span class="m-stat-val">{team.playedGames}</span>
+                </td>
+                <td class="td-center text-mono td-stat-cell td-sun">
+                  <span class="m-stat-lbl">S / U / N</span>
+                  <span class="m-stat-val">{team.seriesWins} / {team.draws} / {team.seriesLosses}</span>
+                </td>
+                <td class="td-center text-mono td-stat-cell td-maps">
+                  <span class="m-stat-lbl">SPIELE</span>
+                  <span class="m-stat-val">{team.mapWins}:{team.mapLosses}</span>
+                </td>
+                <td class="td-center td-stat-cell td-form">
+                  <span class="m-stat-lbl text-mono">FORM</span>
                   <div class="form-strip">
                     {team.form.map(f => (
                       <span class={`badge-form ${f === 'W' ? 'win' : f === 'D' ? 'draw' : 'loss'}`}>{f}</span>
@@ -338,6 +372,7 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
                 </td>
                 <td class="td-right text-mono td-points">
                   <span class="pts-glow">{team.points}</span>
+                  <span class="m-pts-lbl">PKT</span>
                 </td>
               </tr>
             ))}
@@ -679,6 +714,26 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
     background: #09090c;
   }
 
+  .team-name-stack {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .team-name-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+  }
+
+  .mobile-team-div,
+  .m-stat-lbl,
+  .m-pts-lbl,
+  .mobile-sort-bar {
+    display: none;
+  }
+
   .team-brand-name {
     font-weight: 800;
     color: var(--text-white);
@@ -972,6 +1027,301 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
     .deck-sep {
       display: none;
     }
+
+    /* 1. Master Deck: Clean 2x2 Bento Grid on Mobile */
+    .war-room-deck {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      padding: 0.85rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .deck-cell {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+
+    .d-sub {
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+    }
+
+    .d-big {
+      font-size: 1.75rem;
+    }
+
+    /* 2. Full-Width 50/50 Tabs on Mobile */
+    .war-room-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .war-tab {
+      width: 100%;
+      padding: 0.7rem 0.5rem;
+      font-size: 0.75rem;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 3. Mobile Sort Pill Bar */
+    .mobile-sort-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem 0.65rem;
+      background: #101016;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      flex-wrap: wrap;
+    }
+
+    .m-sort-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .m-sort-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .m-sort-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0.3rem 0.55rem;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .m-sort-pill.is-sorted {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #000000;
+      font-weight: 800;
+    }
+
+    .m-sort-ind {
+      font-size: 0.6rem;
+      opacity: 0.65;
+    }
+
+    .m-sort-pill.is-sorted .m-sort-ind {
+      opacity: 1;
+    }
+
+    /* 4. 2-Tier Standings Row Cards (Zero Horizontal Scroll) */
+    .table-wrap {
+      overflow-x: visible;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+    }
+
+    .standings-table,
+    .standings-table tbody {
+      display: block;
+      width: 100%;
+    }
+
+    .standings-table thead {
+      display: none;
+    }
+
+    .standings-table tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .standings-table tr.table-row {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: center;
+      column-gap: 0.35rem;
+      row-gap: 0.55rem;
+      padding: 0.85rem 0.9rem;
+      background: #101117;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .standings-table tr.table-row::after {
+      content: "";
+      grid-column: 1 / -1;
+      grid-row: 2;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .standings-table td {
+      padding: 0;
+      border-bottom: none;
+    }
+
+    .standings-table .td-div {
+      display: none;
+    }
+
+    /* Row 1: Rank + Team (with Division sub-label) + Points */
+    .standings-table .td-rank {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      width: auto;
+      text-align: left;
+    }
+
+    .standings-table .rank-badge {
+      padding: 3px 6px;
+      font-size: 0.72rem;
+    }
+
+    .standings-table .td-team {
+      grid-column: 2 / 10;
+      grid-row: 1;
+      min-width: 0;
+      padding-left: 0.25rem;
+    }
+
+    .standings-table .standings-team-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+    }
+
+    .standings-table .team-brand-name {
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mobile-team-div {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-top: 1px;
+    }
+
+    .standings-table .td-points {
+      grid-column: 10 / 13;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      line-height: 1.05;
+      font-size: 1.35rem;
+    }
+
+    .m-pts-lbl {
+      display: block;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Row 3: Telemetry Strip (SERIEN, S/U/N, SPIELE, FORM) */
+    .standings-table .td-stat-cell {
+      grid-row: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .m-stat-lbl {
+      display: block;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .m-stat-val {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+    }
+
+    .standings-table .td-series {
+      grid-column: 1 / 3;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .standings-table .td-sun {
+      grid-column: 3 / 6;
+      align-items: center;
+      text-align: center;
+    }
+
+    .standings-table .td-maps {
+      grid-column: 6 / 8;
+      align-items: center;
+      text-align: center;
+    }
+
+    .standings-table .td-form {
+      grid-column: 8 / 13;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .standings-table .form-strip {
+      gap: 3px;
+    }
+
+    .standings-table .badge-form {
+      width: 19px;
+      height: 19px;
+      font-size: 0.625rem;
+      border-radius: 3px;
+    }
+
+    /* 5. Fixtures Grid on Mobile */
+    .fixtures-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .team-fixture-card {
+      padding: var(--space-md);
+    }
+
+    .match-mini-item,
+    .upcoming-mini-item {
+      flex-wrap: wrap;
+      gap: 4px 8px;
+    }
   }
 </style>
 
@@ -1043,53 +1393,71 @@ const leaderboard = [...teamsStatsList].sort((a, b) => b.points - a.points);
     });
   });
 
-  // Interactive Table Column Sorting
+  // Interactive Table Column Sorting (Desktop Headers + Mobile Sort Bar)
   const sortHeaders = document.querySelectorAll<HTMLTableCellElement>('.th-sortable');
+  const mobileSortPills = document.querySelectorAll<HTMLButtonElement>('[data-mobile-sort]');
   const tbody = document.getElementById('standings-tbody');
   let currentSortCol = 'points';
   let currentSortAsc = false;
 
+  const sortStandingsBy = (col: string) => {
+    if (!tbody || !col) return;
+
+    if (currentSortCol === col) {
+      currentSortAsc = !currentSortAsc;
+    } else {
+      currentSortCol = col;
+      currentSortAsc = col === 'name' || col === 'division';
+    }
+
+    sortHeaders.forEach((h) => {
+      const isThis = h.getAttribute('data-sort-col') === col;
+      h.classList.toggle('is-sorted', isThis);
+      h.setAttribute('aria-sort', isThis ? (currentSortAsc ? 'ascending' : 'descending') : 'none');
+      const ind = h.querySelector('.sort-ind');
+      if (ind) ind.textContent = isThis ? (currentSortAsc ? '↑' : '↓') : '↕';
+    });
+
+    mobileSortPills.forEach((pill) => {
+      const isThis = pill.getAttribute('data-mobile-sort') === col;
+      pill.classList.toggle('is-sorted', isThis);
+      const ind = pill.querySelector('.m-sort-ind');
+      if (ind) ind.textContent = isThis ? (currentSortAsc ? '↑' : '↓') : '↕';
+    });
+
+    const rows = Array.from(tbody.querySelectorAll<HTMLTableRowElement>('tr.table-row'));
+    rows.sort((a, b) => {
+      if (col === 'name' || col === 'division') {
+        const vA = a.getAttribute(`data-${col}`) || '';
+        const vB = b.getAttribute(`data-${col}`) || '';
+        return currentSortAsc ? vA.localeCompare(vB, 'de') : vB.localeCompare(vA, 'de');
+      }
+      const nA = Number(a.getAttribute(`data-${col}`) || 0);
+      const nB = Number(b.getAttribute(`data-${col}`) || 0);
+      return currentSortAsc ? nA - nB : nB - nA;
+    });
+
+    rows.forEach((r, idx) => {
+      const rankBadge = r.querySelector('.rank-badge');
+      if (rankBadge) {
+        rankBadge.textContent = String(idx + 1).padStart(2, '0');
+        rankBadge.classList.toggle('top-tier', idx < 3);
+      }
+      tbody.appendChild(r);
+    });
+  };
+
   sortHeaders.forEach((th) => {
     th.addEventListener('click', () => {
-      if (!tbody) return;
       const col = th.getAttribute('data-sort-col');
-      if (!col) return;
+      if (col) sortStandingsBy(col);
+    });
+  });
 
-      if (currentSortCol === col) {
-        currentSortAsc = !currentSortAsc;
-      } else {
-        currentSortCol = col;
-        currentSortAsc = col === 'name' || col === 'division';
-      }
-
-      sortHeaders.forEach((h) => {
-        const isThis = h === th;
-        h.classList.toggle('is-sorted', isThis);
-        h.setAttribute('aria-sort', isThis ? (currentSortAsc ? 'ascending' : 'descending') : 'none');
-        const ind = h.querySelector('.sort-ind');
-        if (ind) ind.textContent = isThis ? (currentSortAsc ? '↑' : '↓') : '↕';
-      });
-
-      const rows = Array.from(tbody.querySelectorAll<HTMLTableRowElement>('tr.table-row'));
-      rows.sort((a, b) => {
-        if (col === 'name' || col === 'division') {
-          const vA = a.getAttribute(`data-${col}`) || '';
-          const vB = b.getAttribute(`data-${col}`) || '';
-          return currentSortAsc ? vA.localeCompare(vB, 'de') : vB.localeCompare(vA, 'de');
-        }
-        const nA = Number(a.getAttribute(`data-${col}`) || 0);
-        const nB = Number(b.getAttribute(`data-${col}`) || 0);
-        return currentSortAsc ? nA - nB : nB - nA;
-      });
-
-      rows.forEach((r, idx) => {
-        const rankBadge = r.querySelector('.rank-badge');
-        if (rankBadge) {
-          rankBadge.textContent = String(idx + 1).padStart(2, '0');
-          rankBadge.classList.toggle('top-tier', idx < 3);
-        }
-        tbody.appendChild(r);
-      });
+  mobileSortPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const col = pill.getAttribute('data-mobile-sort');
+      if (col) sortStandingsBy(col);
     });
   });
 
