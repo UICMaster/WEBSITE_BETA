@@ -414,23 +414,30 @@
   }
 
   .hero-crest-halo {
-    width: 180px;
-    height: 180px;
+    width: 172px;
+    height: 172px;
+    border-radius: 14px;
+    background: #060a12;
+    border: 1px solid #263147;
+    padding: 0;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
+  }
+
+  .hero-team.away .hero-crest-halo {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.8), 0 0 24px rgba(138, 43, 226, 0.25);
   }
 
   .hero-team-crest {
-    max-width: 170px;
-    max-height: 170px;
-    object-fit: contain;
-    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 24px rgba(0, 229, 255, 0.25));
-  }
-
-  .hero-team.away .hero-team-crest {
-    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 24px rgba(138, 43, 226, 0.3));
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: inherit;
   }
 
   .hero-team-meta {
@@ -677,9 +684,9 @@
   .td-team-logo {
     width: 28px;
     height: 28px;
-    border-radius: 50%;
-    object-fit: contain;
-    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    object-fit: cover;
+    background: #060a12;
   }
 
   .td-team-name {

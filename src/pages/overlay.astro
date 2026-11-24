@@ -235,15 +235,10 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 
       var validChatUrl = resolveStreamlabsUrl(rawChatUrl, "chat");
       var chatWidgetIframe = document.getElementById("chat-widget-iframe");
-      var chatChannelTag = document.getElementById("chat-channel-tag");
       if (chatWidgetIframe && validChatUrl) {
         chatWidgetIframe.referrerPolicy = "no-referrer";
         chatWidgetIframe.src = validChatUrl;
         chatWidgetIframe.classList.add("is-loaded");
-        if (chatChannelTag) {
-          chatChannelTag.textContent = "TWITCH \u2022 VERBUNDEN";
-          chatChannelTag.classList.add("is-connected");
-        }
       }
 
       var validAlertUrl = resolveStreamlabsUrl(rawAlertUrl, "alert");
