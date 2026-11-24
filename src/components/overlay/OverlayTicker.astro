@@ -3,12 +3,12 @@
 ---
 
 <!-- ======================================================================
-     2. TOP DOCKED PRIME LEAGUE MATCH TICKER (UNIFIED OBSIDIAN GLASS DESIGN)
+     2. TOP DOCKED PRIME LEAGUE MATCH TICKER (SOLID BROADCAST DESIGN)
      ====================================================================== -->
-<header id="overlay-ticker" role="region" aria-label="Prime League Spieltage Ticker">
+<header id="overlay-ticker" role="region" aria-label="Ultra Instinct Crew Spieltage Ticker">
   <div class="ticker-brand-pill">
-    <img src="/assets/logo/logo.svg" alt="UIC" class="ticker-crest" width="22" height="22" />
-    <span class="ticker-brand-label">PRIME LEAGUE</span>
+    <img src="/assets/logo/logo.svg" alt="UIC Wappen" class="ticker-crest" width="24" height="24" />
+    <img src="/assets/logo/logo-wordmark.svg" alt="ULTRA INSTINCT CREW" class="ticker-wordmark" width="188" height="13" />
   </div>
 
   <div class="ticker-viewport">
@@ -27,11 +27,9 @@
     left: 0;
     width: 1920px;
     height: 54px;
-    background: rgba(10, 15, 26, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65), inset 0 -1px 0 rgba(0, 229, 255, 0.18);
+    background: #0a0f1a;
+    border-bottom: 1px solid #263147;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.75), inset 0 -1px 0 rgba(0, 229, 255, 0.22);
     z-index: 50;
     display: flex;
     align-items: center;
@@ -46,11 +44,11 @@
   .ticker-brand-pill {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     height: 100%;
     padding: 0 26px;
-    background: linear-gradient(90deg, rgba(6, 10, 18, 0.96) 0%, rgba(12, 18, 32, 0.92) 100%);
-    border-right: 1px solid rgba(0, 229, 255, 0.28);
+    background: #060a12;
+    border-right: 1px solid #00E5FF;
     flex-shrink: 0;
     z-index: 2;
     position: relative;
@@ -68,21 +66,21 @@
   }
 
   .ticker-crest {
-    width: 22px;
-    height: 22px;
-    max-width: 22px;
-    max-height: 22px;
+    width: 24px;
+    height: 24px;
+    max-width: 24px;
+    max-height: 24px;
     object-fit: contain;
     flex-shrink: 0;
     filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
   }
 
-  .ticker-brand-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    color: #ffffff;
+  .ticker-wordmark {
+    height: 13px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
   }
 
   .ticker-viewport {
@@ -109,8 +107,8 @@
     gap: 12px;
     padding: 0 16px;
     height: 38px;
-    background: rgba(6, 10, 18, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #060a12;
+    border: 1px solid #1e293b;
     border-radius: 6px;
     flex-shrink: 0;
     white-space: nowrap;
@@ -123,9 +121,9 @@
     font-size: 0.6875rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    background: #111827;
+    border: 1px solid #263147;
     padding: 3px 9px;
     border-radius: 4px;
     white-space: nowrap;
@@ -133,17 +131,16 @@
   }
 
   .m-time-badge.heute {
-    background: rgba(0, 229, 255, 0.15);
+    background: #0c2333;
     color: #00E5FF;
-    border-color: rgba(0, 229, 255, 0.5);
+    border-color: #00E5FF;
     font-weight: 800;
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
   }
 
   .m-time-badge.morgen {
-    background: rgba(138, 43, 226, 0.18);
+    background: #1e1333;
     color: #d8b4fe;
-    border-color: rgba(168, 85, 247, 0.45);
+    border-color: #a855f7;
     font-weight: 800;
   }
 
@@ -161,20 +158,20 @@
 
   .match-status-badge.is-confirmed {
     color: #10b981;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.38);
+    background: #09221c;
+    border: 1px solid #10b981;
   }
 
   .match-status-badge.is-unconfirmed {
     color: #f59e0b;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.35);
+    background: #261b0a;
+    border: 1px solid #f59e0b;
   }
 
   .match-status-badge.is-result {
     color: #ffffff;
-    background: rgba(0, 229, 255, 0.1);
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: #0c2333;
+    border: 1px solid #00E5FF;
   }
 
   .m-team {

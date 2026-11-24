@@ -1143,21 +1143,28 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var pauseSched = document.getElementById("pause-schedule-list");
         if (pauseSched) {
           var scRows = state.schedule;
-          if (scRows.length > 4) {
+          if (scRows.length > 7) {
             var nIdx = Math.max(0, scRows.indexOf(state.nextMatch));
-            var sStart = Math.max(0, Math.min(nIdx - 1, scRows.length - 4));
-            scRows = scRows.slice(sStart, sStart + 4);
+            var sStart = Math.max(0, Math.min(nIdx - 4, scRows.length - 7));
+            scRows = scRows.slice(sStart, sStart + 7);
           }
           var scHtml = "";
           for (var r = 0; r < scRows.length; r++) {
             var sm = scRows[r];
             var enemy = sm.enemy_team || {};
             var isNext = state.nextMatch && sm === state.nextMatch;
-            var rightTxt = sm.result ? sm.result : formatSlotDate(sm.begin);
+            var rightHtml = esc(formatSlotDate(sm.begin));
+            if (sm.result && /^\d+:\d+$/.test(sm.result)) {
+              var sc = sm.result.split(":").map(Number);
+              var cls = sc[0] > sc[1] ? "win" : (sc[0] < sc[1] ? "loss" : "draw");
+              rightHtml = '<span class="res-chip ' + cls + '">' + sc[0] + ' : ' + sc[1] + '</span>';
+            } else if (sm.result) {
+              rightHtml = esc(sm.result);
+            }
             scHtml += '<div class="ps-sched-row' + (isNext ? ' is-next' : '') + '">' +
               '<span class="ps-sch-day text-mono">' + esc(formatMatchDayShort(sm, "T")) + '</span>' +
               '<span class="ps-sch-enemy">' + esc(enemy.name || "Gegner") + '</span>' +
-              '<span class="ps-sch-res text-mono">' + esc(rightTxt) + '</span>' +
+              '<span class="ps-sch-res text-mono">' + rightHtml + '</span>' +
             '</div>';
           }
           pauseSched.innerHTML = scHtml;
@@ -1183,6 +1190,8 @@ import EndingScene from '../components/overlay/EndingScene.astro';
 
         var endRec = document.getElementById("ending-record-val");
         if (endRec) endRec.textContent = state.wins + "S / " + state.losses + "N";
+        var endWr = document.getElementById("ending-winrate-val");
+        if (endWr) endWr.textContent = state.wrPercent !== null ? (state.wrPercent + "%") : "\u2013";
         var endForm = document.getElementById("ending-form-pills");
         if (endForm) endForm.innerHTML = buildFormBadgesHtml(state.formArr);
 
@@ -1192,10 +1201,10 @@ import EndingScene from '../components/overlay/EndingScene.astro';
         var endSched = document.getElementById("ending-schedule-list");
         if (endSched) {
           var eRows = state.schedule;
-          if (eRows.length > 5) {
+          if (eRows.length > 7) {
             var nIdx = Math.max(0, eRows.indexOf(state.nextMatch));
-            var sStart = Math.max(0, Math.min(nIdx - 2, eRows.length - 5));
-            eRows = eRows.slice(sStart, sStart + 5);
+            var sStart = Math.max(0, Math.min(nIdx - 4, eRows.length - 7));
+            eRows = eRows.slice(sStart, sStart + 7);
           }
           var eHtml = "";
           for (var r = 0; r < eRows.length; r++) {

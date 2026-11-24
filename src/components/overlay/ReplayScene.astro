@@ -5,10 +5,7 @@
 <!-- SCENE 4: REPLAY (TRANSPARENT FULLSCREEN REPLAY STAGE, TOP-LEFT "INSTANT REPLAY • POWERED BY RIFTOPS" OVERLAY CARD & TOP-RIGHT 16:9 LIVE GAME PIP) -->
 <section id="stage-replay" class="broadcast-stage" aria-label="4. Replay">
 
-  <!-- 1. OUTER BROADCAST MATTE FRAME (Leaves the 1920x1080 Replay behind the overlay visible) -->
-  <div class="replay-matte-border" aria-hidden="true"></div>
-
-  <!-- 2. TOP-LEFT: UNIFIED OVERLAY CARD ("INSTANT REPLAY • POWERED BY RIFTOPS") -->
+  <!-- 1. TOP-LEFT: UNIFIED OVERLAY CARD ("INSTANT REPLAY • POWERED BY RIFTOPS") -->
   <header class="replay-top-left">
     <div class="replay-brand-card">
       <!-- Left: Instant Replay Title in Overlay Design -->
@@ -30,7 +27,7 @@
     </div>
   </header>
 
-  <!-- 3. TOP-RIGHT: LIVE GAME PICTURE-IN-PICTURE FRAME (544x306 • EXACT 16:9) -->
+  <!-- 2. TOP-RIGHT: LIVE GAME PICTURE-IN-PICTURE FRAME (544x306 • EXACT 16:9) -->
   <aside class="replay-live-pip" id="replay-live-pip" aria-label="Aktuelles Live-Spiel (16:9)">
     <div class="replay-pip-hole"></div>
     <div class="cam-lower-third replay-pip-label">
@@ -70,19 +67,7 @@
     display: block !important;
   }
 
-  /* 1. Outer Broadcast Frame around the 1920x1080 Replay */
-  .replay-matte-border {
-    position: absolute;
-    inset: 0;
-    border: 14px solid #080c15;
-    box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-      inset 0 0 28px rgba(0, 0, 0, 0.65);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  /* 2. Top-Left Unified Overlay Card: "INSTANT REPLAY • POWERED BY RIFTOPS" */
+  /* 1. Top-Left Unified Overlay Card: "INSTANT REPLAY • POWERED BY RIFTOPS" (100% Solid Opaque) */
   .replay-top-left {
     position: absolute;
     top: 26px;
@@ -97,16 +82,15 @@
     gap: 22px;
     height: 68px;
     padding: 0 26px 0 20px;
-    background: rgba(10, 15, 26, 0.92);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-bottom: 2px solid rgba(0, 229, 255, 0.75);
+    background: #0a0f1a;
+    border: 1px solid #2a364f;
+    border-bottom: 2px solid #00E5FF;
     border-radius: 10px;
     box-shadow:
-      0 18px 44px rgba(0, 0, 0, 0.75),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      0 18px 44px rgba(0, 0, 0, 0.85),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
     overflow: hidden;
+    opacity: 1;
   }
 
   .replay-brand-card::before {
@@ -116,7 +100,7 @@
     left: 24px;
     right: 24px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.5) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #00E5FF 50%, transparent 100%);
     pointer-events: none;
   }
 
@@ -161,7 +145,7 @@
   .rbc-divider {
     width: 1px;
     height: 36px;
-    background: rgba(255, 255, 255, 0.16);
+    background: #2a364f;
     flex-shrink: 0;
   }
 
@@ -177,7 +161,7 @@
     font-size: 0.5625rem;
     font-weight: 800;
     letter-spacing: 0.18em;
-    color: var(--text-muted);
+    color: #cbd5e1;
     line-height: 1;
   }
 
@@ -186,9 +170,10 @@
     width: auto;
     object-fit: contain;
     display: block;
+    opacity: 1;
   }
 
-  /* 3. Top-Right Live Game Picture-in-Picture Frame (544x306 • Exact 16:9, Overlay Frame Style) */
+  /* 2. Top-Right Live Game Picture-in-Picture Frame (544x306 • Exact 16:9, Solid Collar Border hides source corners) */
   .replay-live-pip {
     position: absolute;
     top: 26px;
@@ -196,13 +181,14 @@
     width: 544px;
     height: 306px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-bottom: 2px solid rgba(0, 229, 255, 0.75);
-    border-radius: 10px;
+    border: 5px solid #0a0f1a;
+    outline: 1px solid #2a364f;
+    outline-offset: -1px;
+    border-radius: 8px;
     box-shadow:
-      0 20px 48px rgba(0, 0, 0, 0.8),
-      inset 0 0 24px rgba(0, 0, 0, 0.45),
-      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      0 20px 48px rgba(0, 0, 0, 0.85),
+      inset 0 0 0 1.5px #2a364f,
+      inset 0 -2px 0 #00E5FF;
     overflow: hidden;
     z-index: 10;
   }
@@ -214,7 +200,7 @@
     left: 24px;
     right: 24px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.45) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #00E5FF 50%, transparent 100%);
     pointer-events: none;
     z-index: 4;
   }
