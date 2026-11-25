@@ -4397,7 +4397,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/212000/212473.jpg?1777401024",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/212473",
-      "updated_at": "2026-11-25T15:51:19.745649+01:00"
+      "updated_at": "2026-11-26T00:36:32.950163+01:00"
     },
     "matches": [
       {
@@ -4519,7 +4519,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1170184",
-        "updated_at": "2026-11-25T15:51:38.089120+01:00",
+        "updated_at": "2026-11-26T00:36:51.356577+01:00",
         "enemy_team": {
           "id": 212417,
           "name": "Elektrolyse &amp; Söhne",
@@ -5101,7 +5101,7 @@
       "division": null,
       "logo_url": "https://cdn0.heartbase.gg/league_team_logos/211000/211794.jpg?1790878967",
       "prime_league_link": "https://www.primeleague.gg/de/leagues/teams/211794",
-      "updated_at": "2026-11-25T15:50:52.471607+01:00"
+      "updated_at": "2026-11-26T00:36:07.559423+01:00"
     },
     "matches": [
       {
@@ -5278,7 +5278,7 @@
         "confirmed": false,
         "result": null,
         "prime_league_link": "https://www.primeleague.gg/de/leagues/matches/1170170",
-        "updated_at": "2026-11-25T15:51:36.077395+01:00",
+        "updated_at": "2026-11-26T00:36:49.354538+01:00",
         "enemy_team": {
           "id": 212733,
           "name": "Ghost Impact Gaming Duckies",
